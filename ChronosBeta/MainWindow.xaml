@@ -33,9 +33,9 @@
             <Label Background="#32CD32" HorizontalContentAlignment="Center" Margin="5" Content="Пароль"/>
             <TextBox x:Name="tbPassword" Margin="5" Background="#CCFFCC"/>
 
-            <Button Margin="10" x:Name="btGo" Template="{StaticResource ButtonTemplate}" Content="Войти" />
+            <Button Margin="10" x:Name="btGo" Click="btGo_Click" Template="{StaticResource ButtonTemplate}" Content="Войти" />
 
-            <Button Margin="10" x:Name="btExist" Template="{StaticResource ButtonTemplate}" Content="Выйти"/>
+            <Button Margin="10" x:Name="btExist" Click="btExist_Click" Template="{StaticResource ButtonTemplate}" Content="Выйти"/>
         </StackPanel>
     </Grid>
 
