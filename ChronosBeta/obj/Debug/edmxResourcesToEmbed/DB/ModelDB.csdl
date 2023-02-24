@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CronosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DateTimer">
+    <Key>
+      <PropertyRef Name="ID_DateTimer" />
+    </Key>
+    <Property Name="ID_DateTimer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Users" Type="Int32" Nullable="false" />
+    <Property Name="Day" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TimeStart" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="TimeEnd" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="AllRunProgram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users1" Relationship="Self.FK_DateTimer_Users" FromRole="DateTimer" ToRole="Users" />
+  </EntityType>
   <EntityType Name="JobTitles">
     <Key>
       <PropertyRef Name="ID_JobTitles" />
@@ -7,6 +19,41 @@
     <Property Name="ID_JobTitles" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NameJobTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Users_JobTitles" FromRole="JobTitles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="ID_Projects" />
+    </Key>
+    <Property Name="ID_Projects" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameProject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserCreateProject" Type="Int32" Nullable="false" />
+    <Property Name="UserDoProject" Type="Int32" Nullable="false" />
+    <Property Name="ItsOver" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Projects_Users" FromRole="Projects" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="Self.FK_Projects_Users1" FromRole="Projects" ToRole="Users" />
+    <NavigationProperty Name="TimerProject" Relationship="Self.FK_TimerProject_Projects" FromRole="Projects" ToRole="TimerProject" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TimerProject">
+    <Key>
+      <PropertyRef Name="ID_TimerProject" />
+    </Key>
+    <Property Name="ID_TimerProject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Users" Type="Int32" Nullable="false" />
+    <Property Name="Project" Type="Int32" Nullable="false" />
+    <Property Name="SpentTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_TimerProject_Projects" FromRole="TimerProject" ToRole="Projects" />
+    <NavigationProperty Name="Users1" Relationship="Self.FK_TimerProject_Users" FromRole="TimerProject" ToRole="Users" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -20,8 +67,25 @@
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Skype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="JobTitle" Type="Int32" Nullable="false" />
+    <Property Name="ImageUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DateTimer" Relationship="Self.FK_DateTimer_Users" FromRole="Users" ToRole="DateTimer" />
     <NavigationProperty Name="JobTitles" Relationship="Self.FK_Users_JobTitles" FromRole="Users" ToRole="JobTitles" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Projects_Users" FromRole="Users" ToRole="Projects" />
+    <NavigationProperty Name="Projects1" Relationship="Self.FK_Projects_Users1" FromRole="Users" ToRole="Projects" />
+    <NavigationProperty Name="TimerProject" Relationship="Self.FK_TimerProject_Users" FromRole="Users" ToRole="TimerProject" />
   </EntityType>
+  <Association Name="FK_DateTimer_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="DateTimer" Type="Self.DateTimer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_Users" />
+      </Principal>
+      <Dependent Role="DateTimer">
+        <PropertyRef Name="Users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Users_JobTitles">
     <End Role="JobTitles" Type="Self.JobTitles" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -36,12 +100,88 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Projects_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_Users" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="UserCreateProject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_Users" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="UserDoProject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TimerProject_Projects">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TimerProject" Type="Self.TimerProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ID_Projects" />
+      </Principal>
+      <Dependent Role="TimerProject">
+        <PropertyRef Name="Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TimerProject_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TimerProject" Type="Self.TimerProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_Users" />
+      </Principal>
+      <Dependent Role="TimerProject">
+        <PropertyRef Name="Users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="CronosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DateTimer" EntityType="Self.DateTimer" />
     <EntitySet Name="JobTitles" EntityType="Self.JobTitles" />
+    <EntitySet Name="Projects" EntityType="Self.Projects" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TimerProject" EntityType="Self.TimerProject" />
     <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_DateTimer_Users" Association="Self.FK_DateTimer_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="DateTimer" EntitySet="DateTimer" />
+    </AssociationSet>
     <AssociationSet Name="FK_Users_JobTitles" Association="Self.FK_Users_JobTitles">
       <End Role="JobTitles" EntitySet="JobTitles" />
       <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_Users" Association="Self.FK_Projects_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_Users1" Association="Self.FK_Projects_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TimerProject_Projects" Association="Self.FK_TimerProject_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="TimerProject" EntitySet="TimerProject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TimerProject_Users" Association="Self.FK_TimerProject_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TimerProject" EntitySet="TimerProject" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -1,11 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище CronosModelContainer" CdmEntityContainer="CronosEntities">
+    <EntitySetMapping Name="DateTimer">
+      <EntityTypeMapping TypeName="CronosModel.DateTimer">
+        <MappingFragment StoreEntitySet="DateTimer">
+          <ScalarProperty Name="ID_DateTimer" ColumnName="ID_DateTimer" />
+          <ScalarProperty Name="Users" ColumnName="Users" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+          <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
+          <ScalarProperty Name="AllRunProgram" ColumnName="AllRunProgram" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="JobTitles">
       <EntityTypeMapping TypeName="CronosModel.JobTitles">
         <MappingFragment StoreEntitySet="JobTitles">
           <ScalarProperty Name="ID_JobTitles" ColumnName="ID_JobTitles" />
           <ScalarProperty Name="NameJobTitle" ColumnName="NameJobTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="CronosModel.Projects">
+        <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="ID_Projects" ColumnName="ID_Projects" />
+          <ScalarProperty Name="NameProject" ColumnName="NameProject" />
+          <ScalarProperty Name="UserCreateProject" ColumnName="UserCreateProject" />
+          <ScalarProperty Name="UserDoProject" ColumnName="UserDoProject" />
+          <ScalarProperty Name="ItsOver" ColumnName="ItsOver" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="CronosModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimerProject">
+      <EntityTypeMapping TypeName="CronosModel.TimerProject">
+        <MappingFragment StoreEntitySet="TimerProject">
+          <ScalarProperty Name="ID_TimerProject" ColumnName="ID_TimerProject" />
+          <ScalarProperty Name="Users" ColumnName="Users" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="SpentTime" ColumnName="SpentTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -20,6 +65,7 @@
           <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="Skype" ColumnName="Skype" />
           <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="ImageUser" ColumnName="ImageUser" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

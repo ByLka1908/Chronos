@@ -14,6 +14,15 @@ namespace ChronosBeta.DB
     
     public partial class Users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Users()
+        {
+            this.DateTimer = new HashSet<DateTimer>();
+            this.Projects = new HashSet<Projects>();
+            this.Projects1 = new HashSet<Projects>();
+            this.TimerProject = new HashSet<TimerProject>();
+        }
+    
         public int ID_Users { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -22,7 +31,16 @@ namespace ChronosBeta.DB
         public string Phone { get; set; }
         public string Skype { get; set; }
         public int JobTitle { get; set; }
+        public string ImageUser { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DateTimer> DateTimer { get; set; }
         public virtual JobTitles JobTitles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Projects> Projects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Projects> Projects1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TimerProject> TimerProject { get; set; }
     }
 }

@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChronosBeta.View"
         mc:Ignorable="d"
-        Title="Desktop" Height="450" Width="800">
+        Title="Chronos: [Рабочий стол]" Height="450" Width="800" Background="#FF272727">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Button x:Name="btStartTimer" Margin="15" Content="Start timer" Grid.Column="0" Grid.Row="0"/>
         
     </Grid>
 </Window>

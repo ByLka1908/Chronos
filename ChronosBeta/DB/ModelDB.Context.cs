@@ -25,7 +25,11 @@ namespace ChronosBeta.DB
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<DateTimer> DateTimer { get; set; }
         public virtual DbSet<JobTitles> JobTitles { get; set; }
+        public virtual DbSet<Projects> Projects { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TimerProject> TimerProject { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }

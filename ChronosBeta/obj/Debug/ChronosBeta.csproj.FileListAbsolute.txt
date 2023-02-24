@@ -22,3 +22,7 @@ F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\obj\Debug\ChronosBeta.exe
 F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\obj\Debug\ChronosBeta.pdb
 F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\obj\Debug\View\Desktop.g.cs
 F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\obj\Debug\View\Desktop.baml
+F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\bin\Debug\Newtonsoft.Json.dll
+F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\bin\Debug\Newtonsoft.Json.xml
+F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\bin\Debug\ru\EntityFramework.resources.dll
+F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

@@ -4,10 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="404d07cad07245f390d6b4b5b6b5b75c" Name="Diagram1">
-        <EntityTypeShape EntityType="CronosModel.JobTitles" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CronosModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="877b8e5da340436a9287bef9a008dcdd" Name="Diagram1">
+        <EntityTypeShape EntityType="CronosModel.DateTimer" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.JobTitles" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.Projects" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.TimerProject" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.Users" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="CronosModel.FK_DateTimer_Users" ManuallyRouted="false" />
         <AssociationConnector Association="CronosModel.FK_Users_JobTitles" ManuallyRouted="false" />
+        <AssociationConnector Association="CronosModel.FK_Projects_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CronosModel.FK_Projects_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="CronosModel.FK_TimerProject_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="CronosModel.FK_TimerProject_Users" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
