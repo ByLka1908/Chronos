@@ -16,7 +16,10 @@ namespace ChronosBeta.BL
                 DB.Users user = new DB.Users();
                 user = entities.Users.Single(x => x.Login == login && x.Password == password);
                 if (user != null)
+                {
+                    CurrentUser.SetUser(user);
                     return user;
+                } 
                 else
                     throw new Exception();
             }
@@ -24,8 +27,6 @@ namespace ChronosBeta.BL
             {
                 throw new Exception("Проблемы с аунтификацией");
             }
-
         }
-
     }
 }

@@ -22,6 +22,27 @@
         </Grid.ColumnDefinitions>
         
         <Button x:Name="btStartTimer" Margin="15" Content="Start timer" Grid.Column="0" Grid.Row="0"/>
-        
+        <Calendar x:Name="Calendar" Grid.Column="2" Background="#FF272727" Grid.Row="2" Grid.RowSpan="3"/>
+
+        <Border Grid.Column="2" Grid.Row="0" BorderBrush="Green" BorderThickness="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Image x:Name="ImageUser" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"></Image>
+
+                <Label x:Name="lbName" Grid.Row="0" Grid.Column="1"></Label>
+                <Label x:Name="lbSurname" Grid.Row="0" Grid.Column="2"></Label>
+                <Label x:Name="lbJobTitle" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></Label>
+
+            </Grid>
+        </Border>
     </Grid>
 </Window>

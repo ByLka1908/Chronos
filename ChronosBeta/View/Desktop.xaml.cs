@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace ChronosBeta.View
         public Desktop()
         {
             InitializeComponent();
+            BL.CurrentUser.UpdateUser(lbName, lbSurname, lbJobTitle, ImageUser);
         }
     }
 }
