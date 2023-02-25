@@ -23,7 +23,7 @@ namespace ChronosBeta.View
         public Desktop()
         {
             InitializeComponent();
-            BL.CurrentUser.UpdateUser(lbName, lbSurname, lbJobTitle, ImageUser);
+            BL.CurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
         }
     }
 }

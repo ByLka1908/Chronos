@@ -31,7 +31,7 @@ namespace ChronosBeta.BL
             ImageUser = string.IsNullOrWhiteSpace(user.ImageUser) ? @"/ImageDef.jpg" : user.ImageUser;
         }
 
-        public static void UpdateUser(Label name, Label surname, Label jobTitle, Image imageUser)
+        public static void GetUser(Label name, Label surname, Label jobTitle, Image imageUser)
         {
             name.Content = Name;
             surname.Content = Surname;

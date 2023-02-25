@@ -21,16 +21,19 @@
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         
-        <Button x:Name="btStartTimer" Margin="15" Content="Start timer" Grid.Column="0" Grid.Row="0"/>
-        <Calendar x:Name="Calendar" Grid.Column="2" Background="#FF272727" Grid.Row="2" Grid.RowSpan="3"/>
+        <Button x:Name="btStartTimer"  Margin="15" Content="Start timer" Grid.Column="0" Grid.Row="0"/>
+        <Calendar x:Name="Calendar"  Grid.Column="2" Background="#FF272727" Grid.Row="2" Grid.RowSpan="3"/>
 
-        <Border Grid.Column="2" Grid.Row="0" BorderBrush="Green" BorderThickness="3">
+        <Label Content="Список проектов:" Foreground="Green" Grid.Row="0" Grid.Column="1" ></Label>
+
+        <Border x:Name="brUser" Grid.Column="2" Grid.Row="0" BorderBrush="Green" BorderThickness="3">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.7*"/>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
+                
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -38,11 +41,37 @@
 
                 <Image x:Name="ImageUser" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"></Image>
 
-                <Label x:Name="lbName" Grid.Row="0" Grid.Column="1"></Label>
-                <Label x:Name="lbSurname" Grid.Row="0" Grid.Column="2"></Label>
-                <Label x:Name="lbJobTitle" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></Label>
-
+                <Label x:Name="lbName" Foreground="Green"  Grid.Row="0" Grid.Column="1"></Label>
+                <Label x:Name="lbSurname" Foreground="Green" Grid.Row="0" Grid.Column="2"></Label>
+                <Label x:Name="lbJobTitle" Foreground="Green"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></Label>
             </Grid>
         </Border>
+
+        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" BorderBrush="Green" BorderThickness="2">
+            <ListBox x:Name="lbProject" Background="Gray">
+                <ListBox.ItemTemplate >
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1" ToolTip="Нажмите два раза для редактирования">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Label Content="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Label>
+                                <Label Content="{Binding UserCreateProject}" Grid.Row="0" Grid.Column="1"></Label>
+                                <Label Content="{Binding UserDoProject}" Grid.Row="1" Grid.Column="1"></Label>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
     </Grid>
 </Window>
