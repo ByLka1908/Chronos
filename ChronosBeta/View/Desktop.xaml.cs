@@ -20,9 +20,12 @@ namespace ChronosBeta.View
     /// </summary>
     public partial class Desktop : Window
     {
+        List<BL.ViewProject> contentProject = new List<BL.ViewProject>();
         public Desktop()
         {
             InitializeComponent();
+            contentProject = BL.GetProject.GetProjects();
+            lbcontentProject.ItemsSource = contentProject;
             BL.CurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
         }
     }
