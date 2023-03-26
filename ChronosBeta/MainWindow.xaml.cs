@@ -17,26 +17,16 @@ using ChronosBeta.BL;
 
 namespace ChronosBeta
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-
-            string[] ListProcess = GetRunningProcesses();
-        }
-
-        public static string[] GetRunningProcesses()
-        {
-            var processes = Process.GetProcesses().Where(p => !string.IsNullOrEmpty(p.MainWindowTitle)).Select(p => p.ProcessName + " - " + p.MainWindowTitle).ToArray();
-            return processes;
         }
 
         private void btGo_Click(object sender, RoutedEventArgs e)
         {
+            // Login: gurzhi Password: warcraft3
             try
             {
                 BL.Auntificator.Auntification(tbLogin.Text, tbPassword.Text);

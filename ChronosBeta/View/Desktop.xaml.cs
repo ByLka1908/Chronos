@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using ChronosBeta.BL;
 
 namespace ChronosBeta.View
 {
@@ -27,6 +29,16 @@ namespace ChronosBeta.View
             contentProject = BL.GetProject.GetProjects();
             lbcontentProject.ItemsSource = contentProject;
             BL.CurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
+        }
+
+        private void btStartTimer_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btListApp_Click(object sender, RoutedEventArgs e)
+        {
+            WindowOpen.OpenNewWindow(this, new View.ListApplication());
         }
     }
 }

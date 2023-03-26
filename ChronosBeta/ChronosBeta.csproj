@@ -71,6 +71,7 @@
     </ApplicationDefinition>
     <Compile Include="BL\CurrentUser.cs" />
     <Compile Include="BL\GetProject.cs" />
+    <Compile Include="BL\ListApplication.cs" />
     <Compile Include="BL\ViewProject.cs" />
     <Compile Include="DB\DateTimer.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
@@ -108,6 +109,9 @@
     <Compile Include="View\Desktop.xaml.cs">
       <DependentUpon>Desktop.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ListApplication.xaml.cs">
+      <DependentUpon>ListApplication.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,6 +127,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Desktop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ListApplication.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

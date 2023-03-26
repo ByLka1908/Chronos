@@ -8,11 +8,11 @@ using System.Windows;
 namespace ChronosBeta.BL
 {
      class WindowOpen
-    {
+     {
         public static void OpenNewWindow(Window currentWindow, Window windowToOpen)
         {
             windowToOpen.Show();
             currentWindow.Close();
         }
-    }
+     }
 }

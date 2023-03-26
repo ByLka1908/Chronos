@@ -13,16 +13,19 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        
-        <Button x:Name="btStartTimer"  Margin="15" Content="Start timer" Grid.Column="0" Grid.Row="0"/>
+
+        <Button x:Name="btStartTimer"  Margin="15" Content="Start timer" Grid.Column="0" Grid.Row="0" Click="btStartTimer_Click"/>
         <Calendar x:Name="Calendar"  Grid.Column="2" Background="#FF272727" Grid.Row="2" Grid.RowSpan="3"/>
+
+        <Button x:Name="btListApp"  Margin="15" Content="View list app" Grid.Column="0" Grid.Row="1" Click="btListApp_Click"/>
 
         <Label Content="Список проектов:" Foreground="Green" Grid.Row="0" Grid.Column="1" ></Label>
 
@@ -32,8 +35,9 @@
                     <ColumnDefinition Width="0.7*"/>
                     <ColumnDefinition />
                     <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -43,11 +47,24 @@
 
                 <Label x:Name="lbName" Foreground="Green"  Grid.Row="0" Grid.Column="1"></Label>
                 <Label x:Name="lbSurname" Foreground="Green" Grid.Row="0" Grid.Column="2"></Label>
-                <Label x:Name="lbJobTitle" Foreground="Green"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></Label>
+                <Label x:Name="lbJobTitle" Foreground="Green"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"></Label>
+
+                <ComboBox x:Name="cbSetting" Grid.Row="0"  Grid.Column="3" >
+                    <ComboBoxItem>
+                        <Button Content="1"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <Button Content="2"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <Button Content="3"/>
+                    </ComboBoxItem>
+                </ComboBox>
+
             </Grid>
         </Border>
 
-        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" BorderBrush="Green" BorderThickness="2">
+        <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" BorderThickness="2" Margin="10">
             <ListBox x:Name="lbcontentProject" Background="Gray">
                 <ListBox.ItemTemplate >
                     <DataTemplate>
@@ -72,6 +89,5 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Border>
-
     </Grid>
 </Window>
