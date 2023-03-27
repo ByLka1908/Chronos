@@ -70,6 +70,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BL\CurrentUser.cs" />
+    <Compile Include="BL\DateTimerAddAndChange.cs" />
+    <Compile Include="BL\Delete.cs" />
     <Compile Include="BL\GetProject.cs" />
     <Compile Include="BL\ListApplication.cs" />
     <Compile Include="BL\ViewProject.cs" />
@@ -183,6 +185,9 @@
       <DependentUpon>ModelDB.edmx</DependentUpon>
       <LastGenOutput>ModelDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="Image\Off.png" />
+    <Resource Include="Image\On.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

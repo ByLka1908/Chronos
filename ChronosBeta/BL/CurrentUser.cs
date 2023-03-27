@@ -16,7 +16,7 @@ namespace ChronosBeta.BL
 {
     public class CurrentUser
     {
-        private static DB.Users User { get; set; }
+        public static DB.Users User { get; set; }
         private static string Name { get; set; }
         private static string Surname { get; set;}
         private static string JobTitle { get; set; }

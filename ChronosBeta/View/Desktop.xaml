@@ -22,7 +22,11 @@
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="btStartTimer"  Margin="15" Content="Start timer" Grid.Column="0" Grid.Row="0" Click="btStartTimer_Click"/>
+        <Button x:Name="btStartTimer" Margin="10,15,0,15" Grid.Column="0" Grid.Row="0" Click="btStartTimer_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Image/Off.png"/>
+            </Button.Background>
+        </Button>
         <Calendar x:Name="Calendar"  Grid.Column="2" Background="#FF272727" Grid.Row="2" Grid.RowSpan="3"/>
 
         <Button x:Name="btListApp"  Margin="15" Content="View list app" Grid.Column="0" Grid.Row="1" Click="btListApp_Click"/>
