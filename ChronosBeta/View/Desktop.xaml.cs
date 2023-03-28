@@ -22,7 +22,7 @@ namespace ChronosBeta.View
     /// </summary>
     public partial class Desktop : Window
     {
-        List<BL.ViewProject> contentProject = new List<BL.ViewProject>();
+        List<BL.ViewTask> contentProject = new List<BL.ViewTask>();
         private bool joobTime = false;
         TimeSpan timeStart = new TimeSpan();
         TimeSpan timeEnd = new TimeSpan();
@@ -31,7 +31,7 @@ namespace ChronosBeta.View
         {
             InitializeComponent();
 
-            contentProject = BL.GetProject.GetProjects();
+            contentProject = BL.GetTask.Task();
             lbcontentProject.ItemsSource = contentProject;
             BL.CurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
         }

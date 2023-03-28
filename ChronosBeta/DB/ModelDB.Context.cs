@@ -29,9 +29,10 @@ namespace ChronosBeta.DB
     
         public virtual DbSet<DateTimer> DateTimer { get; set; }
         public virtual DbSet<JobTitles> JobTitles { get; set; }
-        public virtual DbSet<Projects> Projects { get; set; }
+        public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<TimerProject> TimerProject { get; set; }
+        public virtual DbSet<Task> Task { get; set; }
+        public virtual DbSet<TaskTimer> TaskTimer { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

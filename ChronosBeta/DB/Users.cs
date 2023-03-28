@@ -18,9 +18,10 @@ namespace ChronosBeta.DB
         public Users()
         {
             this.DateTimer = new HashSet<DateTimer>();
-            this.Projects = new HashSet<Projects>();
-            this.Projects1 = new HashSet<Projects>();
-            this.TimerProject = new HashSet<TimerProject>();
+            this.Project = new HashSet<Project>();
+            this.Task = new HashSet<Task>();
+            this.Task1 = new HashSet<Task>();
+            this.TaskTimer = new HashSet<TaskTimer>();
         }
     
         public int ID_Users { get; set; }
@@ -37,10 +38,12 @@ namespace ChronosBeta.DB
         public virtual ICollection<DateTimer> DateTimer { get; set; }
         public virtual JobTitles JobTitles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Projects> Projects { get; set; }
+        public virtual ICollection<Project> Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Projects> Projects1 { get; set; }
+        public virtual ICollection<Task> Task { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TimerProject> TimerProject { get; set; }
+        public virtual ICollection<Task> Task1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskTimer> TaskTimer { get; set; }
     }
 }

@@ -72,9 +72,9 @@
     <Compile Include="BL\CurrentUser.cs" />
     <Compile Include="BL\DateTimerAddAndChange.cs" />
     <Compile Include="BL\Delete.cs" />
-    <Compile Include="BL\GetProject.cs" />
+    <Compile Include="BL\GetTask.cs" />
     <Compile Include="BL\ListApplication.cs" />
-    <Compile Include="BL\ViewProject.cs" />
+    <Compile Include="BL\ViewTask.cs" />
     <Compile Include="DB\DateTimer.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -96,7 +96,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DB\Projects.cs">
+    <Compile Include="DB\Project.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\sp_helpdiagramdefinition_Result.cs">
@@ -108,7 +108,10 @@
     <Compile Include="DB\sysdiagrams.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\TimerProject.cs">
+    <Compile Include="DB\Task.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\TaskTimer.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Users.cs">

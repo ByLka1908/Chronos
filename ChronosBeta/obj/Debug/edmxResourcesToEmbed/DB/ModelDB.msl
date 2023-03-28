@@ -21,14 +21,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Projects">
-      <EntityTypeMapping TypeName="CronosModel.Projects">
-        <MappingFragment StoreEntitySet="Projects">
-          <ScalarProperty Name="ID_Projects" ColumnName="ID_Projects" />
+    <EntitySetMapping Name="Project">
+      <EntityTypeMapping TypeName="CronosModel.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="id_Project" ColumnName="id_Project" />
           <ScalarProperty Name="NameProject" ColumnName="NameProject" />
-          <ScalarProperty Name="UserCreateProject" ColumnName="UserCreateProject" />
-          <ScalarProperty Name="UserDoProject" ColumnName="UserDoProject" />
-          <ScalarProperty Name="ItsOver" ColumnName="ItsOver" />
+          <ScalarProperty Name="ResponsibleСustomer" ColumnName="ResponsibleСustomer" />
+          <ScalarProperty Name="ResponsibleОfficer" ColumnName="ResponsibleОfficer" />
+          <ScalarProperty Name="Budget" ColumnName="Budget" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -43,12 +45,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TimerProject">
-      <EntityTypeMapping TypeName="CronosModel.TimerProject">
-        <MappingFragment StoreEntitySet="TimerProject">
-          <ScalarProperty Name="ID_TimerProject" ColumnName="ID_TimerProject" />
-          <ScalarProperty Name="Users" ColumnName="Users" />
+    <EntitySetMapping Name="Task">
+      <EntityTypeMapping TypeName="CronosModel.Task">
+        <MappingFragment StoreEntitySet="Task">
+          <ScalarProperty Name="ID_Task" ColumnName="ID_Task" />
+          <ScalarProperty Name="NameTask" ColumnName="NameTask" />
           <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="UserCreateTask" ColumnName="UserCreateTask" />
+          <ScalarProperty Name="UserDoTask" ColumnName="UserDoTask" />
+          <ScalarProperty Name="ItsOver" ColumnName="ItsOver" />
+          <ScalarProperty Name="EstimatedTime" ColumnName="EstimatedTime" />
+          <ScalarProperty Name="AllSpentTime" ColumnName="AllSpentTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskTimer">
+      <EntityTypeMapping TypeName="CronosModel.TaskTimer">
+        <MappingFragment StoreEntitySet="TaskTimer">
+          <ScalarProperty Name="ID_TaskTimer" ColumnName="ID_TaskTimer" />
+          <ScalarProperty Name="Users" ColumnName="Users" />
+          <ScalarProperty Name="Task" ColumnName="Task" />
           <ScalarProperty Name="SpentTime" ColumnName="SpentTime" />
           <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
