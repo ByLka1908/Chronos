@@ -27,7 +27,7 @@
                 <ImageBrush ImageSource="/Image/Off.png"/>
             </Button.Background>
         </Button>
-        <Calendar x:Name="Calendar"  Grid.Column="2" Background="#FF272727" Grid.Row="2" Grid.RowSpan="3"/>
+        <Calendar x:Name="Calendar"  Grid.Column="2" Background="#FF272727" Grid.Row="3" Grid.RowSpan="2"/>
 
         <Button x:Name="btListApp"  Margin="15" Content="View list app" Grid.Column="0" Grid.Row="1" Click="btListApp_Click"/>
 
