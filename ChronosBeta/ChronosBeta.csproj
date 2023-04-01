@@ -77,6 +77,7 @@
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />
     <Compile Include="BL\FunctionsTab.cs" />
+    <Compile Include="BL\ITab.cs" />
     <Compile Include="BL\ViewTask.cs" />
     <Compile Include="DB\DateTimer.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>

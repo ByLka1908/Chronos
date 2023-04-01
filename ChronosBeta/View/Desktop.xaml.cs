@@ -30,7 +30,6 @@ namespace ChronosBeta.View
 
             contentTask = FunctionsTask.GetTasks();
             lbcontentTask.ItemsSource = contentTask;
-
             CurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
         }
 
@@ -42,12 +41,14 @@ namespace ChronosBeta.View
 
         private void btTest_Click(object sender, RoutedEventArgs e)
         {
-            FunctionsTab.OpenTab("UserListAll", tcTabs);
+            FunctionsTab.SetTab(new UserListAll());
+            FunctionsTab.OpenTab(tcTabs);
         }
 
         private void btListApp_Click(object sender, RoutedEventArgs e)
         {
-            FunctionsTab.OpenTab("ListApplication", tcTabs);
+            FunctionsTab.SetTab(new ListApplication());
+            FunctionsTab.OpenTab(tcTabs);
         }
     }
 }

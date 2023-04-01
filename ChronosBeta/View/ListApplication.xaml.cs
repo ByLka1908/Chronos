@@ -15,10 +15,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace ChronosBeta.View
 {
-    public partial class ListApplication : UserControl
+    public partial class ListApplication : UserControl, ITab
     {
         public ListApplication()
         {
@@ -27,9 +28,23 @@ namespace ChronosBeta.View
             lbCurrentRunApp.ItemsSource = CurrentProcess;
         }
 
+        public void ShowTab(TabControl currentTab, TabItem newTabItem, Frame frame)
+        {
+            ListApplication currentApp = new ListApplication();
+
+            newTabItem.Header = "Список приложений";
+            currentApp.Height = frame.Height;
+            currentApp.Width = frame.Width;
+            frame.Navigate(currentApp);
+
+            newTabItem.Content = frame;
+            currentTab.Items.Add(newTabItem);
+            currentTab.SelectedItem = newTabItem;
+        }
+
         private void btGetListApplication_Click(object sender, RoutedEventArgs e)
         {
-            BL.FunctionsListApplication.CreateJsonListApplication();
+            FunctionsListApplication.CreateJsonListApplication();
         }
     }
 }

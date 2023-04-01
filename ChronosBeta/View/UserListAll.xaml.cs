@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChronosBeta.BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,25 @@ namespace ChronosBeta.View
     /// <summary>
     /// Логика взаимодействия для UserListAll.xaml
     /// </summary>
-    public partial class UserListAll : UserControl
+    public partial class UserListAll : UserControl, ITab
     {
         public UserListAll()
         {
             InitializeComponent();
+        }
+
+        public void ShowTab(TabControl currentTab, TabItem newTabItem, Frame frame)
+        {
+            UserListAll currentUser = new UserListAll();
+            
+            newTabItem.Header = "Список пользователей";
+            currentUser.Height = frame.Height;
+            currentUser.Width = frame.Width;
+            frame.Navigate(currentUser);
+
+            newTabItem.Content = frame;
+            currentTab.Items.Add(newTabItem);
+            currentTab.SelectedItem = newTabItem;
         }
     }
 }
