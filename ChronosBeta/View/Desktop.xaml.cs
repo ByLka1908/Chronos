@@ -23,9 +23,6 @@ namespace ChronosBeta.View
     public partial class Desktop : Window
     {
         List<ViewTask> contentTask= new List<ViewTask>();
-        private bool joobTime = false;
-        TimeSpan timeStart = new TimeSpan();
-        TimeSpan timeEnd = new TimeSpan();
 
         public Desktop()
         {
@@ -33,32 +30,13 @@ namespace ChronosBeta.View
 
             contentTask = FunctionsTask.GetTasks();
             lbcontentTask.ItemsSource = contentTask;
-            BL.CurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
+
+            CurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
         }
 
         private void btStartTimer_Click(object sender, RoutedEventArgs e)
         {
-
-            ImageBrush myImageBrush = new ImageBrush();
-
-            if (joobTime)
-            {
-                myImageBrush.ImageSource = new BitmapImage(new Uri("F:\\Projects\\VisualStudioSource\\ChronosBeta\\ChronosBeta\\Image\\Off.png", UriKind.Relative));
-                btStartTimer.Background = myImageBrush;
-                joobTime = false;
-
-                timeEnd = DateTime.Now.TimeOfDay;
-                FunctionsDateTimer.AddDateTimer(timeStart, timeEnd);
-            }
-            else
-            {
-                myImageBrush.ImageSource = new BitmapImage(new Uri("F:\\Projects\\VisualStudioSource\\ChronosBeta\\ChronosBeta\\Image\\On.png", UriKind.Relative));
-                btStartTimer.Background = myImageBrush;
-                joobTime = true;
-
-                timeStart = DateTime.Now.TimeOfDay;
-                BL.FunctionsListApplication.CreateJsonListApplication();
-            }
+            FunctionsDateTimer.OffOnDateTimer(btStartTimer);
         }
 
 

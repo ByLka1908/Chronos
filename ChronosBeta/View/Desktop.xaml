@@ -90,6 +90,7 @@
                                             <Label Content="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Label>
                                             <Label Content="{Binding UserCreateTask}" Grid.Row="0" Grid.Column="1"></Label>
                                             <Label Content="{Binding UserDoTask}" Grid.Row="1" Grid.Column="1"></Label>
+
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -98,7 +99,6 @@
                     </Border>
                 </StackPanel>
             </TabItem>
-
         </TabControl>
 
     </Grid>
