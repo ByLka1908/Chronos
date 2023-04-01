@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChronosBeta.BL
 {
-    class GetTask
+    class FunctionsTask
     {
-        public static List<ViewTask> Task()
+        public static List<ViewTask> GetTasks()
         {
             try
             {

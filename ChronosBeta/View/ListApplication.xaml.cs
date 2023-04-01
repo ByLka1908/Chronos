@@ -23,13 +23,13 @@ namespace ChronosBeta.View
         public ListApplication()
         {
             InitializeComponent();
-            string[] CurrentProcess = BL.ListApplication.GetRunningProcesses();
+            string[] CurrentProcess = BL.FunctionsListApplication.GetRunningProcesses();
             lbCurrentRunApp.ItemsSource = CurrentProcess;
         }
 
         private void btGetListApplication_Click(object sender, RoutedEventArgs e)
         {
-            BL.ListApplication.CreateJsonListApplication();
+            BL.FunctionsListApplication.CreateJsonListApplication();
         }
     }
 }

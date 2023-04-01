@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChronosBeta.BL
 {
-    public class DateTimerAddAndChange
+    public class FunctionsDateTimer
     {
         public static bool AddDateTimer(TimeSpan timeStart, TimeSpan timeEnd)
         {
@@ -20,7 +20,7 @@ namespace ChronosBeta.BL
                 time.TimeStart = timeStart;
                 time.TimeEnd = timeEnd;
                 time.AllRunProgram = File.ReadAllText(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
-                Delete.DeleteFile(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
+                DeleteFile.Delete(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
             }
             catch 
             {

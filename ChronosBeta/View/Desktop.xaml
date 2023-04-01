@@ -72,7 +72,7 @@
             <TabItem Header="Вкладка 1" >
                 <StackPanel>
                     <Border Margin="10">
-                        <ListBox x:Name="lbcontentProject" Background="Gray">
+                        <ListBox x:Name="lbcontentTask" Background="Gray">
                             <ListBox.ItemTemplate >
                                 <DataTemplate>
                                     <Border BorderBrush="Green" BorderThickness="2" ToolTip="Нажмите два раза для редактирования">

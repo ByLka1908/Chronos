@@ -72,11 +72,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BL\CurrentUser.cs" />
-    <Compile Include="BL\DateTimerAddAndChange.cs" />
-    <Compile Include="BL\Delete.cs" />
-    <Compile Include="BL\GetTask.cs" />
-    <Compile Include="BL\ListApplication.cs" />
-    <Compile Include="BL\Tab.cs" />
+    <Compile Include="BL\FunctionsDateTimer.cs" />
+    <Compile Include="BL\DeleteFile.cs" />
+    <Compile Include="BL\FunctionsTask.cs" />
+    <Compile Include="BL\FunctionsListApplication.cs" />
+    <Compile Include="BL\FunctionsTab.cs" />
     <Compile Include="BL\ViewTask.cs" />
     <Compile Include="DB\DateTimer.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
@@ -162,7 +162,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BL\Auntificator.cs" />
-    <Compile Include="BL\WindowOpen.cs" />
+    <Compile Include="BL\FunctionsWindow.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

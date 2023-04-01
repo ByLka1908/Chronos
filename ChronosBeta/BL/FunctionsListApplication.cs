@@ -10,7 +10,7 @@ using System.Windows.Documents;
 
 namespace ChronosBeta.BL
 {
-    public class ListApplication
+    public class FunctionsListApplication
     {
         public string NameProcess { get; set; }
         public string MainWindowTitle { get; set; }
@@ -19,12 +19,12 @@ namespace ChronosBeta.BL
 
         public static void CreateJsonListApplication()
         {   
-            List<ListApplication> listApplications = new List<ListApplication>();
+            List<FunctionsListApplication> listApplications = new List<FunctionsListApplication>();
             string[] process = GetRunningProcesses();
 
             foreach (string currentProcess in process)
             {
-                ListApplication list = new ListApplication();
+                FunctionsListApplication list = new FunctionsListApplication();
                 string[] processes = currentProcess.Split(new char[] {'%'});
 
                 for(int i = 0; i < processes.Length; i++)

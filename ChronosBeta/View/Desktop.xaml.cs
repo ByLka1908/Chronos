@@ -22,7 +22,7 @@ namespace ChronosBeta.View
     /// </summary>
     public partial class Desktop : Window
     {
-        List<ViewTask> contentProject = new List<ViewTask>();
+        List<ViewTask> contentTask= new List<ViewTask>();
         private bool joobTime = false;
         TimeSpan timeStart = new TimeSpan();
         TimeSpan timeEnd = new TimeSpan();
@@ -31,8 +31,8 @@ namespace ChronosBeta.View
         {
             InitializeComponent();
 
-            contentProject = BL.GetTask.Task();
-            lbcontentProject.ItemsSource = contentProject;
+            contentTask = FunctionsTask.GetTasks();
+            lbcontentTask.ItemsSource = contentTask;
             BL.CurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
         }
 
@@ -48,7 +48,7 @@ namespace ChronosBeta.View
                 joobTime = false;
 
                 timeEnd = DateTime.Now.TimeOfDay;
-                DateTimerAddAndChange.AddDateTimer(timeStart, timeEnd);
+                FunctionsDateTimer.AddDateTimer(timeStart, timeEnd);
             }
             else
             {
@@ -57,19 +57,19 @@ namespace ChronosBeta.View
                 joobTime = true;
 
                 timeStart = DateTime.Now.TimeOfDay;
-                BL.ListApplication.CreateJsonListApplication();
+                BL.FunctionsListApplication.CreateJsonListApplication();
             }
         }
 
 
         private void btTest_Click(object sender, RoutedEventArgs e)
         {
-            Tab.OpenTab("UserListAll", tcTabs);
+            FunctionsTab.OpenTab("UserListAll", tcTabs);
         }
 
         private void btListApp_Click(object sender, RoutedEventArgs e)
         {
-            Tab.OpenTab("ListApplication", tcTabs);
+            FunctionsTab.OpenTab("ListApplication", tcTabs);
         }
     }
 }

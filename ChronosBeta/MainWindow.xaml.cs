@@ -30,7 +30,7 @@ namespace ChronosBeta
             try
             {
                 BL.Auntificator.Auntification(tbLogin.Text, tbPassword.Text);
-                WindowOpen.OpenNewWindow(this, new View.Desktop());
+                FunctionsWindow.OpenNewWindow(this, new View.Desktop());
             }
             catch (Exception ex)
             {

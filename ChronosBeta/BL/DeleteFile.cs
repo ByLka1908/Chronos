@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ChronosBeta.BL
 {
-    public class Delete
+    public class DeleteFile
     {
-        public static void DeleteFile(string path) 
+        public static void Delete(string path) 
         {
             File.Delete(path);
         }

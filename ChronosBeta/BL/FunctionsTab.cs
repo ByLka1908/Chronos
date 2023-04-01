@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace ChronosBeta.BL
 {
-    public class Tab
+    public class FunctionsTab
     {
         public static void OpenTab(string NameWindow, TabControl currentTab) 
         {

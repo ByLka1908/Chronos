@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace ChronosBeta.BL
 {
-     class WindowOpen
+     class FunctionsWindow
      {
         public static void OpenNewWindow(Window currentWindow, Window windowToOpen)
         {
