@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChronosBeta.BL
 {
-    class Auntificator
+    class FunctionsAuntificator
     {
         public static DB.Users Auntification(string login, string password)
         {
@@ -17,7 +17,7 @@ namespace ChronosBeta.BL
                 user = entities.Users.Single(x => x.Login == login && x.Password == password);
                 if (user != null)
                 {
-                    CurrentUser.SetUser(user);
+                    FunctionsCurrentUser.SetUser(user);
                     return user;
                 } 
                 else

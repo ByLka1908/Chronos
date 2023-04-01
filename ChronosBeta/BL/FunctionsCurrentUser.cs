@@ -14,21 +14,21 @@ using Label = System.Windows.Controls.Label;
 
 namespace ChronosBeta.BL
 {
-    public class CurrentUser
+    public class FunctionsCurrentUser
     {
-        public static DB.Users User { get; set; }
+        public static Users User { get; set; }
         private static string Name { get; set; }
         private static string Surname { get; set;}
         private static string JobTitle { get; set; }
         private static string ImageUser { get;set; }
 
-        public static void SetUser(DB.Users user)
+        public static void SetUser(Users user)
         {
             User = user;
             Name = user.Name;
             Surname = user.Surname;
             JobTitle = $"Должность: {user.JobTitles.NameJobTitle}";
-            ImageUser = string.IsNullOrWhiteSpace(user.ImageUser) ? @"/ImageDef.jpg" : user.ImageUser;
+            //ImageUser = string.IsNullOrWhiteSpace(user.ImageUser) ? @"/ImageDef.jpg" : user.ImageUser;
         }
 
         public static void GetUser(Label name, Label surname, Label jobTitle, Image imageUser)

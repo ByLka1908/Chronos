@@ -23,12 +23,12 @@ namespace ChronosBeta.BL
             DB.DateTimer time = new DB.DateTimer();
             try
             {
-                time.Users = CurrentUser.User.ID_Users;
+                time.Users = FunctionsCurrentUser.User.ID_Users;
                 time.Day = DateTime.Now;
                 time.TimeStart = timeStart;
                 time.TimeEnd = timeEnd;
                 time.AllRunProgram = File.ReadAllText(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
-                DeleteFile.Delete(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
+                FunctionsDelete.Delete(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
             }
             catch 
             {

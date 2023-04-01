@@ -22,7 +22,7 @@ namespace ChronosBeta.View
     /// </summary>
     public partial class Desktop : Window
     {
-        List<ViewTask> contentTask= new List<ViewTask>();
+        List<ViewTask> contentTask = new List<ViewTask>();
 
         public Desktop()
         {
@@ -30,7 +30,7 @@ namespace ChronosBeta.View
 
             contentTask = FunctionsTask.GetTasks();
             lbcontentTask.ItemsSource = contentTask;
-            CurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
+            FunctionsCurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
         }
 
         private void btStartTimer_Click(object sender, RoutedEventArgs e)

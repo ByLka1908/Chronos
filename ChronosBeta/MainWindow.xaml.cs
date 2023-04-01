@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,6 +20,7 @@ namespace ChronosBeta
 {
     public partial class MainWindow : Window
     {
+        public event EventHandler Auntificator;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,8 +31,8 @@ namespace ChronosBeta
             // Login: gurzhi Password: warcraft3
             try
             {
-                BL.Auntificator.Auntification(tbLogin.Text, tbPassword.Text);
-                FunctionsWindow.OpenNewWindow(this, new View.Desktop());
+                FunctionsAuntificator.Auntification(tbLogin.Text, tbPassword.Text);
+               FunctionsWindow.OpenNewWindow(this, new View.Desktop());
             }
             catch (Exception ex)
             {
