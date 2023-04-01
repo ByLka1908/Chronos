@@ -18,18 +18,13 @@ using System.Windows.Shapes;
 
 namespace ChronosBeta.View
 {
-    public partial class ListApplication : Window
+    public partial class ListApplication : UserControl
     {
         public ListApplication()
         {
             InitializeComponent();
             string[] CurrentProcess = BL.ListApplication.GetRunningProcesses();
             lbCurrentRunApp.ItemsSource = CurrentProcess;
-        }
-
-        private void btBack_Click(object sender, RoutedEventArgs e)
-        {
-            WindowOpen.OpenNewWindow(this, new View.Desktop());
         }
 
         private void btGetListApplication_Click(object sender, RoutedEventArgs e)

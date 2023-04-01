@@ -27,12 +27,11 @@
                 <ImageBrush ImageSource="/Image/Off.png"/>
             </Button.Background>
         </Button>
+        
         <Calendar x:Name="Calendar"  Grid.Column="2" Background="#FF272727" Grid.Row="3" Grid.RowSpan="2"/>
-
         <Button x:Name="btListApp"  Margin="15" Content="View list app" Grid.Column="0" Grid.Row="1" Click="btListApp_Click"/>
-
-        <Label Content="Список проектов:" Foreground="Green" Grid.Row="0" Grid.Column="1" ></Label>
-
+        <Button x:Name="btTest"  Margin="15" Content="Test" Grid.Column="0" Grid.Row="2" Click="btTest_Click" />
+        
         <Border x:Name="brUser" Grid.Column="2" Grid.Row="0" BorderBrush="Green" BorderThickness="3">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -68,30 +67,39 @@
             </Grid>
         </Border>
 
-        <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" BorderThickness="2" Margin="10">
-            <ListBox x:Name="lbcontentProject" Background="Gray">
-                <ListBox.ItemTemplate >
-                    <DataTemplate>
-                        <Border BorderBrush="Green" BorderThickness="2" ToolTip="Нажмите два раза для редактирования">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
+        <TabControl Background="Gray" x:Name="tcTabs" Grid.Column="1" Grid.Row="0" Grid.RowSpan="6" TabStripPlacement="Bottom" Margin="5, 10, 5, 2" >
+            <TabItem Header="Вкладка 1" >
+                <StackPanel>
+                    <Border Margin="10">
+                        <ListBox x:Name="lbcontentProject" Background="Gray">
+                            <ListBox.ItemTemplate >
+                                <DataTemplate>
+                                    <Border BorderBrush="Green" BorderThickness="2" ToolTip="Нажмите два раза для редактирования">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
 
-                                <Label Content="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Label>
-                                <Label Content="{Binding UserCreateTask}" Grid.Row="0" Grid.Column="1"></Label>
-                                <Label Content="{Binding UserDoTask}" Grid.Row="1" Grid.Column="1"></Label>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Border>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <Label Content="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Label>
+                                            <Label Content="{Binding UserCreateTask}" Grid.Row="0" Grid.Column="1"></Label>
+                                            <Label Content="{Binding UserDoTask}" Grid.Row="1" Grid.Column="1"></Label>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Border>
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
+
     </Grid>
 </Window>

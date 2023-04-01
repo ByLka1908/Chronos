@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:ChronosBeta.View"
         mc:Ignorable="d"
         Title="Chronos: [Редактирование пользователей]" Height="450" Width="800" Background="#FF272727">
+    
     <Grid>
         
     </Grid>
+
 </Window>

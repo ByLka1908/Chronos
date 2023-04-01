@@ -17,7 +17,7 @@ namespace ChronosBeta.View
     /// <summary>
     /// Логика взаимодействия для ProjectListAll.xaml
     /// </summary>
-    public partial class ProjectListAll : Window
+    public partial class ProjectListAll : UserControl
     {
         public ProjectListAll()
         {

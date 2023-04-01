@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ChronosBeta.View
@@ -17,7 +18,7 @@ namespace ChronosBeta.View
     /// <summary>
     /// Логика взаимодействия для UserListAll.xaml
     /// </summary>
-    public partial class UserListAll : Window
+    public partial class UserListAll : UserControl
     {
         public UserListAll()
         {

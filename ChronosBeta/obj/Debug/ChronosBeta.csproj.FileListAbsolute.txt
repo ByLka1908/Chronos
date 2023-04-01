@@ -46,3 +46,4 @@ F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\obj\Debug\View\TaskAddAnd
 F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\obj\Debug\View\TaskMarkTime.g.cs
 F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\obj\Debug\View\TaskAddAndChange.baml
 F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\obj\Debug\View\TaskMarkTime.baml
+F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\bin\Debug\PresentationFramework.dll

@@ -17,7 +17,7 @@ namespace ChronosBeta.View
     /// <summary>
     /// Логика взаимодействия для JobTitlesListAll.xaml
     /// </summary>
-    public partial class JobTitlesListAll : Window
+    public partial class JobTitlesListAll : UserControl
     {
         public JobTitlesListAll()
         {

@@ -17,7 +17,7 @@ namespace ChronosBeta.View
     /// <summary>
     /// Логика взаимодействия для TaskListAll.xaml
     /// </summary>
-    public partial class TaskListAll : Window
+    public partial class TaskListAll : UserControl
     {
         public TaskListAll()
         {
