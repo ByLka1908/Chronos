@@ -1,32 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ChronosBeta.BL
 {
-    class FunctionsAuntificator
+    class FunctionsAuntificator : InterfaceBL.IFunctionsAuntificator
     {
-        public static DB.Users Auntification(string login, string password)
+        public bool Auntification(NetworkCredential credential)
         {
-            try
+            DB.CronosEntities entities = new DB.CronosEntities();
+            DB.Users user = new DB.Users();
+            user = entities.Users.Single(x => x.Login == credential.UserName && x.Password == credential.Password);
+
+            if (user != null)
             {
-                DB.CronosEntities entities = new DB.CronosEntities();
-                DB.Users user = new DB.Users();
-                user = entities.Users.Single(x => x.Login == login && x.Password == password);
-                if (user != null)
-                {
-                    FunctionsCurrentUser.SetUser(user);
-                    return user;
-                } 
-                else
-                    throw new Exception();
+                FunctionsCurrentUser.SetUser(user);
+                return true;
             }
-            catch(Exception)
-            {
-                throw new Exception("Проблемы с аунтификацией");
-            }
+            else
+                return false; 
         }
     }
 }
