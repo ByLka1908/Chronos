@@ -100,3 +100,10 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\LoginView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\GeneratedInternalTypeHelper.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\CustomControls\BindablePasswordBox.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\LoginView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\MainView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\MainView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\Styles\ButtonStyles.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\Styles\UIColors.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\App.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\HomeView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\HomeView.baml

@@ -82,8 +82,10 @@
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />
     <Compile Include="BL\FunctionsTab.cs" />
-    <Compile Include="BL\ITab.cs" />
-    <Compile Include="BL\ViewTask.cs" />
+    <Compile Include="InterfaceBL\IFunctionsCurrentUser.cs" />
+    <Compile Include="InterfaceBL\ITab.cs" />
+    <Compile Include="Model\ViewCurrentUser.cs" />
+    <Compile Include="Model\ViewTask.cs" />
     <Compile Include="CustomControls\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
@@ -130,11 +132,23 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="InterfaceBL\IFunctionsAuntificator.cs" />
+    <Compile Include="Styles\ButtonStyles.xaml.cs">
+      <DependentUpon>ButtonStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\UIColors.xaml.cs">
+      <DependentUpon>UIColors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\ListApplicationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
     <Compile Include="View\Desktop.xaml.cs">
       <DependentUpon>Desktop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\JobTitlesAddAndChange.xaml.cs">
       <DependentUpon>JobTitlesAddAndChange.xaml</DependentUpon>
@@ -147,6 +161,9 @@
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProjectAddAndChange.xaml.cs">
       <DependentUpon>ProjectAddAndChange.xaml</DependentUpon>
@@ -178,7 +195,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BL\FunctionsWindow.cs" />
+    <Page Include="Styles\ButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\UIColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Desktop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

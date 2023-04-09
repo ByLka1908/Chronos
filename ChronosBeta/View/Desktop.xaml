@@ -31,6 +31,7 @@
         <Calendar x:Name="Calendar"  Grid.Column="2" Background="#FF272727" Grid.Row="3" Grid.RowSpan="2"/>
         <Button x:Name="btListApp"  Margin="15" Content="View list app" Grid.Column="0" Grid.Row="1" Click="btListApp_Click"/>
         <Button x:Name="btTest"  Margin="15" Content="Test" Grid.Column="0" Grid.Row="2" Click="btTest_Click" />
+        <Button x:Name="btMain"  Margin="15" Content="Main" Grid.Column="0" Grid.Row="3" Click="btMain_Click" />
         
         <Border x:Name="brUser" Grid.Column="2" Grid.Row="0" BorderBrush="Green" BorderThickness="3">
             <Grid>

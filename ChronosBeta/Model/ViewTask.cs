@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ChronosBeta.BL
+namespace ChronosBeta.Model
 {
     public class ViewTask
     {
