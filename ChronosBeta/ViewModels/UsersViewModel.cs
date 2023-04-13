@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChronosBeta.ViewModels
 {
-    internal class HomeViewModel: ViewModelBase
+    public class UsersViewModel : ViewModelBase
     {
-
     }
 }

@@ -26,7 +26,11 @@
         <DataTemplate DataType="{x:Type viewModel:ListApplicationViewModel}">
             <local:ListApplication/>
         </DataTemplate>
-        
+
+        <DataTemplate DataType="{x:Type viewModel:UsersViewModel}">
+            <local:UsersView/>
+        </DataTemplate>
+
     </Window.Resources>
     
     <Border CornerRadius="10"                    

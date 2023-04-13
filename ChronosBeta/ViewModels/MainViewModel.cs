@@ -68,6 +68,7 @@ namespace ChronosBeta.ViewModels
         // Commands
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowListApplicationViewCommand { get; }
+        public ICommand ShowUserViewCommand { get; }
 
         public MainViewModel() 
         {
@@ -76,6 +77,7 @@ namespace ChronosBeta.ViewModels
             //Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecutedShowHomeCommand);
             ShowListApplicationViewCommand = new ViewModelCommand(ExecutedShowListApplicationViewCommand);
+            ShowUserViewCommand = new ViewModelCommand(ExecutedShowUsersCommand);
 
             //Defoult view
             ExecutedShowHomeCommand(null);
@@ -95,6 +97,13 @@ namespace ChronosBeta.ViewModels
             CurrentChildView = new HomeViewModel();
             Caption = "Dashboard";
             Icon = IconChar.Home;
+        }
+
+        private void ExecutedShowUsersCommand(object obj)
+        {
+            CurrentChildView = new UsersViewModel();
+            Caption = "Users";
+            Icon = IconChar.Users;
         }
 
         private void LoadCurrentUserData()

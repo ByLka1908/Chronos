@@ -82,6 +82,7 @@
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />
     <Compile Include="BL\FunctionsTab.cs" />
+    <Compile Include="BL\FunctionsUsers.cs" />
     <Compile Include="InterfaceBL\IFunctionsCurrentUser.cs" />
     <Compile Include="InterfaceBL\ITab.cs" />
     <Compile Include="Model\ViewCurrentUser.cs" />
@@ -132,6 +133,7 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="InterfaceBL\IFunctionsAuntificator.cs" />
+    <Compile Include="Model\ViewUsers.cs" />
     <Compile Include="Styles\ButtonStyles.xaml.cs">
       <DependentUpon>ButtonStyles.xaml</DependentUpon>
     </Compile>
@@ -142,6 +144,7 @@
     <Compile Include="ViewModels\ListApplicationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
     <Compile Include="View\Desktop.xaml.cs">
@@ -185,6 +188,9 @@
     </Compile>
     <Compile Include="View\UserListAll.xaml.cs">
       <DependentUpon>UserListAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UsersView.xaml.cs">
+      <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomControls\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
@@ -256,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserListAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UsersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

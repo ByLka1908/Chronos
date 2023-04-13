@@ -107,3 +107,5 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\Styles\UIColors.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\App.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\HomeView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\HomeView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\UsersView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\UsersView.baml
