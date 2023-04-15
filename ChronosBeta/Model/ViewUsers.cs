@@ -1,4 +1,5 @@
 ﻿using ChronosBeta.DB;
+using ChronosBeta.InterfaceBL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChronosBeta.Model
 {
-    public class ViewUsers
+    public class ViewUsers 
     {
         public Users User { get; set; }
         public string Photo { get; set; }
@@ -27,5 +28,6 @@ namespace ChronosBeta.Model
             Skype = user.Skype;
             JobTitle = user.JobTitles.NameJobTitle;
         }
+
     }
 }

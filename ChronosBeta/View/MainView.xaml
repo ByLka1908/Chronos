@@ -54,14 +54,7 @@
             </Grid.ColumnDefinitions>
             
             <!--Navigation Menu-->
-            <Border CornerRadius="10,0,0,10" Grid.Column="0">
-
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
-                        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
-                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+            <Border CornerRadius="10,0,0,10" Grid.Column="0" Background="{StaticResource secondaryBackColor}">
 
                 <StackPanel>
 
@@ -72,7 +65,7 @@
 
                         <Image Source="/Image/Logo.png" Height="30"/>
                         <TextBlock Text="RJ CODE"
-                                   Foreground="{StaticResource titleColor2}"
+                                   Foreground="{StaticResource color1}"
                                    FontSize="20"
                                    FontFamily="Montserrat"
                                    FontWeight="Medium"
@@ -92,7 +85,7 @@
                     </RadioButton>
                     
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowUserViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
@@ -101,7 +94,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowTaskViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ListCheck" Style="{StaticResource menuButtonIcon}"/>
@@ -110,7 +103,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowProjectViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
@@ -119,7 +112,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowListApplicationViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Desktop" Style="{StaticResource menuButtonIcon}"/>
@@ -128,7 +121,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowSettingViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Gears" Style="{StaticResource menuButtonIcon}"/>
@@ -141,14 +134,7 @@
             </Border>
 
             <!--Main Section-->
-            <Border CornerRadius="0,10,10,0" Grid.Column="1">
-
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
-                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
-                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+            <Border CornerRadius="0,10,10,0" Grid.Column="1" Background="{StaticResource primaryBackColor}">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -167,19 +153,19 @@
                             MouseEnter="pnlControlBar_MouseEnter">
 
                         <Button x:Name="btnClose" Style="{StaticResource controlButton}"
-                            Tag="{StaticResource color4}"
+                            Tag="{StaticResource color1}"
                             Click="btnClose_Click">
                             <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
                         </Button>
 
                         <Button x:Name="btnMaximize" Style="{StaticResource controlButton}"
-                            Tag="{StaticResource color6}"
+                            Tag="{StaticResource color1}"
                             Click="btnMaximize_Click">
                             <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
                         </Button>
                         
                         <Button x:Name="btnMinimaze" Style="{StaticResource controlButton}"
-                            Tag="{StaticResource color8}"
+                            Tag="{StaticResource color1}"
                             Click="btnMinimaze_Click">
                             <fa:IconImage Icon="WindowMinimize" Width="12" Style="{StaticResource controlButtonIcon}"/>
                         </Button>
@@ -196,9 +182,9 @@
 
                         <!--Captions-->
                         <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                            <fa:IconImage Icon="{Binding Icon}" Height="20" Width="20" Foreground="{StaticResource titleColor2}"
+                            <fa:IconImage Icon="{Binding Icon}" Height="20" Width="20" Foreground="{StaticResource color1}"
                                           Margin="35, 0, 10, 0"/>
-                            <TextBlock Text="{Binding Caption}" Foreground="{StaticResource titleColor2}" FontSize="16" 
+                            <TextBlock Text="{Binding Caption}" Foreground="{StaticResource color1}" FontSize="16" 
                                        FontFamily="Montserrat" FontWeight="Medium" VerticalAlignment="Center"/>
                         </StackPanel>
                         
@@ -212,12 +198,12 @@
                             </Button>
 
                             <TextBlock Text="{Binding CurrentUser.DisplayName}"
-                                       Foreground="{StaticResource titleColor3}"
+                                       Foreground="{StaticResource color1}"
                                        FontFamily="Montserrat"
                                        FontSize="12"
                                        VerticalAlignment="Center"/>
 
-                            <Ellipse Height="35" Width="35" Stroke="{StaticResource color2}"
+                            <Ellipse Height="35" Width="35" Stroke="{StaticResource color1}"
                                      StrokeThickness="2" Margin="10, 0, 10, 0">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="/Image/logo.png"/>
@@ -225,17 +211,17 @@
                             </Ellipse>
 
                             <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource color3}">
+                                    Tag="{StaticResource color1}">
                                 <fa:IconImage Icon="Clock" Style="{StaticResource iconButtonIcon}"/>
                             </Button>
 
                             <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource color4}">
+                                    Tag="{StaticResource color1}">
                                 <fa:IconImage Icon="Envelope" Style="{StaticResource iconButtonIcon}"/>
                             </Button>
 
                             <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource color5}">
+                                    Tag="{StaticResource color1}">
                                 <fa:IconImage Icon="Bell" Style="{StaticResource iconButtonIcon}"/>
                             </Button>
 

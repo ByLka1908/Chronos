@@ -47,7 +47,7 @@
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                     <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
-                    <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+                    <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
 
@@ -77,7 +77,7 @@
                     <Button x:Name="btnMinimize"                           
                             BorderThickness="0"
                             Content="-"
-                            Foreground="White"
+                            Foreground="{StaticResource color1}"
                             FontSize="16"
                             FontFamily="Montserrat"
                             Cursor="Hand"
@@ -86,10 +86,10 @@
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#28AEED"/>
+                                <Setter Property="Background" Value="{StaticResource color3}"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#278BEF"/>
+                                        <Setter Property="Background" Value="{StaticResource color4}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -111,7 +111,7 @@
                     <Button x:Name="btnClose"                          
                             BorderThickness="0"
                             Content="X"
-                            Foreground="White"
+                            Foreground="{StaticResource color1}"
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"
@@ -120,10 +120,10 @@
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#FB539B"/>
+                                <Setter Property="Background" Value="{StaticResource color3}"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#C62DAE"/>
+                                        <Setter Property="Background" Value="{StaticResource color4}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -151,14 +151,14 @@
                            Width="100" Height="100"/>
 
                     <TextBlock Text="RJ CODE"
-                               Foreground="White"
+                               Foreground="{StaticResource color2}"
                                FontSize="25"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center"/>
 
                     <TextBlock Text="Learning to code is useful no matter what your career ambitions are."
-                               Foreground="LightGray"
+                               Foreground="{StaticResource color2}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -168,7 +168,7 @@
 
 
                     <TextBlock Text="Username"
-                               Foreground="DarkGray"
+                               Foreground="{StaticResource color2}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
@@ -196,7 +196,7 @@
                     </TextBox>
 
                     <TextBlock Text="Password"
-                               Foreground="DarkGray"
+                               Foreground="{StaticResource color2}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
@@ -219,7 +219,7 @@
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"
                             Content="LOG IN"
-                            Foreground="White"
+                            Foreground="{StaticResource color2}"
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"                           
@@ -227,10 +227,10 @@
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#8A16C1"/>
+                                <Setter Property="Background" Value="{StaticResource color3}"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#28AEED"/>
+                                        <Setter Property="Background" Value="{StaticResource color4}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -246,27 +246,8 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
+
                     </Button>
-
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Center"
-                                Margin="0,15,0,0">
-
-                        <TextBlock Text="Forgot Password?"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"/>
-
-                        <TextBlock Text="Reset"
-                               Foreground="White"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Cursor="Hand"
-                               Margin="8,0,0,0"/>
-
-                    </StackPanel>
 
                 </StackPanel>
 

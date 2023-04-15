@@ -4,10 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using ChronosBeta.InterfaceBL;
 
 namespace ChronosBeta.BL
 {
-    class FunctionsAuntificator : InterfaceBL.IFunctionsAuntificator
+    class FunctionsAuntificator : IFunctionsAuntificator
     {
         public bool Auntification(NetworkCredential credential)
         {

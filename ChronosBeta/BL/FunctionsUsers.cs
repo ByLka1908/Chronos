@@ -1,14 +1,17 @@
-﻿using ChronosBeta.Model;
+﻿using ChronosBeta.InterfaceBL;
+using ChronosBeta.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChronosBeta.DB;
 
 namespace ChronosBeta.BL
 {
     public class FunctionsUsers
     {
+
         public static List<ViewUsers> GetUsers()
         {
             try

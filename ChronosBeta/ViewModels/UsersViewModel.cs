@@ -8,5 +8,6 @@ namespace ChronosBeta.ViewModels
 {
     public class UsersViewModel : ViewModelBase
     {
+
     }
 }

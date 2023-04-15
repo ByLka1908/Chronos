@@ -83,7 +83,6 @@
     <Compile Include="BL\FunctionsListApplication.cs" />
     <Compile Include="BL\FunctionsTab.cs" />
     <Compile Include="BL\FunctionsUsers.cs" />
-    <Compile Include="InterfaceBL\IFunctionsCurrentUser.cs" />
     <Compile Include="InterfaceBL\ITab.cs" />
     <Compile Include="Model\ViewCurrentUser.cs" />
     <Compile Include="Model\ViewTask.cs" />
@@ -153,12 +152,6 @@
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\JobTitlesAddAndChange.xaml.cs">
-      <DependentUpon>JobTitlesAddAndChange.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\JobTitlesListAll.xaml.cs">
-      <DependentUpon>JobTitlesListAll.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ListApplication.xaml.cs">
       <DependentUpon>ListApplication.xaml</DependentUpon>
     </Compile>
@@ -167,24 +160,6 @@
     </Compile>
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ProjectAddAndChange.xaml.cs">
-      <DependentUpon>ProjectAddAndChange.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ProjectListAll.xaml.cs">
-      <DependentUpon>ProjectListAll.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TaskAddAndChange.xaml.cs">
-      <DependentUpon>TaskAddAndChange.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TaskListAll.xaml.cs">
-      <DependentUpon>TaskListAll.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TaskMarkTime.xaml.cs">
-      <DependentUpon>TaskMarkTime.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserAddAndChange.xaml.cs">
-      <DependentUpon>UserAddAndChange.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserListAll.xaml.cs">
       <DependentUpon>UserListAll.xaml</DependentUpon>
@@ -217,14 +192,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\JobTitlesAddAndChange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\JobTitlesListAll.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\ListApplication.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,30 +201,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ProjectAddAndChange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ProjectListAll.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TaskAddAndChange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TaskListAll.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TaskMarkTime.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserAddAndChange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
