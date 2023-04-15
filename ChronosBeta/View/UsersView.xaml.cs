@@ -31,5 +31,6 @@ namespace ChronosBeta.View
             CurrentUserList = CollectionViewSource.GetDefaultView(currentUsers);
             DataContext = this;
         }
+
     }
 }
