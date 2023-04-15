@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using ChronosBeta.BL;
+using ChronosBeta.Model;
 
 namespace ChronosBeta.View
 {
@@ -22,14 +23,10 @@ namespace ChronosBeta.View
     /// </summary>
     public partial class Desktop : Window
     {
-        List<ViewTask> contentTask = new List<ViewTask>();
-
         public Desktop()
         {
             InitializeComponent();
-
-            contentTask = FunctionsTask.GetTasks();
-            lbcontentTask.ItemsSource = contentTask;
+            lbcontentTask.ItemsSource = FunctionsTask.GetTasks();
             FunctionsCurrentUser.GetUser(lbName, lbSurname, lbJobTitle, ImageUser);
         }
 
@@ -49,6 +46,12 @@ namespace ChronosBeta.View
         {
             FunctionsTab.SetTab(new ListApplication());
             FunctionsTab.OpenTab(tcTabs);
+        }
+
+        private void btMain_Click(object sender, RoutedEventArgs e)
+        {
+            MainView main = new MainView();
+            FunctionsWindow.OpenNewWindow(this, main);
         }
     }
 }

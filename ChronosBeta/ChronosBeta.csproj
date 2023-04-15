@@ -43,6 +43,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.6.3.0\lib\net48\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -54,6 +57,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -71,14 +75,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BL\CurrentUser.cs" />
+    <Compile Include="BL\FunctionsAuntificator.cs" />
+    <Compile Include="BL\FunctionsCurrentUser.cs" />
     <Compile Include="BL\FunctionsDateTimer.cs" />
-    <Compile Include="BL\DeleteFile.cs" />
+    <Compile Include="BL\FunctionsDelete.cs" />
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />
     <Compile Include="BL\FunctionsTab.cs" />
-    <Compile Include="BL\ITab.cs" />
-    <Compile Include="BL\ViewTask.cs" />
+    <Compile Include="BL\FunctionsUsers.cs" />
+    <Compile Include="InterfaceBL\ITab.cs" />
+    <Compile Include="Model\ViewCurrentUser.cs" />
+    <Compile Include="Model\ViewTask.cs" />
+    <Compile Include="CustomControls\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DB\DateTimer.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -121,62 +131,64 @@
     <Compile Include="DB\Users.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="InterfaceBL\IFunctionsAuntificator.cs" />
+    <Compile Include="Model\ViewUsers.cs" />
+    <Compile Include="Styles\ButtonStyles.xaml.cs">
+      <DependentUpon>ButtonStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\UIColors.xaml.cs">
+      <DependentUpon>UIColors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\ListApplicationViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ViewModelCommand.cs" />
     <Compile Include="View\Desktop.xaml.cs">
       <DependentUpon>Desktop.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\JobTitlesAddAndChange.xaml.cs">
-      <DependentUpon>JobTitlesAddAndChange.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\JobTitlesListAll.xaml.cs">
-      <DependentUpon>JobTitlesListAll.xaml</DependentUpon>
+    <Compile Include="View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ListApplication.xaml.cs">
       <DependentUpon>ListApplication.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProjectAddAndChange.xaml.cs">
-      <DependentUpon>ProjectAddAndChange.xaml</DependentUpon>
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProjectListAll.xaml.cs">
-      <DependentUpon>ProjectListAll.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TaskAddAndChange.xaml.cs">
-      <DependentUpon>TaskAddAndChange.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TaskListAll.xaml.cs">
-      <DependentUpon>TaskListAll.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TaskMarkTime.xaml.cs">
-      <DependentUpon>TaskMarkTime.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserAddAndChange.xaml.cs">
-      <DependentUpon>UserAddAndChange.xaml</DependentUpon>
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserListAll.xaml.cs">
       <DependentUpon>UserListAll.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Compile Include="View\UsersView.xaml.cs">
+      <DependentUpon>UsersView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CustomControls\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BL\Auntificator.cs" />
     <Compile Include="BL\FunctionsWindow.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Styles\ButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\UIColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Desktop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\JobTitlesAddAndChange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\JobTitlesListAll.xaml">
+    <Page Include="View\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,31 +196,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProjectAddAndChange.xaml">
+    <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProjectListAll.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TaskAddAndChange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TaskListAll.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TaskMarkTime.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserAddAndChange.xaml">
+    <Page Include="View\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserListAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UsersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -268,6 +268,10 @@
       <DependentUpon>ModelDB.edmx</DependentUpon>
       <LastGenOutput>ModelDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="Image\user-icon.png" />
+    <Resource Include="Image\logo.png" />
+    <Resource Include="Image\back-image.jpg" />
+    <Resource Include="Image\key-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
