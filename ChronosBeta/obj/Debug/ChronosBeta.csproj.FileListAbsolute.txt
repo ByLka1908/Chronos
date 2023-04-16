@@ -63,14 +63,12 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.AssemblyReference
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.SuggestedBindingRedirects.cache
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Desktop.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplication.g.cs
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\UserListAll.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\App.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta_Content.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta_MarkupCompile.cache
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta_MarkupCompile.lref
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Desktop.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplication.baml
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\UserListAll.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.g.resources
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.Properties.Resources.resources
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.GenerateResource.cache

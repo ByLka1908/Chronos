@@ -184,7 +184,7 @@
                         <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                             <fa:IconImage Icon="{Binding Icon}" Height="20" Width="20" Foreground="{StaticResource color1}"
                                           Margin="35, 0, 10, 0"/>
-                            <TextBlock Text="{Binding Caption}" Foreground="{StaticResource color1}" FontSize="16" 
+                            <TextBlock Text="{Binding Caption}" Foreground="{StaticResource color2}" FontSize="16" 
                                        FontFamily="Montserrat" FontWeight="Medium" VerticalAlignment="Center"/>
                         </StackPanel>
                         
@@ -198,7 +198,7 @@
                             </Button>
 
                             <TextBlock Text="{Binding CurrentUser.DisplayName}"
-                                       Foreground="{StaticResource color1}"
+                                       Foreground="{StaticResource color2}"
                                        FontFamily="Montserrat"
                                        FontSize="12"
                                        VerticalAlignment="Center"/>
