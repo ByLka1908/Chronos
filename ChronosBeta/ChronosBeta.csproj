@@ -79,6 +79,7 @@
     <Compile Include="BL\FunctionsCurrentUser.cs" />
     <Compile Include="BL\FunctionsDateTimer.cs" />
     <Compile Include="BL\FunctionsDelete.cs" />
+    <Compile Include="BL\FunctionsProject.cs" />
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />
     <Compile Include="BL\FunctionsTab.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="InterfaceBL\ITab.cs" />
     <Compile Include="Model\ViewCurrentUser.cs" />
     <Compile Include="Model\ViewListApplication.cs" />
+    <Compile Include="Model\ViewProject.cs" />
     <Compile Include="Model\ViewTask.cs" />
     <Compile Include="CustomControls\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
@@ -144,6 +146,7 @@
     <Compile Include="ViewModels\ListApplicationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ProjectsViewMode.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -162,6 +165,9 @@
     </Compile>
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProjectsView.xaml.cs">
+      <DependentUpon>ProjectsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TaksView.xaml.cs">
       <DependentUpon>TaksView.xaml</DependentUpon>
@@ -203,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProjectsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

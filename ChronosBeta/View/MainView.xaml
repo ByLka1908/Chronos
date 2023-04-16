@@ -35,6 +35,10 @@
             <local:TaksView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:ProjectsViewMode}">
+            <local:ProjectsView/>
+        </DataTemplate>
+
     </Window.Resources>
     
     <Border CornerRadius="10"                    

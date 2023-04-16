@@ -93,3 +93,5 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplicationView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplicationView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaksView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaksView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ProjectsView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ProjectsView.baml
