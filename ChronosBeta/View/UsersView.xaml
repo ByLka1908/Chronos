@@ -86,11 +86,10 @@
                 CornerRadius="10" 
                 Padding="10">
 
-            <DataGrid HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Hidden"
+            <DataGrid HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
                       x:Name="DataGridEmployees"
                       ItemsSource="{Binding CurrentUserList}"
-                      ColumnWidth="*"
                       Background="{StaticResource color3}"
                       BorderThickness="0"
                       AutoGenerateColumns="False"
@@ -118,6 +117,23 @@
                             <!-- Цвет фона выделенной строки при инактиве -->
                             <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource currentLine}"/>
                         </Style.Resources>
+                    </Style>
+
+                    <Style TargetType="{x:Type ScrollBar}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                    <Grid x:Name="GridRoot" Background="{StaticResource color3}" Width="350">
+                                        <Track x:Name="PART_Track" Grid.Row="0">
+                                            <Track.Thumb>
+                                                <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                                        Style="{DynamicResource ScrollThumbs}"/>
+                                            </Track.Thumb>
+                                        </Track>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                     </Style>
                 </DataGrid.Resources>
 

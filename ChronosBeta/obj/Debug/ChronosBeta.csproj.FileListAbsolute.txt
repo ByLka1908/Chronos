@@ -62,13 +62,11 @@ F:\GitProject\Chronos\ChronosBeta\bin\Debug\ru\EntityFramework.SqlServer.resourc
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.AssemblyReference.cache
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.SuggestedBindingRedirects.cache
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Desktop.g.cs
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplication.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\App.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta_Content.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta_MarkupCompile.cache
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta_MarkupCompile.lref
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Desktop.baml
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplication.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.g.resources
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.Properties.Resources.resources
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.GenerateResource.cache
@@ -91,3 +89,5 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\HomeView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\HomeView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\UsersView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\UsersView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplicationView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplicationView.baml

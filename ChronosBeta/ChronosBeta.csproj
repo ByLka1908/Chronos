@@ -85,6 +85,7 @@
     <Compile Include="BL\FunctionsUsers.cs" />
     <Compile Include="InterfaceBL\ITab.cs" />
     <Compile Include="Model\ViewCurrentUser.cs" />
+    <Compile Include="Model\ViewListApplication.cs" />
     <Compile Include="Model\ViewTask.cs" />
     <Compile Include="CustomControls\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
@@ -152,8 +153,8 @@
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ListApplication.xaml.cs">
-      <DependentUpon>ListApplication.xaml</DependentUpon>
+    <Compile Include="View\ListApplicationView.xaml.cs">
+      <DependentUpon>ListApplicationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -189,7 +190,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ListApplication.xaml">
+    <Page Include="View\ListApplicationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,9 +248,7 @@
     <Resource Include="Image\Off.png" />
     <Resource Include="Image\On.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Temp\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DB\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

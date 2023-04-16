@@ -43,8 +43,7 @@ namespace ChronosBeta.View
 
         private void btListApp_Click(object sender, RoutedEventArgs e)
         {
-            FunctionsTab.SetTab(new ListApplication());
-            FunctionsTab.OpenTab(tcTabs);
+
         }
 
         private void btMain_Click(object sender, RoutedEventArgs e)

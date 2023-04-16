@@ -170,11 +170,10 @@
                     Margin="5,0,5,0"
                     Padding="5">
 
-                <DataGrid HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Hidden"
+                <DataGrid HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
                       x:Name="MarkedTime"
                       ItemsSource="{Binding MarkedTime}"
-                      ColumnWidth="*"
                       Background="{StaticResource color3}"
                       BorderThickness="0"
                       AutoGenerateColumns="False"
@@ -202,6 +201,23 @@
                                 <!-- Цвет фона выделенной строки при инактиве -->
                                 <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource currentLine}"/>
                             </Style.Resources>
+                        </Style>
+
+                        <Style TargetType="{x:Type ScrollBar}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                        <Grid x:Name="GridRoot" Background="{StaticResource color3}" Width="350">
+                                            <Track x:Name="PART_Track" Grid.Row="0">
+                                                <Track.Thumb>
+                                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                                        Style="{DynamicResource ScrollThumbs}"/>
+                                                </Track.Thumb>
+                                            </Track>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
                     </DataGrid.Resources>
 
@@ -243,19 +259,18 @@
                     CornerRadius="10" 
                     Padding="10">
 
-                <DataGrid HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Hidden"
-                      x:Name="OverdueTask"
-                      ItemsSource="{Binding OverdueTask}"
-                      ColumnWidth="*"
-                      Background="{StaticResource color3}"
-                      BorderThickness="0"
-                      AutoGenerateColumns="False"
-                      RowBackground="{StaticResource color3}"
-                      AlternatingRowBackground="{StaticResource color3}"
-                      GridLinesVisibility="None"
-                      MinRowHeight="35"
-                      IsReadOnly="True">
+                <DataGrid HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto"
+                          x:Name="OverdueTask"
+                          ItemsSource="{Binding OverdueTask}"
+                          Background="{StaticResource color3}"
+                          BorderThickness="0"
+                          AutoGenerateColumns="False"
+                          RowBackground="{StaticResource color3}"
+                          AlternatingRowBackground="{StaticResource color3}"
+                          GridLinesVisibility="None"
+                          MinRowHeight="35"
+                          IsReadOnly="True">
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
@@ -276,6 +291,23 @@
                                 <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource currentLine}"/>
                             </Style.Resources>
                         </Style>
+
+                        <Style TargetType="{x:Type ScrollBar}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                        <Grid x:Name="GridRoot" Background="{StaticResource color3}" Width="350">
+                                            <Track x:Name="PART_Track" Grid.Row="0">
+                                                <Track.Thumb>
+                                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                                        Style="{DynamicResource ScrollThumbs}"/>
+                                                </Track.Thumb>
+                                            </Track>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
                     </DataGrid.Resources>
 
                     <DataGrid.RowHeaderStyle>
@@ -289,7 +321,6 @@
                     </DataGrid.RowHeaderStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Id}"            Foreground="{StaticResource color2}" Header="ID" Width="40"/>
                         <DataGridTextColumn Binding="{Binding NameTask}"      Foreground="{StaticResource color2}" Header="Название задачи"/>
                         <DataGridTextColumn Binding="{Binding Project}"       Foreground="{StaticResource color2}" Header="Проект"/>
                         <DataGridTextColumn Binding="{Binding EstimatedTime}" Foreground="{StaticResource color2}" Header="Время выполнения"/>
@@ -319,11 +350,10 @@
                     CornerRadius="10" 
                     Padding="10">
 
-                <DataGrid HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Hidden"
+                <DataGrid HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
                       x:Name="CurrentTask"
                       ItemsSource="{Binding CurrentTask}"
-                      ColumnWidth="*"
                       Background="{StaticResource color3}"
                       BorderThickness="0"
                       AutoGenerateColumns="False"
@@ -352,6 +382,23 @@
                                 <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource currentLine}"/>
                             </Style.Resources>
                         </Style>
+
+                        <Style TargetType="{x:Type ScrollBar}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                        <Grid x:Name="GridRoot" Background="{StaticResource color3}" Width="350">
+                                            <Track x:Name="PART_Track" Grid.Row="0">
+                                                <Track.Thumb>
+                                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                                        Style="{DynamicResource ScrollThumbs}"/>
+                                                </Track.Thumb>
+                                            </Track>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
                     </DataGrid.Resources>
 
                     <DataGrid.RowHeaderStyle>
@@ -365,7 +412,6 @@
                     </DataGrid.RowHeaderStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Id}"            Foreground="{StaticResource color2}" Header="ID" Width="40"/>
                         <DataGridTextColumn Binding="{Binding NameTask}"      Foreground="{StaticResource color2}" Header="Название задачи"/>
                         <DataGridTextColumn Binding="{Binding Project}"       Foreground="{StaticResource color2}" Header="Проект"/>
                         <DataGridTextColumn Binding="{Binding EstimatedTime}" Foreground="{StaticResource color2}" Header="Время выполнения"/>
@@ -395,11 +441,10 @@
                     CornerRadius="10" 
                     Padding="10">
 
-                <DataGrid HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Hidden"
+                <DataGrid HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
                       x:Name="FutureTask"
                       ItemsSource="{Binding FutureTask}"
-                      ColumnWidth="*"
                       Background="{StaticResource color3}"
                       BorderThickness="0"
                       AutoGenerateColumns="False"
@@ -428,6 +473,23 @@
                                 <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource currentLine}"/>
                             </Style.Resources>
                         </Style>
+                        
+                        <Style TargetType="{x:Type ScrollBar}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                        <Grid x:Name="GridRoot" Background="{StaticResource color3}" Width="350">
+                                            <Track x:Name="PART_Track" Grid.Row="0">
+                                                <Track.Thumb>
+                                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                                        Style="{DynamicResource ScrollThumbs}"/>
+                                                </Track.Thumb>
+                                            </Track>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
                     </DataGrid.Resources>
 
                     <DataGrid.RowHeaderStyle>
@@ -441,7 +503,6 @@
                     </DataGrid.RowHeaderStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Id}"            Foreground="{StaticResource color2}" Header="ID" Width="40"/>
                         <DataGridTextColumn Binding="{Binding NameTask}"      Foreground="{StaticResource color2}" Header="Название задачи"/>
                         <DataGridTextColumn Binding="{Binding Project}"       Foreground="{StaticResource color2}" Header="Проект"/>
                         <DataGridTextColumn Binding="{Binding EstimatedTime}" Foreground="{StaticResource color2}" Header="Время выполнения"/>

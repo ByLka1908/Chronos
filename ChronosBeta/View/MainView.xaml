@@ -24,7 +24,7 @@
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:ListApplicationViewModel}">
-            <local:ListApplication/>
+            <local:ListApplicationView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:UsersViewModel}">

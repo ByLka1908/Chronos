@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ChronosBeta.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,35 +13,34 @@ namespace ChronosBeta.BL
 {
     public class FunctionsListApplication
     {
-        public string NameProcess { get; set; }
-        public string MainWindowTitle { get; set; }
-        public string StartProcessTime { get; set; }
-        public string EndProcessTime { get; set; }
-
         public static void CreateJsonListApplication()
         {   
-            List<FunctionsListApplication> listApplications = new List<FunctionsListApplication>();
+            string json = JsonConvert.SerializeObject(GetListProcesses(), Formatting.Indented);
+
+            //Надо автоматически получать путь до папаки Temp не прописывая его в ручную
+            string path = @"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json";
+            File.WriteAllText(path, json);
+        }
+
+        public static List<ViewListApplication> GetListProcesses()
+        {
+            List<ViewListApplication> listApplications = new List<ViewListApplication>();
             string[] process = GetRunningProcesses();
 
             foreach (string currentProcess in process)
             {
-                FunctionsListApplication list = new FunctionsListApplication();
-                string[] processes = currentProcess.Split(new char[] {'%'});
+                ViewListApplication list = new ViewListApplication();
+                string[] processes = currentProcess.Split(new char[] { '%' });
 
-                for(int i = 0; i < processes.Length; i++)
-                {   
+                for (int i = 0; i < processes.Length; i++)
+                {
                     list.NameProcess = processes[0];
                     list.MainWindowTitle = processes[1];
-                    list.StartProcessTime = processes[2];           
+                    list.StartProcessTime = processes[2];
                 }
                 listApplications.Add(list);
             }
-
-            string json = JsonConvert.SerializeObject(listApplications, Formatting.Indented);
-            //Надо автоматически получать путь до папаки Temp не прописывая его в ручную
-            string path = @"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json";
-
-            File.WriteAllText(path, json);
+            return listApplications;
         }
 
         public static string[] GetRunningProcesses()
