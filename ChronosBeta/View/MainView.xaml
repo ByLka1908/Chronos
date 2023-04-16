@@ -31,6 +31,10 @@
             <local:UsersView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:TaskViewModel}">
+            <local:TaksView/>
+        </DataTemplate>
+
     </Window.Resources>
     
     <Border CornerRadius="10"                    
