@@ -14,8 +14,7 @@ namespace ChronosBeta.DB
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    using System.Windows.Documents;
-
+    
     public partial class CronosEntities : DbContext
     {
         public CronosEntities()
@@ -138,6 +137,5 @@ namespace ChronosBeta.DB
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
-
     }
 }

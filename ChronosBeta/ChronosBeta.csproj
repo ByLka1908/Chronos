@@ -266,7 +266,9 @@
     <Resource Include="Image\Off.png" />
     <Resource Include="Image\On.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="View\Add\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="DB\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
