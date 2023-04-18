@@ -2,7 +2,6 @@
 using ChronosBeta.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +18,15 @@ using System.Windows.Shapes;
 namespace ChronosBeta.View
 {
     /// <summary>
-    /// Логика взаимодействия для UsersView.xaml
+    /// Логика взаимодействия для UserObjView.xaml
     /// </summary>
-    public partial class UsersView: UserControl
+    public partial class UserObjView : UserControl
     {
-        public UsersView()
+
+        public UserObjView()
         {
             InitializeComponent();
         }
+
     }
 }

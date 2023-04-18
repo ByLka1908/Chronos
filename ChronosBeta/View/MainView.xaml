@@ -39,6 +39,10 @@
             <local:ProjectsView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:UserObjViewModel}">
+            <local:UserObjView/>
+        </DataTemplate>
+
     </Window.Resources>
     
     <Border CornerRadius="10"                    
@@ -71,8 +75,8 @@
                                 Height="35"
                                 Margin="15,25,0,40">
 
-                        <Image Source="/Image/Logo.png" Height="30"/>
-                        <TextBlock Text="RJ CODE"
+                        <Image Source="/Image/ChronosLogo.png" Height="35"/>
+                        <TextBlock Text="CHRONOS"
                                    Foreground="{StaticResource color1}"
                                    FontSize="20"
                                    FontFamily="Montserrat"

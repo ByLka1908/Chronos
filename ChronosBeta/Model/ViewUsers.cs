@@ -11,6 +11,7 @@ namespace ChronosBeta.Model
     public class ViewUsers 
     {
         public Users User { get; set; }
+        public int Id { get; set; }
         public string Photo { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -20,8 +21,9 @@ namespace ChronosBeta.Model
 
         public ViewUsers(Users user)
         {
+            Id = user.ID_Users;
             User = user;
-            Photo = user.Phone;
+            Photo = user.ImageUser;
             Name = user.Name;
             Surname = user.Surname;
             Phone = user.Phone;

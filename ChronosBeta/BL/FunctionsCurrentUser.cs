@@ -52,7 +52,7 @@ namespace ChronosBeta.BL
         {
             ViewCurrentUser user = new ViewCurrentUser();
             user.Username = Name;
-            user.DisplayName = $"Welcome {Name} {Surname}";
+            user.DisplayName = $"{Name} {Surname}";
             user.ProfilePicture = null;
             return user;
         }

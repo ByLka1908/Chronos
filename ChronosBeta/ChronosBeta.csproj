@@ -79,6 +79,7 @@
     <Compile Include="BL\FunctionsCurrentUser.cs" />
     <Compile Include="BL\FunctionsDateTimer.cs" />
     <Compile Include="BL\FunctionsDelete.cs" />
+    <Compile Include="BL\FunctionsJobTitle.cs" />
     <Compile Include="BL\FunctionsProject.cs" />
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewMode.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
+    <Compile Include="ViewModels\UserObjViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
@@ -171,6 +173,9 @@
     </Compile>
     <Compile Include="View\TaksView.xaml.cs">
       <DependentUpon>TaksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserObjView.xaml.cs">
+      <DependentUpon>UserObjView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UsersView.xaml.cs">
       <DependentUpon>UsersView.xaml</DependentUpon>
@@ -220,6 +225,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UserObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UsersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,9 +275,7 @@
     <Resource Include="Image\Off.png" />
     <Resource Include="Image\On.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Add\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DB\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -280,6 +287,7 @@
       <DependentUpon>ModelDB.edmx</DependentUpon>
       <LastGenOutput>ModelDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="Image\ChronosLogo.png" />
     <Resource Include="Image\user-icon.png" />
     <Resource Include="Image\logo.png" />
     <Resource Include="Image\back-image.jpg" />
