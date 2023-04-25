@@ -19,7 +19,7 @@ namespace ChronosBeta.ViewModels
         public ICollectionView CurrentUserList { get; private set; }
         public ICommand AddUser { get; }
         public ICommand EditUser { get; }
-        public ViewUsers SelectedUser { get; }
+        public ViewUsers SelectedUser { get; set; }
 
         private static MainViewModel _currentMain;
 

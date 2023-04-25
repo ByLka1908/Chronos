@@ -142,6 +142,7 @@
         </Setter>
     </Style>
 
+    <!--Text box-->
     <Style x:Key="TextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Padding" Value="5"/>
         <Setter Property="FontSize" Value="14"/>
@@ -161,7 +162,7 @@
                             <Setter Property="Opacity" Value="0.5"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#007ACC"/>
+                            <Setter TargetName="border" Property="Background" Value="#456187"/>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="border" Property="BorderBrush" Value="#007ACC"/>

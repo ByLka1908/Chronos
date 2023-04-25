@@ -27,14 +27,14 @@
             <local:ListApplicationView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:UsersViewModel}">
-            <local:UsersView/>
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type viewModel:TaskViewModel}">
             <local:TaksView/>
         </DataTemplate>
-
+        
+        <DataTemplate DataType="{x:Type viewModel:TaskObjViewModel}">
+            <local:TaskObjView/>
+        </DataTemplate>
+        
         <DataTemplate DataType="{x:Type viewModel:ProjectsViewMode}">
             <local:ProjectsView/>
         </DataTemplate>
@@ -42,6 +42,11 @@
         <DataTemplate DataType="{x:Type viewModel:UserObjViewModel}">
             <local:UserObjView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:UsersViewModel}">
+            <local:UsersView/>
+        </DataTemplate>
+
 
     </Window.Resources>
     

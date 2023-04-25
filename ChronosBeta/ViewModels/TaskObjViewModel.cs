@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Xml.Linq;
 
@@ -14,8 +15,6 @@ namespace ChronosBeta.ViewModels
 {
     public class TaskObjViewModel: ViewModelBase
     {
-        private static MainViewModel _currentMain;
-
         public string UserDoTask { get; set; }
         public string UserCreateTask { get; set; }
         public string NameTask { get; set; }
@@ -24,30 +23,80 @@ namespace ChronosBeta.ViewModels
         public string Description { get; set; }
         public string SelectedItsOver { get; set; }
         public List<string> ItsOver { get; set; }
-        private ViewTask SelectedTask;
+
+        private static MainViewModel _currentMain;
+        private static ViewTask SelectedTask;
+        private static bool itEdit;
 
         public ICommand Save { get; }
         public ICommand Back { get; }
 
         public TaskObjViewModel()
         {
-
             //Инициализация команд
             Save = new ViewModelCommand(ExecutedSaveCommand);
             Back = new ViewModelCommand(ExecutedBackCommand);
+
+            if (itEdit)
+                SetTask();
         }
         public TaskObjViewModel(MainViewModel main)
         {
             _currentMain = main;
+            itEdit = false;
         }
         public TaskObjViewModel(MainViewModel main, ViewTask selectedTask)
         {
             _currentMain = main;
             SelectedTask = selectedTask;
+            itEdit = true;
+        }
+
+        private void SetTask()
+        {
+            DB.Task currentTask = FunctionsTask.GetCurrentTask(SelectedTask);
+            List<string> itsOver = new List<string>();
+            itsOver.Add("Да");
+            itsOver.Add("Нет");
+
+            NameTask = SelectedTask.Name;
+            UserDoTask = SelectedTask.UserDoTask;
+            UserCreateTask = SelectedTask.UserCreateTask;
+            Project = currentTask.Project1.NameProject;
+            DeadLine = currentTask.Deadline.ToString();
+            Description = currentTask.Description;
+            ItsOver = itsOver;   
         }
 
         private void ExecutedSaveCommand(object obj)
         {
+            if (!itEdit)
+            {
+                try
+                {
+                    FunctionsTask.AddTask(UserDoTask, UserCreateTask, NameTask, Project,
+                                          DeadLine, Description, SelectedItsOver);
+                    MessageBox.Show("Задача добавлена");
+                }
+                catch
+                {
+                    MessageBox.Show("Задача не добавлена");
+                }
+            }
+            else
+            {
+                try
+                {
+                    FunctionsTask.SaveEditTask(UserDoTask, UserCreateTask, NameTask,
+                                               Project, DeadLine, Description,
+                                               SelectedItsOver, FunctionsTask.GetCurrentTask(SelectedTask));
+                    MessageBox.Show("Задача отредактирована");
+                }
+                catch
+                {
+                    MessageBox.Show("Задача не отредактирована");
+                }
+            }
 
         }
 

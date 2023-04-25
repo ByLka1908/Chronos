@@ -17,7 +17,8 @@ namespace ChronosBeta.ViewModels
         public ICollectionView CurrentTask { get; private set; }
         public ICommand AddTask { get; }
         public ICommand EditTask { get; }
-        public ViewTask SelectedTask { get; }
+        public ViewTask SelectedTask { get; set; }
+
         private static MainViewModel _currentMain;
 
         public TaskViewModel()

@@ -105,8 +105,8 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedShowTaskCommand(object obj)
         {
-            CurrentChildView = new TaskViewModel();
-            Caption = "Зaдачи";
+            CurrentChildView = new TaskViewModel(this);
+            Caption = "ЗaдачиR";
             Icon = IconChar.Home;
         }
 

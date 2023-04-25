@@ -1,4 +1,5 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.DB;
 using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace ChronosBeta.ViewModels
@@ -25,7 +27,8 @@ namespace ChronosBeta.ViewModels
         public List<string> JobTitle  { get; set; }
 
         private static MainViewModel _currentMain;
-        private ViewUsers SelectedUser;
+        private static ViewUsers SelectedUser;
+        private static bool itEdit;
 
         //Команды
         public ICommand Save { get; }
@@ -38,31 +41,46 @@ namespace ChronosBeta.ViewModels
             //Инициализация команд
             Save = new ViewModelCommand(ExecutedSaveCommand);
             Back = new ViewModelCommand(ExecutedBackCommand);
+
+            if (itEdit)
+                SetUser();
         }
         public UserObjViewModel(MainViewModel main)
         {
             _currentMain = main;
+            itEdit = false;
         }
 
         public UserObjViewModel(MainViewModel main, ViewUsers selectedUser)
         {
             _currentMain = main;
             SelectedUser = selectedUser;
+            itEdit = true;
+        }
 
-            FunctionsUsers.Set(Name, Surname, Login, Password, Phone, Skype, SelectedJobTitle, SelectedUser);
+        private void SetUser()
+        {
+            Name = SelectedUser.Name;
+            Surname = SelectedUser.Surname;
+            Login = SelectedUser.User.Login;
+            Password = SelectedUser.User.Password;
+            Phone = SelectedUser.Phone;
+            Skype = SelectedUser.Skype;
+            SelectedJobTitle = SelectedUser.JobTitle;
         }
 
         private void ExecutedSaveCommand(object obj)
         {
-            if(SelectedUser == null)
+            if(!itEdit)
             {
                 try
                 {
                     FunctionsUsers.AddUser(Name, Surname, Login, Password, Phone, Skype, SelectedJobTitle);
+                    MessageBox.Show("Пользователь добавлен");
                 }
                 catch
                 {
-                    MessageBox.Show("Пользователь добавлен");
+                    MessageBox.Show("Пользователь не добавлен");
                 }
             }
             else
@@ -70,10 +88,11 @@ namespace ChronosBeta.ViewModels
                 try
                 {
                     FunctionsUsers.SaveEditUser(Name, Surname, Login, Password, Phone, Skype, SelectedJobTitle, SelectedUser);
+                    MessageBox.Show("Пользователь отредактирован");
                 }
                 catch
                 {
-                    MessageBox.Show("Пользователь отредактирован");
+                    MessageBox.Show("Пользователь не отредактирован");
                 }
             }
 

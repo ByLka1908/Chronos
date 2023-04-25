@@ -65,18 +65,6 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static void Set(string name, string surname, string login, string password, 
-                               string phone, string skype, string jobTitle, ViewUsers SelectedUser)
-        {
-            name = SelectedUser.Name;
-            surname = SelectedUser.Surname;
-            login = SelectedUser.User.Login;
-            password = SelectedUser.User.Password;
-            phone = SelectedUser.Phone;
-            skype = SelectedUser.Skype;
-            jobTitle = SelectedUser.JobTitle;
-        }
-
         public static bool SaveEditUser(string name, string surname, string login, string password,
                                         string phone, string skype, string jobTitle, ViewUsers SelectedUser)
         {

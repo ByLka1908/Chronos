@@ -119,3 +119,5 @@ D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta_MarkupCompile.cache
 D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta_MarkupCompile.lref
 D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta.exe
 D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta.pdb
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskObjView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskObjView.baml
