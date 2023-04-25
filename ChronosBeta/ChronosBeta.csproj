@@ -85,6 +85,11 @@
     <Compile Include="BL\FunctionsListApplication.cs" />
     <Compile Include="BL\FunctionsTab.cs" />
     <Compile Include="BL\FunctionsUsers.cs" />
+    <Compile Include="DB\ModelDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="InterfaceBL\ITab.cs" />
     <Compile Include="Model\ViewCurrentUser.cs" />
     <Compile Include="Model\ViewListApplication.cs" />
@@ -98,11 +103,6 @@
     </Compile>
     <Compile Include="DB\JobTitles.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\ModelDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\ModelDB.cs">
       <AutoGen>True</AutoGen>
@@ -148,6 +148,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewMode.cs" />
+    <Compile Include="ViewModels\TaskObjViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\UserObjViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
@@ -173,6 +174,9 @@
     </Compile>
     <Compile Include="View\TaksView.xaml.cs">
       <DependentUpon>TaksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskObjView.xaml.cs">
+      <DependentUpon>TaskObjView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserObjView.xaml.cs">
       <DependentUpon>UserObjView.xaml</DependentUpon>
@@ -222,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TaksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskObjView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

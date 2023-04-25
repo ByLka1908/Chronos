@@ -35,8 +35,7 @@
                         Grid.Column="0">
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource color2}"/>
 
-                <TextBox Text="Search..."   
-                         FontSize="13"
+                <TextBox FontSize="13"
                          Height="24"
                          Width="205"
                          Background="Transparent"
@@ -53,13 +52,13 @@
             </StackPanel>
 
             <Button Grid.Column="1"
-                            Command="{Binding Search}"                            
-                            Content="Поиск"                            
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Foreground="{StaticResource color1}"
+                    Command="{Binding Search}"                            
+                    Content="Поиск"                            
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="{StaticResource color1}"
                     VerticalAlignment="Top">
 
                 <Button.Style>
@@ -127,13 +126,13 @@
             </Button>
 
             <Button Grid.Column="4" Margin="10,0,0,0"
-                            Command="{Binding EditUser}"                            
-                            Content="Редактировать пользователя"                            
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Foreground="{StaticResource color1}"
+                    Command="{Binding EditUser}"                            
+                    Content="Редактировать пользователя"                            
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="{StaticResource color1}"
                     VerticalAlignment="Top">
 
                 <Button.Style>
@@ -175,6 +174,7 @@
                       x:Name="DataGridEmployees"
                       ItemsSource="{Binding CurrentUserList}"
                       Background="{StaticResource color3}"
+                      SelectedItem="{Binding SelectedUser}"
                       BorderThickness="0"
                       AutoGenerateColumns="False"
                       RowBackground="{StaticResource color3}"
@@ -232,13 +232,13 @@
                 </DataGrid.RowHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Foreground="{StaticResource color2}" Header="ID" HeaderStringFormat=""/>
-                    <DataGridTextColumn Binding="{Binding Photo}" Foreground="{StaticResource color2}" Header="Photo"/>
-                    <DataGridTextColumn Binding="{Binding Name}" Foreground="{StaticResource color2}" Header="First name"/>
-                    <DataGridTextColumn Binding="{Binding Surname}" Foreground="{StaticResource color2}" Header="Last name"/>
-                    <DataGridTextColumn Binding="{Binding Phone}" Foreground="{StaticResource color2}"  Header="Phone"/>
-                    <DataGridTextColumn Binding="{Binding Skype}" Foreground="{StaticResource color2}"  Header="Skype"/>
-                    <DataGridTextColumn Binding="{Binding JobTitle}" Foreground="{StaticResource color2}"  Header="Job title"/>
+                    <DataGridTextColumn Binding="{Binding Id}" Foreground="{StaticResource color2}" Header="ID" HeaderStringFormat="" MinWidth="30"/>
+                    <DataGridTextColumn Binding="{Binding Photo}" Foreground="{StaticResource color2}" Header="Фото" MinWidth="60"/>
+                    <DataGridTextColumn Binding="{Binding Name}" Foreground="{StaticResource color2}" Header="Имя" MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding Surname}" Foreground="{StaticResource color2}" Header="Фамилия" MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding Phone}" Foreground="{StaticResource color2}"  Header="Телефон" MinWidth="100"/>
+                    <DataGridTextColumn Binding="{Binding Skype}" Foreground="{StaticResource color2}"  Header="Skype" MinWidth="150"/>
+                    <DataGridTextColumn Binding="{Binding JobTitle}" Foreground="{StaticResource color2}"  Header="Должность" MinWidth="125"/>
                 </DataGrid.Columns>
 
             </DataGrid>

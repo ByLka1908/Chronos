@@ -4,9 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ChronosBeta.View"
+             xmlns:viewModel="clr-namespace:ChronosBeta.ViewModels"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.DataContext>
+        <viewModel:TaskViewModel/>
+    </UserControl.DataContext>
+    
     <Grid>
 
         <Grid.RowDefinitions>
@@ -168,6 +174,7 @@
                       VerticalScrollBarVisibility="Auto"
                       x:Name="DataGridEmployees"
                       ItemsSource="{Binding CurrentTask}"
+                      SelectedItem="{Binding SelectedTask}"
                       Background="{StaticResource color3}"
                       BorderThickness="0"
                       AutoGenerateColumns="False"

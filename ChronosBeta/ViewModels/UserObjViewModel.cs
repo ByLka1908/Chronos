@@ -1,4 +1,5 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,9 @@ namespace ChronosBeta.ViewModels
         public string Skype { get; set; }
         public string SelectedJobTitle { get; set; }
         public List<string> JobTitle  { get; set; }
+
         private static MainViewModel _currentMain;
+        private ViewUsers SelectedUser;
 
         //Команды
         public ICommand Save { get; }
@@ -41,16 +44,39 @@ namespace ChronosBeta.ViewModels
             _currentMain = main;
         }
 
+        public UserObjViewModel(MainViewModel main, ViewUsers selectedUser)
+        {
+            _currentMain = main;
+            SelectedUser = selectedUser;
+
+            FunctionsUsers.Set(Name, Surname, Login, Password, Phone, Skype, SelectedJobTitle, SelectedUser);
+        }
+
         private void ExecutedSaveCommand(object obj)
         {
-            try
+            if(SelectedUser == null)
             {
-                FunctionsJobTitle.Add(Name, Surname, Login, Password, Phone, Skype, SelectedJobTitle);
+                try
+                {
+                    FunctionsUsers.AddUser(Name, Surname, Login, Password, Phone, Skype, SelectedJobTitle);
+                }
+                catch
+                {
+                    MessageBox.Show("Пользователь добавлен");
+                }
             }
-            catch
+            else
             {
-                MessageBox.Show("Пользователь добавлен");
+                try
+                {
+                    FunctionsUsers.SaveEditUser(Name, Surname, Login, Password, Phone, Skype, SelectedJobTitle, SelectedUser);
+                }
+                catch
+                {
+                    MessageBox.Show("Пользователь отредактирован");
+                }
             }
+
             
         }
         private void ExecutedBackCommand(object obj)
