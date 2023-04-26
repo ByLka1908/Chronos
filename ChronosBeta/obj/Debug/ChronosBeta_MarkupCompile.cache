@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\GitProject\Chronos\ChronosBeta\App.xaml
-13-2058743719
+14-1488041957
 21227157113
-58-1911159594
+60-456932533
 211610694161
-CustomControls\BindablePasswordBox.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\Desktop.xaml;View\HomeView.xaml;View\ListApplicationView.xaml;View\LoginView.xaml;View\MainView.xaml;View\ProjectsView.xaml;View\TaksView.xaml;View\TaskObjView.xaml;View\UserObjView.xaml;View\UsersView.xaml;
+CustomControls\BindablePasswordBox.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\Desktop.xaml;View\HomeView.xaml;View\ListApplicationView.xaml;View\LoginView.xaml;View\MainView.xaml;View\ProjectObjView.xaml;View\ProjectsView.xaml;View\TaksView.xaml;View\TaskObjView.xaml;View\UserObjView.xaml;View\UsersView.xaml;
 
 False
 

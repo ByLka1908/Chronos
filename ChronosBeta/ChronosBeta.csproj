@@ -147,6 +147,7 @@
     <Compile Include="ViewModels\ListApplicationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ProjectObjViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewMode.cs" />
     <Compile Include="ViewModels\TaskObjViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
@@ -168,6 +169,9 @@
     </Compile>
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProjectObjView.xaml.cs">
+      <DependentUpon>ProjectObjView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProjectsView.xaml.cs">
       <DependentUpon>ProjectsView.xaml</DependentUpon>
@@ -218,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProjectObjView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

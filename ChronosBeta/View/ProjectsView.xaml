@@ -5,8 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ChronosBeta.View"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:viewModel="clr-namespace:ChronosBeta.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <viewModel:ProjectsViewMode/>
+    </UserControl.DataContext>
+    
     <Grid>
 
         <Grid.RowDefinitions>
@@ -167,6 +173,7 @@
                       VerticalScrollBarVisibility="Auto"
                       x:Name="DataGridEmployees"
                       ItemsSource="{Binding CurrentProject}"
+                      SelectedItem="{Binding SelectedProject}"
                       Background="{StaticResource color3}"
                       BorderThickness="0"
                       AutoGenerateColumns="False"

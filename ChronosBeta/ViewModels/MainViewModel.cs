@@ -118,7 +118,7 @@ namespace ChronosBeta.ViewModels
         }
         private void ExecutedShowProjectCommand(object obj)
         {
-            CurrentChildView = new ProjectsViewMode();
+            CurrentChildView = new ProjectsViewMode(this);
             Caption = "Проекты";
             Icon = IconChar.Users;
         }

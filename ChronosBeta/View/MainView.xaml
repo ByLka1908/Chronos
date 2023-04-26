@@ -38,6 +38,10 @@
         <DataTemplate DataType="{x:Type viewModel:ProjectsViewMode}">
             <local:ProjectsView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:ProjectObjViewModel}">
+            <local:ProjectObjView/>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:UserObjViewModel}">
             <local:UserObjView/>

@@ -54,7 +54,6 @@ namespace ChronosBeta.ViewModels
 
         private void SetTask()
         {
-            DB.Task currentTask = FunctionsTask.GetCurrentTask(SelectedTask);
             List<string> itsOver = new List<string>();
             itsOver.Add("Да");
             itsOver.Add("Нет");
@@ -62,9 +61,9 @@ namespace ChronosBeta.ViewModels
             NameTask = SelectedTask.Name;
             UserDoTask = SelectedTask.UserDoTask;
             UserCreateTask = SelectedTask.UserCreateTask;
-            Project = currentTask.Project1.NameProject;
-            DeadLine = currentTask.Deadline.ToString();
-            Description = currentTask.Description;
+            Project = SelectedTask.Task.Project1.NameProject;
+            DeadLine = SelectedTask.Task.Deadline.ToString();
+            Description = SelectedTask.Task.Description;
             ItsOver = itsOver;   
         }
 
@@ -89,7 +88,7 @@ namespace ChronosBeta.ViewModels
                 {
                     FunctionsTask.SaveEditTask(UserDoTask, UserCreateTask, NameTask,
                                                Project, DeadLine, Description,
-                                               SelectedItsOver, FunctionsTask.GetCurrentTask(SelectedTask));
+                                               SelectedItsOver, SelectedTask.Task);
                     MessageBox.Show("Задача отредактирована");
                 }
                 catch

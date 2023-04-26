@@ -30,13 +30,6 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static DB.Task GetCurrentTask(ViewTask currentTask)
-        {
-            CronosEntities ent = new CronosEntities();
-            DB.Task task = ent.Task.Find(currentTask.Id);
-            return task;
-        }
-
         public static bool AddTask( string UserDoTask, string UserCreateTask ,
                                     string NameTask, string Project, 
                                     string DeadLine, string Description, 

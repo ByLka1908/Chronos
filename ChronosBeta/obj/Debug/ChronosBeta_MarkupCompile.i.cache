@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Test\Chronos\ChronosBeta\obj\Debug\
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\
 ChronosBeta
 none
 false
 DEBUG;TRACE
-D:\Test\Chronos\ChronosBeta\App.xaml
-13-2058743719
+F:\GitProject\Chronos\ChronosBeta\App.xaml
+14-1488041957
 21227157113
-5910618527
-21-394908176
-CustomControls\BindablePasswordBox.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\Desktop.xaml;View\HomeView.xaml;View\ListApplicationView.xaml;View\LoginView.xaml;View\MainView.xaml;View\ProjectsView.xaml;View\TaksView.xaml;View\TaskObjView.xaml;View\UserObjView.xaml;View\UsersView.xaml;
+611464845588
+211610694161
+CustomControls\BindablePasswordBox.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\Desktop.xaml;View\HomeView.xaml;View\ListApplicationView.xaml;View\LoginView.xaml;View\MainView.xaml;View\ProjectObjView.xaml;View\ProjectsView.xaml;View\TaksView.xaml;View\TaskObjView.xaml;View\UserObjView.xaml;View\UsersView.xaml;
 
 True
 
