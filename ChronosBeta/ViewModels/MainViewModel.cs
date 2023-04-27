@@ -98,7 +98,7 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedShowHomeCommand(object obj)
         {
-            CurrentChildView = new HomeViewModel();
+            CurrentChildView = new HomeViewModel(this);
             Caption = "Рабочий стол";
             Icon = IconChar.Home;
         }
@@ -106,7 +106,7 @@ namespace ChronosBeta.ViewModels
         private void ExecutedShowTaskCommand(object obj)
         {
             CurrentChildView = new TaskViewModel(this);
-            Caption = "ЗaдачиR";
+            Caption = "Зaдачи";
             Icon = IconChar.Home;
         }
 

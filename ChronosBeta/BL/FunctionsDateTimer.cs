@@ -18,7 +18,7 @@ namespace ChronosBeta.BL
         private static TimeSpan timeStart = new TimeSpan();
         private static TimeSpan timeEnd = new TimeSpan();
 
-        public static bool AddDateTimer(TimeSpan timeStart, TimeSpan timeEnd)
+        private static bool AddDateTimer(TimeSpan timeStart, TimeSpan timeEnd)
         {
             DB.DateTimer time = new DB.DateTimer();
             try
@@ -27,8 +27,8 @@ namespace ChronosBeta.BL
                 time.Day = DateTime.Now;
                 time.TimeStart = timeStart;
                 time.TimeEnd = timeEnd;
-                time.AllRunProgram = File.ReadAllText(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
-                FunctionsDelete.Delete(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
+                time.AllRunProgram = File.ReadAllText(@"F:\GitProject\Chronos\ChronosBeta\Temp\ListProcess.json");
+                FunctionsDelete.Delete(@"F:\GitProject\Chronos\ChronosBeta\Temp\ListProcess.json");
             }
             catch 
             {
@@ -51,14 +51,12 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static void OffOnDateTimer(Button currentButton)
+        public static string OffOnDateTimer()
         {
-            ImageBrush myImageBrush = new ImageBrush();
-
+            string contentLabel;
             if (joobTime)
             {
-                myImageBrush.ImageSource = new BitmapImage(new Uri("F:\\Projects\\VisualStudioSource\\ChronosBeta\\ChronosBeta\\Image\\Off.png", UriKind.Relative));
-                currentButton.Background = myImageBrush;
+                contentLabel = "Здраствуйте, включите таймер рабочего времени!";
                 joobTime = false;
 
                 timeEnd = DateTime.Now.TimeOfDay;
@@ -66,13 +64,13 @@ namespace ChronosBeta.BL
             }
             else
             {
-                myImageBrush.ImageSource = new BitmapImage(new Uri("F:\\Projects\\VisualStudioSource\\ChronosBeta\\ChronosBeta\\Image\\On.png", UriKind.Relative));
-                currentButton.Background = myImageBrush;
+                contentLabel = "Приятной работы!";
                 joobTime = true;
 
                 timeStart = DateTime.Now.TimeOfDay;
                 FunctionsListApplication.CreateJsonListApplication();
             }
+            return contentLabel;
         }
     }
 }

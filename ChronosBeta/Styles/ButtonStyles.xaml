@@ -57,8 +57,6 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    
-    
     <!--Control bar button-->
     <Style x:Key="controlButton" TargetType="Button">
         
@@ -173,7 +171,7 @@
         </Setter>
     </Style>
 
-
+    <!--Combo box-->
     <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
         <Setter Property="Foreground" Value="{StaticResource color2}"/>
         <Setter Property="Background" Value="Red"/>
@@ -223,5 +221,44 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--Date picker-->
+    <Style TargetType="{x:Type DatePickerTextBox}">
+
+        <Setter Property="Background" Value="{StaticResource color3}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
     
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
+
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            CornerRadius="12">
+
+                        <Border>
+                            <TextBox Text="{Binding ElementName=datePicker, Path=SelectedDate, StringFormat=dd/MM/yyyy}"
+                                     Style="{StaticResource TextBox}" Background="{StaticResource color5}" Foreground="{StaticResource color2}"
+                                     BorderThickness="0" Margin="2">
+                            </TextBox>
+                        </Border>
+
+                    </Border>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

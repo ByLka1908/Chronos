@@ -32,7 +32,7 @@ namespace ChronosBeta.View
 
         private void btStartTimer_Click(object sender, RoutedEventArgs e)
         {
-            FunctionsDateTimer.OffOnDateTimer(btStartTimer);
+            
         }
 
 
