@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using ChronosBeta.ViewModels;
+using FontAwesome.Sharp;
 
 namespace ChronosBeta.BL
 {
@@ -71,6 +73,13 @@ namespace ChronosBeta.BL
                 FunctionsListApplication.CreateJsonListApplication();
             }
             return contentLabel;
+        }
+        public static SolidColorBrush GetColorBrushes()
+        {
+            if (joobTime)
+                return Brushes.Green;
+            else
+                return Brushes.Red;
         }
     }
 }

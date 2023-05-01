@@ -12,19 +12,40 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace ChronosBeta.ViewModels
 {
     public class HomeViewModel: ViewModelBase
     {
+        private string _contentLabel;
+        private SolidColorBrush _foregroundButton;
+
         public ICommand OnOffTimer { get; }
         public ICollectionView OverdueTask { get; private set; }
         public ICollectionView CurrentTask { get; private set; }
         public ICollectionView FutureTask { get; private set; }
         public ICollectionView MarkedTime { get; private set; }
-        public SolidColorBrush ForegroundButton { get; set; }
         public string DatePicker { get; set; }
-        public string ContentLabel { get; set; }
+
+        public string ContentLabel 
+        {
+            get { return _contentLabel; }
+            set 
+            { 
+                _contentLabel = value;
+                OnPropertyChanged(nameof(ContentLabel));
+            }
+        }
+        public SolidColorBrush ForegroundButton
+        {
+            get { return _foregroundButton; }
+            set
+            {
+                _foregroundButton = value;
+                OnPropertyChanged(nameof(ForegroundButton));
+            }
+        }
 
         private static MainViewModel _currentMain;
 
@@ -42,6 +63,7 @@ namespace ChronosBeta.ViewModels
         private void ExecutedOnOffTimerCommand(object obj)
         {
             ContentLabel = FunctionsDateTimer.OffOnDateTimer();
+            ForegroundButton = FunctionsDateTimer.GetColorBrushes();
         }
 
     }

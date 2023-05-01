@@ -1,0 +1,38 @@
+[
+  {
+    "NameProcess": "Ssms",
+    "MainWindowTitle": "Komputer\\SQLEXPRESS.Cronos - MainDiagram - Microsoft SQL Server Management Studio",
+    "StartProcessTime": "01.05.2023 12:30:15",
+    "EndProcessTime": null
+  },
+  {
+    "NameProcess": "devenv",
+    "MainWindowTitle": "ChronosBeta (выполняется) - Microsoft Visual Studio",
+    "StartProcessTime": "01.05.2023 12:14:43",
+    "EndProcessTime": null
+  },
+  {
+    "NameProcess": "msedge",
+    "MainWindowTitle": "ANIKV feat. SALUKI — Меня не будет и еще 4 страницы — Личный: Microsoft​ Edge",
+    "StartProcessTime": "01.05.2023 10:11:45",
+    "EndProcessTime": null
+  },
+  {
+    "NameProcess": "devenv",
+    "MainWindowTitle": "BOMJ_Simulator - Microsoft Visual Studio",
+    "StartProcessTime": "01.05.2023 13:12:11",
+    "EndProcessTime": null
+  },
+  {
+    "NameProcess": "steam",
+    "MainWindowTitle": "Steam",
+    "StartProcessTime": "01.05.2023 10:15:48",
+    "EndProcessTime": null
+  },
+  {
+    "NameProcess": "ChronosBeta",
+    "MainWindowTitle": "MainView",
+    "StartProcessTime": "01.05.2023 13:54:17",
+    "EndProcessTime": null
+  }
+]

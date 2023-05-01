@@ -11,6 +11,7 @@ using FontAwesome.Sharp;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using ChronosBeta.View;
+using System.Windows.Media;
 
 namespace ChronosBeta.ViewModels
 {
