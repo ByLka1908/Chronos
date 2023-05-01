@@ -72,6 +72,7 @@ namespace ChronosBeta.ViewModels
         public ICommand ShowUserViewCommand { get; }
         public ICommand ShowTaskViewCommand { get; }
         public ICommand ShowProjectViewCommand { get; }
+        public ICommand ShowDateTimerCommand { get; }
 
         public MainViewModel() 
         {
@@ -83,6 +84,7 @@ namespace ChronosBeta.ViewModels
             ShowUserViewCommand = new ViewModelCommand(ExecutedShowUsersCommand);
             ShowTaskViewCommand = new ViewModelCommand(ExecutedShowTaskCommand);
             ShowProjectViewCommand = new ViewModelCommand(ExecutedShowProjectCommand);
+            ShowDateTimerCommand = new ViewModelCommand(ExecutedShowDateTimerCommandCommand);
 
             //Defoult view
             ExecutedShowHomeCommand(null);
@@ -111,12 +113,20 @@ namespace ChronosBeta.ViewModels
             Icon = IconChar.Home;
         }
 
+        private void ExecutedShowDateTimerCommandCommand(object obj)
+        {
+            CurrentChildView = new DateTimerViewModel(this);
+            Caption = "Отмеченое время";
+            Icon = IconChar.Home;
+        }
+
         private void ExecutedShowUsersCommand(object obj)
         {
             CurrentChildView = new UsersViewModel(this);
             Caption = "Пользователи";
             Icon = IconChar.Users;
         }
+
         private void ExecutedShowProjectCommand(object obj)
         {
             CurrentChildView = new ProjectsViewMode(this);

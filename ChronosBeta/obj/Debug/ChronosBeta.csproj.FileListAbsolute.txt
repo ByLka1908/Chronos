@@ -123,3 +123,7 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskObjView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskObjView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ProjectObjView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ProjectObjView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DateTimerView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DateTimerView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DateTimerObjView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DateTimerObjView.baml

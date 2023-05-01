@@ -43,6 +43,14 @@
             <local:ProjectObjView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:DateTimerViewModel}">
+            <local:DateTimerView/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:DateTimerObjViewModel}">
+            <local:DateTimerObjView/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:UserObjViewModel}">
             <local:UserObjView/>
         </DataTemplate>
@@ -129,6 +137,15 @@
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Project" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowDateTimerCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Timeline" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Date timer" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 

@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="InterfaceBL\ITab.cs" />
     <Compile Include="Model\ViewCurrentUser.cs" />
+    <Compile Include="Model\ViewDateTimer.cs" />
     <Compile Include="Model\ViewListApplication.cs" />
     <Compile Include="Model\ViewProject.cs" />
     <Compile Include="Model\ViewTask.cs" />
@@ -143,6 +144,8 @@
     <Compile Include="Styles\UIColors.xaml.cs">
       <DependentUpon>UIColors.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DateTimerObjViewModel.cs" />
+    <Compile Include="ViewModels\DateTimerViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ListApplicationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -155,6 +158,12 @@
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
+    <Compile Include="View\DateTimerObjView.xaml.cs">
+      <DependentUpon>DateTimerObjView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DateTimerView.xaml.cs">
+      <DependentUpon>DateTimerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Desktop.xaml.cs">
       <DependentUpon>Desktop.xaml</DependentUpon>
     </Compile>
@@ -202,6 +211,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\UIColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DateTimerObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DateTimerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

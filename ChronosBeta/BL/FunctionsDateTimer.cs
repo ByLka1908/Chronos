@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using ChronosBeta.ViewModels;
 using FontAwesome.Sharp;
+using ChronosBeta.Model;
 
 namespace ChronosBeta.BL
 {
@@ -80,6 +81,23 @@ namespace ChronosBeta.BL
                 return Brushes.Green;
             else
                 return Brushes.Red;
+        }
+
+        public static List<ViewDateTimer> GetDateTimer()
+        {
+            try
+            {
+                DB.CronosEntities entities = new DB.CronosEntities();
+                var dateTimer = entities.DateTimer.ToList();
+                List<ViewDateTimer> listDateTimer = new List<ViewDateTimer>();
+                foreach (var date in dateTimer)
+                    listDateTimer.Add(new ViewDateTimer(date));
+                return listDateTimer;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
     }
 }

@@ -17,9 +17,17 @@ namespace ChronosBeta.BL
         {   
             string json = JsonConvert.SerializeObject(GetListProcesses(), Formatting.Indented);
 
+            var currList = JsonConvert.DeserializeObject(json);
+
             //Надо автоматически получать путь до папаки Temp не прописывая его в ручную
             string path = @"F:\GitProject\Chronos\ChronosBeta\Temp\ListProcess.json";
             File.WriteAllText(path, json);
+        }
+
+        public static List<ViewListApplication> GetJsonToListApplication(string appJson)
+        {
+            var list = JsonConvert.DeserializeObject(appJson);
+            return (List<ViewListApplication>)list;
         }
 
         public static List<ViewListApplication> GetListProcesses()
