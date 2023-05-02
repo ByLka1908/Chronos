@@ -36,7 +36,7 @@ namespace ChronosBeta.ViewModels
         }
         private void ExecutedBackCommand(object obj)
         {
-            _currentMain.CurrentChildView = new UsersViewModel();
+            _currentMain.CurrentChildView = new DateTimerViewModel();
             _currentMain.Caption = "Пользователи";
             _currentMain.Icon = IconChar.Users;
         }
@@ -45,7 +45,7 @@ namespace ChronosBeta.ViewModels
             if (DateTimer == null)
                 return;
 
-            List<ViewListApplication> list = FunctionsListApplication.GetJsonToListApplication(DateTimer.DateTimer.AllRunProgram);
+            List<ViewListApplication> list = FunctionsJSON.GetDeserializeJson(DateTimer.DateTimer.AllRunProgram);
             CurrentAppList = CollectionViewSource.GetDefaultView(list);
 
             User = DateTimer.User;

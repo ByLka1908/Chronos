@@ -1,4 +1,5 @@
 ﻿using ChronosBeta.Model;
+using ChronosBeta.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,28 +14,11 @@ namespace ChronosBeta.BL
 {
     public class FunctionsListApplication
     {
-        public static void CreateJsonListApplication()
-        {   
-            string json = JsonConvert.SerializeObject(GetListProcesses(), Formatting.Indented);
-
-            var currList = JsonConvert.DeserializeObject(json);
-
-            //Надо автоматически получать путь до папаки Temp не прописывая его в ручную
-            string path = @"F:\GitProject\Chronos\ChronosBeta\Temp\ListProcess.json";
-            File.WriteAllText(path, json);
-        }
-
-        public static List<ViewListApplication> GetJsonToListApplication(string appJson)
-        {
-            var list = JsonConvert.DeserializeObject(appJson);
-            return (List<ViewListApplication>)list;
-        }
-
         public static List<ViewListApplication> GetListProcesses()
         {
             List<ViewListApplication> listApplications = new List<ViewListApplication>();
             string[] process = GetRunningProcesses();
-
+            
             foreach (string currentProcess in process)
             {
                 ViewListApplication list = new ViewListApplication();

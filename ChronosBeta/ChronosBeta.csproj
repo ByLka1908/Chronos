@@ -80,6 +80,7 @@
     <Compile Include="BL\FunctionsDateTimer.cs" />
     <Compile Include="BL\FunctionsDelete.cs" />
     <Compile Include="BL\FunctionsJobTitle.cs" />
+    <Compile Include="BL\FunctionsJSON.cs" />
     <Compile Include="BL\FunctionsProject.cs" />
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />

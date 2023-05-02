@@ -30,8 +30,7 @@ namespace ChronosBeta.BL
                 time.Day = DateTime.Now;
                 time.TimeStart = timeStart;
                 time.TimeEnd = timeEnd;
-                time.AllRunProgram = File.ReadAllText(@"F:\GitProject\Chronos\ChronosBeta\Temp\ListProcess.json");
-                FunctionsDelete.Delete(@"F:\GitProject\Chronos\ChronosBeta\Temp\ListProcess.json");
+                time.AllRunProgram = FunctionsJSON.GetJson();
             }
             catch 
             {
@@ -71,7 +70,7 @@ namespace ChronosBeta.BL
                 joobTime = true;
 
                 timeStart = DateTime.Now.TimeOfDay;
-                FunctionsListApplication.CreateJsonListApplication();
+                FunctionsJSON.CreateJson();
             }
             return contentLabel;
         }
