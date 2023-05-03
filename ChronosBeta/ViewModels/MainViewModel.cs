@@ -71,6 +71,7 @@ namespace ChronosBeta.ViewModels
         public ICommand ShowListApplicationViewCommand { get; }
         public ICommand ShowUserViewCommand { get; }
         public ICommand ShowTaskViewCommand { get; }
+        public ICommand ShowTaskTimerViewCommand { get; }
         public ICommand ShowProjectViewCommand { get; }
         public ICommand ShowDateTimerCommand { get; }
 
@@ -83,6 +84,7 @@ namespace ChronosBeta.ViewModels
             ShowListApplicationViewCommand = new ViewModelCommand(ExecutedShowListApplicationViewCommand);
             ShowUserViewCommand = new ViewModelCommand(ExecutedShowUsersCommand);
             ShowTaskViewCommand = new ViewModelCommand(ExecutedShowTaskCommand);
+            ShowTaskTimerViewCommand = new ViewModelCommand(ExecutedShowTaskTimerCommand);
             ShowProjectViewCommand = new ViewModelCommand(ExecutedShowProjectCommand);
             ShowDateTimerCommand = new ViewModelCommand(ExecutedShowDateTimerCommandCommand);
 
@@ -96,6 +98,13 @@ namespace ChronosBeta.ViewModels
         {
             CurrentChildView = new ListApplicationViewModel();
             Caption = "Список приложений";
+            Icon = IconChar.Desktop;
+        }
+        
+        private void ExecutedShowTaskTimerCommand(object obj)
+        {
+            CurrentChildView = new TaskTimerViewModel(this);
+            Caption = "Отмеченное время";
             Icon = IconChar.Desktop;
         }
 

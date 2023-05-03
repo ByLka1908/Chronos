@@ -85,6 +85,7 @@
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />
     <Compile Include="BL\FunctionsTab.cs" />
+    <Compile Include="BL\FunctionsTaskMark.cs" />
     <Compile Include="BL\FunctionsUsers.cs" />
     <Compile Include="DB\ModelDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -138,6 +139,7 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="InterfaceBL\IFunctionsAuntificator.cs" />
+    <Compile Include="Model\ViewTaskTimer.cs" />
     <Compile Include="Model\ViewUsers.cs" />
     <Compile Include="Styles\ButtonStyles.xaml.cs">
       <DependentUpon>ButtonStyles.xaml</DependentUpon>
@@ -154,6 +156,7 @@
     <Compile Include="ViewModels\ProjectObjViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewMode.cs" />
     <Compile Include="ViewModels\TaskObjViewModel.cs" />
+    <Compile Include="ViewModels\TaskTimerViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\UserObjViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
@@ -191,6 +194,9 @@
     </Compile>
     <Compile Include="View\TaskObjView.xaml.cs">
       <DependentUpon>TaskObjView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskTimerView.xaml.cs">
+      <DependentUpon>TaskTimerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserObjView.xaml.cs">
       <DependentUpon>UserObjView.xaml</DependentUpon>
@@ -256,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TaskObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskTimerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

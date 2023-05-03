@@ -35,6 +35,10 @@
             <local:TaskObjView/>
         </DataTemplate>
         
+        <DataTemplate DataType="{x:Type viewModel:TaskTimerViewModel}">
+            <local:TaskTimerView/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:ProjectsViewMode}">
             <local:ProjectsView/>
         </DataTemplate>
@@ -128,6 +132,15 @@
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ListCheck" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Task" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowTaskTimerViewCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="FutbolBall" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="TaskTimer" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 

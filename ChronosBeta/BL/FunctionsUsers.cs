@@ -54,7 +54,7 @@ namespace ChronosBeta.BL
             }
             try
             {
-                DB.CronosEntities entities = new DB.CronosEntities();
+                CronosEntities entities = new CronosEntities();
                 entities.Users.Add(user);
                 entities.SaveChanges();
                 return true;
