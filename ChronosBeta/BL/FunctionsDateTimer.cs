@@ -26,7 +26,7 @@ namespace ChronosBeta.BL
             DB.DateTimer time = new DB.DateTimer();
             try
             {
-                time.Users = FunctionsCurrentUser.GetUser();
+                time.Users = FunctionsCurrentUser.GetIDUser();
                 time.Day = DateTime.Now;
                 time.TimeStart = timeStart;
                 time.TimeEnd = timeEnd;

@@ -34,7 +34,7 @@
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource color2}"/>
 
                 <TextBox FontSize="13"
-                         Text="Введите имя"
+                         Text="{Binding CurrentText}"
                          Height="24"
                          Width="205"
                          Background="Transparent"
@@ -72,6 +72,7 @@
                 </DatePicker.CalendarStyle>
 
             </DatePicker>
+            
             <Button Grid.Column="2"
                     Command="{Binding Search}"                            
                     Content="Поиск"                            

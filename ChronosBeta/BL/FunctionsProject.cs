@@ -6,6 +6,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ChronosBeta.BL
 {
@@ -37,7 +38,7 @@ namespace ChronosBeta.BL
             {
                 project.NameProject = NameProject;
                 project.ResponsibleСustomer = ResponsibleCustomer;
-                project.ResponsibleОfficer = GetIdResponsibleOfficer(ResponsibleOfficer);
+                project.ResponsibleОfficer = FunctionsUsers.GetIdUser(ResponsibleOfficer);
                 project.Budget = Convert.ToInt32(Budget);
                 project.Deadline = DateTime.Parse(DeadLine);
                 project.Description = Description;
@@ -71,7 +72,7 @@ namespace ChronosBeta.BL
             {
                 currentProject.NameProject = NameProject;
                 currentProject.ResponsibleСustomer = ResponsibleCustomer;
-                currentProject.ResponsibleОfficer = GetIdResponsibleOfficer(ResponsibleOfficer);
+                currentProject.ResponsibleОfficer = FunctionsUsers.GetIdUser(ResponsibleOfficer);
                 currentProject.Budget = Convert.ToInt32(Budget);
                 currentProject.Deadline = DateTime.Parse(DeadLine);
                 currentProject.Description = Description;
@@ -97,16 +98,36 @@ namespace ChronosBeta.BL
             }
         }
 
-        private static int GetIdResponsibleOfficer(string responsibleOfficer)
+
+        public static int GetIdProject(string project)
         {
             try
             {
                 CronosEntities entities = new CronosEntities();
-                return entities.Users.Where(x => x.Name == responsibleOfficer).First().ID_Users;
+                return entities.Project.Where(x => x.NameProject == project).First().id_Project;
             }
             catch
             {
-                throw new Exception("Ошибка при получении Епик геймс");
+                throw new Exception("Ошибка при получении проекта");
+            }
+        }
+
+        public static void DeleteProject(Project currentProject)
+        {
+            if (currentProject == null)
+            {
+                MessageBox.Show("Отметка не выбрана");
+                return;
+            }
+            try
+            {
+                DB.CronosEntities entities = new CronosEntities();
+                entities.Project.Remove(entities.Project.Find(currentProject.id_Project));
+                entities.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Ошибка удаления проекта");
             }
         }
     }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChronosBeta.DB;
 using System.Data.Entity.Migrations;
+using System.Windows;
 
 namespace ChronosBeta.BL
 {
@@ -97,6 +98,38 @@ namespace ChronosBeta.BL
             catch
             {
                 throw new Exception("Ошибка редактирования пользователя");
+            }
+        }
+
+        public static int GetIdUser(string user)
+        {
+            try
+            {
+                CronosEntities entities = new CronosEntities();
+                return entities.Users.Where(x => x.Name == user).First().ID_Users;
+            }
+            catch
+            {
+                throw new Exception("Ошибка при получении отвественного");
+            }
+        }
+
+        public static void DeleteUser(Users currentUser)
+        {
+            if (currentUser == null)
+            {
+                MessageBox.Show("Отметка не выбрана");
+                return;
+            }
+            try
+            {
+                CronosEntities entities = new CronosEntities();
+                entities.Users.Remove(entities.Users.Find(currentUser.ID_Users));
+                entities.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Ошибка удаления отметки по задаче");
             }
         }
     }

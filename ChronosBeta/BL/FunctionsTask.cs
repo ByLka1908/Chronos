@@ -8,6 +8,7 @@ using System.Security.Policy;
 using ChronosBeta.DB;
 using System.Xml.Linq;
 using System.Data.Entity.Migrations;
+using System.Windows;
 
 namespace ChronosBeta.BL
 {
@@ -39,9 +40,9 @@ namespace ChronosBeta.BL
             try
             {
                 task.NameTask = NameTask;
-                task.UserDoTask = GetIdUser(UserDoTask);
-                task.UserCreateTask = GetIdUser(UserCreateTask);
-                task.Project = GetIdProject(Project);
+                task.UserDoTask = FunctionsUsers.GetIdUser(UserDoTask);
+                task.UserCreateTask = FunctionsUsers.GetIdUser(UserCreateTask);
+                task.Project = FunctionsProject.GetIdProject(Project);
                 task.Deadline = DateTime.Parse(DeadLine);
                 task.Description = Description;
                 if (SelectedItsOver == "Да")
@@ -78,9 +79,9 @@ namespace ChronosBeta.BL
             try
             {
                 currentTask.NameTask = NameTask;
-                currentTask.UserDoTask = GetIdUser(UserDoTask);
-                currentTask.UserCreateTask = GetIdUser(UserCreateTask);
-                currentTask.Project = GetIdProject(Project);
+                currentTask.UserDoTask = FunctionsUsers.GetIdUser(UserDoTask);
+                currentTask.UserCreateTask = FunctionsUsers.GetIdUser(UserCreateTask);
+                currentTask.Project = FunctionsProject.GetIdProject(Project);
                 currentTask.Deadline = DateTime.Parse(DeadLine);
                 currentTask.Description = Description;
                 if (SelectedItsOver == "Да")
@@ -109,12 +110,12 @@ namespace ChronosBeta.BL
             }
         }
 
-        private static int GetIdUser(string user)
+        public static int GetIdTask(string task)
         {
             try
             {
-                CronosEntities entities = new CronosEntities();
-                return entities.Users.Where(x => x.Name == user).First().ID_Users;
+                DB.CronosEntities entities = new DB.CronosEntities();
+                return entities.Task.Where(x => x.NameTask == task).First().ID_Task;
             }
             catch
             {
@@ -122,16 +123,36 @@ namespace ChronosBeta.BL
             }
         }
 
-        private static int GetIdProject(string project)
+        public static List<string> GetViewTask()
         {
             try
             {
                 DB.CronosEntities entities = new DB.CronosEntities();
-                return entities.Project.Where(x => x.NameProject == project).First().id_Project;
+                var task = entities.Task.Select(x => x.NameTask).ToList();
+                return task;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
+        public static void DeleteTask(DB.Task currentTask)
+        {
+            if (currentTask == null)
+            {
+                MessageBox.Show("Отметка не выбрана");
+                return;
+            }
+            try
+            {
+                DB.CronosEntities entities = new CronosEntities();
+                entities.Task.Remove(entities.Task.Find(currentTask.ID_Task));
+                entities.SaveChanges();
             }
             catch
             {
-                throw new Exception("Ошибка при получении Епик геймс");
+                throw new Exception("Ошибка удаления отметки по задаче");
             }
         }
     }

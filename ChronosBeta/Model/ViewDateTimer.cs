@@ -21,7 +21,7 @@ namespace ChronosBeta.Model
             DateTimer = date;
             Id = date.ID_DateTimer;
             User = date.Users1.Surname;
-            Day = date.Day.ToString();
+            Day = date.Day.ToShortDateString();
             TimeStart = date.TimeStart.ToString();
             TimeEnd = date.TimeEnd.ToString();
         }

@@ -156,6 +156,7 @@
     <Compile Include="ViewModels\ProjectObjViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewMode.cs" />
     <Compile Include="ViewModels\TaskObjViewModel.cs" />
+    <Compile Include="ViewModels\TaskTimerObjViewModel.cs" />
     <Compile Include="ViewModels\TaskTimerViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\UserObjViewModel.cs" />
@@ -194,6 +195,9 @@
     </Compile>
     <Compile Include="View\TaskObjView.xaml.cs">
       <DependentUpon>TaskObjView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskTimerObjView.xaml.cs">
+      <DependentUpon>TaskTimerObjView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TaskTimerView.xaml.cs">
       <DependentUpon>TaskTimerView.xaml</DependentUpon>
@@ -262,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TaskObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskTimerObjView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

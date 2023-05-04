@@ -13,6 +13,7 @@ using System.Windows.Media;
 using ChronosBeta.Model;
 using Label = System.Windows.Controls.Label;
 using System.Windows.Forms;
+using System.Security.Permissions;
 
 namespace ChronosBeta.BL
 {
@@ -43,9 +44,13 @@ namespace ChronosBeta.BL
             //imageUser.Source = Image(ImageUser);
         }
 
-        public static int GetUser()
+        public static int GetIDUser()
         {
             return User.ID_Users;
+        }
+        public static string GetNameUser()
+        {
+            return Name;
         }
 
         public static ViewCurrentUser GetViewUser()

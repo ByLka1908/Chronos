@@ -39,6 +39,10 @@
             <local:TaskTimerView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:TaskTimerObjViewModel}">
+            <local:TaskTimerObjView/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:ProjectsViewMode}">
             <local:ProjectsView/>
         </DataTemplate>

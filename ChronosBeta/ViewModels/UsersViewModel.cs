@@ -34,20 +34,25 @@ namespace ChronosBeta.ViewModels
 
         public ICommand AddUser { get; }
         public ICommand EditUser { get; }
+        public ICommand RemoveUser { get; }
         public ICommand Search { get; }
         public ViewUsers SelectedUser { get; set; }
         public string CurrentText { get; set; }
 
-        
+        public void UpdateView()
+        {
+            List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
+            CurrentUserList = CollectionViewSource.GetDefaultView(currentUsers);
+        }
 
         public UsersViewModel()
         {
             AddUser = new ViewModelCommand(ExecutedAddUserCommand);
             EditUser = new ViewModelCommand(ExecutedEditUserCommand);
+            RemoveUser = new ViewModelCommand(ExecutedRemoveUserCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
 
-            List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
-            CurrentUserList = CollectionViewSource.GetDefaultView(currentUsers);
+            UpdateView();
         }
 
         public UsersViewModel(MainViewModel main)
@@ -64,25 +69,23 @@ namespace ChronosBeta.ViewModels
 
             if (CurrentText == string.Empty)
             {
-                List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
-                CurrentUserList = CollectionViewSource.GetDefaultView(currentUsers);
+                UpdateView();
                 return;
             }
 
-            List<ViewUsers> currentUser = FunctionsUsers.GetUsers();
-            List<ViewUsers> mem = currentUser.Where(x => x.Name.ToUpper().StartsWith
+            List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
+            List<ViewUsers> findUsers = currentUsers.Where(x => x.Name.ToUpper().StartsWith
                                   (CurrentText.ToUpper()) || x.Surname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
 
-            if (mem.Count < 1)
+            if (findUsers.Count < 1)
             {
                 MessageBox.Show("Обьект не найден");
                 CurrentText = string.Empty;
-                List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
-                CurrentUserList = CollectionViewSource.GetDefaultView(currentUsers);
+                UpdateView();
                 return;
             }
 
-            CurrentUserList = CollectionViewSource.GetDefaultView(mem);
+            CurrentUserList = CollectionViewSource.GetDefaultView(findUsers);
         }
 
         private void ExecutedAddUserCommand(object obj)
@@ -102,6 +105,11 @@ namespace ChronosBeta.ViewModels
             _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, SelectedUser);
             _currentMain.Caption = "Редактирование пользователя";
             _currentMain.Icon = IconChar.UserEdit;
+        }
+        private void ExecutedRemoveUserCommand(object obj)
+        {
+            FunctionsUsers.DeleteUser(SelectedUser.User);
+            UpdateView();
         }
     }
 }
