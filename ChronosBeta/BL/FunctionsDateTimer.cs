@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using ChronosBeta.ViewModels;
+using FontAwesome.Sharp;
+using ChronosBeta.Model;
 
 namespace ChronosBeta.BL
 {
@@ -18,17 +21,16 @@ namespace ChronosBeta.BL
         private static TimeSpan timeStart = new TimeSpan();
         private static TimeSpan timeEnd = new TimeSpan();
 
-        public static bool AddDateTimer(TimeSpan timeStart, TimeSpan timeEnd)
+        private static bool AddDateTimer(TimeSpan timeStart, TimeSpan timeEnd)
         {
             DB.DateTimer time = new DB.DateTimer();
             try
             {
-                time.Users = FunctionsCurrentUser.GetUser();
+                time.Users = FunctionsCurrentUser.GetIDUser();
                 time.Day = DateTime.Now;
                 time.TimeStart = timeStart;
                 time.TimeEnd = timeEnd;
-                time.AllRunProgram = File.ReadAllText(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
-                FunctionsDelete.Delete(@"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json");
+                time.AllRunProgram = FunctionsJSON.GetJson();
             }
             catch 
             {
@@ -51,14 +53,12 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static void OffOnDateTimer(Button currentButton)
+        public static string OffOnDateTimer()
         {
-            ImageBrush myImageBrush = new ImageBrush();
-
+            string contentLabel;
             if (joobTime)
             {
-                myImageBrush.ImageSource = new BitmapImage(new Uri("F:\\Projects\\VisualStudioSource\\ChronosBeta\\ChronosBeta\\Image\\Off.png", UriKind.Relative));
-                currentButton.Background = myImageBrush;
+                contentLabel = "Здраствуйте, включите таймер рабочего времени!";
                 joobTime = false;
 
                 timeEnd = DateTime.Now.TimeOfDay;
@@ -66,12 +66,36 @@ namespace ChronosBeta.BL
             }
             else
             {
-                myImageBrush.ImageSource = new BitmapImage(new Uri("F:\\Projects\\VisualStudioSource\\ChronosBeta\\ChronosBeta\\Image\\On.png", UriKind.Relative));
-                currentButton.Background = myImageBrush;
+                contentLabel = "Приятной работы!";
                 joobTime = true;
 
                 timeStart = DateTime.Now.TimeOfDay;
-                FunctionsListApplication.CreateJsonListApplication();
+                FunctionsJSON.CreateJson();
+            }
+            return contentLabel;
+        }
+        public static SolidColorBrush GetColorBrushes()
+        {
+            if (joobTime)
+                return Brushes.Green;
+            else
+                return Brushes.Red;
+        }
+
+        public static List<ViewDateTimer> GetDateTimer()
+        {
+            try
+            {
+                DB.CronosEntities entities = new DB.CronosEntities();
+                var dateTimer = entities.DateTimer.ToList();
+                List<ViewDateTimer> listDateTimer = new List<ViewDateTimer>();
+                foreach (var date in dateTimer)
+                    listDateTimer.Add(new ViewDateTimer(date));
+                return listDateTimer;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
             }
         }
     }

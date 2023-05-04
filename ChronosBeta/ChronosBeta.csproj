@@ -80,13 +80,21 @@
     <Compile Include="BL\FunctionsDateTimer.cs" />
     <Compile Include="BL\FunctionsDelete.cs" />
     <Compile Include="BL\FunctionsJobTitle.cs" />
+    <Compile Include="BL\FunctionsJSON.cs" />
     <Compile Include="BL\FunctionsProject.cs" />
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />
     <Compile Include="BL\FunctionsTab.cs" />
+    <Compile Include="BL\FunctionsTaskMark.cs" />
     <Compile Include="BL\FunctionsUsers.cs" />
+    <Compile Include="DB\ModelDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="InterfaceBL\ITab.cs" />
     <Compile Include="Model\ViewCurrentUser.cs" />
+    <Compile Include="Model\ViewDateTimer.cs" />
     <Compile Include="Model\ViewListApplication.cs" />
     <Compile Include="Model\ViewProject.cs" />
     <Compile Include="Model\ViewTask.cs" />
@@ -98,11 +106,6 @@
     </Compile>
     <Compile Include="DB\JobTitles.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\ModelDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\ModelDB.cs">
       <AutoGen>True</AutoGen>
@@ -136,6 +139,7 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="InterfaceBL\IFunctionsAuntificator.cs" />
+    <Compile Include="Model\ViewTaskTimer.cs" />
     <Compile Include="Model\ViewUsers.cs" />
     <Compile Include="Styles\ButtonStyles.xaml.cs">
       <DependentUpon>ButtonStyles.xaml</DependentUpon>
@@ -143,16 +147,28 @@
     <Compile Include="Styles\UIColors.xaml.cs">
       <DependentUpon>UIColors.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DateTimerObjViewModel.cs" />
+    <Compile Include="ViewModels\DateTimerViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ListApplicationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ProjectObjViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewMode.cs" />
+    <Compile Include="ViewModels\TaskObjViewModel.cs" />
+    <Compile Include="ViewModels\TaskTimerObjViewModel.cs" />
+    <Compile Include="ViewModels\TaskTimerViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\UserObjViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
+    <Compile Include="View\DateTimerObjView.xaml.cs">
+      <DependentUpon>DateTimerObjView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DateTimerView.xaml.cs">
+      <DependentUpon>DateTimerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Desktop.xaml.cs">
       <DependentUpon>Desktop.xaml</DependentUpon>
     </Compile>
@@ -168,11 +184,23 @@
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ProjectObjView.xaml.cs">
+      <DependentUpon>ProjectObjView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProjectsView.xaml.cs">
       <DependentUpon>ProjectsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TaksView.xaml.cs">
       <DependentUpon>TaksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskObjView.xaml.cs">
+      <DependentUpon>TaskObjView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskTimerObjView.xaml.cs">
+      <DependentUpon>TaskTimerObjView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskTimerView.xaml.cs">
+      <DependentUpon>TaskTimerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserObjView.xaml.cs">
       <DependentUpon>UserObjView.xaml</DependentUpon>
@@ -197,6 +225,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DateTimerObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DateTimerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Desktop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,11 +253,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ProjectObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProjectsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TaksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskTimerObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskTimerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

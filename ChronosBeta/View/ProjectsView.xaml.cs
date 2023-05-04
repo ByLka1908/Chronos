@@ -23,13 +23,9 @@ namespace ChronosBeta.View
     /// </summary>
     public partial class ProjectsView : UserControl
     {
-        public ICollectionView CurrentProject { get; private set; }
         public ProjectsView()
         {
             InitializeComponent();
-            List<ViewProject> currentProject = FunctionsProject.GetProject();
-            CurrentProject = CollectionViewSource.GetDefaultView(currentProject);
-            DataContext = this;
         }
     }
 }

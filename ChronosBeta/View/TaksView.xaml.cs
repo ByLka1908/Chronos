@@ -23,13 +23,9 @@ namespace ChronosBeta.View
     /// </summary>
     public partial class TaksView : UserControl
     {
-        public ICollectionView CurrentTask { get; private set; }
         public TaksView()
         {
             InitializeComponent();
-            List<ViewTask> currentTask = FunctionsTask.GetTasks();
-            CurrentTask = CollectionViewSource.GetDefaultView(currentTask);
-            DataContext = this;
         }
     }
 }

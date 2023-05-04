@@ -1,4 +1,5 @@
 ﻿using ChronosBeta.Model;
+using ChronosBeta.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,20 +14,11 @@ namespace ChronosBeta.BL
 {
     public class FunctionsListApplication
     {
-        public static void CreateJsonListApplication()
-        {   
-            string json = JsonConvert.SerializeObject(GetListProcesses(), Formatting.Indented);
-
-            //Надо автоматически получать путь до папаки Temp не прописывая его в ручную
-            string path = @"F:\Projects\VisualStudioSource\ChronosBeta\ChronosBeta\Temp\ListProcess.json";
-            File.WriteAllText(path, json);
-        }
-
         public static List<ViewListApplication> GetListProcesses()
         {
             List<ViewListApplication> listApplications = new List<ViewListApplication>();
             string[] process = GetRunningProcesses();
-
+            
             foreach (string currentProcess in process)
             {
                 ViewListApplication list = new ViewListApplication();
@@ -43,7 +35,7 @@ namespace ChronosBeta.BL
             return listApplications;
         }
 
-        public static string[] GetRunningProcesses()
+        private static string[] GetRunningProcesses()
         {
             var processes = Process.GetProcesses().Where(p => !string.IsNullOrEmpty(p.MainWindowTitle)).Select(
                 p => p.ProcessName + "%" + p.MainWindowTitle + "%" + p.StartTime).ToArray();

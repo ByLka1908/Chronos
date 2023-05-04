@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChronosBeta.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,46 +23,11 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static bool Add(string name, string surname, string login,
-                               string password, string phone, string skype, string jobTitle)
-        {
-            DB.Users user = new DB.Users();
-            try
-            {
-                user.Name = name;
-                user.Surname = surname;
-                user.Login = login;
-                user.Password = password;
-                user.Phone = phone;
-                user.Skype = skype;
-                user.JobTitle = GetId(jobTitle);
-            }
-            catch
-            {
-                throw new Exception("Ошибка иницилизации добавления");
-            }
-            if (user == null)
-            {
-                return false;
-            }
-            try
-            {
-                DB.CronosEntities entities = new DB.CronosEntities();
-                entities.Users.Add(user);
-                entities.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                throw new Exception("Ошибка добавлении пользователя");
-            }
-        }
-
-        private static int GetId(string jobTitle)
+        public static int GetId(string jobTitle)
         {
             try
             {
-                DB.CronosEntities entities = new DB.CronosEntities();
+                CronosEntities entities = new CronosEntities();
                 return entities.JobTitles.Where(x => x.NameJobTitle == jobTitle).First().ID_JobTitles;
             }
             catch

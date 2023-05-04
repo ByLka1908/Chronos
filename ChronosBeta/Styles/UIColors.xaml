@@ -19,6 +19,9 @@
     <SolidColorBrush x:Key="color4" Color="#278BEF"/>
     <SolidColorBrush x:Key="color5" Color="#456187"/>
     <SolidColorBrush x:Key="color6" Color="#5374A2"/>
+    
+    <SolidColorBrush x:Key="Off" Color="Red"/>
+    <SolidColorBrush x:Key="On" Color="Green"/>
 
     <Color x:Key="currentLine">#456187</Color> 
 

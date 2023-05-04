@@ -27,21 +27,46 @@
             <local:ListApplicationView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:UsersViewModel}">
-            <local:UsersView/>
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type viewModel:TaskViewModel}">
             <local:TaksView/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:TaskObjViewModel}">
+            <local:TaskObjView/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:TaskTimerViewModel}">
+            <local:TaskTimerView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:TaskTimerObjViewModel}">
+            <local:TaskTimerObjView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:ProjectsViewMode}">
             <local:ProjectsView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:ProjectObjViewModel}">
+            <local:ProjectObjView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:DateTimerViewModel}">
+            <local:DateTimerView/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:DateTimerObjViewModel}">
+            <local:DateTimerObjView/>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:UserObjViewModel}">
             <local:UserObjView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:UsersViewModel}">
+            <local:UsersView/>
+        </DataTemplate>
+
 
     </Window.Resources>
     
@@ -113,6 +138,15 @@
                             <TextBlock Text="Task" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowTaskTimerViewCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="FutbolBall" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="TaskTimer" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
@@ -120,6 +154,15 @@
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Project" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowDateTimerCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Timeline" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Date timer" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 

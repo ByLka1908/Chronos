@@ -22,7 +22,6 @@ namespace ChronosBeta.View
     /// </summary>
     public partial class UserObjView : UserControl
     {
-
         public UserObjView()
         {
             InitializeComponent();

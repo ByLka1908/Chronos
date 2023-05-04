@@ -11,6 +11,7 @@ using FontAwesome.Sharp;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using ChronosBeta.View;
+using System.Windows.Media;
 
 namespace ChronosBeta.ViewModels
 {
@@ -70,7 +71,9 @@ namespace ChronosBeta.ViewModels
         public ICommand ShowListApplicationViewCommand { get; }
         public ICommand ShowUserViewCommand { get; }
         public ICommand ShowTaskViewCommand { get; }
+        public ICommand ShowTaskTimerViewCommand { get; }
         public ICommand ShowProjectViewCommand { get; }
+        public ICommand ShowDateTimerCommand { get; }
 
         public MainViewModel() 
         {
@@ -81,7 +84,9 @@ namespace ChronosBeta.ViewModels
             ShowListApplicationViewCommand = new ViewModelCommand(ExecutedShowListApplicationViewCommand);
             ShowUserViewCommand = new ViewModelCommand(ExecutedShowUsersCommand);
             ShowTaskViewCommand = new ViewModelCommand(ExecutedShowTaskCommand);
+            ShowTaskTimerViewCommand = new ViewModelCommand(ExecutedShowTaskTimerCommand);
             ShowProjectViewCommand = new ViewModelCommand(ExecutedShowProjectCommand);
+            ShowDateTimerCommand = new ViewModelCommand(ExecutedShowDateTimerCommandCommand);
 
             //Defoult view
             ExecutedShowHomeCommand(null);
@@ -95,18 +100,32 @@ namespace ChronosBeta.ViewModels
             Caption = "Список приложений";
             Icon = IconChar.Desktop;
         }
+        
+        private void ExecutedShowTaskTimerCommand(object obj)
+        {
+            CurrentChildView = new TaskTimerViewModel(this);
+            Caption = "Отмеченное время";
+            Icon = IconChar.Desktop;
+        }
 
         private void ExecutedShowHomeCommand(object obj)
         {
-            CurrentChildView = new HomeViewModel();
+            CurrentChildView = new HomeViewModel(this);
             Caption = "Рабочий стол";
             Icon = IconChar.Home;
         }
 
         private void ExecutedShowTaskCommand(object obj)
         {
-            CurrentChildView = new TaskViewModel();
+            CurrentChildView = new TaskViewModel(this);
             Caption = "Зaдачи";
+            Icon = IconChar.Home;
+        }
+
+        private void ExecutedShowDateTimerCommandCommand(object obj)
+        {
+            CurrentChildView = new DateTimerViewModel(this);
+            Caption = "Отмеченое время";
             Icon = IconChar.Home;
         }
 
@@ -116,9 +135,10 @@ namespace ChronosBeta.ViewModels
             Caption = "Пользователи";
             Icon = IconChar.Users;
         }
+
         private void ExecutedShowProjectCommand(object obj)
         {
-            CurrentChildView = new ProjectsViewMode();
+            CurrentChildView = new ProjectsViewMode(this);
             Caption = "Проекты";
             Icon = IconChar.Users;
         }

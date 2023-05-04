@@ -6,8 +6,14 @@
              xmlns:local="clr-namespace:ChronosBeta.View"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+             xmlns:viewModel="clr-namespace:ChronosBeta.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <viewModel:HomeViewModel/>
+    </UserControl.DataContext>
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -26,7 +32,7 @@
                         FontFamily="Montserrat"
                         Cursor="Hand"
                         BorderThickness="0"
-                        Foreground="{StaticResource color1}"
+                        Foreground="{Binding ForegroundButton}"
                         VerticalAlignment="Top"
                         Width="50"
                         Height="50">
@@ -65,7 +71,7 @@
 
 
                 <Label x:Name="lbTextTimer"
-                       Content="Здраствуйте, включите таймер рабочего времени!"
+                       Content="{Binding ContentLabel}"
                        FontSize="13"
                        Height="24"
                        Background="Transparent"
@@ -97,55 +103,12 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
-            <DatePicker Grid.Row="2" Grid.Column="3"
+            <DatePicker Grid.Row="1" Grid.Column="1"
                         FirstDayOfWeek="Monday"
-                        SelectedDate="{Binding Path = SelectedDate}" 
+                        SelectedDate="{Binding DatePicker}"
                         BorderThickness="0" 
-                        x:Name="datePicker">
-
-                <DatePicker.Resources>
-
-                    <Style TargetType="{x:Type DatePickerTextBox}">
-
-                        <Setter Property="Background" Value="{StaticResource color3}"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="FontSize" Value="14"/>
-
-                        <Setter Property="Template">
-                            <Setter.Value>
-
-                                <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
-
-                                    <Border Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            Padding="{TemplateBinding Padding}"
-                                            CornerRadius="12">
-
-                                        <Border>
-                                            <TextBox Text="{Binding ElementName=datePicker, Path=SelectedDate, StringFormat=dd/MM/yyyy}"
-                                                     Margin="5"
-                                                     Background="{StaticResource color5}"
-                                                     BorderThickness="0"
-                                                     Padding="{TemplateBinding Padding}"
-                                                     Foreground="{StaticResource color2}"
-                                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                            </TextBox>
-                                        </Border>
-
-                                    </Border>
-
-                                </ControlTemplate>
-
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-
-                </DatePicker.Resources>
+                        x:Name="datePicker" 
+                        Grid.RowSpan="2" Height="35" VerticalAlignment="Bottom">
 
                 <DatePicker.CalendarStyle>
 
@@ -162,12 +125,12 @@
 
             </DatePicker>
 
-            <Border Grid.Row="3"
-                    Grid.RowSpan="3"
-                    Grid.Column="2"
+            <Border Grid.Row="2"
+                    Grid.RowSpan="4"
+                    Grid.Column="1"
                     Background="{StaticResource color3}"
                     CornerRadius="10"
-                    Margin="5,0,5,0"
+                    Margin="5,35,5,0"
                     Padding="5">
 
                 <DataGrid HorizontalScrollBarVisibility="Auto"
@@ -251,7 +214,7 @@
                    BorderBrush="{StaticResource color2}"
                    BorderThickness="0,0,0,0"                             
                    VerticalContentAlignment="Center"  
-                   Margin="5,5,0,0">
+                   Margin="5,0,0,0">
             </Label>
             <Border Grid.Row="1" 
                     Grid.Column="0"
@@ -342,13 +305,13 @@
                    BorderBrush="{StaticResource color2}"
                    BorderThickness="0,0,0,0"                             
                    VerticalContentAlignment="Center"  
-                   Margin="5,5,0,0">
+                   Margin="5,0,0,0">
             </Label>
-            <Border Grid.Row="3" 
+            <Border Grid.Row="2" 
                     Grid.Column="0"
                     Background="{StaticResource color3}"
                     CornerRadius="10" 
-                    Padding="10">
+                    Padding="10" Margin="0,35,0,35" Grid.RowSpan="3">
 
                 <DataGrid HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto"
@@ -433,7 +396,7 @@
                    BorderBrush="{StaticResource color2}"
                    BorderThickness="0,0,0,0"                             
                    VerticalContentAlignment="Center"  
-                   Margin="5,5,0,0">
+                   Margin="5,0,0,98" Grid.RowSpan="2">
             </Label>
             <Border Grid.Row="5" 
                     Grid.Column="0"
@@ -473,7 +436,7 @@
                                 <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource currentLine}"/>
                             </Style.Resources>
                         </Style>
-                        
+
                         <Style TargetType="{x:Type ScrollBar}">
                             <Setter Property="Template">
                                 <Setter.Value>
