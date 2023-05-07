@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Хранилище CronosModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id_Customers" />
+    </Key>
+    <Property Name="Id_Customers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="DateTimer">
     <Key>
       <PropertyRef Name="ID_DateTimer" />
@@ -24,7 +35,7 @@
     </Key>
     <Property Name="id_Project" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NameProject" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ResponsibleСustomer" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ResponsibleСustomer" Type="int" Nullable="false" />
     <Property Name="ResponsibleОfficer" Type="int" Nullable="false" />
     <Property Name="Budget" Type="int" />
     <Property Name="Description" Type="nvarchar(max)" />
@@ -72,6 +83,7 @@
     <Property Name="ID_Users" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Phone" Type="nvarchar" MaxLength="50" />
@@ -88,6 +100,18 @@
       </Principal>
       <Dependent Role="DateTimer">
         <PropertyRef Name="Users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id_Customers" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="ResponsibleСustomer" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -215,6 +239,7 @@
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="Хранилище CronosModelContainer">
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DateTimer" EntityType="Self.DateTimer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JobTitles" EntityType="Self.JobTitles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
@@ -225,6 +250,10 @@
     <AssociationSet Name="FK_DateTimer_Users" Association="Self.FK_DateTimer_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="DateTimer" EntitySet="DateTimer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Customers" Association="Self.FK_Project_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Project" EntitySet="Project" />
     </AssociationSet>
     <AssociationSet Name="FK_Project_Users" Association="Self.FK_Project_Users">
       <End Role="Users" EntitySet="Users" />

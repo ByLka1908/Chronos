@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChronosBeta.Views"
-        xmlns:viewModel="clr-namespace:ChronosBeta.ViewModels" xmlns:customcontrols="clr-namespace:ChronosBeta.CustomControls"
+        xmlns:viewModel="clr-namespace:ChronosBeta.ViewModels" 
+        xmlns:Styles="clr-namespace:ChronosBeta.CustomControls"
         mc:Ignorable="d"
         Title="LoginView" Height="550" Width="800"
         WindowStyle="None"
@@ -66,7 +67,7 @@
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="LOG IN"
+                    <TextBlock Text="ВХОД"
                                Foreground="DarkGray"
                                FontSize="10"
                                FontFamily="Montserrat"
@@ -157,7 +158,7 @@
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center"/>
 
-                    <TextBlock Text="Learning to code is useful no matter what your career ambitions are."
+                    <TextBlock Text="Система учета рабочего врмени"
                                Foreground="{StaticResource color2}"
                                FontSize="12"
                                FontWeight="Medium"
@@ -167,7 +168,7 @@
                                Margin="0,5,0,0"/>
 
 
-                    <TextBlock Text="Username"
+                    <TextBlock Text="Логин"
                                Foreground="{StaticResource color2}"
                                FontSize="12"
                                FontWeight="Medium"
@@ -195,17 +196,17 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Password"
+                    <TextBlock Text="Пароль"
                                Foreground="{StaticResource color2}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
                                Margin="0,15,0,0"/>
 
-                    <customcontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <Styles:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Height="28"                            
                                                         Margin="0,5,0,0">
-                    </customcontrols:BindablePasswordBox>
+                    </Styles:BindablePasswordBox>
 
                     <TextBlock Text="{Binding ErrorMessage}"
                                Foreground="#D7596D"
@@ -218,7 +219,7 @@
                     <Button x:Name="btnLogin" 
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"
-                            Content="LOG IN"
+                            Content="ВХОД"
                             Foreground="{StaticResource color2}"
                             FontSize="12"
                             FontFamily="Montserrat"

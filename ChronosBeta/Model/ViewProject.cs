@@ -19,7 +19,7 @@ namespace ChronosBeta.Model
             Project = project;
             Id = project.id_Project;
             NameProject = project.NameProject;
-            ResponsibleCustomer = project.ResponsibleСustomer;
+            ResponsibleCustomer = project.Customers.Surname;
             ResponsibleOfficer = project.Users.Name;
         }
     }

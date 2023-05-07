@@ -8,6 +8,5 @@ namespace ChronosBeta.ViewModels
 {
     public class ListApplicationViewModel: ViewModelBase
     {
-
     }
 }

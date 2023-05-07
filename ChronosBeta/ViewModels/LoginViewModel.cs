@@ -14,15 +14,13 @@ namespace ChronosBeta.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        //Fields
+        //Параметры
         private string _username;
         private SecureString _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
 
-        private InterfaceBL.IFunctionsAuntificator auntificator;
-
-        //Properties
+        //Свойства
         public string Username
         {
             get
@@ -88,7 +86,6 @@ namespace ChronosBeta.ViewModels
         //Constructor
         public LoginViewModel()
         {
-            auntificator = new FunctionsAuntificator();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
         }
@@ -106,7 +103,7 @@ namespace ChronosBeta.ViewModels
 
         private void ExecuteLoginCommand(object obj)
         {
-            var isValidUser = auntificator.Auntification(new NetworkCredential(Username, Password));
+            var isValidUser = FunctionsAuntificator.Auntification(new NetworkCredential(Username, Password));
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(

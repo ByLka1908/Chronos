@@ -71,12 +71,12 @@ namespace ChronosBeta.ViewModels
                 string[] words = DatePicker.Split(new char[] { '/' });
                 string[] year = words[2].Split(new char[] { ' ' });
                 date = new DateTime(Convert.ToInt32(year[0]), Convert.ToInt32(words[0]), Convert.ToInt32(words[1]));
-                findDate = currentDate.Where(x => x.User.ToUpper().StartsWith(CurrentText.ToUpper())
+                findDate = currentDate.Where(x => x.UserSurname.ToUpper().StartsWith(CurrentText.ToUpper())
                                              & x.Day.ToUpper().StartsWith(date.ToShortDateString().ToUpper())).ToList(); 
             }
             else if(CurrentText != null)
             {
-                findDate = currentDate.Where(x => x.User.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
+                findDate = currentDate.Where(x => x.UserSurname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
             }
             else
             {

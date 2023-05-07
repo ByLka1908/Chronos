@@ -37,8 +37,8 @@ namespace ChronosBeta.ViewModels
         private void ExecutedBackCommand(object obj)
         {
             _currentMain.CurrentChildView = new DateTimerViewModel();
-            _currentMain.Caption = "Пользователи";
-            _currentMain.Icon = IconChar.Users;
+            _currentMain.Caption = "Рабочее время";
+            _currentMain.Icon = IconChar.Clock;
         }
         private void SetDateTimer()
         {
@@ -48,7 +48,7 @@ namespace ChronosBeta.ViewModels
             List<ViewListApplication> list = FunctionsJSON.GetDeserializeJson(DateTimer.DateTimer.AllRunProgram);
             CurrentAppList = CollectionViewSource.GetDefaultView(list);
 
-            User = DateTimer.User;
+            User = DateTimer.UserName + " " +  DateTimer.UserSurname + " " + DateTimer.UserMiddleName;
             Day = DateTimer.Day;
             TimeStart = DateTimer.TimeStart;
             TimeEnd = DateTimer.TimeEnd;   

@@ -8,9 +8,11 @@
              xmlns:viewModel="clr-namespace:ChronosBeta.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <UserControl.DataContext>
         <viewModel:DateTimerViewModel/>
     </UserControl.DataContext>
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -72,7 +74,7 @@
                 </DatePicker.CalendarStyle>
 
             </DatePicker>
-            
+
             <Button Grid.Column="2"
                     Command="{Binding Search}"                            
                     Content="Поиск"                            
@@ -217,11 +219,12 @@
                 </DataGrid.RowHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Foreground="{StaticResource color2}" Header="ID" HeaderStringFormat="" MinWidth="30"/>
-                    <DataGridTextColumn Binding="{Binding User}" Foreground="{StaticResource color2}" Header="Пользователь" MinWidth="60"/>
-                    <DataGridTextColumn Binding="{Binding Day}" Foreground="{StaticResource color2}" Header="День" MinWidth="125"/>
-                    <DataGridTextColumn Binding="{Binding TimeStart}" Foreground="{StaticResource color2}" Header="Время старта" MinWidth="125"/>
-                    <DataGridTextColumn Binding="{Binding TimeEnd}" Foreground="{StaticResource color2}"  Header="Время окончания" MinWidth="100"/>
+                    <DataGridTextColumn Binding="{Binding UserName}"       Foreground="{StaticResource color2}" Header="Имя"             MinWidth="60"/>
+                    <DataGridTextColumn Binding="{Binding UserSurname}"    Foreground="{StaticResource color2}" Header="Фамилия"         MinWidth="60"/>
+                    <DataGridTextColumn Binding="{Binding UserMiddleName}" Foreground="{StaticResource color2}" Header="Отчество"        MinWidth="60"/>
+                    <DataGridTextColumn Binding="{Binding Day}"            Foreground="{StaticResource color2}" Header="День"            MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding TimeStart}"      Foreground="{StaticResource color2}" Header="Время старта"    MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding TimeEnd}"        Foreground="{StaticResource color2}" Header="Время окончания" MinWidth="100"/>
                 </DataGrid.Columns>
 
             </DataGrid>

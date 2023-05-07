@@ -117,7 +117,7 @@
                                  Command="{Binding ShowHomeViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="House" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Рабочий стол" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                     
@@ -126,7 +126,7 @@
                                  Command="{Binding ShowUserViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Users" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Пользователи" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -135,7 +135,7 @@
                                  Command="{Binding ShowTaskViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ListCheck" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Task" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Задачи" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                     
@@ -143,8 +143,8 @@
                                  Tag="{StaticResource color1}"
                                  Command="{Binding ShowTaskTimerViewCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="FutbolBall" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="TaskTimer" Style="{StaticResource menuButtonText}"/>
+                            <fa:IconImage Icon="ThumbTack" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Отметки по задачам" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -153,7 +153,7 @@
                                  Command="{Binding ShowProjectViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Project" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Проекты" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                     
@@ -161,8 +161,8 @@
                                  Tag="{StaticResource color1}"
                                  Command="{Binding ShowDateTimerCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Timeline" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Date timer" Style="{StaticResource menuButtonText}"/>
+                            <fa:IconImage Icon="Clock" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Рабочее время" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -171,7 +171,7 @@
                                  Command="{Binding ShowListApplicationViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Desktop" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="List application" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Список программ" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -180,7 +180,7 @@
                                  Command="{Binding ShowSettingViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Gears" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Settings" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Настройки" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -247,11 +247,6 @@
                         <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft"
                                     VerticalAlignment="Center" Margin="0, 0, 10, 0">
                             
-                            <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource color1}">
-                                <fa:IconImage Icon="AngleDown" Style="{StaticResource iconButtonIcon}"/>
-                            </Button>
-
                             <TextBlock Text="{Binding CurrentUser.DisplayName}"
                                        Foreground="{StaticResource color2}"
                                        FontFamily="Montserrat"
@@ -261,24 +256,9 @@
                             <Ellipse Height="35" Width="35" Stroke="{StaticResource color1}"
                                      StrokeThickness="2" Margin="10, 0, 10, 0">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Image/logo.png"/>
+                                    <ImageBrush ImageSource="/Image/ChronosLogo.png"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-
-                            <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource color1}">
-                                <fa:IconImage Icon="Clock" Style="{StaticResource iconButtonIcon}"/>
-                            </Button>
-
-                            <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource color1}">
-                                <fa:IconImage Icon="Envelope" Style="{StaticResource iconButtonIcon}"/>
-                            </Button>
-
-                            <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource color1}">
-                                <fa:IconImage Icon="Bell" Style="{StaticResource iconButtonIcon}"/>
-                            </Button>
 
                         </StackPanel>
                         
