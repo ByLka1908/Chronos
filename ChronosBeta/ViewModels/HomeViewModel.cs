@@ -20,14 +20,14 @@ namespace ChronosBeta.ViewModels
     {
         private string _contentLabel;
         private SolidColorBrush _foregroundButton;
+        private static MainViewModel _currentMain;
 
-        public ICommand OnOffTimer { get; }
         public ICollectionView OverdueTask { get; private set; }
         public ICollectionView CurrentTask { get; private set; }
         public ICollectionView FutureTask { get; private set; }
-        public ICollectionView MarkedTime { get; private set; }
-        public string DatePicker { get; set; }
+        public ICommand OnOffTimer { get; }
 
+        public string DatePicker { get; set; }
         public string ContentLabel 
         {
             get { return _contentLabel; }
@@ -47,14 +47,13 @@ namespace ChronosBeta.ViewModels
             }
         }
 
-        private static MainViewModel _currentMain;
-
         public HomeViewModel() 
         {
             ContentLabel = "Здраствуйте, включите таймер рабочего времени!";
             ForegroundButton = Brushes.Red;
             OnOffTimer = new ViewModelCommand(ExecutedOnOffTimerCommand);
         }
+
         public HomeViewModel(MainViewModel main)
         {
             _currentMain = main;
@@ -65,6 +64,5 @@ namespace ChronosBeta.ViewModels
             ContentLabel = FunctionsDateTimer.OffOnDateTimer();
             ForegroundButton = FunctionsDateTimer.GetColorBrushes();
         }
-
     }
 }

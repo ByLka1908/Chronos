@@ -22,12 +22,13 @@ namespace ChronosBeta.DB
     
         public int id_Project { get; set; }
         public string NameProject { get; set; }
-        public string ResponsibleСustomer { get; set; }
+        public int ResponsibleСustomer { get; set; }
         public int ResponsibleОfficer { get; set; }
         public Nullable<int> Budget { get; set; }
         public string Description { get; set; }
         public System.DateTime Deadline { get; set; }
     
+        public virtual Customers Customers { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task { get; set; }

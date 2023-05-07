@@ -1,5 +1,4 @@
-﻿using ChronosBeta.InterfaceBL;
-using ChronosBeta.Model;
+﻿using ChronosBeta.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

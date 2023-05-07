@@ -198,13 +198,14 @@
                     <TextBox Grid.Row="1"
                              Text="{Binding User}"
                              Background="{StaticResource color5}"
-                         Foreground="{StaticResource color2}"
-                         BorderThickness="0"
-                         FontFamily="Montserrat"
-                         FontSize="12"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource TextBox}"/>
+                             Foreground="{StaticResource color2}"
+                             BorderThickness="0"
+                             FontFamily="Montserrat"
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Style="{StaticResource TextBox}"
+                             IsReadOnly="True"/>
 
                     <TextBlock Text="День:"
                                Grid.Row="2"
@@ -216,13 +217,14 @@
                     <TextBox Grid.Row="3"
                              Text="{Binding Day}"
                              Background="{StaticResource color5}"
-                         Foreground="{StaticResource color2}"
-                         BorderThickness="0"
-                         FontFamily="Montserrat"
-                         FontSize="12"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource TextBox}"/>
+                             Foreground="{StaticResource color2}"
+                             BorderThickness="0"
+                             FontFamily="Montserrat"
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Style="{StaticResource TextBox}"
+                             IsReadOnly="True"/>
 
                     <TextBlock Text="Время начала:"
                                Grid.Row="4"
@@ -234,13 +236,14 @@
                     <TextBox Grid.Row="5"
                              Text="{Binding TimeStart}"
                              Background="{StaticResource color5}"
-                         Foreground="{StaticResource color2}"
-                         BorderThickness="0"
-                         FontFamily="Montserrat"
-                         FontSize="12"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource TextBox}"/>
+                             Foreground="{StaticResource color2}"
+                             BorderThickness="0"
+                             FontFamily="Montserrat"
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Style="{StaticResource TextBox}"
+                             IsReadOnly="True"/>
 
                     <TextBlock Text="Время окончания:"
                                Grid.Row="6"
@@ -252,20 +255,19 @@
                     <TextBox Grid.Row="7"
                              Text="{Binding TimeEnd}"
                              Background="{StaticResource color5}"
-                         Foreground="{StaticResource color2}"
-                         BorderThickness="0"
-                         FontFamily="Montserrat"
-                         FontSize="12"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource TextBox}"/>
+                             Foreground="{StaticResource color2}"
+                             BorderThickness="0"
+                             FontFamily="Montserrat"
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Style="{StaticResource TextBox}"/>
 
                 </Grid>
 
             </Border>
 
         </Grid>
-
 
     </Grid>
 </UserControl>

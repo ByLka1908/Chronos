@@ -11,7 +11,9 @@ namespace ChronosBeta.Model
     {
         public DateTimer DateTimer { get; set; }
         public int Id { get; set; }
-        public string User { get; set; }
+        public string UserName { get; set; }
+        public string UserSurname { get; set; }
+        public string UserMiddleName { get; set; }
         public string Day { get; set; }
         public string TimeStart { get; set; }
         public string TimeEnd { get; set; }
@@ -20,7 +22,9 @@ namespace ChronosBeta.Model
         {
             DateTimer = date;
             Id = date.ID_DateTimer;
-            User = date.Users1.Surname;
+            UserName = date.Users1.Name;
+            UserSurname = date.Users1.Surname;
+            UserMiddleName = date.Users1.MiddleName;
             Day = date.Day.ToShortDateString();
             TimeStart = date.TimeStart.ToString();
             TimeEnd = date.TimeEnd.ToString();

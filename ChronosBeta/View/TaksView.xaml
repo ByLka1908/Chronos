@@ -270,7 +270,6 @@
                 </DataGrid.RowHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Foreground="{StaticResource color2}" Header="ID" MinWidth="30"/>
                     <DataGridTextColumn Binding="{Binding Name}" Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="300"/>
                     <DataGridTextColumn Binding="{Binding UserCreateTask}" Foreground="{StaticResource color2}" Header="Создал задачу" MinWidth="200"/>
                     <DataGridTextColumn Binding="{Binding UserDoTask}" Foreground="{StaticResource color2}"  Header="Поручено" MinWidth="200"/>

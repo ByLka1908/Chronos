@@ -23,7 +23,7 @@ namespace ChronosBeta
             {
                 if (loginView.IsVisible == false && loginView.IsLoaded)
                 {
-                    var mainView = new Desktop();
+                    var mainView = new MainView();
                     mainView.Show();
                     loginView.Close();
                 }

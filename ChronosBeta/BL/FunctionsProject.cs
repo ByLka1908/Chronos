@@ -37,7 +37,7 @@ namespace ChronosBeta.BL
             try
             {
                 project.NameProject = NameProject;
-                project.ResponsibleСustomer = ResponsibleCustomer;
+                project.ResponsibleСustomer = FunctionsCustomer.GetIdCustomer(ResponsibleCustomer);
                 project.ResponsibleОfficer = FunctionsUsers.GetIdUser(ResponsibleOfficer);
                 project.Budget = Convert.ToInt32(Budget);
                 project.Deadline = DateTime.Parse(DeadLine);
@@ -71,7 +71,7 @@ namespace ChronosBeta.BL
             try
             {
                 currentProject.NameProject = NameProject;
-                currentProject.ResponsibleСustomer = ResponsibleCustomer;
+                currentProject.ResponsibleСustomer = FunctionsCustomer.GetIdCustomer(ResponsibleCustomer);
                 currentProject.ResponsibleОfficer = FunctionsUsers.GetIdUser(ResponsibleOfficer);
                 currentProject.Budget = Convert.ToInt32(Budget);
                 currentProject.Deadline = DateTime.Parse(DeadLine);

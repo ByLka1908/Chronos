@@ -77,35 +77,28 @@
     </ApplicationDefinition>
     <Compile Include="BL\FunctionsAuntificator.cs" />
     <Compile Include="BL\FunctionsCurrentUser.cs" />
+    <Compile Include="BL\FunctionsCustomer.cs" />
     <Compile Include="BL\FunctionsDateTimer.cs" />
-    <Compile Include="BL\FunctionsDelete.cs" />
     <Compile Include="BL\FunctionsJobTitle.cs" />
     <Compile Include="BL\FunctionsJSON.cs" />
     <Compile Include="BL\FunctionsProject.cs" />
     <Compile Include="BL\FunctionsTask.cs" />
     <Compile Include="BL\FunctionsListApplication.cs" />
-    <Compile Include="BL\FunctionsTab.cs" />
     <Compile Include="BL\FunctionsTaskMark.cs" />
     <Compile Include="BL\FunctionsUsers.cs" />
-    <Compile Include="DB\ModelDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="InterfaceBL\ITab.cs" />
-    <Compile Include="Model\ViewCurrentUser.cs" />
-    <Compile Include="Model\ViewDateTimer.cs" />
-    <Compile Include="Model\ViewListApplication.cs" />
-    <Compile Include="Model\ViewProject.cs" />
-    <Compile Include="Model\ViewTask.cs" />
-    <Compile Include="CustomControls\BindablePasswordBox.xaml.cs">
-      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    <Compile Include="DB\Customers.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\DateTimer.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\JobTitles.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ModelDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\ModelDB.cs">
       <AutoGen>True</AutoGen>
@@ -138,7 +131,14 @@
     <Compile Include="DB\Users.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="InterfaceBL\IFunctionsAuntificator.cs" />
+    <Compile Include="Model\ViewCurrentUser.cs" />
+    <Compile Include="Model\ViewDateTimer.cs" />
+    <Compile Include="Model\ViewListApplication.cs" />
+    <Compile Include="Model\ViewProject.cs" />
+    <Compile Include="Model\ViewTask.cs" />
+    <Compile Include="Styles\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ViewTaskTimer.cs" />
     <Compile Include="Model\ViewUsers.cs" />
     <Compile Include="Styles\ButtonStyles.xaml.cs">
@@ -168,9 +168,6 @@
     </Compile>
     <Compile Include="View\DateTimerView.xaml.cs">
       <DependentUpon>DateTimerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Desktop.xaml.cs">
-      <DependentUpon>Desktop.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -208,7 +205,7 @@
     <Compile Include="View\UsersView.xaml.cs">
       <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
-    <Page Include="CustomControls\BindablePasswordBox.xaml">
+    <Page Include="Styles\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,10 +227,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DateTimerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Desktop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -324,11 +317,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\Off.png" />
-    <Resource Include="Image\On.png" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
     <Content Include="DB\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelDB.edmx</DependentUpon>
@@ -339,9 +327,10 @@
       <DependentUpon>ModelDB.edmx</DependentUpon>
       <LastGenOutput>ModelDB.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Image\ChronosLogo.png" />
     <Resource Include="Image\user-icon.png" />
-    <Resource Include="Image\logo.png" />
     <Resource Include="Image\back-image.jpg" />
     <Resource Include="Image\key-icon.png" />
   </ItemGroup>

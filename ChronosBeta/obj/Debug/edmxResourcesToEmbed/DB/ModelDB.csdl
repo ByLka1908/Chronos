@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CronosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id_Customers" />
+    </Key>
+    <Property Name="Id_Customers" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_Project_Customers" FromRole="Customers" ToRole="Project" />
+  </EntityType>
   <EntityType Name="DateTimer">
     <Key>
       <PropertyRef Name="ID_DateTimer" />
@@ -26,11 +38,12 @@
     </Key>
     <Property Name="id_Project" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NameProject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ResponsibleСustomer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ResponsibleСustomer" Type="Int32" Nullable="false" />
     <Property Name="ResponsibleОfficer" Type="Int32" Nullable="false" />
     <Property Name="Budget" Type="Int32" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Deadline" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Project_Customers" FromRole="Project" ToRole="Customers" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Project_Users" FromRole="Project" ToRole="Users" />
     <NavigationProperty Name="Task" Relationship="Self.FK_Task_Project" FromRole="Project" ToRole="Task" />
   </EntityType>
@@ -82,6 +95,7 @@
     <Property Name="ID_Users" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -95,6 +109,18 @@
     <NavigationProperty Name="Task1" Relationship="Self.FK_Task_Users1" FromRole="Users" ToRole="Task" />
     <NavigationProperty Name="TaskTimer" Relationship="Self.FK_TaskTimer_Users" FromRole="Users" ToRole="TaskTimer" />
   </EntityType>
+  <Association Name="FK_Project_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id_Customers" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="ResponsibleСustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_DateTimer_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="DateTimer" Type="Self.DateTimer" Multiplicity="*" />
@@ -200,6 +226,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CronosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customers" />
     <EntitySet Name="DateTimer" EntityType="Self.DateTimer" />
     <EntitySet Name="JobTitles" EntityType="Self.JobTitles" />
     <EntitySet Name="Project" EntityType="Self.Project" />
@@ -207,6 +234,10 @@
     <EntitySet Name="Task" EntityType="Self.Task" />
     <EntitySet Name="TaskTimer" EntityType="Self.TaskTimer" />
     <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Project_Customers" Association="Self.FK_Project_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
     <AssociationSet Name="FK_DateTimer_Users" Association="Self.FK_DateTimer_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="DateTimer" EntitySet="DateTimer" />

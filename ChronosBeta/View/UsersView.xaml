@@ -270,7 +270,6 @@
                 </DataGrid.RowHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Foreground="{StaticResource color2}" Header="ID" HeaderStringFormat="" MinWidth="30"/>
                     <DataGridTextColumn Binding="{Binding Photo}" Foreground="{StaticResource color2}" Header="Фото" MinWidth="60"/>
                     <DataGridTextColumn Binding="{Binding Name}" Foreground="{StaticResource color2}" Header="Имя" MinWidth="125"/>
                     <DataGridTextColumn Binding="{Binding Surname}" Foreground="{StaticResource color2}" Header="Фамилия" MinWidth="125"/>
@@ -280,6 +279,7 @@
                 </DataGrid.Columns>
 
             </DataGrid>
+            
         </Border>
         
     </Grid>

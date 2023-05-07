@@ -6,10 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using ChronosBeta.Model;
 using ChronosBeta.BL;
-using ChronosBeta.InterfaceBL;
 using FontAwesome.Sharp;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using ChronosBeta.View;
 using System.Windows.Media;
 
@@ -33,7 +31,6 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged(nameof(CurrentUser));
             }
         }
-
         public ViewModelBase CurrentChildView
         {
             get { return _currentChildView; }
@@ -44,7 +41,6 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged(nameof(CurrentChildView));
             }
         }
-
         public string Caption
         {
             get { return _caption; }
@@ -90,7 +86,6 @@ namespace ChronosBeta.ViewModels
 
             //Defoult view
             ExecutedShowHomeCommand(null);
-
             LoadCurrentUserData();
         }
 
@@ -104,8 +99,8 @@ namespace ChronosBeta.ViewModels
         private void ExecutedShowTaskTimerCommand(object obj)
         {
             CurrentChildView = new TaskTimerViewModel(this);
-            Caption = "Отмеченное время";
-            Icon = IconChar.Desktop;
+            Caption = "Отметки по задачам";
+            Icon = IconChar.ThumbTack;
         }
 
         private void ExecutedShowHomeCommand(object obj)
@@ -125,30 +120,29 @@ namespace ChronosBeta.ViewModels
         private void ExecutedShowDateTimerCommandCommand(object obj)
         {
             CurrentChildView = new DateTimerViewModel(this);
-            Caption = "Отмеченое время";
-            Icon = IconChar.Home;
+            Caption = "Рабочее время";
+            Icon = IconChar.Clock;
         }
 
         private void ExecutedShowUsersCommand(object obj)
         {
             CurrentChildView = new UsersViewModel(this);
             Caption = "Пользователи";
-            Icon = IconChar.Users;
+            Icon = IconChar.UserGroup;
         }
 
         private void ExecutedShowProjectCommand(object obj)
         {
             CurrentChildView = new ProjectsViewMode(this);
             Caption = "Проекты";
-            Icon = IconChar.Users;
+            Icon = IconChar.Book;
         }
 
         private void LoadCurrentUserData()
         {
             CurrentUser = FunctionsCurrentUser.GetViewUser();
             if (CurrentUser.Username == null)
-                CurrentUser.DisplayName = "Invalid user, not logged in";
+                CurrentUser.DisplayName = "Неопознаный пользователь";
         }
-
     }
 }

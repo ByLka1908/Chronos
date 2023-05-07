@@ -64,8 +64,6 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.AssemblyReference
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.SuggestedBindingRedirects.cache
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\Styles\ButtonStyles.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\Styles\UIColors.baml
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\CustomControls\BindablePasswordBox.g.cs
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Desktop.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\HomeView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplicationView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\LoginView.g.cs
@@ -80,8 +78,6 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\GeneratedInternalTypeHelper.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta_MarkupCompile.cache
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\ChronosBeta_MarkupCompile.lref
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\App.baml
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\CustomControls\BindablePasswordBox.baml
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Desktop.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\HomeView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ListApplicationView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\LoginView.baml
@@ -131,3 +127,5 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimerView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimerView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimerObjView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimerObjView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\Styles\BindablePasswordBox.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\Styles\BindablePasswordBox.baml
