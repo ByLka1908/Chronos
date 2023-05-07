@@ -101,7 +101,7 @@
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Skype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="JobTitle" Type="Int32" Nullable="false" />
-    <Property Name="ImageUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageUser" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="DateTimer" Relationship="Self.FK_DateTimer_Users" FromRole="Users" ToRole="DateTimer" />
     <NavigationProperty Name="JobTitles" Relationship="Self.FK_Users_JobTitles" FromRole="Users" ToRole="JobTitles" />
     <NavigationProperty Name="Project" Relationship="Self.FK_Project_Users" FromRole="Users" ToRole="Project" />

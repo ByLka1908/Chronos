@@ -91,14 +91,19 @@ namespace ChronosBeta.ViewModels
         {
             _currentMain.CurrentChildView = new TaskTimerObjViewModel(_currentMain);
             _currentMain.Caption = "Добавление отметки";
-            _currentMain.Icon = IconChar.UserPlus;
+            _currentMain.Icon = IconChar.ThumbTack;
         }
 
         private void ExecutedEditTaskTimerCommand(object obj)
         {
+            if(SelectedTaskTimer == null)
+            {
+                MessageBox.Show("Задача не выбрана");
+                return;
+            }
             _currentMain.CurrentChildView = new TaskTimerObjViewModel(_currentMain, SelectedTaskTimer);
             _currentMain.Caption = "Редактирование отметки";
-            _currentMain.Icon = IconChar.UserPlus;
+            _currentMain.Icon = IconChar.ThumbTack;
         }
 
     }

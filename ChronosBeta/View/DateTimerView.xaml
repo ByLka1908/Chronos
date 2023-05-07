@@ -26,13 +26,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="170"/>
                 <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="180"/>
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
                         Grid.Column="0">
+                
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource color2}"/>
 
                 <TextBox FontSize="13"
@@ -49,30 +50,27 @@
                          VerticalContentAlignment="Center"  
                          Margin="5,5,0,0">
                 </TextBox>
-
             </StackPanel>
 
             <DatePicker Grid.Column="1"
                         FirstDayOfWeek="Monday"
                         SelectedDate="{Binding DatePicker}"
+                        x:Name="datePicker"
                         BorderThickness="0" 
-                        x:Name="datePicker" 
-                        Height="35" 
-                        VerticalAlignment="Top">
+                        Margin="0,0,10,11"
+                        VerticalContentAlignment="Center" 
+                        Height="39" 
+                        HorizontalAlignment="Left"
+                        Width="155">
 
                 <DatePicker.CalendarStyle>
-
                     <Style TargetType="{x:Type Calendar}">
-
-                        <Setter Property="Background" Value="{StaticResource color3}"/>
-                        <Setter Property="Foreground" Value="{StaticResource color1}"/>
+                        <Setter Property="Background"  Value="{StaticResource color3}"/>
+                        <Setter Property="Foreground"  Value="{StaticResource color1}"/>
                         <Setter Property="BorderBrush" Value="Transparent"/>
                         <Setter Property="BorderThickness" Value="0"/>
-
                     </Style>
-
                 </DatePicker.CalendarStyle>
-
             </DatePicker>
 
             <Button Grid.Column="2"
@@ -83,10 +81,11 @@
                     Cursor="Hand"
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Left" 
+                    Width="120">
 
                 <Button.Style>
-
                     <Style TargetType="Button">
 
                         <Setter Property="Background" Value="{StaticResource color3}"/>
@@ -106,9 +105,7 @@
                                 <Setter Property="Background" Value="{StaticResource color4}"/>
                             </Trigger>
                         </Style.Triggers>
-
                     </Style>
-
                 </Button.Style>
             </Button>
 
@@ -123,7 +120,6 @@
                     VerticalAlignment="Top">
 
                 <Button.Style>
-
                     <Style TargetType="Button">
 
                         <Setter Property="Background" Value="{StaticResource color3}"/>
@@ -145,7 +141,6 @@
                         </Style.Triggers>
 
                     </Style>
-
                 </Button.Style>
             </Button>
 
@@ -219,16 +214,16 @@
                 </DataGrid.RowHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding UserName}"       Foreground="{StaticResource color2}" Header="Имя"             MinWidth="60"/>
-                    <DataGridTextColumn Binding="{Binding UserSurname}"    Foreground="{StaticResource color2}" Header="Фамилия"         MinWidth="60"/>
-                    <DataGridTextColumn Binding="{Binding UserMiddleName}" Foreground="{StaticResource color2}" Header="Отчество"        MinWidth="60"/>
+                    <DataGridTextColumn Binding="{Binding UserName}"       Foreground="{StaticResource color2}" Header="Имя"             MinWidth="65"/>
+                    <DataGridTextColumn Binding="{Binding UserSurname}"    Foreground="{StaticResource color2}" Header="Фамилия"         MinWidth="75"/>
+                    <DataGridTextColumn Binding="{Binding UserMiddleName}" Foreground="{StaticResource color2}" Header="Отчество"        MinWidth="75"/>
                     <DataGridTextColumn Binding="{Binding Day}"            Foreground="{StaticResource color2}" Header="День"            MinWidth="125"/>
                     <DataGridTextColumn Binding="{Binding TimeStart}"      Foreground="{StaticResource color2}" Header="Время старта"    MinWidth="125"/>
                     <DataGridTextColumn Binding="{Binding TimeEnd}"        Foreground="{StaticResource color2}" Header="Время окончания" MinWidth="100"/>
                 </DataGrid.Columns>
-
             </DataGrid>
         </Border>
 
     </Grid>
+    
 </UserControl>

@@ -22,8 +22,8 @@ namespace ChronosBeta.BL
         private static Users User { get; set; }
         private static string Name { get; set; }
         private static string Surname { get; set; }
+        private static string MiddleName { get; set; }
         private static string JobTitle { get; set; }
-
 
         //private static string ImageUser { get; set; }
 
@@ -32,6 +32,7 @@ namespace ChronosBeta.BL
             User = user;
             Name = user.Name;
             Surname = user.Surname;
+            MiddleName = user.MiddleName;
             JobTitle = $"Должность: {user.JobTitles.NameJobTitle}";
             //ImageUser = string.IsNullOrWhiteSpace(user.ImageUser) ? @"/ImageDef.jpg" : user.ImageUser;
         }
@@ -48,6 +49,7 @@ namespace ChronosBeta.BL
         {
             return User.ID_Users;
         }
+
         public static string GetNameUser()
         {
             return Name;
@@ -57,10 +59,9 @@ namespace ChronosBeta.BL
         {
             ViewCurrentUser user = new ViewCurrentUser();
             user.Username = Name;
-            user.DisplayName = $"{Name} {Surname}";
+            user.DisplayName = $"{Name} {MiddleName} {Surname}";
             user.ProfilePicture = null;
             return user;
         }
-        
     }
 }

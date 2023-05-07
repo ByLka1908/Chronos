@@ -8,6 +8,7 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <UserControl.DataContext>
         <viewModel:DateTimerObjViewModel/>
     </UserControl.DataContext>
@@ -174,21 +175,20 @@
                 <Grid>
 
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="45"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="45"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="45"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
 
 
-                    <TextBlock Text="Пользователь:"
-                               Grid.Column="0"
+                    <TextBlock Text="Имя:"
                                Grid.Row="0"
                                Foreground="{StaticResource color2}"
                                FontFamily="Montserrat"
@@ -196,7 +196,26 @@
                                VerticalAlignment="Center"/>
 
                     <TextBox Grid.Row="1"
-                             Text="{Binding User}"
+                             Text="{Binding UserName}"
+                             Background="{StaticResource color5}"
+                             Foreground="{StaticResource color2}"
+                             BorderThickness="0"
+                             FontFamily="Montserrat"
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Style="{StaticResource TextBox}"
+                             IsReadOnly="True"/>
+                    
+                    <TextBlock Text="Фамилия:"
+                               Grid.Row="2"
+                               Foreground="{StaticResource color2}"
+                               FontFamily="Montserrat"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+
+                    <TextBox Grid.Row="3"
+                             Text="{Binding UserSurname}"
                              Background="{StaticResource color5}"
                              Foreground="{StaticResource color2}"
                              BorderThickness="0"
@@ -208,13 +227,13 @@
                              IsReadOnly="True"/>
 
                     <TextBlock Text="День:"
-                               Grid.Row="2"
+                               Grid.Row="4"
                                Foreground="{StaticResource color2}"
                                FontFamily="Montserrat"
                                FontSize="12"
                                VerticalAlignment="Center"/>
 
-                    <TextBox Grid.Row="3"
+                    <TextBox Grid.Row="5"
                              Text="{Binding Day}"
                              Background="{StaticResource color5}"
                              Foreground="{StaticResource color2}"
@@ -227,13 +246,13 @@
                              IsReadOnly="True"/>
 
                     <TextBlock Text="Время начала:"
-                               Grid.Row="4"
+                               Grid.Row="6"
                                Foreground="{StaticResource color2}"
                                FontFamily="Montserrat"
                                FontSize="12"
                                VerticalAlignment="Center"/>
 
-                    <TextBox Grid.Row="5"
+                    <TextBox Grid.Row="7"
                              Text="{Binding TimeStart}"
                              Background="{StaticResource color5}"
                              Foreground="{StaticResource color2}"
@@ -246,13 +265,13 @@
                              IsReadOnly="True"/>
 
                     <TextBlock Text="Время окончания:"
-                               Grid.Row="6"
+                               Grid.Row="8"
                                Foreground="{StaticResource color2}"
                                FontFamily="Montserrat"
                                FontSize="12"
                                VerticalAlignment="Center"/>
 
-                    <TextBox Grid.Row="7"
+                    <TextBox Grid.Row="9"
                              Text="{Binding TimeEnd}"
                              Background="{StaticResource color5}"
                              Foreground="{StaticResource color2}"

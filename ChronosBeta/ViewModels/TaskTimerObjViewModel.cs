@@ -92,7 +92,7 @@ namespace ChronosBeta.ViewModels
         {
             _currentMain.CurrentChildView = new TaskTimerViewModel();
             _currentMain.Caption = "Отметка по задачам";
-            _currentMain.Icon = IconChar.Users;
+            _currentMain.Icon = IconChar.ThumbTack;
         }
     }
 }

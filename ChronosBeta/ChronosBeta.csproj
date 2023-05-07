@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
@@ -79,6 +80,7 @@
     <Compile Include="BL\FunctionsCurrentUser.cs" />
     <Compile Include="BL\FunctionsCustomer.cs" />
     <Compile Include="BL\FunctionsDateTimer.cs" />
+    <Compile Include="BL\FunctionsImage.cs" />
     <Compile Include="BL\FunctionsJobTitle.cs" />
     <Compile Include="BL\FunctionsJSON.cs" />
     <Compile Include="BL\FunctionsProject.cs" />
@@ -317,6 +319,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\no_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ChronosLogo.png" />
+    <Resource Include="Images\user-icon.png" />
+    <Resource Include="Images\back-image.jpg" />
+    <Resource Include="Images\key-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DB\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelDB.edmx</DependentUpon>
@@ -327,12 +338,6 @@
       <DependentUpon>ModelDB.edmx</DependentUpon>
       <LastGenOutput>ModelDB.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Image\ChronosLogo.png" />
-    <Resource Include="Image\user-icon.png" />
-    <Resource Include="Image\back-image.jpg" />
-    <Resource Include="Image\key-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

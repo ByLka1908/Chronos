@@ -29,7 +29,7 @@
 
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush ImageSource="/Image/back-image.jpg"
+            <ImageBrush ImageSource="/Images/back-image.jpg"
                         Stretch="None"/>
         </Border.Background>
 
@@ -148,7 +148,7 @@
                             Orientation="Vertical"
                             Margin="0,35,0,0">
 
-                    <Image Source="/Image/ChronosLogo.png"
+                    <Image Source="/Images/ChronosLogo.png"
                            Width="100" Height="100"/>
 
                     <TextBlock Text="CHRONOS"
@@ -190,7 +190,7 @@
                              Padding="20,0,0,0">
 
                         <TextBox.Background>
-                            <ImageBrush ImageSource="/Image/user-icon.png"
+                            <ImageBrush ImageSource="/Images/user-icon.png"
                                         Stretch="None"
                                         AlignmentX="Left"/>
                         </TextBox.Background>

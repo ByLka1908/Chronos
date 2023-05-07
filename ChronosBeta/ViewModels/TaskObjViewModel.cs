@@ -103,7 +103,7 @@ namespace ChronosBeta.ViewModels
         {
             _currentMain.CurrentChildView = new TaskViewModel();
             _currentMain.Caption = "Задачи";
-            _currentMain.Icon = IconChar.Users;
+            _currentMain.Icon = IconChar.ListCheck;
         }
 
     }

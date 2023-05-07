@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="37e3ebe168324c819812f4825303629d" Name="Diagram1">
+      <Diagram DiagramId="fbf36d4b41b642d0a68970e4d487cb58" Name="Diagram1">
         <EntityTypeShape EntityType="CronosModel.Customers" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CronosModel.DateTimer" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CronosModel.JobTitles" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />

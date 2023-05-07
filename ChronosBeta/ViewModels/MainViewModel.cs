@@ -10,6 +10,7 @@ using FontAwesome.Sharp;
 using System.Windows.Input;
 using ChronosBeta.View;
 using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace ChronosBeta.ViewModels
 {
@@ -61,6 +62,7 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged(nameof(Icon));
             }
         }
+        public Image ImageUser { get; set; }
 
         // Commands
         public ICommand ShowHomeViewCommand { get; }
@@ -114,7 +116,7 @@ namespace ChronosBeta.ViewModels
         {
             CurrentChildView = new TaskViewModel(this);
             Caption = "Зaдачи";
-            Icon = IconChar.Home;
+            Icon = IconChar.ListCheck;
         }
 
         private void ExecutedShowDateTimerCommandCommand(object obj)

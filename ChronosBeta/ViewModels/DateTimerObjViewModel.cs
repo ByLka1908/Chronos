@@ -13,15 +13,17 @@ using System.Windows.Input;
 namespace ChronosBeta.ViewModels
 {
     public class DateTimerObjViewModel: ViewModelBase
-    {
-        public string User { get; set; }
+    {        
+        private static MainViewModel _currentMain;
+        private static ViewDateTimer DateTimer;
+
+        public string UserName { get; set; }
+        public string UserSurname { get; set; }
         public string Day { get; set; }
         public string TimeStart { get; set; }
         public string TimeEnd { get; set; }
-        public ICollectionView CurrentAppList { get; private set; }
 
-        private static MainViewModel _currentMain;
-        private static ViewDateTimer DateTimer;
+        public ICollectionView CurrentAppList { get; private set; }
         public ICommand Back { get; }
 
         public DateTimerObjViewModel() 
@@ -34,6 +36,7 @@ namespace ChronosBeta.ViewModels
             _currentMain = main;
             DateTimer = dateTimer;
         }
+
         private void ExecutedBackCommand(object obj)
         {
             _currentMain.CurrentChildView = new DateTimerViewModel();
@@ -48,7 +51,8 @@ namespace ChronosBeta.ViewModels
             List<ViewListApplication> list = FunctionsJSON.GetDeserializeJson(DateTimer.DateTimer.AllRunProgram);
             CurrentAppList = CollectionViewSource.GetDefaultView(list);
 
-            User = DateTimer.UserName + " " +  DateTimer.UserSurname + " " + DateTimer.UserMiddleName;
+            UserName = DateTimer.UserName;
+            UserSurname = DateTimer.UserSurname;
             Day = DateTimer.Day;
             TimeStart = DateTimer.TimeStart;
             TimeEnd = DateTimer.TimeEnd;   

@@ -23,11 +23,12 @@
         <Grid Grid.Row="0">
             
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Horizontal"
@@ -89,9 +90,9 @@
                 </Button.Style>
             </Button>
 
-            <Button Grid.Column="2" Margin="10,0,0,0"
-                    Command="{Binding RemoveUser}"                            
-                    Content="Удалить пользователя"                            
+            <Button Grid.Column="5" 
+                    Margin="10,0,0,0"
+                    Command="{Binding RemoveUser}"                                                      
                     FontSize="12"
                     FontFamily="Montserrat"
                     Cursor="Hand"
@@ -99,6 +100,8 @@
                     Foreground="{StaticResource color1}"
                     VerticalAlignment="Top">
 
+                <fa:IconImage Icon="Trash" Style="{StaticResource controlButtonIcon}"/>
+                
                 <Button.Style>
 
                     <Style TargetType="Button">
@@ -127,15 +130,17 @@
             </Button>
 
             <Button Grid.Column="3"
-                            Command="{Binding AddUser}"                            
-                            Content="Добавить пользователя"                            
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Foreground="{StaticResource color1}"
+                    Margin="10,0,0,0"
+                    Command="{Binding AddUser}"                                                      
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="{StaticResource color1}"
                     VerticalAlignment="Top">
 
+                <fa:IconImage Icon="Plus" Style="{StaticResource controlButtonIcon}"/>
+                
                 <Button.Style>
 
                     <Style TargetType="Button">
@@ -163,9 +168,9 @@
                 </Button.Style>
             </Button>
 
-            <Button Grid.Column="4" Margin="10,0,0,0"
-                    Command="{Binding EditUser}"                            
-                    Content="Редактировать пользователя"                            
+            <Button Grid.Column="4" 
+                    Margin="10,0,0,0"
+                    Command="{Binding EditUser}"                                                      
                     FontSize="12"
                     FontFamily="Montserrat"
                     Cursor="Hand"
@@ -173,6 +178,8 @@
                     Foreground="{StaticResource color1}"
                     VerticalAlignment="Top">
 
+                <fa:IconImage Icon="Pen" Style="{StaticResource controlButtonIcon}"/>
+                
                 <Button.Style>
 
                     <Style TargetType="Button">
@@ -220,7 +227,7 @@
                       GridLinesVisibility="None"
                       MinRowHeight="35"
                       IsReadOnly="True">
-
+                
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>

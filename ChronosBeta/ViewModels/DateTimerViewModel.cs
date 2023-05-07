@@ -16,6 +16,8 @@ namespace ChronosBeta.ViewModels
     public class DateTimerViewModel : ViewModelBase
     {
         private ICollectionView _currentDateList;
+        private static MainViewModel _currentMain;
+
         public ICollectionView CurrentDateList
         {
             get { return _currentDateList; }
@@ -31,13 +33,6 @@ namespace ChronosBeta.ViewModels
         public string DatePicker { get; set; }
         public string CurrentText { get; set; }
 
-        private static MainViewModel _currentMain;
-
-        private void UpdateView()
-        {
-            List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
-            CurrentDateList = CollectionViewSource.GetDefaultView(currentDate);
-        }
         public DateTimerViewModel()
         {
             OpenListDate = new ViewModelCommand(ExecutedOpenListDateCommand);
@@ -45,9 +40,16 @@ namespace ChronosBeta.ViewModels
 
             UpdateView();
         }
+
         public DateTimerViewModel(MainViewModel main)
         {
             _currentMain = main;
+        }
+
+        private void UpdateView()
+        {
+            List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
+            CurrentDateList = CollectionViewSource.GetDefaultView(currentDate);
         }
 
         private void ExecutedSearchCommand(object obj)
@@ -96,6 +98,7 @@ namespace ChronosBeta.ViewModels
 
             CurrentDateList = CollectionViewSource.GetDefaultView(findDate);
         }
+
         private void ExecutedOpenListDateCommand(object obj)
         {
             if (SelectedDate == null)
@@ -104,8 +107,8 @@ namespace ChronosBeta.ViewModels
                 return;
             }
             _currentMain.CurrentChildView = new DateTimerObjViewModel(_currentMain, SelectedDate);
-            _currentMain.Caption = "Редактирование пользователя";
-            _currentMain.Icon = IconChar.UserEdit;
+            _currentMain.Caption = "Список запущеный программ";
+            _currentMain.Icon = IconChar.UserClock;
         }
     }
 }

@@ -34,12 +34,6 @@ namespace ChronosBeta.ViewModels
         public ViewProject SelectedProject { get; set; }
         public string CurrentText { get; set; }
 
-        private void UpdateView()
-        {
-            List<ViewProject> currentProject = FunctionsProject.GetProject();
-            CurrentProject = CollectionViewSource.GetDefaultView(currentProject);
-        }
-
         public ProjectsViewMode() 
         {
             AddProject = new ViewModelCommand(ExecutedAddProjectCommand);
@@ -54,6 +48,13 @@ namespace ChronosBeta.ViewModels
         {
             _currentMain = main;
         }
+
+        private void UpdateView()
+        {
+            List<ViewProject> currentProject = FunctionsProject.GetProject();
+            CurrentProject = CollectionViewSource.GetDefaultView(currentProject);
+        }
+
         private void ExecutedSearchCommand(object obj)
         {
             if (CurrentText == null)
@@ -90,13 +91,19 @@ namespace ChronosBeta.ViewModels
         {
             _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain);
             _currentMain.Caption = "Добавление проекта";
-            _currentMain.Icon = IconChar.UserPlus;
+            _currentMain.Icon = IconChar.Book;
         }
+
         private void ExecutedEditProjectCommand(object obj)
         {
+            if (SelectedProject == null)
+            {
+                MessageBox.Show("Проект не выбран");
+                return;
+            }
             _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain, SelectedProject);
             _currentMain.Caption = "Редактирование проекта";
-            _currentMain.Icon = IconChar.UserPlus;
+            _currentMain.Icon = IconChar.Book;
         }
     }
 }

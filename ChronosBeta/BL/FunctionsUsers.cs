@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 using ChronosBeta.DB;
 using System.Data.Entity.Migrations;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ChronosBeta.BL
 {
     public class FunctionsUsers
     {
-
         public static List<ViewUsers> GetUsers()
         {
             try
             {
-                DB.CronosEntities entities = new DB.CronosEntities();
+                CronosEntities entities = new CronosEntities();
                 var users = entities.Users.ToList();
                 List<ViewUsers> listUser = new List<ViewUsers>();
                 foreach (var user in users)
@@ -31,7 +32,7 @@ namespace ChronosBeta.BL
         }
 
         public static bool AddUser(string name, string surname, string login,
-                                   string password, string phone, string skype, string jobTitle)
+                                   string password, string phone, string skype, string jobTitle, ImageSource imageUser)
         {
             Users user = new Users();
             try
@@ -42,6 +43,7 @@ namespace ChronosBeta.BL
                 user.Password = password;
                 user.Phone = phone;
                 user.Skype = skype;
+                user.ImageUser = FunctionsImage.PushImage(imageUser);
                 user.JobTitle = FunctionsJobTitle.GetId(jobTitle);
             }
             catch
@@ -66,7 +68,7 @@ namespace ChronosBeta.BL
         }
 
         public static bool SaveEditUser(string name, string surname, string login, string password,
-                                        string phone, string skype, string jobTitle, ViewUsers SelectedUser)
+                                        string phone, string skype, string jobTitle, ViewUsers SelectedUser, ImageSource imageUser)
         {
             Users user = SelectedUser.User;
             try
@@ -77,6 +79,7 @@ namespace ChronosBeta.BL
                 user.Password = password;
                 user.Phone = phone;
                 user.Skype = skype;
+                user.ImageUser = FunctionsImage.PushImage(imageUser);
                 user.JobTitle = FunctionsJobTitle.GetId(jobTitle);
             }
             catch

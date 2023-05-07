@@ -4,20 +4,38 @@ using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace ChronosBeta.ViewModels
 {
     public class UserObjViewModel: ViewModelBase
-    {
+    {   
+        private static MainViewModel _currentMain;
+        private static ViewUsers SelectedUser;
+        private static ImageSource _imageUser;
+        private static bool itEdit;
+
         //Параметры
         public string Name { get; set; }
+        public ImageSource ImageUser
+        {
+            get { return _imageUser; }
+            set
+            {
+                _imageUser = value;
+                OnPropertyChanged(nameof(ImageUser));
+            }
+        }
         public string Surname { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
@@ -26,13 +44,10 @@ namespace ChronosBeta.ViewModels
         public string SelectedJobTitle { get; set; }
         public List<string> JobTitle  { get; set; }
 
-        private static MainViewModel _currentMain;
-        private static ViewUsers SelectedUser;
-        private static bool itEdit;
-
         //Команды
         public ICommand Save { get; }
         public ICommand Back { get; }
+        public ICommand SelectedUserImage { get; }
 
         public UserObjViewModel() 
         {
@@ -41,6 +56,7 @@ namespace ChronosBeta.ViewModels
             //Инициализация команд
             Save = new ViewModelCommand(ExecutedSaveCommand);
             Back = new ViewModelCommand(ExecutedBackCommand);
+            SelectedUserImage = new ViewModelCommand(ExecutedSelectedUserImageCommand);
 
             if (itEdit)
                 SetUser();
@@ -67,6 +83,10 @@ namespace ChronosBeta.ViewModels
             Phone = SelectedUser.Phone;
             Skype = SelectedUser.Skype;
             SelectedJobTitle = SelectedUser.JobTitle;
+            if (SelectedUser.ImageUser != null)
+                ImageUser = SelectedUser.ImageUser;
+            else
+                ImageUser = FunctionsImage.GetImage();
         }
 
         private void ExecutedSaveCommand(object obj)
@@ -75,7 +95,8 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsUsers.AddUser(Name, Surname, Login, Password, Phone, Skype, SelectedJobTitle);
+                    FunctionsUsers.AddUser(Name, Surname, Login, Password, Phone, Skype,
+                                           SelectedJobTitle, ImageUser);
                     MessageBox.Show("Пользователь добавлен");
                 }
                 catch
@@ -87,7 +108,8 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsUsers.SaveEditUser(Name, Surname, Login, Password, Phone, Skype, SelectedJobTitle, SelectedUser);
+                    FunctionsUsers.SaveEditUser(Name, Surname, Login, Password, Phone, Skype,
+                                                SelectedJobTitle, SelectedUser, ImageUser);
                     MessageBox.Show("Пользователь отредактирован");
                 }
                 catch
@@ -95,9 +117,17 @@ namespace ChronosBeta.ViewModels
                     MessageBox.Show("Пользователь не отредактирован");
                 }
             }
-
-            
         }
+
+        private void ExecutedSelectedUserImageCommand(object obj)
+        {
+            var result = FunctionsImage.SetImage();
+            if (result == null)
+                return;
+
+            ImageUser = result;
+        }
+
         private void ExecutedBackCommand(object obj)
         {
             _currentMain.CurrentChildView = new UsersViewModel();

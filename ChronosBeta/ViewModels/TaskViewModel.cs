@@ -17,6 +17,7 @@ namespace ChronosBeta.ViewModels
     {        
         private static MainViewModel _currentMain;
         private ICollectionView _currentTask;
+
         public ICollectionView CurrentTask
         {
             get { return _currentTask; }
@@ -53,6 +54,7 @@ namespace ChronosBeta.ViewModels
         {
             _currentMain = main;
         }
+
         private void ExecutedSearchCommand(object obj)
         {
             if (CurrentText == null)
@@ -78,23 +80,30 @@ namespace ChronosBeta.ViewModels
             }
             CurrentTask = CollectionViewSource.GetDefaultView(findTask);
         }
+
         private void ExecutedAddTaskCommand(object obj)
         {
             _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain);
             _currentMain.Caption = "Добавление задачи";
-            _currentMain.Icon = IconChar.UserPlus;
+            _currentMain.Icon = IconChar.ListCheck;
         }
+
         private void ExecutedEditTaskCommand(object obj)
         {
+            if(SelectedTask == null)
+            {
+                MessageBox.Show("Задача не выбрана");
+                return;
+            }
             _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, SelectedTask);
             _currentMain.Caption = "Редактирование задачи";
-            _currentMain.Icon = IconChar.UserPlus;
+            _currentMain.Icon = IconChar.ListCheck;
         }
+
         private void ExecutedRemoveTaskCommand(object obj)
         {
             FunctionsTask.DeleteTask(SelectedTask.Task);
             UpdateView();
         }
-
     }
 }

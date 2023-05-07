@@ -33,7 +33,7 @@ namespace ChronosBeta.DB
         public string Phone { get; set; }
         public string Skype { get; set; }
         public int JobTitle { get; set; }
-        public string ImageUser { get; set; }
+        public byte[] ImageUser { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DateTimer> DateTimer { get; set; }

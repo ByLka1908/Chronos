@@ -14,16 +14,16 @@ namespace ChronosBeta.ViewModels
 {
     public class ProjectObjViewModel: ViewModelBase
     {
+        private static MainViewModel _currentMain;
+        private static ViewProject SelectedProject;
+        private static bool itEdit;
+
         public string NameProject { get; set; }
         public string ResponsibleCustomer { get; set; }
         public string ResponsibleOfficer { get; set; }
         public string Budget { get; set; }
         public string Deadline { get; set; }
         public string Description { get; set; }
-
-        private static MainViewModel _currentMain;
-        private static ViewProject SelectedProject;
-        private static bool itEdit;
 
         public ICommand Save { get; }
         public ICommand Back { get; }
@@ -37,11 +37,13 @@ namespace ChronosBeta.ViewModels
             if (itEdit)
                 SetProject();
         }
+
         public ProjectObjViewModel(MainViewModel main)
         {
             _currentMain = main;
             itEdit = false;
         }
+
         public ProjectObjViewModel(MainViewModel main, ViewProject selectedProject)
         {
             _currentMain = main;
@@ -58,6 +60,7 @@ namespace ChronosBeta.ViewModels
             Deadline = SelectedProject.Project.Deadline.ToString();
             Description = SelectedProject.Project.Description;
         }
+
         private void ExecutedSaveCommand(object obj)
         {
             if (!itEdit)
@@ -93,8 +96,7 @@ namespace ChronosBeta.ViewModels
         {
             _currentMain.CurrentChildView = new ProjectsViewMode();
             _currentMain.Caption = "Проекты";
-            _currentMain.Icon = IconChar.Users;
+            _currentMain.Icon = IconChar.Book;
         }
-
     }
 }
