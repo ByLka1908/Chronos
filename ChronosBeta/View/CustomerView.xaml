@@ -141,7 +141,8 @@
                     Cursor="Hand"
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top"
+                    ToolTip="Добавить">
 
                 <fa:IconImage Icon="Plus" Style="{StaticResource controlButtonIcon}"/>
 
@@ -180,7 +181,8 @@
                     Cursor="Hand"
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top"
+                    ToolTip="Редактировать">
 
                 <fa:IconImage Icon="Pen" Style="{StaticResource controlButtonIcon}"/>
 
@@ -219,7 +221,8 @@
                     Cursor="Hand"
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top"
+                    ToolTip="Удалить">
 
                 <fa:IconImage Icon="Trash" Style="{StaticResource controlButtonIcon}"/>
 
@@ -269,7 +272,9 @@
                       AlternatingRowBackground="{StaticResource color3}"
                       GridLinesVisibility="None"
                       MinRowHeight="35"
-                      IsReadOnly="True">
+                      IsReadOnly="True"
+                      HorizontalContentAlignment="Stretch"
+                      ColumnWidth="*">
 
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">

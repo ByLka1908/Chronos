@@ -23,13 +23,9 @@ namespace ChronosBeta.View
     /// </summary>
     public partial class ListApplicationView : UserControl
     {
-        public ICollectionView CurrentListApplication { get; private set; }
         public ListApplicationView()
         {
             InitializeComponent();
-            List<ViewListApplication> currentApp = FunctionsListApplication.GetListProcesses();
-            CurrentListApplication = CollectionViewSource.GetDefaultView(currentApp);
-            DataContext = this;
         }
     }
 }

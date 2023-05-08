@@ -12,10 +12,12 @@ namespace ChronosBeta.ViewModels
     {
         private static MainViewModel _currentMain;
         public ICommand ViewCustomers { get; }
+        public ICommand ListApplication { get; }
 
         public SettingViewModel() 
         {
             ViewCustomers = new ViewModelCommand(ExecutedViewCustomersCommand);
+            ListApplication = new ViewModelCommand(ExecutedListApplicationCommand);
         }
         public SettingViewModel(MainViewModel main)
         {
@@ -27,6 +29,13 @@ namespace ChronosBeta.ViewModels
             _currentMain.CurrentChildView = new CustomerViewModel(_currentMain);
             _currentMain.Caption = "Заказчики";
             _currentMain.Icon = IconChar.AddressBook;
+        }
+
+        private void ExecutedListApplicationCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new ListApplicationViewModel(_currentMain);
+            _currentMain.Caption = "Список программ";
+            _currentMain.Icon = IconChar.Desktop;
         }
     }
 }

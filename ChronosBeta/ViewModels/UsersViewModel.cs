@@ -74,8 +74,8 @@ namespace ChronosBeta.ViewModels
             }
 
             List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
-            List<ViewUsers> findUsers = currentUsers.Where(x => x.Name.ToUpper().StartsWith
-                                  (CurrentText.ToUpper()) || x.Surname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
+            List<ViewUsers> findUsers = currentUsers.Where(x => x.Name.ToUpper().StartsWith(CurrentText.ToUpper()) 
+                                        || x.Surname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
 
             if (findUsers.Count < 1)
             {

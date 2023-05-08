@@ -184,7 +184,7 @@
                     </DataGrid.RowHeaderStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding NameTask}"      Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="430"/>
+                        <DataGridTextColumn Binding="{Binding Name}"          Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="430"/>
                         <DataGridTextColumn Binding="{Binding EstimatedTime}" Foreground="{StaticResource color2}" Header="Время выполнения" MinWidth="175" />
                         <DataGridTextColumn Binding="{Binding Deadline}"      Foreground="{StaticResource color2}" Header="Срок сдачи" MinWidth="145" />
                     </DataGrid.Columns>
@@ -280,7 +280,7 @@
                     </DataGrid.RowHeaderStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding NameTask}"      Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="430"/>
+                        <DataGridTextColumn Binding="{Binding Name}"          Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="430"/>
                         <DataGridTextColumn Binding="{Binding EstimatedTime}" Foreground="{StaticResource color2}" Header="Время выполнения" MinWidth="175"/>
                         <DataGridTextColumn Binding="{Binding Deadline}"      Foreground="{StaticResource color2}" Header="Срок сдачи" MinWidth="145"/>
                     </DataGrid.Columns>
@@ -291,7 +291,7 @@
 
             <Label Grid.Row="4" 
                    Grid.Column="0" 
-                   VerticalAlignment="Bottom"
+                   VerticalAlignment="Bottom" 
                    Content="Будущие задачи:"
                    FontSize="13"
                    Height="24"
@@ -302,7 +302,7 @@
                    BorderBrush="{StaticResource color2}"
                    BorderThickness="0,0,0,0"                             
                    VerticalContentAlignment="Center"  
-                   Margin="5,0,0,98" Grid.RowSpan="2"/>
+                   Margin="5,0,0,0"/>
 
             <Border Grid.Row="5" 
                     Background="{StaticResource color3}"
@@ -374,7 +374,7 @@
                     </DataGrid.RowHeaderStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding NameTask}"      Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="430"/>
+                        <DataGridTextColumn Binding="{Binding Name}"          Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="430"/>
                         <DataGridTextColumn Binding="{Binding EstimatedTime}" Foreground="{StaticResource color2}" Header="Время выполнения" MinWidth="175"/>
                         <DataGridTextColumn Binding="{Binding Deadline}"      Foreground="{StaticResource color2}" Header="Срок сдачи" MinWidth="145"/>
                     </DataGrid.Columns>

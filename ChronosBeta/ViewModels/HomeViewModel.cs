@@ -1,4 +1,5 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -52,6 +54,20 @@ namespace ChronosBeta.ViewModels
             ContentLabel = "Здраствуйте, включите таймер рабочего времени!";
             ForegroundButton = Brushes.Red;
             OnOffTimer = new ViewModelCommand(ExecutedOnOffTimerCommand);
+
+            DateTime currentTime = DateTime.Today;
+
+
+            List<ViewTask> currentTasks = FunctionsTask.GetTasks();
+            List<ViewTask> _overdueTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) < currentTime).ToList();
+            List<ViewTask> _currentTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) >= currentTime 
+                                                             && DateTime.Parse(x.Deadline) < currentTime.AddDays(3)).ToList();
+            List<ViewTask> _futureTask  = currentTasks.Where(x => DateTime.Parse(x.Deadline) > currentTime.AddDays(4)).ToList();
+
+
+            OverdueTask = CollectionViewSource.GetDefaultView(_overdueTask);
+            CurrentTask = CollectionViewSource.GetDefaultView(_currentTask);
+            FutureTask = CollectionViewSource.GetDefaultView(_futureTask);
         }
 
         public HomeViewModel(MainViewModel main)

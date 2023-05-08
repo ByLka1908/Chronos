@@ -98,7 +98,8 @@
                     Cursor="Hand"
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top"
+                    ToolTip="Удалить">
 
                 <fa:IconImage Icon="Trash" Style="{StaticResource controlButtonIcon}"/>
 
@@ -137,7 +138,8 @@
                     Cursor="Hand"
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top"
+                    ToolTip="Добавить">
 
                 <fa:IconImage Icon="Plus" Style="{StaticResource controlButtonIcon}"/>
 
@@ -176,7 +178,8 @@
                     Cursor="Hand"
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top"
+                    ToolTip="Редактировать">
 
                 <fa:IconImage Icon="Pen" Style="{StaticResource controlButtonIcon}"/>
 
@@ -226,7 +229,9 @@
                       AlternatingRowBackground="{StaticResource color3}"
                       GridLinesVisibility="None"
                       MinRowHeight="35"
-                      IsReadOnly="True">
+                      IsReadOnly="True"
+                      HorizontalContentAlignment="Stretch"
+                      ColumnWidth="*">
 
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
@@ -277,7 +282,7 @@
                 </DataGrid.RowHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="300"/>
+                    <DataGridTextColumn Binding="{Binding Name}" Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="340"/>
                     <DataGridTextColumn Binding="{Binding UserCreateTask}" Foreground="{StaticResource color2}" Header="Создал задачу" MinWidth="200"/>
                     <DataGridTextColumn Binding="{Binding UserDoTask}" Foreground="{StaticResource color2}"  Header="Поручено" MinWidth="200"/>
                 </DataGrid.Columns>

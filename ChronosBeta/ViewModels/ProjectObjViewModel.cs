@@ -18,9 +18,13 @@ namespace ChronosBeta.ViewModels
         private static ViewProject SelectedProject;
         private static bool itEdit;
 
+        public List<string> ResponsibleCustomer { get; set; }
+        public string SelectedResponsibleCustomer { get; set; }
+
+        public List<string> ResponsibleOfficer { get; set; }
+        public string SelectedResponsibleOfficer { get; set; }
+
         public string NameProject { get; set; }
-        public string ResponsibleCustomer { get; set; }
-        public string ResponsibleOfficer { get; set; }
         public string Budget { get; set; }
         public string Deadline { get; set; }
         public string Description { get; set; }
@@ -30,6 +34,9 @@ namespace ChronosBeta.ViewModels
 
         public ProjectObjViewModel()
         {
+            ResponsibleCustomer = FunctionsCustomer.GetViewCustomer();
+            ResponsibleOfficer = FunctionsUsers.GetViewUser();
+
             //Инициализация команд
             Save = new ViewModelCommand(ExecutedSaveCommand);
             Back = new ViewModelCommand(ExecutedBackCommand);
@@ -53,9 +60,10 @@ namespace ChronosBeta.ViewModels
 
         private void SetProject()
         {
+            SelectedResponsibleCustomer = SelectedProject.ResponsibleCustomer;
+            SelectedResponsibleOfficer = SelectedProject.ResponsibleOfficer;
+
             NameProject = SelectedProject.NameProject;
-            ResponsibleCustomer = SelectedProject.ResponsibleCustomer;
-            ResponsibleOfficer = SelectedProject.ResponsibleOfficer;
             Budget = SelectedProject.Project.Budget.ToString();
             Deadline = SelectedProject.Project.Deadline.ToString();
             Description = SelectedProject.Project.Description;
@@ -67,7 +75,8 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsProject.AddProject(NameProject, ResponsibleCustomer, ResponsibleOfficer, 
+                    FunctionsProject.AddProject(NameProject, FunctionsCustomer.GetCustomerId(SelectedResponsibleCustomer),
+                                                FunctionsUsers.GetUserId(SelectedResponsibleOfficer), 
                                                 Budget, Deadline, Description);
                     MessageBox.Show("Проект добавлена");
                 }
@@ -80,7 +89,8 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsProject.EditProject(NameProject, ResponsibleCustomer, ResponsibleOfficer,
+                    FunctionsProject.EditProject(NameProject, FunctionsCustomer.GetCustomerId(SelectedResponsibleCustomer),
+                                                 FunctionsUsers.GetUserId(SelectedResponsibleOfficer),
                                                  Budget, Deadline, Description, SelectedProject.Project);
                     MessageBox.Show("Проект отредактирована");
                 }

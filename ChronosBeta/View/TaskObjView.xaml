@@ -28,8 +28,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
-                    Command="{Binding Back}"
-                    Content="Назад"                            
+                    Command="{Binding Back}"                           
                     FontSize="12"
                     FontFamily="Montserrat"
                     Cursor="Hand"
@@ -38,8 +37,11 @@
                     VerticalAlignment="Top"
                     Margin="10,0,0,0" 
                     HorizontalAlignment="Left" 
-                    Width="150">
+                    Width="30"
+                    ToolTip="Назад">
 
+                <fa:IconImage Icon="ArrowLeftLong" Style="{StaticResource controlButtonIcon}"/>
+                
                 <Button.Style>
 
                     <Style TargetType="Button">
@@ -68,8 +70,7 @@
             </Button>
 
             <Button Grid.Column="1"
-                    Command="{Binding Save}"                            
-                    Content="Сохранить"                            
+                    Command="{Binding Save}"                                                      
                     FontSize="12"
                     FontFamily="Montserrat"
                     Cursor="Hand"
@@ -77,8 +78,11 @@
                     Foreground="{StaticResource color1}"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Right"
-                    Width="150"
-                    Margin="0,0,10,0">
+                    Width="30"
+                    Margin="0,0,10,0"
+                    ToolTip="Сохранить">
+
+                <fa:IconImage Icon="FloppyDisk" Style="{StaticResource controlButtonIcon}"/>
 
                 <Button.Style>
 
@@ -152,17 +156,18 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"/>
 
-                    <TextBox Grid.Column="1"
-                             Grid.Row="1"
-                             Text="{Binding UserDoTask}"
-                             Background="{StaticResource color5}"
-                         Foreground="{StaticResource color2}"
-                         BorderThickness="0"
-                         FontFamily="Montserrat"
-                         FontSize="12"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource TextBox}"/>
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="1"
+                              ItemsSource="{Binding UserDoTask}"
+                              SelectedItem="{Binding SelectedUserDoTask}"
+                              Background="{StaticResource color5}"
+                              Foreground="{StaticResource color2}"
+                              BorderThickness="0"
+                              FontFamily="Montserrat"
+                              FontSize="12"
+                              Height="25"
+                              VerticalContentAlignment="Center"
+                              Style="{StaticResource ComboBoxStyle}"/>
 
                     <TextBlock Text="Поручитель:"
                                Grid.Column="0"
@@ -173,16 +178,17 @@
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"/>
 
-                    <TextBox Grid.Row="3"
-                             Text="{Binding UserCreateTask}"
-                             Background="{StaticResource color5}"
-                             Foreground="{StaticResource color2}"
-                             BorderThickness="0"
-                             FontFamily="Montserrat"
-                             FontSize="12"
-                             Height="25"
-                             VerticalContentAlignment="Center"
-                             Style="{StaticResource TextBox}"/>
+                    <ComboBox Grid.Row="3"
+                              ItemsSource="{Binding UserCreateTask}"
+                              SelectedItem="{Binding SelectedUserCreateTask}"
+                              Background="{StaticResource color5}"
+                              Foreground="{StaticResource color2}"
+                              BorderThickness="0"
+                              FontFamily="Montserrat"
+                              FontSize="12"
+                              Height="25"
+                              VerticalContentAlignment="Center"
+                              Style="{StaticResource ComboBoxStyle}"/>
 
                 </Grid>
 
@@ -246,17 +252,18 @@
                                FontSize="12"
                                VerticalAlignment="Center"/>
 
-                    <TextBox Grid.Column="1"
-                             Grid.Row="2"
-                        Text="{Binding Project}"
-                             Background="{StaticResource color5}"
-                         Foreground="{StaticResource color2}"
-                         BorderThickness="0"
-                         FontFamily="Montserrat"
-                         FontSize="12"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource TextBox}"/>
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="2"
+                              ItemsSource="{Binding Project}"
+                              SelectedItem="{Binding SelectedProject}"
+                              Background="{StaticResource color5}"
+                              Foreground="{StaticResource color2}"
+                              BorderThickness="0"
+                              FontFamily="Montserrat"
+                              FontSize="12"
+                              Height="25"
+                              VerticalContentAlignment="Center"
+                              Style="{StaticResource ComboBoxStyle}"/>
 
 
                     <TextBlock Text="Задача закончена:"
@@ -287,18 +294,30 @@
                                FontFamily="Montserrat"
                                FontSize="12"
                                VerticalAlignment="Center"/>
+                    
+                    <DatePicker Grid.Column="1"
+                                Grid.Row="6"
+                                FirstDayOfWeek="Monday"
+                                SelectedDate="{Binding DeadLine}"
+                                x:Name="datePicker"
+                                BorderThickness="0"
+                                VerticalContentAlignment="Center" 
+                                Height="25">
 
-                    <TextBox Grid.Column="1"
-                             Grid.Row="6"
-                             Text="{Binding DeadLine}"
-                             Background="{StaticResource color5}"
-                         Foreground="{StaticResource color2}"
-                         BorderThickness="0"
-                         FontFamily="Montserrat"
-                         FontSize="12"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource TextBox}"/>
+                        <DatePicker.CalendarStyle>
+
+                            <Style TargetType="{x:Type Calendar}">
+
+                                <Setter Property="Background"  Value="{StaticResource color3}"/>
+                                <Setter Property="Foreground"  Value="{StaticResource color1}"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+
+                            </Style>
+
+                        </DatePicker.CalendarStyle>
+
+                    </DatePicker>
 
                 </Grid>
 
@@ -395,8 +414,7 @@
                     </Grid.RowDefinitions>
 
 
-                    <TextBlock Text="Ожидаемое время:"
-                               
+                    <TextBlock Text="Ожидаемое время:"  
                                Grid.Row="0"
                                Foreground="{StaticResource color2}"
                                FontFamily="Montserrat"
@@ -404,17 +422,16 @@
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"/>
 
-                    <TextBox 
-                             Grid.Row="1"
-                            Text="{Binding EstimatedTime}"
+                    <TextBox Grid.Row="1"
+                             Text="{Binding EstimatedTime}"
                              Background="{StaticResource color5}"
-                         Foreground="{StaticResource color2}"
-                         BorderThickness="0"
-                         FontFamily="Montserrat"
-                         FontSize="12"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource TextBox}"/>
+                             Foreground="{StaticResource color2}"
+                             BorderThickness="0"
+                             FontFamily="Montserrat"
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Style="{StaticResource TextBox}"/>
 
                     <TextBlock Text="Потраченное время:"       
                                Grid.Row="2"
@@ -427,13 +444,13 @@
                     <TextBox Grid.Row="3"
                              Text="{Binding AllSpentTime}"
                              Background="{StaticResource color5}"
-                         Foreground="{StaticResource color2}"
-                         BorderThickness="0"
-                         FontFamily="Montserrat"
-                         FontSize="12"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource TextBox}"/>
+                             Foreground="{StaticResource color2}"
+                             BorderThickness="0"
+                             FontFamily="Montserrat"
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Style="{StaticResource TextBox}"/>
 
                 </Grid>
 

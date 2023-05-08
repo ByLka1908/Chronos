@@ -28,8 +28,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
-                    Command="{Binding Back}"
-                    Content="Назад"                            
+                    Command="{Binding Back}"                          
                     FontSize="12"
                     FontFamily="Montserrat"
                     Cursor="Hand"
@@ -38,8 +37,11 @@
                     VerticalAlignment="Top"
                     Margin="10,0,0,0" 
                     HorizontalAlignment="Left" 
-                    Width="150">
+                    Width="30"
+                    ToolTip="Назад">
 
+                <fa:IconImage Icon="ArrowLeftLong" Style="{StaticResource controlButtonIcon}"/>
+                
                 <Button.Style>
 
                     <Style TargetType="Button">

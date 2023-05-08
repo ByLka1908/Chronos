@@ -99,7 +99,8 @@
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
                     VerticalAlignment="Top" 
-                    Height="30">
+                    Height="30"
+                    ToolTip="Удалить">
                 
                 <fa:IconImage Icon="Trash" Style="{StaticResource controlButtonIcon}"/>
 
@@ -139,7 +140,8 @@
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
                     VerticalAlignment="Top" 
-                    Height="30">
+                    Height="30"
+                    ToolTip="Добавить">
                 
                 <fa:IconImage Icon="Plus" Style="{StaticResource controlButtonIcon}"/>
 
@@ -179,7 +181,8 @@
                     BorderThickness="0"
                     Foreground="{StaticResource color1}"
                     VerticalAlignment="Top" 
-                    Height="30">
+                    Height="30"
+                    ToolTip="Редактировать">
 
                 <fa:IconImage Icon="Pen" Style="{StaticResource controlButtonIcon}"/>
 
@@ -229,7 +232,9 @@
                       AlternatingRowBackground="{StaticResource color3}"
                       GridLinesVisibility="None"
                       MinRowHeight="35"
-                      IsReadOnly="True">
+                      IsReadOnly="True"
+                      HorizontalContentAlignment="Stretch"
+                      ColumnWidth="*">
 
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
@@ -280,9 +285,9 @@
                 </DataGrid.RowHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding NameProject}" Foreground="{StaticResource color2}" Header="Название проекта" MinWidth="300"/>
+                    <DataGridTextColumn Binding="{Binding NameProject}"         Foreground="{StaticResource color2}" Header="Название проекта" MinWidth="300"/>
                     <DataGridTextColumn Binding="{Binding ResponsibleCustomer}" Foreground="{StaticResource color2}" Header="ФИО Заказчика" MinWidth="200"/>
-                    <DataGridTextColumn Binding="{Binding ResponsibleOfficer}" Foreground="{StaticResource color2}"  Header="ФИО Ответственного" MinWidth="200"/>
+                    <DataGridTextColumn Binding="{Binding ResponsibleOfficer}"  Foreground="{StaticResource color2}"  Header="ФИО Ответственного" MinWidth="200"/>
                 </DataGrid.Columns>
 
             </DataGrid>

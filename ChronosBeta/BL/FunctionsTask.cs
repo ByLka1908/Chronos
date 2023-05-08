@@ -31,20 +31,23 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static bool AddTask( string UserDoTask, string UserCreateTask ,
-                                    string NameTask, string Project, 
+        public static bool AddTask( int UserDoTask, int UserCreateTask ,
+                                    string NameTask, int Project, 
                                     string DeadLine, string Description, 
-                                    string SelectedItsOver)
+                                    string SelectedItsOver, string EstimatedTime, 
+                                    string AllSpentTime)
         {
             DB.Task task = new DB.Task();
             try
             {
                 task.NameTask = NameTask;
-                task.UserDoTask = FunctionsUsers.GetIdUser(UserDoTask);
-                task.UserCreateTask = FunctionsUsers.GetIdUser(UserCreateTask);
-                task.Project = FunctionsProject.GetIdProject(Project);
+                task.UserDoTask = UserDoTask;
+                task.UserCreateTask = UserCreateTask;
+                task.Project = Project;
                 task.Deadline = DateTime.Parse(DeadLine);
                 task.Description = Description;
+                task.EstimatedTime = Convert.ToDouble(EstimatedTime);
+                task.AllSpentTime = Convert.ToDouble(AllSpentTime);
                 if (SelectedItsOver == "Да")
                     task.ItsOver = true;
                 else
@@ -71,19 +74,22 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static bool SaveEditTask(string UserDoTask, string UserCreateTask,
-                            string NameTask, string Project,
-                            string DeadLine, string Description,
-                            string SelectedItsOver, DB.Task currentTask)
+        public static bool SaveEditTask(int UserDoTask, int UserCreateTask,
+                                        string NameTask, int Project,
+                                        string DeadLine, string Description,
+                                        string SelectedItsOver, DB.Task currentTask,
+                                        string EstimatedTime, string AllSpentTime)
         {
             try
             {
                 currentTask.NameTask = NameTask;
-                currentTask.UserDoTask = FunctionsUsers.GetIdUser(UserDoTask);
-                currentTask.UserCreateTask = FunctionsUsers.GetIdUser(UserCreateTask);
-                currentTask.Project = FunctionsProject.GetIdProject(Project);
+                currentTask.UserDoTask = UserDoTask;
+                currentTask.UserCreateTask = UserCreateTask;
+                currentTask.Project = Project;
                 currentTask.Deadline = DateTime.Parse(DeadLine);
                 currentTask.Description = Description;
+                currentTask.EstimatedTime = Convert.ToDouble(EstimatedTime);
+                currentTask.AllSpentTime = Convert.ToDouble(AllSpentTime);
                 if (SelectedItsOver == "Да")
                     currentTask.ItsOver = true;
                 else
@@ -106,7 +112,7 @@ namespace ChronosBeta.BL
             }
             catch
             {
-                throw new Exception("Ошибка добавлении пользователя");
+                throw new Exception("Ошибка добавлении Задачи");
             }
         }
 
@@ -119,7 +125,7 @@ namespace ChronosBeta.BL
             }
             catch
             {
-                throw new Exception("Ошибка при получении Епик геймс");
+                throw new Exception("Ошибка при получении Задачи");
             }
         }
 

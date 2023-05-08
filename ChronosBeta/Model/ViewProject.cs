@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChronosBeta.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,19 +9,23 @@ namespace ChronosBeta.Model
 {
     public class ViewProject
     {
-        public DB.Project Project { get; set; }
+        public Project Project { get; set; }
         public int Id { get; set; }
         public string NameProject { get; set; }
         public string ResponsibleCustomer { get; set; }
         public string ResponsibleOfficer { get; set; }
 
-        public ViewProject(DB.Project project)
+        public ViewProject(Project project)
         {
+            Customers customer = project.Customers;
+            Users officer = project.Users;
+
             Project = project;
             Id = project.id_Project;
             NameProject = project.NameProject;
-            ResponsibleCustomer = project.Customers.Surname;
-            ResponsibleOfficer = project.Users.Name;
+
+            ResponsibleCustomer = customer.Name + " " + customer.Surname + " " + customer.MiddleName;
+            ResponsibleOfficer = officer.Name + " " + officer.Surname + " " + officer.MiddleName;
         }
     }
 }

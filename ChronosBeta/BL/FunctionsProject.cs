@@ -29,16 +29,30 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static bool AddProject(string NameProject, string ResponsibleCustomer,
-                                      string ResponsibleOfficer, string Budget,
+        public static List<string> GetViewProject()
+        {
+            try
+            {
+                CronosEntities entities = new CronosEntities();
+                var users = entities.Project.Select(x => x.NameProject).ToList();
+                return users;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
+        public static bool AddProject(string NameProject, int ResponsibleCustomer,
+                                      int ResponsibleOfficer, string Budget,
                                       string DeadLine, string Description)
         {
             Project project = new Project();
             try
             {
                 project.NameProject = NameProject;
-                project.ResponsibleСustomer = FunctionsCustomer.GetIdCustomer(ResponsibleCustomer);
-                project.ResponsibleОfficer = FunctionsUsers.GetIdUser(ResponsibleOfficer);
+                project.ResponsibleСustomer = ResponsibleCustomer;
+                project.ResponsibleОfficer = ResponsibleOfficer;
                 project.Budget = Convert.ToInt32(Budget);
                 project.Deadline = DateTime.Parse(DeadLine);
                 project.Description = Description;
@@ -64,15 +78,15 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static bool EditProject(string NameProject, string ResponsibleCustomer,
-                              string ResponsibleOfficer, string Budget,
-                              string DeadLine, string Description, Project currentProject)
+        public static bool EditProject(string NameProject, int ResponsibleCustomer,
+                                       int ResponsibleOfficer, string Budget,
+                                       string DeadLine, string Description, Project currentProject)
         {
             try
             {
                 currentProject.NameProject = NameProject;
-                currentProject.ResponsibleСustomer = FunctionsCustomer.GetIdCustomer(ResponsibleCustomer);
-                currentProject.ResponsibleОfficer = FunctionsUsers.GetIdUser(ResponsibleOfficer);
+                currentProject.ResponsibleСustomer = ResponsibleCustomer;
+                currentProject.ResponsibleОfficer = ResponsibleOfficer;
                 currentProject.Budget = Convert.ToInt32(Budget);
                 currentProject.Deadline = DateTime.Parse(DeadLine);
                 currentProject.Description = Description;
@@ -97,7 +111,6 @@ namespace ChronosBeta.BL
                 throw new Exception("Ошибка редактирование проекта");
             }
         }
-
 
         public static int GetIdProject(string project)
         {

@@ -29,6 +29,20 @@ namespace ChronosBeta.BL
             }
         }
 
+        public static List<string> GetViewCustomer()
+        {
+            try
+            {
+                CronosEntities entities = new CronosEntities();
+                var users = entities.Customers.Select(x => x.Name + " " + x.Surname + " " + x.MiddleName).ToList();
+                return users;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
         public static int GetIdCustomer(string customer)
         {
             try
@@ -39,6 +53,25 @@ namespace ChronosBeta.BL
             catch
             {
                 throw new Exception("Ошибка при получении отвественного");
+            }
+        }
+
+        public static int GetCustomerId(string customer)
+        {
+            try
+            {
+                string[] FIO = customer.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string Name = FIO[0];
+                string Surname = FIO[1];
+                string MiddleName = FIO[2];
+
+                CronosEntities entities = new CronosEntities();
+                return entities.Customers.Where(x => x.Name == Name && x.Surname == Surname 
+                                                && x.MiddleName == MiddleName).First().Id_Customers;
+            }
+            catch
+            {
+                throw new Exception("Ошибка при получении пользователя");
             }
         }
 

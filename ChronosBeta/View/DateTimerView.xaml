@@ -172,7 +172,9 @@
                       AlternatingRowBackground="{StaticResource color3}"
                       GridLinesVisibility="None"
                       MinRowHeight="35"
-                      IsReadOnly="True">
+                      IsReadOnly="True"
+                      HorizontalContentAlignment="Stretch"
+                      ColumnWidth="*">
 
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">

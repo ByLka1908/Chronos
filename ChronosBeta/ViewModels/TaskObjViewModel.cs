@@ -19,10 +19,16 @@ namespace ChronosBeta.ViewModels
         private static ViewTask SelectedTask;
         private static bool itEdit;
 
-        public string UserDoTask { get; set; }
-        public string UserCreateTask { get; set; }
+        public List<string> UserDoTask { get; set; }
+        public string SelectedUserDoTask { get; set; }
+        public List<string> UserCreateTask { get; set; }
+        public string SelectedUserCreateTask { get; set; }
+        public List<string> Project { get; set; }
+        public string SelectedProject { get; set; }
+
         public string NameTask { get; set; }
-        public string Project { get; set; }
+        public string EstimatedTime { get; set; }
+        public string AllSpentTime { get; set; }
         public string DeadLine { get; set; }
         public string Description { get; set; }
         public string SelectedItsOver { get; set; }
@@ -33,6 +39,10 @@ namespace ChronosBeta.ViewModels
 
         public TaskObjViewModel()
         {
+            UserCreateTask = FunctionsUsers.GetViewUser();
+            UserDoTask = FunctionsUsers.GetViewUser();
+            Project = FunctionsProject.GetViewProject();
+
             //Инициализация команд
             Save = new ViewModelCommand(ExecutedSaveCommand);
             Back = new ViewModelCommand(ExecutedBackCommand);
@@ -61,10 +71,12 @@ namespace ChronosBeta.ViewModels
             itsOver.Add("Нет");
 
             NameTask = SelectedTask.Name;
-            UserDoTask = SelectedTask.UserDoTask;
-            UserCreateTask = SelectedTask.UserCreateTask;
-            Project = SelectedTask.Task.Project1.NameProject;
-            DeadLine = SelectedTask.Task.Deadline.ToString();
+            EstimatedTime = SelectedTask.EstimatedTime;
+            AllSpentTime = SelectedTask.Task.AllSpentTime.ToString();
+            SelectedUserDoTask = SelectedTask.UserDoTask;
+            SelectedUserCreateTask = SelectedTask.UserCreateTask;
+            SelectedProject = SelectedTask.Task.Project1.NameProject;
+            DeadLine = SelectedTask.Deadline;
             Description = SelectedTask.Task.Description;
             ItsOver = itsOver;   
         }
@@ -75,8 +87,12 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsTask.AddTask(UserDoTask, UserCreateTask, NameTask, Project,
-                                          DeadLine, Description, SelectedItsOver);
+                    FunctionsTask.AddTask(FunctionsUsers.GetUserId(SelectedUserDoTask), 
+                                          FunctionsUsers.GetUserId(SelectedUserCreateTask),
+                                          NameTask,
+                                          FunctionsProject.GetIdProject(SelectedProject),
+                                          DeadLine, Description, SelectedItsOver,
+                                          EstimatedTime, AllSpentTime);
                     MessageBox.Show("Задача добавлена");
                 }
                 catch
@@ -88,9 +104,13 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsTask.SaveEditTask(UserDoTask, UserCreateTask, NameTask,
-                                               Project, DeadLine, Description,
-                                               SelectedItsOver, SelectedTask.Task);
+                    FunctionsTask.SaveEditTask(FunctionsUsers.GetUserId(SelectedUserDoTask),
+                                               FunctionsUsers.GetUserId(SelectedUserCreateTask),
+                                               NameTask, 
+                                               FunctionsProject.GetIdProject(SelectedProject), 
+                                               DeadLine, Description,
+                                               SelectedItsOver, SelectedTask.Task,
+                                               EstimatedTime, AllSpentTime);
                     MessageBox.Show("Задача отредактирована");
                 }
                 catch
@@ -98,7 +118,6 @@ namespace ChronosBeta.ViewModels
                     MessageBox.Show("Задача не отредактирована");
                 }
             }
-
         }
 
         private void ExecutedBackCommand(object obj)
@@ -107,6 +126,5 @@ namespace ChronosBeta.ViewModels
             _currentMain.Caption = "Задачи";
             _currentMain.Icon = IconChar.ListCheck;
         }
-
     }
 }

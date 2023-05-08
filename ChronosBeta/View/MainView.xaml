@@ -192,17 +192,6 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
-                                 Command="{Binding ShowListApplicationViewCommand}">
-
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Desktop" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Список программ" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-
-                    </RadioButton>
-
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowSettingViewCommand}">
 
                         <StackPanel Orientation="Horizontal">
