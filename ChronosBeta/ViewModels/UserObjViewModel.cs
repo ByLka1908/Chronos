@@ -26,7 +26,6 @@ namespace ChronosBeta.ViewModels
         private static bool itEdit;
 
         //Параметры
-        public string Name { get; set; }
         public ImageSource ImageUser
         {
             get { return _imageUser; }
@@ -36,13 +35,16 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged(nameof(ImageUser));
             }
         }
-        public string Surname { get; set; }
-        public string Login { get; set; }
+
+        public string Name     { get; set; } 
+        public string Surname  { get; set; }
+        public string Login    { get; set; }
         public string Password { get; set; }
-        public string Phone { get; set; }
-        public string Skype { get; set; }
-        public string SelectedJobTitle { get; set; }
+        public string Phone    { get; set; }
+        public string Skype    { get; set; }
+
         public List<string> JobTitle  { get; set; }
+        public string SelectedJobTitle { get; set; }
 
         //Команды
         public ICommand Save { get; }
@@ -83,6 +85,7 @@ namespace ChronosBeta.ViewModels
             Phone = SelectedUser.Phone;
             Skype = SelectedUser.Skype;
             SelectedJobTitle = SelectedUser.JobTitle;
+
             if (SelectedUser.ImageUser != null)
                 ImageUser = SelectedUser.ImageUser;
             else

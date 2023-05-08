@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace ChronosBeta.Model
 {
@@ -11,8 +12,6 @@ namespace ChronosBeta.Model
     {
         public string Username { get; set; }
         public string DisplayName { get; set; }
-        public byte[] ProfilePicture { get; set; }
-        //public static string ImageUser { get; set; }
-
+        public BitmapImage ImageUser { get; set; }
     }
 }

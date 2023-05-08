@@ -87,5 +87,7 @@
             </DataGrid>
 
         </Border>
+        
     </Grid>
+    
 </UserControl>

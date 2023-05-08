@@ -1,5 +1,6 @@
 ﻿using ChronosBeta.BL;
 using ChronosBeta.Model;
+using ChronosBeta.DB;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -13,24 +14,32 @@ namespace ChronosBeta.ViewModels
 {
     public class TaskTimerObjViewModel: ViewModelBase
     {
-        public string User { get; set; }
-        public List<string> Task { get; set; }
-        public string SelectedTask { get; set; }
-        public string SpentTime { get; set; }
-        public string Description { get; set; }
-
-
+        private static Users _currentUser;
         private static MainViewModel _currentMain;
         private static ViewTaskTimer SelectedTaskTimer;
         private static bool itEdit;
+
+        public List<string> Users { get; set; }
+        public string SelectedUser { get; set; }
+
+        public List<string> Task { get; set; }
+        public string SelectedTask { get; set; }
+
+
+        public string SpentTime { get; set; }
+        public string Description { get; set; }
 
         public ICommand Save { get; }
         public ICommand Back { get; }
 
         public TaskTimerObjViewModel()
         {
-            User = FunctionsCurrentUser.GetNameUser();
+            Users = FunctionsUsers.GetViewUser();
             Task = FunctionsTask.GetViewTask();
+
+            _currentUser = FunctionsCurrentUser.User;
+            SelectedUser = _currentUser.Name + " " + _currentUser.Surname + " " + _currentUser.MiddleName;
+
             //Инициализация команд
             Save = new ViewModelCommand(ExecutedSaveCommand);
             Back = new ViewModelCommand(ExecutedBackCommand);
@@ -54,10 +63,12 @@ namespace ChronosBeta.ViewModels
 
         private void SetTaskTimer()
         {
-            User = SelectedTaskTimer.TaskTimer.Users1.Name;
+            _currentUser = SelectedTaskTimer.TaskTimer.Users1;
+            SelectedUser = _currentUser.Name + " " + _currentUser.Surname + " " + _currentUser.MiddleName;
+
             SelectedTask = SelectedTaskTimer.Task;
-            SpentTime = SelectedTaskTimer.SpentTime;
-            Description = SelectedTaskTimer.TaskTimer.Description;
+            SpentTime    = SelectedTaskTimer.SpentTime;
+            Description  = SelectedTaskTimer.TaskTimer.Description;
         }
         private void ExecutedSaveCommand(object obj)
         {
@@ -65,7 +76,7 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsTaskMark.AddTaskTimer(User, SelectedTask, SpentTime, Description);
+                    FunctionsTaskMark.AddTaskTimer(FunctionsUsers.GetUserId(SelectedUser), FunctionsTask.GetIdTask(SelectedTask), SpentTime, Description);
                     MessageBox.Show("Отметка добавлена");
                 }
                 catch
@@ -77,7 +88,7 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsTaskMark.EditTaskTimer(User, SelectedTask, SpentTime, Description, SelectedTaskTimer.TaskTimer);
+                    FunctionsTaskMark.EditTaskTimer(FunctionsUsers.GetUserId(SelectedUser), FunctionsTask.GetIdTask(SelectedTask), SpentTime, Description, SelectedTaskTimer.TaskTimer);
                     MessageBox.Show("Отметка отредактирована");
                 }
                 catch
@@ -85,7 +96,6 @@ namespace ChronosBeta.ViewModels
                     MessageBox.Show("Отметка не отредактирована");
                 }
             }
-
         }
 
         private void ExecutedBackCommand(object obj)

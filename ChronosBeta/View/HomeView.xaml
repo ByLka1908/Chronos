@@ -22,6 +22,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
+
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
                         Grid.Column="0">
@@ -81,10 +82,10 @@
                        BorderBrush="{StaticResource color2}"
                        BorderThickness="0,0,0,1"                             
                        VerticalContentAlignment="Center"  
-                       Margin="5,5,0,0">
-                </Label>
+                       Margin="5,5,0,0"/>
 
             </StackPanel>
+
         </Grid>
 
         <Grid Grid.Row="1">
@@ -111,8 +112,8 @@
                    BorderBrush="{StaticResource color2}"
                    BorderThickness="0,0,0,0"                             
                    VerticalContentAlignment="Center"  
-                   Margin="5,0,0,0">
-            </Label>
+                   Margin="5,0,0,0"/>
+
             <Border Grid.Row="1" 
                     Background="{StaticResource color3}"
                     CornerRadius="10" 
@@ -169,6 +170,7 @@
                                 </Setter.Value>
                             </Setter>
                         </Style>
+
                     </DataGrid.Resources>
 
                     <DataGrid.RowHeaderStyle>
@@ -188,6 +190,7 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
+
             </Border>
 
             <Label Grid.Row="2" Grid.Column="0" 
@@ -202,27 +205,29 @@
                    BorderBrush="{StaticResource color2}"
                    BorderThickness="0,0,0,0"                             
                    VerticalContentAlignment="Center"  
-                   Margin="5,0,0,0">
-            </Label>
+                   Margin="5,0,0,0"/>
+
             <Border Grid.Row="2" 
                     Background="{StaticResource color3}"
                     CornerRadius="10" 
-                    Padding="10" Margin="0,35,0,35" Grid.RowSpan="3">
+                    Padding="10" 
+                    Margin="0,35,0,35" 
+                    Grid.RowSpan="3">
 
                 <DataGrid HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto"
-                      x:Name="CurrentTask"
-                      ItemsSource="{Binding CurrentTask}"
-                      Background="{StaticResource color3}"
-                      BorderThickness="0"
-                      AutoGenerateColumns="False"
-                      RowBackground="{StaticResource color3}"
-                      AlternatingRowBackground="{StaticResource color3}"
-                      GridLinesVisibility="None"
-                      MinRowHeight="35"
-                      IsReadOnly="True"
-                      HorizontalContentAlignment="Stretch"
-                      ColumnWidth="*">
+                          VerticalScrollBarVisibility="Auto"
+                          x:Name="CurrentTask"
+                          ItemsSource="{Binding CurrentTask}"
+                          Background="{StaticResource color3}"
+                          BorderThickness="0"
+                          AutoGenerateColumns="False"
+                          RowBackground="{StaticResource color3}"
+                          AlternatingRowBackground="{StaticResource color3}"
+                          GridLinesVisibility="None"
+                          MinRowHeight="35"
+                          IsReadOnly="True"
+                          HorizontalContentAlignment="Stretch"
+                          ColumnWidth="*">
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
@@ -235,6 +240,7 @@
                     </DataGrid.ColumnHeaderStyle>
 
                     <DataGrid.Resources>
+
                         <Style TargetType="DataGridRow">
                             <Style.Resources>
                                 <!-- Цвет фона выделенной строки -->
@@ -260,6 +266,7 @@
                                 </Setter.Value>
                             </Setter>
                         </Style>
+
                     </DataGrid.Resources>
 
                     <DataGrid.RowHeaderStyle>
@@ -279,9 +286,11 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
+
             </Border>
 
-            <Label Grid.Row="4" Grid.Column="0" 
+            <Label Grid.Row="4" 
+                   Grid.Column="0" 
                    VerticalAlignment="Bottom"
                    Content="Будущие задачи:"
                    FontSize="13"
@@ -293,27 +302,27 @@
                    BorderBrush="{StaticResource color2}"
                    BorderThickness="0,0,0,0"                             
                    VerticalContentAlignment="Center"  
-                   Margin="5,0,0,98" Grid.RowSpan="2">
-            </Label>
+                   Margin="5,0,0,98" Grid.RowSpan="2"/>
+
             <Border Grid.Row="5" 
                     Background="{StaticResource color3}"
                     CornerRadius="10" 
                     Padding="10">
 
                 <DataGrid HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto"
-                      x:Name="FutureTask"
-                      ItemsSource="{Binding FutureTask}"
-                      Background="{StaticResource color3}"
-                      BorderThickness="0"
-                      AutoGenerateColumns="False"
-                      RowBackground="{StaticResource color3}"
-                      AlternatingRowBackground="{StaticResource color3}"
-                      GridLinesVisibility="None"
-                      MinRowHeight="35"
-                      IsReadOnly="True"
-                      HorizontalContentAlignment="Stretch"
-                      ColumnWidth="*">
+                          VerticalScrollBarVisibility="Auto"
+                          x:Name="FutureTask"
+                          ItemsSource="{Binding FutureTask}"
+                          Background="{StaticResource color3}"
+                          BorderThickness="0"
+                          AutoGenerateColumns="False"
+                          RowBackground="{StaticResource color3}"
+                          AlternatingRowBackground="{StaticResource color3}"
+                          GridLinesVisibility="None"
+                          MinRowHeight="35"
+                          IsReadOnly="True"
+                          HorizontalContentAlignment="Stretch"
+                          ColumnWidth="*">
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
@@ -351,6 +360,7 @@
                                 </Setter.Value>
                             </Setter>
                         </Style>
+
                     </DataGrid.Resources>
 
                     <DataGrid.RowHeaderStyle>
@@ -370,6 +380,7 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
+
             </Border>
 
         </Grid>

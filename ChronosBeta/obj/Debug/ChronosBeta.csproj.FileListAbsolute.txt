@@ -129,3 +129,9 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimerObjView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimerObjView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\Styles\BindablePasswordBox.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\Styles\BindablePasswordBox.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\SettingView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\SettingView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\CustomerView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\CustomerView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\CustomerObjView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\CustomerObjView.baml

@@ -1,14 +1,34 @@
 ﻿using ChronosBeta.DB;
+using ChronosBeta.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ChronosBeta.BL
 {
     public class FunctionsCustomer
     {
+        public static List<ViewCustomer> GetCustomers()
+        {
+            try
+            {
+                CronosEntities entities = new CronosEntities();
+                var costomer = entities.Customers.ToList();
+                List<ViewCustomer> view = new List<ViewCustomer>();
+                foreach (var item in costomer)
+                    view.Add(new ViewCustomer(item));
+                return view;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
         public static int GetIdCustomer(string customer)
         {
             try
@@ -19,6 +39,90 @@ namespace ChronosBeta.BL
             catch
             {
                 throw new Exception("Ошибка при получении отвественного");
+            }
+        }
+
+        public static bool AddCustomer(string Name, string Surname,
+                                       string MiddleName, string Phone, string Email)
+        {
+            Customers customer = new Customers();
+            try
+            {
+                customer.Name = Name;
+                customer.Surname = Surname;
+                customer.MiddleName = MiddleName;
+                customer.Phone = Phone;
+                customer.Email = Email;
+            }
+            catch
+            {
+                throw new Exception("Ошибка иницилизации добавления");
+            }
+            if (customer == null)
+            {
+                return false;
+            }
+            try
+            {
+                CronosEntities entities = new CronosEntities();
+                entities.Customers.Add(customer);
+                entities.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                throw new Exception("Ошибка добавлении пользователя");
+            }
+        }
+
+        public static bool SaveEditCustomer(string Name, string Surname, string MiddleName, 
+                                        string Phone, string Email, Customers customer)
+        {
+            try
+            {
+                customer.Name = Name;
+                customer.Surname = Surname;
+                customer.MiddleName = MiddleName;
+                customer.Phone = Phone;
+                customer.Email = Email;
+            }
+            catch
+            {
+                throw new Exception("Ошибка иницилизации добавления");
+            }
+            if (customer == null)
+            {
+                return false;
+            }
+            try
+            {
+                CronosEntities entities = new CronosEntities();
+                entities.Customers.AddOrUpdate(customer);
+                entities.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                throw new Exception("Ошибка добавлении пользователя");
+            }
+        }
+
+        public static void DeleteCustomer(Customers currentCustomer)
+        {
+            if (currentCustomer == null)
+            {
+                MessageBox.Show("Отметка не выбрана");
+                return;
+            }
+            try
+            {
+                DB.CronosEntities entities = new CronosEntities();
+                entities.Customers.Remove(entities.Customers.Find(currentCustomer.Id_Customers));
+                entities.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Ошибка удаления отметки по задаче");
             }
         }
     }

@@ -34,12 +34,6 @@ namespace ChronosBeta.ViewModels
         public ViewTask SelectedTask { get; set; }
         public string CurrentText { get; set; }
 
-        public void UpdateView()
-        {
-            List<ViewTask> currentTask = FunctionsTask.GetTasks();
-            CurrentTask = CollectionViewSource.GetDefaultView(currentTask);
-        }
-
         public TaskViewModel()
         {
             AddTask = new ViewModelCommand(ExecutedAddTaskCommand);
@@ -53,6 +47,12 @@ namespace ChronosBeta.ViewModels
         public TaskViewModel(MainViewModel main)
         {
             _currentMain = main;
+        }
+
+        public void UpdateView()
+        {
+            List<ViewTask> currentTask = FunctionsTask.GetTasks();
+            CurrentTask = CollectionViewSource.GetDefaultView(currentTask);
         }
 
         private void ExecutedSearchCommand(object obj)

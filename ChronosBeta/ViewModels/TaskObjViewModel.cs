@@ -14,7 +14,11 @@ using System.Xml.Linq;
 namespace ChronosBeta.ViewModels
 {
     public class TaskObjViewModel: ViewModelBase
-    {
+    {   
+        private static MainViewModel _currentMain;
+        private static ViewTask SelectedTask;
+        private static bool itEdit;
+
         public string UserDoTask { get; set; }
         public string UserCreateTask { get; set; }
         public string NameTask { get; set; }
@@ -23,10 +27,6 @@ namespace ChronosBeta.ViewModels
         public string Description { get; set; }
         public string SelectedItsOver { get; set; }
         public List<string> ItsOver { get; set; }
-
-        private static MainViewModel _currentMain;
-        private static ViewTask SelectedTask;
-        private static bool itEdit;
 
         public ICommand Save { get; }
         public ICommand Back { get; }
@@ -40,11 +40,13 @@ namespace ChronosBeta.ViewModels
             if (itEdit)
                 SetTask();
         }
+
         public TaskObjViewModel(MainViewModel main)
         {
             _currentMain = main;
             itEdit = false;
         }
+
         public TaskObjViewModel(MainViewModel main, ViewTask selectedTask)
         {
             _currentMain = main;

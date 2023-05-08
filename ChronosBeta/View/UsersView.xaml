@@ -277,12 +277,20 @@
                 </DataGrid.RowHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Photo}" Foreground="{StaticResource color2}" Header="Фото" MinWidth="60"/>
-                    <DataGridTextColumn Binding="{Binding Name}" Foreground="{StaticResource color2}" Header="Имя" MinWidth="125"/>
-                    <DataGridTextColumn Binding="{Binding Surname}" Foreground="{StaticResource color2}" Header="Фамилия" MinWidth="125"/>
-                    <DataGridTextColumn Binding="{Binding Phone}" Foreground="{StaticResource color2}"  Header="Телефон" MinWidth="100"/>
-                    <DataGridTextColumn Binding="{Binding Skype}" Foreground="{StaticResource color2}"  Header="Skype" MinWidth="150"/>
-                    <DataGridTextColumn Binding="{Binding JobTitle}" Foreground="{StaticResource color2}"  Header="Должность" MinWidth="125"/>
+
+                    <DataGridTemplateColumn Header="Фото" MaxWidth="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ImageUser}" Margin="5" Width="75" Height="75"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                    <DataGridTextColumn Binding="{Binding Name}"     Foreground="{StaticResource color2}" Header="Имя"       MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding Surname}"  Foreground="{StaticResource color2}" Header="Фамилия"   MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding Phone}"    Foreground="{StaticResource color2}" Header="Телефон"   MinWidth="100"/>
+                    <DataGridTextColumn Binding="{Binding Skype}"    Foreground="{StaticResource color2}" Header="Skype"     MinWidth="150"/>
+                    <DataGridTextColumn Binding="{Binding JobTitle}" Foreground="{StaticResource color2}" Header="Должность" MinWidth="125"/>
                 </DataGrid.Columns>
 
             </DataGrid>

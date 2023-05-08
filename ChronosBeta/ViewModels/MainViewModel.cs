@@ -72,6 +72,7 @@ namespace ChronosBeta.ViewModels
         public ICommand ShowTaskTimerViewCommand { get; }
         public ICommand ShowProjectViewCommand { get; }
         public ICommand ShowDateTimerCommand { get; }
+        public ICommand ShowSettingViewCommand { get; }
 
         public MainViewModel() 
         {
@@ -85,10 +86,18 @@ namespace ChronosBeta.ViewModels
             ShowTaskTimerViewCommand = new ViewModelCommand(ExecutedShowTaskTimerCommand);
             ShowProjectViewCommand = new ViewModelCommand(ExecutedShowProjectCommand);
             ShowDateTimerCommand = new ViewModelCommand(ExecutedShowDateTimerCommandCommand);
+            ShowSettingViewCommand = new ViewModelCommand(ExecutedShowSettingCommandCommand);
 
             //Defoult view
             ExecutedShowHomeCommand(null);
             LoadCurrentUserData();
+        }
+
+        private void ExecutedShowSettingCommandCommand(object obj)
+        {
+            CurrentChildView = new SettingViewModel(this);
+            Caption = "Настройки";
+            Icon = IconChar.Gears;
         }
 
         private void ExecutedShowListApplicationViewCommand(object obj)

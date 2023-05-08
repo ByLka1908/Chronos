@@ -30,67 +30,40 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static bool AddTaskTimer(string User, string Task,
-                              string SpentTime, string Description)
+        public static void AddTaskTimer(int User, int Task, string SpentTime, string Description)
         {
             TaskTimer taskTimer = new TaskTimer();
-            try
-            {
-                taskTimer.Users = FunctionsUsers.GetIdUser(User); 
-                taskTimer.Task = FunctionsTask.GetIdTask(Task);
-                taskTimer.SpentTime = Convert.ToDouble(SpentTime);
-                taskTimer.Description = Description;
-            }
-            catch
-            {
-                throw new Exception("Ошибка иницилизации добавления");
-            }
+
+            taskTimer.Users       = User; 
+            taskTimer.Task        = Task;
+            taskTimer.SpentTime   = Convert.ToDouble(SpentTime);
+            taskTimer.Description = Description;
+
             if (taskTimer == null)
             {
-                return false;
+                throw new Exception();
             }
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                entities.TaskTimer.Add(taskTimer);
-                entities.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                throw new Exception("Ошибка добавлении отметки по задаче");
-            }
+
+            CronosEntities entities = new CronosEntities();
+            entities.TaskTimer.Add(taskTimer);
+            entities.SaveChanges();
         }
 
-        public static bool EditTaskTimer(string User, string Task,
-                              string SpentTime, string Description, TaskTimer taskTimer)
+        public static void EditTaskTimer(int User, int Task, string SpentTime, string Description, TaskTimer taskTimer)
         {
-            try
-            {
-                taskTimer.Users = FunctionsUsers.GetIdUser(User); 
-                taskTimer.Task = FunctionsTask.GetIdTask(Task);
-                taskTimer.SpentTime = Convert.ToDouble(SpentTime);
-                taskTimer.Description = Description;
-            }
-            catch
-            {
-                throw new Exception("Ошибка иницилизации добавления");
-            }
+            taskTimer.Users = User; 
+            taskTimer.Task = Task;
+            taskTimer.SpentTime = Convert.ToDouble(SpentTime);
+            taskTimer.Description = Description;
+
             if (taskTimer == null)
             {
-                return false;
+                throw new Exception();
             }
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                entities.TaskTimer.AddOrUpdate(taskTimer);
-                entities.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                throw new Exception("Ошибка редактирование отметки по задаче");
-            }
+
+            CronosEntities entities = new CronosEntities();
+            entities.TaskTimer.AddOrUpdate(taskTimer);
+            entities.SaveChanges();
         }
 
         public static void DeleteTaskTimer(TaskTimer currentTask)

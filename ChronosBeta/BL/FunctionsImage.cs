@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using System.Drawing;
-using static System.Resources.ResXFileRef;
-using System.Windows.Interop;
-using System.Windows;
-using System.Drawing.Imaging;
 
 namespace ChronosBeta.BL
 {

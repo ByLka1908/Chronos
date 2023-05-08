@@ -160,16 +160,18 @@
                                FontSize="12"
                                VerticalAlignment="Center" Height="15"/>
 
-                    <TextBox Grid.Column="1"
-                             Grid.Row="0"
-                             Text="{Binding User}"
-                             Background="{StaticResource color5}"
-                             Foreground="{StaticResource color2}"
-                             BorderThickness="0"
-                             FontFamily="Montserrat"
-                             FontSize="12"
-                             VerticalContentAlignment="Center"
-                             Style="{StaticResource TextBox}"/>
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="0"
+                              ItemsSource="{Binding Users}"
+                              SelectedItem="{Binding SelectedUser}"
+                              Background="{StaticResource color5}"
+                              Foreground="{StaticResource color2}"
+                              BorderThickness="0"
+                              FontFamily="Montserrat"
+                              FontSize="12"
+                              Height="25"
+                              VerticalContentAlignment="Center"
+                              Style="{StaticResource ComboBoxStyle}" />
 
                     <TextBlock Text="Задача:"
                                Grid.Column="0"

@@ -134,6 +134,7 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ViewCurrentUser.cs" />
+    <Compile Include="Model\ViewCustomer.cs" />
     <Compile Include="Model\ViewDateTimer.cs" />
     <Compile Include="Model\ViewListApplication.cs" />
     <Compile Include="Model\ViewProject.cs" />
@@ -149,6 +150,8 @@
     <Compile Include="Styles\UIColors.xaml.cs">
       <DependentUpon>UIColors.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CustomerObjViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\DateTimerObjViewModel.cs" />
     <Compile Include="ViewModels\DateTimerViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -157,6 +160,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ProjectObjViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewMode.cs" />
+    <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\TaskObjViewModel.cs" />
     <Compile Include="ViewModels\TaskTimerObjViewModel.cs" />
     <Compile Include="ViewModels\TaskTimerViewModel.cs" />
@@ -165,6 +169,12 @@
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
+    <Compile Include="View\CustomerObjView.xaml.cs">
+      <DependentUpon>CustomerObjView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DateTimerObjView.xaml.cs">
       <DependentUpon>DateTimerObjView.xaml</DependentUpon>
     </Compile>
@@ -188,6 +198,9 @@
     </Compile>
     <Compile Include="View\ProjectsView.xaml.cs">
       <DependentUpon>ProjectsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingView.xaml.cs">
+      <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TaksView.xaml.cs">
       <DependentUpon>TaksView.xaml</DependentUpon>
@@ -224,6 +237,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CustomerObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DateTimerObjView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -253,6 +274,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ProjectsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

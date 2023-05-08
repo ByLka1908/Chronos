@@ -50,6 +50,7 @@
                          VerticalContentAlignment="Center"  
                          Margin="5,5,0,0">
                 </TextBox>
+                
             </StackPanel>
 
             <DatePicker Grid.Column="1"
@@ -71,6 +72,7 @@
                         <Setter Property="BorderThickness" Value="0"/>
                     </Style>
                 </DatePicker.CalendarStyle>
+                
             </DatePicker>
 
             <Button Grid.Column="2"
@@ -86,6 +88,7 @@
                     Width="120">
 
                 <Button.Style>
+                    
                     <Style TargetType="Button">
 
                         <Setter Property="Background" Value="{StaticResource color3}"/>
@@ -105,8 +108,11 @@
                                 <Setter Property="Background" Value="{StaticResource color4}"/>
                             </Trigger>
                         </Style.Triggers>
+                        
                     </Style>
+                    
                 </Button.Style>
+                
             </Button>
 
             <Button Grid.Column="4" Margin="10,0,0,0"
@@ -120,6 +126,7 @@
                     VerticalAlignment="Top">
 
                 <Button.Style>
+                    
                     <Style TargetType="Button">
 
                         <Setter Property="Background" Value="{StaticResource color3}"/>
@@ -141,7 +148,9 @@
                         </Style.Triggers>
 
                     </Style>
+                    
                 </Button.Style>
+                
             </Button>
 
         </Grid>

@@ -8,11 +8,11 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <UserControl.DataContext>
         <viewModel:TaskViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -101,7 +101,7 @@
                     VerticalAlignment="Top">
 
                 <fa:IconImage Icon="Trash" Style="{StaticResource controlButtonIcon}"/>
-                
+
                 <Button.Style>
 
                     <Style TargetType="Button">
@@ -179,7 +179,7 @@
                     VerticalAlignment="Top">
 
                 <fa:IconImage Icon="Pen" Style="{StaticResource controlButtonIcon}"/>
-                
+
                 <Button.Style>
 
                     <Style TargetType="Button">
@@ -285,4 +285,5 @@
             </DataGrid>
         </Border>
     </Grid>
+    
 </UserControl>

@@ -9,6 +9,7 @@ using System.Data.Entity.Migrations;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ChronosBeta.BL
 {
@@ -24,6 +25,20 @@ namespace ChronosBeta.BL
                 foreach (var user in users)
                     listUser.Add(new ViewUsers(user));
                 return listUser;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
+        public static List<string> GetViewUser()
+        {
+            try
+            {
+                CronosEntities entities = new CronosEntities();
+                var users = entities.Users.Select(x => x.Name + " " + x.Surname + " " + x.MiddleName).ToList();
+                return users;
             }
             catch (Exception ex)
             {
@@ -112,7 +127,25 @@ namespace ChronosBeta.BL
             }
             catch
             {
-                throw new Exception("Ошибка при получении отвественного");
+                throw new Exception("Ошибка при получении пользователя");
+            }
+        }
+
+        public static int GetUserId(string user)
+        {
+            try
+            {
+                string[] FIO = user.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string Name = FIO[0];
+                string Surname = FIO[1];
+                string MiddleName = FIO[2];
+
+                CronosEntities entities = new CronosEntities();
+                return entities.Users.Where(x => x.Name == Name && x.Surname == Surname && x.MiddleName == MiddleName).First().ID_Users;
+            }
+            catch
+            {
+                throw new Exception("Ошибка при получении пользователя");
             }
         }
 

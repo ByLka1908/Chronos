@@ -127,7 +127,7 @@ namespace ChronosBeta.BL
         {
             try
             {
-                DB.CronosEntities entities = new DB.CronosEntities();
+                CronosEntities entities = new CronosEntities();
                 var task = entities.Task.Select(x => x.NameTask).ToList();
                 return task;
             }

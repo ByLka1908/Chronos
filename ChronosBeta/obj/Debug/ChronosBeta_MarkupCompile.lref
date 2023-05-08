@@ -1,6 +1,8 @@
 ﻿
 FF:\GitProject\Chronos\ChronosBeta\App.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\Styles\BindablePasswordBox.xaml;;
+FF:\GitProject\Chronos\ChronosBeta\View\CustomerObjView.xaml;;
+FF:\GitProject\Chronos\ChronosBeta\View\CustomerView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\DateTimerObjView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\DateTimerView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\HomeView.xaml;;
@@ -9,6 +11,7 @@ FF:\GitProject\Chronos\ChronosBeta\View\LoginView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\MainView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\ProjectObjView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\ProjectsView.xaml;;
+FF:\GitProject\Chronos\ChronosBeta\View\SettingView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\TaksView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\TaskObjView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\TaskTimerObjView.xaml;;

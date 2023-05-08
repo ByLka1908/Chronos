@@ -1,48 +1,36 @@
 ﻿using ChronosBeta.DB;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Media;
 using ChronosBeta.Model;
 using Label = System.Windows.Controls.Label;
-using System.Windows.Forms;
-using System.Security.Permissions;
+using System.Windows.Media.Imaging;
 
 namespace ChronosBeta.BL
 {
     public class FunctionsCurrentUser
     {
-        private static Users User { get; set; }
+        private static Users _user;
+        public static Users User
+        {
+            get { return _user; }
+        } 
+
         private static string Name { get; set; }
         private static string Surname { get; set; }
         private static string MiddleName { get; set; }
         private static string JobTitle { get; set; }
-
-        //private static string ImageUser { get; set; }
+        private static BitmapImage ImageUser { get; set; }
 
         public static void SetUser(Users user)
         {
-            User = user;
+            _user = user;
             Name = user.Name;
             Surname = user.Surname;
             MiddleName = user.MiddleName;
             JobTitle = $"Должность: {user.JobTitles.NameJobTitle}";
-            //ImageUser = string.IsNullOrWhiteSpace(user.ImageUser) ? @"/ImageDef.jpg" : user.ImageUser;
-        }
 
-        public static void GetUser(Label name, Label surname, Label jobTitle, Image imageUser)
-        {
-            name.Content = Name;
-            surname.Content = Surname;
-            jobTitle.Content = JobTitle;
-            //imageUser.Source = Image(ImageUser);
+            if (user.ImageUser == null || user.ImageUser.Length == 0)
+                return;
+            ImageUser = FunctionsImage.ByteToBitmapImage(user.ImageUser);
         }
 
         public static int GetIDUser()
@@ -50,17 +38,12 @@ namespace ChronosBeta.BL
             return User.ID_Users;
         }
 
-        public static string GetNameUser()
-        {
-            return Name;
-        }
-
         public static ViewCurrentUser GetViewUser()
         {
             ViewCurrentUser user = new ViewCurrentUser();
             user.Username = Name;
             user.DisplayName = $"{Name} {MiddleName} {Surname}";
-            user.ProfilePicture = null;
+            user.ImageUser = ImageUser;
             return user;
         }
     }
