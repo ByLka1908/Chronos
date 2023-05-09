@@ -25,12 +25,15 @@ namespace ChronosBeta.ViewModels
 
         public ICollectionView CurrentAppList { get; private set; }
         public ICommand Back { get; }
+        public ICommand OpenListScreentshot { get; }
 
         public DateTimerObjViewModel() 
         {
             Back = new ViewModelCommand(ExecutedBackCommand);
+            OpenListScreentshot = new ViewModelCommand(ExecutedOpenListScreentshotCommand);
             SetDateTimer();
         }
+
         public DateTimerObjViewModel(MainViewModel main, ViewDateTimer dateTimer)
         {
             _currentMain = main;
@@ -42,7 +45,15 @@ namespace ChronosBeta.ViewModels
             _currentMain.CurrentChildView = new DateTimerViewModel();
             _currentMain.Caption = "Рабочее время";
             _currentMain.Icon = IconChar.Clock;
+        } 
+
+        private void ExecutedOpenListScreentshotCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new ScreenshotViewModel(_currentMain, DateTimer);
+            _currentMain.Caption = "Снимки экрана";
+            _currentMain.Icon = IconChar.Images;
         }
+
         private void SetDateTimer()
         {
             if (DateTimer == null)

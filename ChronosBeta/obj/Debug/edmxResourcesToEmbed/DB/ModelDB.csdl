@@ -23,6 +23,7 @@
     <Property Name="TimeEnd" Type="Time" Nullable="false" Precision="0" />
     <Property Name="AllRunProgram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Users1" Relationship="Self.FK_DateTimer_Users" FromRole="DateTimer" ToRole="Users" />
+    <NavigationProperty Name="Screenshot" Relationship="Self.FK_Screenshot_DateTimer" FromRole="DateTimer" ToRole="Screenshot" />
   </EntityType>
   <EntityType Name="JobTitles">
     <Key>
@@ -46,6 +47,16 @@
     <NavigationProperty Name="Customers" Relationship="Self.FK_Project_Customers" FromRole="Project" ToRole="Customers" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Project_Users" FromRole="Project" ToRole="Users" />
     <NavigationProperty Name="Task" Relationship="Self.FK_Task_Project" FromRole="Project" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Screenshot">
+    <Key>
+      <PropertyRef Name="Id_Screenshot" />
+    </Key>
+    <Property Name="Id_Screenshot" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageScreenshot" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="0" />
+    <Property Name="DateTimer" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DateTimer1" Relationship="Self.FK_Screenshot_DateTimer" FromRole="Screenshot" ToRole="DateTimer" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -130,6 +141,18 @@
       </Principal>
       <Dependent Role="DateTimer">
         <PropertyRef Name="Users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Screenshot_DateTimer">
+    <End Role="DateTimer" Type="Self.DateTimer" Multiplicity="1" />
+    <End Role="Screenshot" Type="Self.Screenshot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DateTimer">
+        <PropertyRef Name="ID_DateTimer" />
+      </Principal>
+      <Dependent Role="Screenshot">
+        <PropertyRef Name="DateTimer" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -230,6 +253,7 @@
     <EntitySet Name="DateTimer" EntityType="Self.DateTimer" />
     <EntitySet Name="JobTitles" EntityType="Self.JobTitles" />
     <EntitySet Name="Project" EntityType="Self.Project" />
+    <EntitySet Name="Screenshot" EntityType="Self.Screenshot" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Task" EntityType="Self.Task" />
     <EntitySet Name="TaskTimer" EntityType="Self.TaskTimer" />
@@ -241,6 +265,10 @@
     <AssociationSet Name="FK_DateTimer_Users" Association="Self.FK_DateTimer_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="DateTimer" EntitySet="DateTimer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Screenshot_DateTimer" Association="Self.FK_Screenshot_DateTimer">
+      <End Role="DateTimer" EntitySet="DateTimer" />
+      <End Role="Screenshot" EntitySet="Screenshot" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_JobTitles" Association="Self.FK_Users_JobTitles">
       <End Role="JobTitles" EntitySet="JobTitles" />

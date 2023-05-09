@@ -3,11 +3,125 @@ using System.IO;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.Drawing;
+using System.Timers;
+using System.Collections.Generic;
+using ChronosBeta.Model;
+using System.Drawing.Imaging;
+using Point = System.Drawing.Point;
+using ChronosBeta.DB;
+using System.Linq;
+using System.Diagnostics;
+using Size = System.Drawing.Size;
 
 namespace ChronosBeta.BL
 {
     public static class FunctionsImage
     {
+        private static List<ViewScreenshot> Screenshots { get; set; }
+        private static System.Timers.Timer myTimer;
+        public static int CurrentDateTimer;
+
+        public static List<ViewScreenshot> GetScreenshot(int dateTimer)
+        {
+            try
+            {
+                CronosEntities entities = new CronosEntities();
+                var screnshot = entities.Screenshot.Where(x => x.DateTimer == dateTimer).ToList();
+                List<ViewScreenshot> listScreenshot = new List<ViewScreenshot>();
+                foreach (var scren in screnshot)
+                    listScreenshot.Add(new ViewScreenshot(scren));
+                return listScreenshot;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
+        public static void StartScreenshot()
+        {
+            myTimer = new System.Timers.Timer(5000); //5 сек
+            myTimer.Elapsed += Screenshot;
+            myTimer.Enabled = true;
+            Screenshots = new List<ViewScreenshot>();
+        }
+
+        private async static void Screenshot(Object source, ElapsedEventArgs e)
+        {
+            Size monitorSize = GetMonitorSize();
+            Bitmap bmp = new Bitmap(monitorSize.Width, monitorSize.Height);
+            Graphics graphics = Graphics.FromImage(bmp);
+            graphics.CopyFromScreen(Point.Empty, Point.Empty, bmp.Size);
+
+            ViewScreenshot currentscren = new ViewScreenshot();
+            currentscren.Screenshot = new DB.Screenshot();
+            currentscren.ImageScreenshot = BitmapToBitmapImage(bmp);
+            currentscren.Time = DateTime.Now.ToLongTimeString();
+
+            Screenshots.Add(currentscren);
+
+            await System.Threading.Tasks.Task.Delay(1000);
+        }
+
+        private static Size GetMonitorSize()
+        {
+            IntPtr hwnd = Process.GetCurrentProcess().MainWindowHandle;
+            Graphics g = Graphics.FromHwnd(hwnd);
+
+            return new Size((int)g.VisibleClipBounds.Width, (int)g.VisibleClipBounds.Height);
+        }
+
+        public static void AddScreenshot()
+        {
+            foreach (var screenshot in Screenshots)
+            {
+                Screenshot currentscren = new Screenshot();
+                try
+                {
+                    currentscren.ImageScreenshot = PushImage(screenshot.ImageScreenshot);
+                    currentscren.DateTimer = CurrentDateTimer;
+                    currentscren.Time = StringToTimeSpan(screenshot.Time);
+                }
+                catch
+                {
+                    throw new Exception("Ошибка иницилизации добавления");
+                }
+
+                if (currentscren == null)
+                    return;
+
+                try
+                {
+                    DB.CronosEntities entities = new DB.CronosEntities();
+                    entities.Screenshot.Add(currentscren);
+                    entities.SaveChanges();
+                    return;
+                }
+                catch
+                {
+                    throw new Exception("Ошибка добавления");
+                }
+            }
+        }
+
+        private static TimeSpan StringToTimeSpan(string str)
+        {
+            try
+            {
+                string[] time = str.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                string hours = time[0];
+                string min = time[1];
+                string sec = time[2];
+
+                return new TimeSpan(Convert.ToInt32(hours), Convert.ToInt32(min), Convert.ToInt32(sec));
+            }
+            catch
+            {
+                throw new Exception("Ошибка при времени");
+            }
+        }
+
         public static BitmapImage GetImage(string path = null)
         {
             if (path == null)
@@ -57,6 +171,24 @@ namespace ChronosBeta.BL
             bitmapImage.Freeze();
 
             return bitmapImage;
+        }
+
+        private static BitmapImage BitmapToBitmapImage(this Bitmap bitmap)
+        {
+            using (var memory = new MemoryStream())
+            {
+                bitmap.Save(memory, ImageFormat.Png);
+                memory.Position = 0;
+
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memory;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                bitmapImage.Freeze();
+
+                return bitmapImage;
+            }
         }
     }
 }

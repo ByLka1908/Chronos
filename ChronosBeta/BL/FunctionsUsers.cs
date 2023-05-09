@@ -2,14 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ChronosBeta.DB;
 using System.Data.Entity.Migrations;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ChronosBeta.BL
 {
@@ -115,19 +111,6 @@ namespace ChronosBeta.BL
             catch
             {
                 throw new Exception("Ошибка редактирования пользователя");
-            }
-        }
-
-        public static int GetIdUser(string user)
-        {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                return entities.Users.Where(x => x.Name == user).First().ID_Users;
-            }
-            catch
-            {
-                throw new Exception("Ошибка при получении пользователя");
             }
         }
 

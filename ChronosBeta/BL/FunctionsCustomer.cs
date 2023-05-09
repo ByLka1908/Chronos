@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace ChronosBeta.BL
@@ -40,19 +38,6 @@ namespace ChronosBeta.BL
             catch (Exception ex)
             {
                 throw new Exception(ex.ToString());
-            }
-        }
-
-        public static int GetIdCustomer(string customer)
-        {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                return entities.Customers.Where(x => x.Surname == customer).First().Id_Customers;
-            }
-            catch
-            {
-                throw new Exception("Ошибка при получении отвественного");
             }
         }
 

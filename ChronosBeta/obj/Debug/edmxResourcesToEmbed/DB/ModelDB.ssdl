@@ -41,6 +41,15 @@
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Deadline" Type="date" Nullable="false" />
   </EntityType>
+  <EntityType Name="Screenshot">
+    <Key>
+      <PropertyRef Name="Id_Screenshot" />
+    </Key>
+    <Property Name="Id_Screenshot" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageScreenshot" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Time" Type="time" Precision="0" Nullable="false" />
+    <Property Name="DateTimer" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -126,6 +135,18 @@
       </Principal>
       <Dependent Role="Project">
         <PropertyRef Name="ResponsibleОfficer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Screenshot_DateTimer">
+    <End Role="DateTimer" Type="Self.DateTimer" Multiplicity="1" />
+    <End Role="Screenshot" Type="Self.Screenshot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DateTimer">
+        <PropertyRef Name="ID_DateTimer" />
+      </Principal>
+      <Dependent Role="Screenshot">
+        <PropertyRef Name="DateTimer" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -243,6 +264,7 @@
     <EntitySet Name="DateTimer" EntityType="Self.DateTimer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JobTitles" EntityType="Self.JobTitles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Screenshot" EntityType="Self.Screenshot" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaskTimer" EntityType="Self.TaskTimer" Schema="dbo" store:Type="Tables" />
@@ -258,6 +280,10 @@
     <AssociationSet Name="FK_Project_Users" Association="Self.FK_Project_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Screenshot_DateTimer" Association="Self.FK_Screenshot_DateTimer">
+      <End Role="DateTimer" EntitySet="DateTimer" />
+      <End Role="Screenshot" EntitySet="Screenshot" />
     </AssociationSet>
     <AssociationSet Name="FK_Task_Project" Association="Self.FK_Task_Project">
       <End Role="Project" EntitySet="Project" />

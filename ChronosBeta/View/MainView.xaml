@@ -23,6 +23,10 @@
             <local:SettingView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:ScreenshotViewModel}">
+            <local:ScreenshotView/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
             <local:HomeView/>
         </DataTemplate>

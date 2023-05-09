@@ -46,6 +46,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Screenshot">
+      <EntityTypeMapping TypeName="CronosModel.Screenshot">
+        <MappingFragment StoreEntitySet="Screenshot">
+          <ScalarProperty Name="Id_Screenshot" ColumnName="Id_Screenshot" />
+          <ScalarProperty Name="ImageScreenshot" ColumnName="ImageScreenshot" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="DateTimer" ColumnName="DateTimer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="CronosModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">

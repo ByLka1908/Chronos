@@ -115,6 +115,9 @@
     <Compile Include="DB\Project.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Screenshot.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -138,6 +141,7 @@
     <Compile Include="Model\ViewDateTimer.cs" />
     <Compile Include="Model\ViewListApplication.cs" />
     <Compile Include="Model\ViewProject.cs" />
+    <Compile Include="Model\ViewScreenshot.cs" />
     <Compile Include="Model\ViewTask.cs" />
     <Compile Include="Styles\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
@@ -160,6 +164,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ProjectObjViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewMode.cs" />
+    <Compile Include="ViewModels\ScreenshotViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\TaskObjViewModel.cs" />
     <Compile Include="ViewModels\TaskTimerObjViewModel.cs" />
@@ -198,6 +203,9 @@
     </Compile>
     <Compile Include="View\ProjectsView.xaml.cs">
       <DependentUpon>ProjectsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenshotView.xaml.cs">
+      <DependentUpon>ScreenshotView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
@@ -274,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ProjectsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ScreenshotView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

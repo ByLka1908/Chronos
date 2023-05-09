@@ -1,25 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using ChronosBeta.ViewModels;
-using FontAwesome.Sharp;
 using ChronosBeta.Model;
 
 namespace ChronosBeta.BL
 {
     public class FunctionsDateTimer
     {
-        private static bool joobTime = false;
+        private static bool joobTime      = false;
         private static TimeSpan timeStart = new TimeSpan();
-        private static TimeSpan timeEnd = new TimeSpan();
+        private static TimeSpan timeEnd   = new TimeSpan();
 
         private static bool AddDateTimer(TimeSpan timeStart, TimeSpan timeEnd)
         {
@@ -45,6 +36,8 @@ namespace ChronosBeta.BL
                 DB.CronosEntities entities = new DB.CronosEntities();
                 entities.DateTimer.Add(time);
                 entities.SaveChanges();
+                FunctionsImage.CurrentDateTimer = time.ID_DateTimer;
+                FunctionsImage.AddScreenshot();
                 return true;
             }
             catch
@@ -71,9 +64,11 @@ namespace ChronosBeta.BL
 
                 timeStart = DateTime.Now.TimeOfDay;
                 FunctionsJSON.CreateJson();
+                FunctionsImage.StartScreenshot();
             }
             return contentLabel;
         }
+
         public static SolidColorBrush GetColorBrushes()
         {
             if (joobTime)

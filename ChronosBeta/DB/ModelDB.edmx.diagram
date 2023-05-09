@@ -4,17 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fbf36d4b41b642d0a68970e4d487cb58" Name="Diagram1">
-        <EntityTypeShape EntityType="CronosModel.Customers" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CronosModel.DateTimer" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CronosModel.JobTitles" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CronosModel.Project" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CronosModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CronosModel.Task" Width="1.5" PointX="10.5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CronosModel.TaskTimer" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CronosModel.Users" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+      <Diagram DiagramId="29d4a5bcda254046a2754bfc3644a4ca" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="CronosModel.Customers" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.DateTimer" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.JobTitles" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.Project" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.Screenshot" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.Task" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.TaskTimer" Width="1.5" PointX="9.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CronosModel.Users" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="CronosModel.FK_Project_Customers" ManuallyRouted="false" />
         <AssociationConnector Association="CronosModel.FK_DateTimer_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CronosModel.FK_Screenshot_DateTimer" ManuallyRouted="false" />
         <AssociationConnector Association="CronosModel.FK_Users_JobTitles" ManuallyRouted="false" />
         <AssociationConnector Association="CronosModel.FK_Project_Users" ManuallyRouted="false" />
         <AssociationConnector Association="CronosModel.FK_Task_Project" ManuallyRouted="false" />
