@@ -8,7 +8,7 @@ namespace ChronosBeta.BL
 {
     public class FunctionsDateTimer
     {
-        private static bool joobTime      = false;
+        private static bool     joobTime  = false;
         private static TimeSpan timeStart = new TimeSpan();
         private static TimeSpan timeEnd   = new TimeSpan();
 

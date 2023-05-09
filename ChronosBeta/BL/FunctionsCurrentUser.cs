@@ -1,7 +1,5 @@
 ﻿using ChronosBeta.DB;
-using System.Windows.Controls;
 using ChronosBeta.Model;
-using Label = System.Windows.Controls.Label;
 using System.Windows.Media.Imaging;
 
 namespace ChronosBeta.BL

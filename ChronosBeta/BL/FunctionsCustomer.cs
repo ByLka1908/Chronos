@@ -60,88 +60,51 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static bool AddCustomer(string Name, string Surname,
+        public static void AddCustomer(string Name, string Surname,
                                        string MiddleName, string Phone, string Email)
         {
             Customers customer = new Customers();
-            try
-            {
-                customer.Name = Name;
-                customer.Surname = Surname;
-                customer.MiddleName = MiddleName;
-                customer.Phone = Phone;
-                customer.Email = Email;
-            }
-            catch
-            {
-                throw new Exception("Ошибка иницилизации добавления");
-            }
+
+            customer.Name = Name;
+            customer.Surname = Surname;
+            customer.MiddleName = MiddleName;
+            customer.Phone = Phone;
+            customer.Email = Email;
+
             if (customer == null)
             {
-                return false;
+                return;
             }
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                entities.Customers.Add(customer);
-                entities.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                throw new Exception("Ошибка добавлении пользователя");
-            }
+
+            CronosEntities entities = new CronosEntities();
+            entities.Customers.Add(customer);
+            entities.SaveChanges();
         }
 
-        public static bool SaveEditCustomer(string Name, string Surname, string MiddleName, 
+        public static void SaveEditCustomer(string Name, string Surname, string MiddleName, 
                                         string Phone, string Email, Customers customer)
         {
-            try
-            {
-                customer.Name = Name;
-                customer.Surname = Surname;
-                customer.MiddleName = MiddleName;
-                customer.Phone = Phone;
-                customer.Email = Email;
-            }
-            catch
-            {
-                throw new Exception("Ошибка иницилизации добавления");
-            }
+            customer.Name = Name;
+            customer.Surname = Surname;
+            customer.MiddleName = MiddleName;
+            customer.Phone = Phone;
+            customer.Email = Email;
+
             if (customer == null)
             {
-                return false;
+                return;
             }
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                entities.Customers.AddOrUpdate(customer);
-                entities.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                throw new Exception("Ошибка добавлении пользователя");
-            }
+
+            CronosEntities entities = new CronosEntities();
+            entities.Customers.AddOrUpdate(customer);
+            entities.SaveChanges();
         }
 
         public static void DeleteCustomer(Customers currentCustomer)
         {
-            if (currentCustomer == null)
-            {
-                MessageBox.Show("Отметка не выбрана");
-                return;
-            }
-            try
-            {
-                DB.CronosEntities entities = new CronosEntities();
-                entities.Customers.Remove(entities.Customers.Find(currentCustomer.Id_Customers));
-                entities.SaveChanges();
-            }
-            catch
-            {
-                throw new Exception("Ошибка удаления отметки по задаче");
-            }
+            CronosEntities entities = new CronosEntities();
+            entities.Customers.Remove(entities.Customers.Find(currentCustomer.Id_Customers));
+            entities.SaveChanges();
         }
     }
 }

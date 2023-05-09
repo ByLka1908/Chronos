@@ -366,6 +366,7 @@
                              FontFamily="Montserrat"
                              FontSize="12"
                              Style="{StaticResource TextBox}">
+                        
                         <TextBox.Resources>
                             <Style TargetType="{x:Type ScrollBar}">
                                 <Setter Property="Template">

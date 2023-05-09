@@ -24,7 +24,7 @@ namespace ChronosBeta.BL
             }
             catch
             {
-                MessageBox.Show("Ошибка аунтификации");
+                FunctionsWindow.OpenErrorWindow("Ошибка аунтефикации.\nНе найден пользователь");
                 return false;
             }
         }

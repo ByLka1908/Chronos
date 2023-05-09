@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace ChronosBeta.BL
@@ -43,9 +41,9 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static bool AddProject(string NameProject, int ResponsibleCustomer,
+        public static bool AddProject(string NameProject,     int ResponsibleCustomer,
                                       int ResponsibleOfficer, string Budget,
-                                      string DeadLine, string Description)
+                                      string DeadLine,        string Description)
         {
             Project project = new Project();
             try
@@ -78,9 +76,10 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static bool EditProject(string NameProject, int ResponsibleCustomer,
+        public static bool EditProject(string NameProject,     int ResponsibleCustomer,
                                        int ResponsibleOfficer, string Budget,
-                                       string DeadLine, string Description, Project currentProject)
+                                       string DeadLine,        string Description, 
+                                       Project currentProject)
         {
             try
             {

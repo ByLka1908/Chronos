@@ -60,28 +60,35 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSearchCommand(object obj)
         {
-            if (CurrentText == null)
+            try
             {
-                return;
-            }
+                if (CurrentText == null)
+                {
+                    return;
+                }
 
-            if (CurrentText == string.Empty)
+                if (CurrentText == string.Empty)
+                {
+                    UpdateView();
+                    return;
+                }
+
+                List<ViewCustomer> currentCustomer = FunctionsCustomer.GetCustomers();
+                List<ViewCustomer> findCustomer = currentCustomer.Where(x => x.Surname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
+
+                if (findCustomer.Count < 1)
+                {
+                    FunctionsWindow.OpenConfrumWindow("Обьект не найден");
+                    CurrentText = string.Empty;
+                    UpdateView();
+                    return;
+                }
+                CurrentCustomer = CollectionViewSource.GetDefaultView(findCustomer);
+            }
+            catch
             {
-                UpdateView();
-                return;
+                FunctionsWindow.OpenErrorWindow("Ошибка поиска");
             }
-
-            List<ViewCustomer> currentCustomer = FunctionsCustomer.GetCustomers();
-            List<ViewCustomer> findCustomer = currentCustomer.Where(x => x.Surname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
-
-            if (findCustomer.Count < 1)
-            {
-                MessageBox.Show("Обьект не найден");
-                CurrentText = string.Empty;
-                UpdateView();
-                return;
-            }
-            CurrentCustomer = CollectionViewSource.GetDefaultView(findCustomer);
         }
 
         private void ExecutedAddCustomerCommand(object obj)
@@ -95,7 +102,7 @@ namespace ChronosBeta.ViewModels
         {
             if (SelectedCustomer == null)
             {
-                MessageBox.Show("Заказчик не выбрана");
+                FunctionsWindow.OpenConfrumWindow("Заказчик не выбрана");
                 return;
             }
             _currentMain.CurrentChildView = new CustomerObjViewModel(_currentMain, SelectedCustomer);
@@ -105,8 +112,24 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedRemoveCustomerCommand(object obj)
         {
-            FunctionsCustomer.DeleteCustomer(SelectedCustomer.Customer);
-            UpdateView();
+            if (!FunctionsWindow.OpenDialogWindow("Вы дествительно хотите удалить заказчика?"))
+                return;
+
+            if (SelectedCustomer.Customer == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Отметка не выбрана");
+                return;
+            }
+
+            try
+            {
+                FunctionsCustomer.DeleteCustomer(SelectedCustomer.Customer);
+                UpdateView();
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка удаление заказчика");
+            }
         }
 
         private void ExecutedBackCommand(object obj)

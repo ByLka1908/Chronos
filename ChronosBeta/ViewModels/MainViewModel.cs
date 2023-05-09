@@ -14,7 +14,7 @@ using System.Windows.Controls;
 
 namespace ChronosBeta.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel: ViewModelBase
     {
         private ViewCurrentUser _currentUser;
         private ViewModelBase _currentChildView;

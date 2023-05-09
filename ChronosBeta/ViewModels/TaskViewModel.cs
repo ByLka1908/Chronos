@@ -102,6 +102,8 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedRemoveTaskCommand(object obj)
         {
+            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить задачу?"))
+                return;
             FunctionsTask.DeleteTask(SelectedTask.Task);
             UpdateView();
         }

@@ -137,3 +137,7 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\CustomerObjView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\CustomerObjView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ScreenshotView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\ScreenshotView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DialogView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\InfoView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DialogView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\InfoView.baml

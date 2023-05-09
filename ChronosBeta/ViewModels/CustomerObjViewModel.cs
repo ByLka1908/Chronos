@@ -52,11 +52,11 @@ namespace ChronosBeta.ViewModels
 
         private void SetTask()
         {
-            Name = SelectedCustomer.Name;
-            Surname = SelectedCustomer.Surname;
+            Name       = SelectedCustomer.Name;
+            Surname    = SelectedCustomer.Surname;
             MiddleName = SelectedCustomer.MiddleName;
-            Phone = SelectedCustomer.Phone;
-            Email = SelectedCustomer.Customer.Email;
+            Phone      = SelectedCustomer.Phone;
+            Email      = SelectedCustomer.Customer.Email;
         }
 
         private void ExecutedSaveCommand(object obj)
@@ -66,11 +66,11 @@ namespace ChronosBeta.ViewModels
                 try
                 {
                     FunctionsCustomer.AddCustomer(Name, Surname, MiddleName, Phone, Email);
-                    MessageBox.Show("Задача добавлена");
+                    FunctionsWindow.OpenGoodWindow("Заказчик добавлен(а)");
                 }
                 catch
                 {
-                    MessageBox.Show("Задача не добавлена");
+                    FunctionsWindow.OpenErrorWindow("Заказчик не добавлен(а)");
                 }
             }
             else
@@ -78,11 +78,11 @@ namespace ChronosBeta.ViewModels
                 try
                 {
                     FunctionsCustomer.SaveEditCustomer(Name, Surname, MiddleName, Phone, Email, SelectedCustomer.Customer);
-                    MessageBox.Show("Задача отредактирована");
+                    FunctionsWindow.OpenGoodWindow("Заказчик отредактирован(а)");
                 }
                 catch
                 {
-                    MessageBox.Show("Задача не отредактирована");
+                    FunctionsWindow.OpenErrorWindow("Заказчик не отредактирован(а)");
                 }
             }
         }
