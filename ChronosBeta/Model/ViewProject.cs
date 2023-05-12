@@ -1,9 +1,4 @@
 ﻿using ChronosBeta.DB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChronosBeta.Model
 {
@@ -17,15 +12,15 @@ namespace ChronosBeta.Model
 
         public ViewProject(Project project)
         {
+            Users officer      = project.Users;
             Customers customer = project.Customers;
-            Users officer = project.Users;
 
-            Project = project;
-            Id = project.id_Project;
+            Id          = project.id_Project;
+            Project     = project;
             NameProject = project.NameProject;
 
             ResponsibleCustomer = customer.Name + " " + customer.Surname + " " + customer.MiddleName;
-            ResponsibleOfficer = officer.Name + " " + officer.Surname + " " + officer.MiddleName;
+            ResponsibleOfficer  = officer.Name + " " + officer.Surname + " " + officer.MiddleName;
         }
     }
 }

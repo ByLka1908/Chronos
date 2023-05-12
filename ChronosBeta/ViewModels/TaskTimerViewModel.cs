@@ -35,8 +35,15 @@ namespace ChronosBeta.ViewModels
 
         private void UpdateView()
         {
-            List<ViewTaskTimer> TaskTimer = FunctionsTaskMark.GetTasksTimer();
-            MarkedTime = CollectionViewSource.GetDefaultView(TaskTimer);
+            try
+            {
+                List<ViewTaskTimer> TaskTimer = FunctionsTaskMark.GetTasksTimer();
+                MarkedTime = CollectionViewSource.GetDefaultView(TaskTimer);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка обновления таблицы");
+            }
         }
 
         public TaskTimerViewModel()
@@ -58,6 +65,7 @@ namespace ChronosBeta.ViewModels
         {
             if (CurrentText == null)
             {
+                FunctionsWindow.OpenConfrumWindow("Поле поиска пустое");
                 return;
             }
 
@@ -67,24 +75,48 @@ namespace ChronosBeta.ViewModels
                 return;
             }
 
-            List<ViewTaskTimer> currentTaskTimer = FunctionsTaskMark.GetTasksTimer();
-            List<ViewTaskTimer> findTaskTimer = currentTaskTimer.Where(x => x.Task.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
-
-            if (findTaskTimer.Count < 1)
+            try
             {
-                MessageBox.Show("Обьект не найден");
-                CurrentText = string.Empty;
-                UpdateView();
-                return;
-            }
+                List<ViewTaskTimer> currentTaskTimer = FunctionsTaskMark.GetTasksTimer();
+                List<ViewTaskTimer> findTaskTimer = currentTaskTimer.Where(x => x.Task.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
 
-            MarkedTime = CollectionViewSource.GetDefaultView(findTaskTimer);
+                if (findTaskTimer.Count < 1)
+                {
+                    FunctionsWindow.OpenConfrumWindow("Обьект не найден");
+                    CurrentText = string.Empty;
+                    UpdateView();
+                    return;
+                }
+
+                MarkedTime = CollectionViewSource.GetDefaultView(findTaskTimer);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка поиска");
+            }
         }
 
         private void ExecutedRemoveTaskTimerCommand(object obj)
         {
-            FunctionsTaskMark.DeleteTaskTimer(SelectedTaskTimer.TaskTimer);
-            UpdateView();
+            if (SelectedTaskTimer.TaskTimer == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Отметка не выбрана");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить задачу?"))
+                return;
+
+            try
+            {
+                FunctionsTaskMark.DeleteTaskTimer(SelectedTaskTimer.TaskTimer);
+                UpdateView();
+                FunctionsWindow.OpenGoodWindow("Отметка удалена");
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка удаления");
+            }
         }
 
         private void ExecutedAddTaskTimerCommand(object obj)

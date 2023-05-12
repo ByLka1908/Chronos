@@ -32,10 +32,17 @@ namespace ChronosBeta.ViewModels
 
         public ScreenshotViewModel()
         {
-            Back = new ViewModelCommand(ExecutedBackCommand);
+            try
+            {
+                Back = new ViewModelCommand(ExecutedBackCommand);
 
-            List<ViewScreenshot> currentScren = FunctionsImage.GetScreenshot(_currentDateTimer.Id);
-            CurrentScreenshot = CollectionViewSource.GetDefaultView(currentScren);
+                List<ViewScreenshot> currentScren = FunctionsImage.GetScreenshot(_currentDateTimer.Id);
+                CurrentScreenshot = CollectionViewSource.GetDefaultView(currentScren);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка инициализации окна списка рабочего");
+            }
         }
 
         public ScreenshotViewModel(MainViewModel main, ViewDateTimer selectedDateTimer)

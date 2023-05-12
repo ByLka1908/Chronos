@@ -11,29 +11,15 @@ namespace ChronosBeta.BL
     {
         public static List<string> GetJobTitle()
         {
-            try
-            {
-                DB.CronosEntities entities = new DB.CronosEntities();
-                var jobtitle = entities.JobTitles.Select(x => x.NameJobTitle).ToList();
-                return jobtitle;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
+            CronosEntities entities = new CronosEntities();
+            var jobtitle = entities.JobTitles.Select(x => x.NameJobTitle).ToList();
+            return jobtitle;
         }
 
         public static int GetId(string jobTitle)
         {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                return entities.JobTitles.Where(x => x.NameJobTitle == jobTitle).First().ID_JobTitles;
-            }
-            catch
-            {
-                throw new Exception("Ошибка при получении должности");
-            }
+            CronosEntities entities = new CronosEntities();
+            return entities.JobTitles.Where(x => x.NameJobTitle == jobTitle).First().ID_JobTitles;
         }
     }
 }

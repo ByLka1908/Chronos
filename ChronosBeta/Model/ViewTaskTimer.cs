@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ChronosBeta.DB;
 
 namespace ChronosBeta.Model
 {
     public class ViewTaskTimer
     {
-        public DB.TaskTimer TaskTimer { get; set; }
+        public TaskTimer TaskTimer { get; set; }
         public int Id { get; set; }
         public string Task { get; set; }
         public string SpentTime { get; set; }
 
-        public ViewTaskTimer(DB.TaskTimer task)
+        public ViewTaskTimer(TaskTimer task)
         {
             TaskTimer = task;
-            Id = task.ID_TaskTimer;
-            Task = task.Task1.NameTask;
+            Id        = task.ID_TaskTimer;
+            Task      = task.Task1.NameTask;
             SpentTime = task.SpentTime.ToString();
         }
     }

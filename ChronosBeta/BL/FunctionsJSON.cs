@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -26,13 +27,19 @@ namespace ChronosBeta.BL
         public static string GetJson()
         {
             myTimer.Enabled = false;
-            return JsonConvert.SerializeObject(JsonAppList, Formatting.Indented);  
+            return JsonConvert.SerializeObject(JsonAppList, Formatting.Indented);
         }
 
         public static List<ViewListApplication> GetDeserializeJson(string JsonlistApp)
         {
             List<ViewListApplication> list = JsonConvert.DeserializeObject<List<ViewListApplication>>(JsonlistApp);
             return list;
+        }
+
+        public static List<ConnectionView> GetDeserializeJsonToConnect(string ConnectSetting)
+        {
+            List<ConnectionView> connect = JsonConvert.DeserializeObject<List<ConnectionView>>(ConnectSetting);
+            return connect;
         }
 
         public async static void UpdateJson(Object source, ElapsedEventArgs e)

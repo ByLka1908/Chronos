@@ -14,11 +14,12 @@ namespace ChronosBeta.DB
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+    using ChronosBeta.BL;
+
     public partial class CronosEntities : DbContext
     {
         public CronosEntities()
-            : base("name=CronosEntities")
+            : base(FunctionsConnection.test())
         {
         }
     

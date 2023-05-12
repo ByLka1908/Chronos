@@ -1,5 +1,4 @@
 ﻿using ChronosBeta.BL;
-using ChronosBeta.DB;
 using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;

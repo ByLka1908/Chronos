@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Net;
+using ChronosBeta.DB;
 using System.Windows;
+using System.Configuration;
 
 namespace ChronosBeta.BL
 {
@@ -10,8 +12,8 @@ namespace ChronosBeta.BL
         {
             try
             {
-                DB.CronosEntities entities = new DB.CronosEntities();
-                DB.Users user = new DB.Users();
+                CronosEntities entities = new CronosEntities();
+                Users user = new Users();
                 user = entities.Users.Single(x => x.Login == credential.UserName && x.Password == credential.Password);
 
                 if (user != null)

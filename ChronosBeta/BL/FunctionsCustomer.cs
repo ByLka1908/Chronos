@@ -12,55 +12,34 @@ namespace ChronosBeta.BL
     {
         public static List<ViewCustomer> GetCustomers()
         {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                var costomer = entities.Customers.ToList();
-                List<ViewCustomer> view = new List<ViewCustomer>();
-                foreach (var item in costomer)
-                    view.Add(new ViewCustomer(item));
-                return view;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
+            CronosEntities entities = new CronosEntities();
+            var costomer = entities.Customers.ToList();
+            List<ViewCustomer> view = new List<ViewCustomer>();
+            foreach (var item in costomer)
+                view.Add(new ViewCustomer(item));
+            return view;
         }
 
         public static List<string> GetViewCustomer()
         {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                var users = entities.Customers.Select(x => x.Name + " " + x.Surname + " " + x.MiddleName).ToList();
-                return users;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
+            CronosEntities entities = new CronosEntities();
+            var users = entities.Customers.Select(x => x.Name + " " + x.Surname + " " + x.MiddleName).ToList();
+            return users;
         }
 
         public static int GetCustomerId(string customer)
         {
-            try
-            {
-                string[] FIO = customer.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                string Name = FIO[0];
-                string Surname = FIO[1];
-                string MiddleName = FIO[2];
+            string[] FIO      = customer.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string Name       = FIO[0];
+            string Surname    = FIO[1];
+            string MiddleName = FIO[2];
 
-                CronosEntities entities = new CronosEntities();
-                return entities.Customers.Where(x => x.Name == Name && x.Surname == Surname 
-                                                && x.MiddleName == MiddleName).First().Id_Customers;
-            }
-            catch
-            {
-                throw new Exception("Ошибка при получении пользователя");
-            }
+            CronosEntities entities = new CronosEntities();
+            return entities.Customers.Where(x => x.Name == Name && x.Surname == Surname
+                                            && x.MiddleName == MiddleName).First().Id_Customers;
         }
 
-        public static void AddCustomer(string Name, string Surname,
+        public static void AddCustomer(string Name,       string Surname,
                                        string MiddleName, string Phone, string Email)
         {
             Customers customer = new Customers();
@@ -81,8 +60,8 @@ namespace ChronosBeta.BL
             entities.SaveChanges();
         }
 
-        public static void SaveEditCustomer(string Name, string Surname, string MiddleName, 
-                                        string Phone, string Email, Customers customer)
+        public static void SaveEditCustomer(string Name,  string Surname, string MiddleName, 
+                                            string Phone, string Email,   Customers customer)
         {
             customer.Name = Name;
             customer.Surname = Surname;
@@ -92,6 +71,7 @@ namespace ChronosBeta.BL
 
             if (customer == null)
             {
+                FunctionsWindow.OpenErrorWindow("Пользователь не заполнен");
                 return;
             }
 

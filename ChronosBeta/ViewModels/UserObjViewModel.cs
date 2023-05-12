@@ -53,15 +53,22 @@ namespace ChronosBeta.ViewModels
 
         public UserObjViewModel() 
         {
-            JobTitle = FunctionsJobTitle.GetJobTitle();
+            try
+            {
+                JobTitle = FunctionsJobTitle.GetJobTitle();
 
-            //Инициализация команд
-            Save = new ViewModelCommand(ExecutedSaveCommand);
-            Back = new ViewModelCommand(ExecutedBackCommand);
-            SelectedUserImage = new ViewModelCommand(ExecutedSelectedUserImageCommand);
+                //Инициализация команд
+                Save = new ViewModelCommand(ExecutedSaveCommand);
+                Back = new ViewModelCommand(ExecutedBackCommand);
+                SelectedUserImage = new ViewModelCommand(ExecutedSelectedUserImageCommand);
 
-            if (itEdit)
-                SetUser();
+                if (itEdit)
+                    SetUser();
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка инициализация окна");
+            }
         }
         public UserObjViewModel(MainViewModel main)
         {
@@ -100,11 +107,11 @@ namespace ChronosBeta.ViewModels
                 {
                     FunctionsUsers.AddUser(Name, Surname, Login, Password, Phone, Skype,
                                            SelectedJobTitle, ImageUser);
-                    MessageBox.Show("Пользователь добавлен");
+                    FunctionsWindow.OpenGoodWindow("Пользователь добавлен");
                 }
                 catch
                 {
-                    MessageBox.Show("Пользователь не добавлен");
+                    FunctionsWindow.OpenErrorWindow("Пользователь не добавлен");
                 }
             }
             else
@@ -113,11 +120,11 @@ namespace ChronosBeta.ViewModels
                 {
                     FunctionsUsers.SaveEditUser(Name, Surname, Login, Password, Phone, Skype,
                                                 SelectedJobTitle, SelectedUser, ImageUser);
-                    MessageBox.Show("Пользователь отредактирован");
+                    FunctionsWindow.OpenGoodWindow("Пользователь отредактирован");
                 }
                 catch
                 {
-                    MessageBox.Show("Пользователь не отредактирован");
+                    FunctionsWindow.OpenErrorWindow("Пользователь не отредактирован");
                 }
             }
         }

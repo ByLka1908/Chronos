@@ -41,8 +41,15 @@ namespace ChronosBeta.ViewModels
 
         public void UpdateView()
         {
-            List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
-            CurrentUserList = CollectionViewSource.GetDefaultView(currentUsers);
+            try
+            {
+                List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
+                CurrentUserList = CollectionViewSource.GetDefaultView(currentUsers);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка обновления таблицы");
+            }
         }
 
         public UsersViewModel()
@@ -64,6 +71,7 @@ namespace ChronosBeta.ViewModels
         {    
             if(CurrentText == null)
             {
+                FunctionsWindow.OpenConfrumWindow("Поле поиска пустое");
                 return;
             }
 
@@ -73,19 +81,26 @@ namespace ChronosBeta.ViewModels
                 return;
             }
 
-            List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
-            List<ViewUsers> findUsers = currentUsers.Where(x => x.Name.ToUpper().StartsWith(CurrentText.ToUpper()) 
-                                        || x.Surname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
-
-            if (findUsers.Count < 1)
+            try
             {
-                MessageBox.Show("Обьект не найден");
-                CurrentText = string.Empty;
-                UpdateView();
-                return;
-            }
+                List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
+                List<ViewUsers> findUsers = currentUsers.Where(x => x.Name.ToUpper().StartsWith(CurrentText.ToUpper())
+                                            || x.Surname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
 
-            CurrentUserList = CollectionViewSource.GetDefaultView(findUsers);
+                if (findUsers.Count < 1)
+                {
+                    MessageBox.Show("Обьект не найден");
+                    CurrentText = string.Empty;
+                    UpdateView();
+                    return;
+                }
+
+                CurrentUserList = CollectionViewSource.GetDefaultView(findUsers);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка поиска");
+            }
         }
 
         private void ExecutedAddUserCommand(object obj)
@@ -99,7 +114,7 @@ namespace ChronosBeta.ViewModels
         {
             if (SelectedUser == null)
             {
-                MessageBox.Show("Пользователь не выбран");
+                FunctionsWindow.OpenConfrumWindow("Пользователь не выбран");
                 return;
             }
             _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, SelectedUser);
@@ -108,8 +123,25 @@ namespace ChronosBeta.ViewModels
         }
         private void ExecutedRemoveUserCommand(object obj)
         {
-            FunctionsUsers.DeleteUser(SelectedUser.User);
-            UpdateView();
+            if (SelectedUser.User == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Пользователь не выбран(а)");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить пользователя?"))
+                return;
+
+            try
+            {
+                FunctionsUsers.DeleteUser(SelectedUser.User);
+                UpdateView();
+                FunctionsWindow.OpenGoodWindow("Пользователь удален");
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка удаления пользователя!");
+            }
         }
     }
 }

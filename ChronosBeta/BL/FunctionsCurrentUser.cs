@@ -39,9 +39,9 @@ namespace ChronosBeta.BL
         public static ViewCurrentUser GetViewUser()
         {
             ViewCurrentUser user = new ViewCurrentUser();
-            user.Username = Name;
-            user.DisplayName = $"{Name} {MiddleName} {Surname}";
-            user.ImageUser = ImageUser;
+            user.Username        = Name;
+            user.DisplayName     = $"{Name} {MiddleName} {Surname}";
+            user.ImageUser       = ImageUser;
             return user;
         }
     }

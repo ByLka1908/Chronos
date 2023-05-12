@@ -12,19 +12,12 @@ namespace ChronosBeta.BL
     {
         public static List<ViewTaskTimer> GetTasksTimer()
         {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                var task = entities.TaskTimer.ToList();
-                List<ViewTaskTimer> view = new List<ViewTaskTimer>();
-                foreach (var item in task)
-                    view.Add(new ViewTaskTimer(item));
-                return view;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
+            CronosEntities entities = new CronosEntities();
+            var task = entities.TaskTimer.ToList();
+            List<ViewTaskTimer> view = new List<ViewTaskTimer>();
+            foreach (var item in task)
+                view.Add(new ViewTaskTimer(item));
+            return view;
         }
 
         public static void AddTaskTimer(int User, int Task, string SpentTime, string Description)
@@ -65,21 +58,9 @@ namespace ChronosBeta.BL
 
         public static void DeleteTaskTimer(TaskTimer currentTask)
         {
-            if(currentTask == null)
-            {
-                MessageBox.Show("Отметка не выбрана");
-                return;
-            }
-            try
-            {
-                DB.CronosEntities entities = new CronosEntities();
-                entities.TaskTimer.Remove(entities.TaskTimer.Find(currentTask.ID_TaskTimer));
-                entities.SaveChanges();
-            }
-            catch
-            {
-                throw new Exception("Ошибка удаления отметки по задаче");
-            }
+            CronosEntities entities = new CronosEntities();
+            entities.TaskTimer.Remove(entities.TaskTimer.Find(currentTask.ID_TaskTimer));
+            entities.SaveChanges();
         }
     }
 }

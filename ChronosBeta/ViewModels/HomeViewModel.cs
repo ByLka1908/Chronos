@@ -51,23 +51,30 @@ namespace ChronosBeta.ViewModels
 
         public HomeViewModel() 
         {
-            ContentLabel = "Здраствуйте, включите таймер рабочего времени!";
-            ForegroundButton = Brushes.Red;
-            OnOffTimer = new ViewModelCommand(ExecutedOnOffTimerCommand);
+            try
+            {
+                ContentLabel = "Здраствуйте, включите таймер рабочего времени!";
+                ForegroundButton = Brushes.Red;
+                OnOffTimer = new ViewModelCommand(ExecutedOnOffTimerCommand);
 
-            DateTime currentTime = DateTime.Today;
-
-
-            List<ViewTask> currentTasks = FunctionsTask.GetTasks();
-            List<ViewTask> _overdueTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) < currentTime).ToList();
-            List<ViewTask> _currentTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) >= currentTime 
-                                                             && DateTime.Parse(x.Deadline) < currentTime.AddDays(3)).ToList();
-            List<ViewTask> _futureTask  = currentTasks.Where(x => DateTime.Parse(x.Deadline) > currentTime.AddDays(4)).ToList();
+                DateTime currentTime = DateTime.Today;
 
 
-            OverdueTask = CollectionViewSource.GetDefaultView(_overdueTask);
-            CurrentTask = CollectionViewSource.GetDefaultView(_currentTask);
-            FutureTask = CollectionViewSource.GetDefaultView(_futureTask);
+                List<ViewTask> currentTasks = FunctionsTask.GetTasks();
+                List<ViewTask> _overdueTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) < currentTime).ToList();
+                List<ViewTask> _currentTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) >= currentTime
+                                                                 && DateTime.Parse(x.Deadline) < currentTime.AddDays(3)).ToList();
+                List<ViewTask> _futureTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) > currentTime.AddDays(4)).ToList();
+
+
+                OverdueTask = CollectionViewSource.GetDefaultView(_overdueTask);
+                CurrentTask = CollectionViewSource.GetDefaultView(_currentTask);
+                FutureTask = CollectionViewSource.GetDefaultView(_futureTask);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка инициализации окна");
+            }
         }
 
         public HomeViewModel(MainViewModel main)
@@ -77,8 +84,15 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedOnOffTimerCommand(object obj)
         {
-            ContentLabel = FunctionsDateTimer.OffOnDateTimer();
-            ForegroundButton = FunctionsDateTimer.GetColorBrushes();
+            try
+            {
+                ContentLabel = FunctionsDateTimer.OffOnDateTimer();
+                ForegroundButton = FunctionsDateTimer.GetColorBrushes();
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка таймер не запущен");
+            }
         }
     }
 }

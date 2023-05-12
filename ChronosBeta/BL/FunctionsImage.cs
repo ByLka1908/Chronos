@@ -24,19 +24,12 @@ namespace ChronosBeta.BL
 
         public static List<ViewScreenshot> GetScreenshot(int dateTimer)
         {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                var screnshot = entities.Screenshot.Where(x => x.DateTimer == dateTimer).ToList();
-                List<ViewScreenshot> listScreenshot = new List<ViewScreenshot>();
-                foreach (var scren in screnshot)
-                    listScreenshot.Add(new ViewScreenshot(scren));
-                return listScreenshot;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
+            CronosEntities entities = new CronosEntities();
+            var screnshot = entities.Screenshot.Where(x => x.DateTimer == dateTimer).ToList();
+            List<ViewScreenshot> listScreenshot = new List<ViewScreenshot>();
+            foreach (var scren in screnshot)
+                listScreenshot.Add(new ViewScreenshot(scren));
+            return listScreenshot;
         }
 
         public static void StartScreenshot()
@@ -77,49 +70,29 @@ namespace ChronosBeta.BL
             foreach (var screenshot in Screenshots)
             {
                 Screenshot currentscren = new Screenshot();
-                try
-                {
-                    currentscren.ImageScreenshot = PushImage(screenshot.ImageScreenshot);
-                    currentscren.DateTimer = CurrentDateTimer;
-                    currentscren.Time = StringToTimeSpan(screenshot.Time);
-                }
-                catch
-                {
-                    throw new Exception("Ошибка иницилизации добавления");
-                }
+
+                currentscren.ImageScreenshot = PushImage(screenshot.ImageScreenshot);
+                currentscren.DateTimer = CurrentDateTimer;
+                currentscren.Time = StringToTimeSpan(screenshot.Time);
 
                 if (currentscren == null)
                     return;
 
-                try
-                {
-                    DB.CronosEntities entities = new DB.CronosEntities();
-                    entities.Screenshot.Add(currentscren);
-                    entities.SaveChanges();
-                    return;
-                }
-                catch
-                {
-                    throw new Exception("Ошибка добавления");
-                }
+                CronosEntities entities = new CronosEntities();
+                entities.Screenshot.Add(currentscren);
+                entities.SaveChanges();
+                return;
             }
         }
 
         private static TimeSpan StringToTimeSpan(string str)
         {
-            try
-            {
-                string[] time = str.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-                string hours = time[0];
-                string min = time[1];
-                string sec = time[2];
+            string[] time = str.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+            string hours = time[0];
+            string min = time[1];
+            string sec = time[2];
 
-                return new TimeSpan(Convert.ToInt32(hours), Convert.ToInt32(min), Convert.ToInt32(sec));
-            }
-            catch
-            {
-                throw new Exception("Ошибка при времени");
-            }
+            return new TimeSpan(Convert.ToInt32(hours), Convert.ToInt32(min), Convert.ToInt32(sec));
         }
 
         public static BitmapImage GetImage(string path = null)

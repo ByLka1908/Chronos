@@ -56,17 +56,24 @@ namespace ChronosBeta.ViewModels
 
         private void SetDateTimer()
         {
-            if (DateTimer == null)
-                return;
+            try
+            {
+                if (DateTimer == null)
+                    return;
 
-            List<ViewListApplication> list = FunctionsJSON.GetDeserializeJson(DateTimer.DateTimer.AllRunProgram);
-            CurrentAppList = CollectionViewSource.GetDefaultView(list);
+                List<ViewListApplication> list = FunctionsJSON.GetDeserializeJson(DateTimer.DateTimer.AllRunProgram);
+                CurrentAppList = CollectionViewSource.GetDefaultView(list);
 
-            UserName = DateTimer.UserName;
-            UserSurname = DateTimer.UserSurname;
-            Day = DateTimer.Day;
-            TimeStart = DateTimer.TimeStart;
-            TimeEnd = DateTimer.TimeEnd;   
+                UserName = DateTimer.UserName;
+                UserSurname = DateTimer.UserSurname;
+                Day = DateTimer.Day;
+                TimeStart = DateTimer.TimeStart;
+                TimeEnd = DateTimer.TimeEnd;
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка запуска рабочего таймера");
+            }  
         }
     }
 }

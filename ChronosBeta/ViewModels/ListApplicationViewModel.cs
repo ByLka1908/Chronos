@@ -21,10 +21,17 @@ namespace ChronosBeta.ViewModels
 
         public ListApplicationViewModel() 
         {
-            Back = new ViewModelCommand(ExecutedBackCommand);
+            try
+            {
+                Back = new ViewModelCommand(ExecutedBackCommand);
 
-            List<ViewListApplication> currentApp = FunctionsListApplication.GetListProcesses();
-            CurrentListApplication = CollectionViewSource.GetDefaultView(currentApp);
+                List<ViewListApplication> currentApp = FunctionsListApplication.GetListProcesses();
+                CurrentListApplication = CollectionViewSource.GetDefaultView(currentApp);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка инициализации окна");
+            }
         }
 
         public ListApplicationViewModel(MainViewModel main)

@@ -1,9 +1,4 @@
 ﻿using ChronosBeta.DB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChronosBeta.Model
 {
@@ -20,15 +15,14 @@ namespace ChronosBeta.Model
 
         public ViewDateTimer(DateTimer date)
         {
-            DateTimer = date;
-            Id = date.ID_DateTimer;
-            UserName = date.Users1.Name;
-            UserSurname = date.Users1.Surname;
+            DateTimer      = date;
+            Id             = date.ID_DateTimer;
+            Day            = date.Day.ToShortDateString();
+            TimeEnd        = date.TimeEnd.ToString();
+            TimeStart      = date.TimeStart.ToString();
+            UserName       = date.Users1.Name;
+            UserSurname    = date.Users1.Surname;
             UserMiddleName = date.Users1.MiddleName;
-            Day = date.Day.ToShortDateString();
-            TimeStart = date.TimeStart.ToString();
-            TimeEnd = date.TimeEnd.ToString();
         }
-
     }
 }

@@ -12,24 +12,24 @@ namespace ChronosBeta.BL
         private static TimeSpan timeStart = new TimeSpan();
         private static TimeSpan timeEnd   = new TimeSpan();
 
-        private static bool AddDateTimer(TimeSpan timeStart, TimeSpan timeEnd)
+        private static void AddDateTimer(TimeSpan timeStart, TimeSpan timeEnd)
         {
             DB.DateTimer time = new DB.DateTimer();
             try
             {
-                time.Users = FunctionsCurrentUser.GetIDUser();
-                time.Day = DateTime.Now;
-                time.TimeStart = timeStart;
-                time.TimeEnd = timeEnd;
+                time.Users         = FunctionsCurrentUser.GetIDUser();
+                time.Day           = DateTime.Now;
+                time.TimeStart     = timeStart;
+                time.TimeEnd       = timeEnd;
                 time.AllRunProgram = FunctionsJSON.GetJson();
             }
             catch 
             {
-                throw new Exception("Ошибка иницилизации добавления");
+                FunctionsWindow.OpenErrorWindow("Ошибка добавление записи об ");
             }
 
             if (time == null)
-                return false;
+                return;
 
             try
             {
@@ -38,11 +38,11 @@ namespace ChronosBeta.BL
                 entities.SaveChanges();
                 FunctionsImage.CurrentDateTimer = time.ID_DateTimer;
                 FunctionsImage.AddScreenshot();
-                return true;
+                return;
             }
             catch
             {
-                throw new Exception("Ошибка добавления");
+                FunctionsWindow.OpenErrorWindow("Ошибка добавление записи об рабочем таймере");
             }
         }
 

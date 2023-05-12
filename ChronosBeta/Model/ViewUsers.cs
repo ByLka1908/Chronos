@@ -17,16 +17,17 @@ namespace ChronosBeta.Model
 
         public ViewUsers(Users user)
         {
-            Id = user.ID_Users;
-            User = user;
-            Name = user.Name;
-            Surname = user.Surname;
-            Phone = user.Phone;
-            Skype = user.Skype;
+            Id       = user.ID_Users;
+            User     = user;
+            Name     = user.Name;
+            Surname  = user.Surname;
+            Phone    = user.Phone;
+            Skype    = user.Skype;
             JobTitle = user.JobTitles.NameJobTitle;
 
             if (user.ImageUser == null || user.ImageUser.Length == 0)
                 return;
+
             ImageUser = FunctionsImage.ByteToBitmapImage(user.ImageUser);
         }
     }

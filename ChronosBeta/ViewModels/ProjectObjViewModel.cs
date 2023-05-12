@@ -34,15 +34,22 @@ namespace ChronosBeta.ViewModels
 
         public ProjectObjViewModel()
         {
-            ResponsibleCustomer = FunctionsCustomer.GetViewCustomer();
-            ResponsibleOfficer = FunctionsUsers.GetViewUser();
+            try
+            {
+                ResponsibleCustomer = FunctionsCustomer.GetViewCustomer();
+                ResponsibleOfficer = FunctionsUsers.GetViewUser();
 
-            //Инициализация команд
-            Save = new ViewModelCommand(ExecutedSaveCommand);
-            Back = new ViewModelCommand(ExecutedBackCommand);
+                //Инициализация команд
+                Save = new ViewModelCommand(ExecutedSaveCommand);
+                Back = new ViewModelCommand(ExecutedBackCommand);
 
-            if (itEdit)
-                SetProject();
+                if (itEdit)
+                    SetProject();
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка инициализации окна проектов");
+            }
         }
 
         public ProjectObjViewModel(MainViewModel main)

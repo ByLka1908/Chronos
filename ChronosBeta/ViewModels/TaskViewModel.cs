@@ -49,16 +49,24 @@ namespace ChronosBeta.ViewModels
             _currentMain = main;
         }
 
-        public void UpdateView()
+        private void UpdateView()
         {
-            List<ViewTask> currentTask = FunctionsTask.GetTasks();
-            CurrentTask = CollectionViewSource.GetDefaultView(currentTask);
+            try
+            {
+                List<ViewTask> currentTask = FunctionsTask.GetTasks();
+                CurrentTask = CollectionViewSource.GetDefaultView(currentTask);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка обновления окна");
+            }
         }
 
         private void ExecutedSearchCommand(object obj)
         {
             if (CurrentText == null)
             {
+                FunctionsWindow.OpenConfrumWindow("Поле поиска пустое");
                 return;
             }
 
@@ -68,17 +76,24 @@ namespace ChronosBeta.ViewModels
                 return;
             }
 
-            List<ViewTask> currentTask = FunctionsTask.GetTasks();
-            List<ViewTask> findTask = currentTask.Where(x => x.Name.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
-
-            if (findTask.Count < 1)
+            try
             {
-                MessageBox.Show("Обьект не найден");
-                CurrentText = string.Empty;
-                UpdateView();
-                return;
+                List<ViewTask> currentTask = FunctionsTask.GetTasks();
+                List<ViewTask> findTask = currentTask.Where(x => x.Name.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
+
+                if (findTask.Count < 1)
+                {
+                    MessageBox.Show("Обьект не найден");
+                    CurrentText = string.Empty;
+                    UpdateView();
+                    return;
+                }
+                CurrentTask = CollectionViewSource.GetDefaultView(findTask);
             }
-            CurrentTask = CollectionViewSource.GetDefaultView(findTask);
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка поиска");
+            }
         }
 
         private void ExecutedAddTaskCommand(object obj)
@@ -92,7 +107,7 @@ namespace ChronosBeta.ViewModels
         {
             if(SelectedTask == null)
             {
-                MessageBox.Show("Задача не выбрана");
+                FunctionsWindow.OpenConfrumWindow("Задача не выбрана");
                 return;
             }
             _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, SelectedTask);
@@ -104,8 +119,22 @@ namespace ChronosBeta.ViewModels
         {
             if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить задачу?"))
                 return;
-            FunctionsTask.DeleteTask(SelectedTask.Task);
-            UpdateView();
+
+            if (SelectedTask.Task == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Отметка не выбрана");
+                return;
+            }
+            try
+            {
+                FunctionsTask.DeleteTask(SelectedTask.Task);
+                UpdateView();
+                FunctionsWindow.OpenGoodWindow("Отметка удалена!");
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка удаления отметки");
+            }
         }
     }
 }

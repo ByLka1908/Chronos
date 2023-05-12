@@ -13,123 +13,80 @@ namespace ChronosBeta.BL
     {
         public static List<ViewUsers> GetUsers()
         {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                var users = entities.Users.ToList();
-                List<ViewUsers> listUser = new List<ViewUsers>();
-                foreach (var user in users)
-                    listUser.Add(new ViewUsers(user));
-                return listUser;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
+            CronosEntities entities = new CronosEntities();
+            var users = entities.Users.ToList();
+            List<ViewUsers> listUser = new List<ViewUsers>();
+            foreach (var user in users)
+                listUser.Add(new ViewUsers(user));
+            return listUser;
         }
 
         public static List<string> GetViewUser()
         {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                var users = entities.Users.Select(x => x.Name + " " + x.Surname + " " + x.MiddleName).ToList();
-                return users;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
+            CronosEntities entities = new CronosEntities();
+            var users = entities.Users.Select(x => x.Name + " " + x.Surname + " " + x.MiddleName).ToList();
+            return users;
         }
 
-        public static bool AddUser(string name, string surname, string login,
-                                   string password, string phone, string skype, string jobTitle, ImageSource imageUser)
+        public static void AddUser(string name,     string surname, string login,
+                                   string password, string phone,   string skype, 
+                                   string jobTitle, ImageSource imageUser)
         {
             Users user = new Users();
-            try
-            {
-                user.Name = name;
-                user.Surname = surname;
-                user.Login = login;
-                user.Password = password;
-                user.Phone = phone;
-                user.Skype = skype;
-                user.ImageUser = FunctionsImage.PushImage(imageUser);
-                user.JobTitle = FunctionsJobTitle.GetId(jobTitle);
-            }
-            catch
-            {
-                throw new Exception("Ошибка иницилизации добавления");
-            }
+
+            user.Name      = name;
+            user.Surname   = surname;
+            user.Login     = login;
+            user.Password  = password;
+            user.Phone     = phone;
+            user.Skype     = skype;
+            user.ImageUser = FunctionsImage.PushImage(imageUser);
+            user.JobTitle  = FunctionsJobTitle.GetId(jobTitle);
+
             if (user == null)
             {
-                return false;
+                return;
             }
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                entities.Users.Add(user);
-                entities.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                throw new Exception("Ошибка добавлении пользователя");
-            }
+
+            CronosEntities entities = new CronosEntities();
+            entities.Users.Add(user);
+            entities.SaveChanges();
         }
 
-        public static bool SaveEditUser(string name, string surname, string login, string password,
-                                        string phone, string skype, string jobTitle, ViewUsers SelectedUser, ImageSource imageUser)
+        public static void SaveEditUser(string name,     string surname,         string login, 
+                                        string password, string phone,           string skype, 
+                                        string jobTitle, ViewUsers SelectedUser, ImageSource imageUser)
         {
             Users user = SelectedUser.User;
-            try
-            {
-                user.Name = name;
-                user.Surname = surname;
-                user.Login = login;
-                user.Password = password;
-                user.Phone = phone;
-                user.Skype = skype;
-                user.ImageUser = FunctionsImage.PushImage(imageUser);
-                user.JobTitle = FunctionsJobTitle.GetId(jobTitle);
-            }
-            catch
-            {
-                throw new Exception("Ошибка иницилизации редактирования");
-            }
+
+            user.Name      = name;
+            user.Surname   = surname;
+            user.Login     = login;
+            user.Password  = password;
+            user.Phone     = phone;
+            user.Skype     = skype;
+            user.ImageUser = FunctionsImage.PushImage(imageUser);
+            user.JobTitle  = FunctionsJobTitle.GetId(jobTitle);
+
             if (user == null)
             {
-                return false;
+                return;
             }
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                entities.Users.AddOrUpdate(user);
-                entities.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                throw new Exception("Ошибка редактирования пользователя");
-            }
+
+            CronosEntities entities = new CronosEntities();
+            entities.Users.AddOrUpdate(user);
+            entities.SaveChanges();
         }
 
         public static int GetUserId(string user)
         {
-            try
-            {
-                string[] FIO = user.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                string Name = FIO[0];
-                string Surname = FIO[1];
-                string MiddleName = FIO[2];
+            string[] FIO = user.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string Name = FIO[0];
+            string Surname = FIO[1];
+            string MiddleName = FIO[2];
 
-                CronosEntities entities = new CronosEntities();
-                return entities.Users.Where(x => x.Name == Name && x.Surname == Surname && x.MiddleName == MiddleName).First().ID_Users;
-            }
-            catch
-            {
-                throw new Exception("Ошибка при получении пользователя");
-            }
+            CronosEntities entities = new CronosEntities();
+            return entities.Users.Where(x => x.Name == Name && x.Surname == Surname && x.MiddleName == MiddleName).First().ID_Users;
         }
 
         public static void DeleteUser(Users currentUser)

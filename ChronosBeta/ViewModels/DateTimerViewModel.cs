@@ -48,55 +48,69 @@ namespace ChronosBeta.ViewModels
 
         private void UpdateView()
         {
-            List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
-            CurrentDateList = CollectionViewSource.GetDefaultView(currentDate);
+            try
+            {
+                List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
+                CurrentDateList = CollectionViewSource.GetDefaultView(currentDate);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка обновления таблицы");
+            }
         }
 
         private void ExecutedSearchCommand(object obj)
         {
-            DateTime date;
-            if (CurrentText == null & DatePicker == null)
+            try
             {
-                return;
-            }
+                DateTime date;
+                if (CurrentText == null & DatePicker == null)
+                {
+                    return;
+                }
 
-            if (CurrentText == string.Empty & DatePicker == string.Empty)
-            {
-                UpdateView();
-                return;
-            }
+                if (CurrentText == string.Empty & DatePicker == string.Empty)
+                {
+                    UpdateView();
+                    return;
+                }
 
-            List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
-            List<ViewDateTimer> findDate;
-            if(CurrentText != null & DatePicker != null)
-            {
-                string[] words = DatePicker.Split(new char[] { '/' });
-                string[] year = words[2].Split(new char[] { ' ' });
-                date = new DateTime(Convert.ToInt32(year[0]), Convert.ToInt32(words[0]), Convert.ToInt32(words[1]));
-                findDate = currentDate.Where(x => x.UserSurname.ToUpper().StartsWith(CurrentText.ToUpper())
-                                             & x.Day.ToUpper().StartsWith(date.ToShortDateString().ToUpper())).ToList(); 
-            }
-            else if(CurrentText != null)
-            {
-                findDate = currentDate.Where(x => x.UserSurname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
-            }
-            else
-            {
-                string[] words = DatePicker.Split(new char[] { '/' });
-                string[] year = words[2].Split(new char[] { ' ' });
-                date = new DateTime(Convert.ToInt32(year[0]), Convert.ToInt32(words[0]), Convert.ToInt32(words[1]));
-                findDate = currentDate.Where(x => x.Day.ToUpper().StartsWith(date.ToShortDateString().ToUpper())).ToList();
-            }
+                List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
+                List<ViewDateTimer> findDate;
+                if (CurrentText != null & DatePicker != null)
+                {
+                    string[] words = DatePicker.Split(new char[] { '/' });
+                    string[] year = words[2].Split(new char[] { ' ' });
+                    date = new DateTime(Convert.ToInt32(year[0]), Convert.ToInt32(words[0]), Convert.ToInt32(words[1]));
+                    findDate = currentDate.Where(x => x.UserSurname.ToUpper().StartsWith(CurrentText.ToUpper())
+                                                 & x.Day.ToUpper().StartsWith(date.ToShortDateString().ToUpper())).ToList();
+                }
+                else if (CurrentText != null)
+                {
+                    findDate = currentDate.Where(x => x.UserSurname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
+                }
+                else
+                {
+                    string[] words = DatePicker.Split(new char[] { '/' });
+                    string[] year = words[2].Split(new char[] { ' ' });
+                    date = new DateTime(Convert.ToInt32(year[0]), Convert.ToInt32(words[0]), Convert.ToInt32(words[1]));
+                    findDate = currentDate.Where(x => x.Day.ToUpper().StartsWith(date.ToShortDateString().ToUpper())).ToList();
+                }
 
-            if (findDate.Count < 1)
-            {
-                MessageBox.Show("Обьект не найден");
-                CurrentText = string.Empty;
-                UpdateView();
-                return;
-            }
+                if (findDate.Count < 1)
+                {
+                    MessageBox.Show("Обьект не найден");
+                    CurrentText = string.Empty;
+                    UpdateView();
+                    return;
+                }
 
-            CurrentDateList = CollectionViewSource.GetDefaultView(findDate);
+                CurrentDateList = CollectionViewSource.GetDefaultView(findDate);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка поиска");
+            }
         }
 
         private void ExecutedOpenListDateCommand(object obj)

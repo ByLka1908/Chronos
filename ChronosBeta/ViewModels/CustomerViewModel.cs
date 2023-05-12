@@ -54,8 +54,15 @@ namespace ChronosBeta.ViewModels
 
         public void UpdateView()
         {
-            List<ViewCustomer> currentCustomer = FunctionsCustomer.GetCustomers();
-            CurrentCustomer = CollectionViewSource.GetDefaultView(currentCustomer);
+            try
+            {
+                List<ViewCustomer> currentCustomer = FunctionsCustomer.GetCustomers();
+                CurrentCustomer = CollectionViewSource.GetDefaultView(currentCustomer);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка обновления таблицы");
+            }
         }
 
         private void ExecutedSearchCommand(object obj)

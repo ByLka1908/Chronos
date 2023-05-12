@@ -34,18 +34,25 @@ namespace ChronosBeta.ViewModels
 
         public TaskTimerObjViewModel()
         {
-            Users = FunctionsUsers.GetViewUser();
-            Task = FunctionsTask.GetViewTask();
+            try
+            {
+                Users = FunctionsUsers.GetViewUser();
+                Task = FunctionsTask.GetViewTask();
 
-            _currentUser = FunctionsCurrentUser.User;
-            SelectedUser = _currentUser.Name + " " + _currentUser.Surname + " " + _currentUser.MiddleName;
+                _currentUser = FunctionsCurrentUser.User;
+                SelectedUser = _currentUser.Name + " " + _currentUser.Surname + " " + _currentUser.MiddleName;
 
-            //Инициализация команд
-            Save = new ViewModelCommand(ExecutedSaveCommand);
-            Back = new ViewModelCommand(ExecutedBackCommand);
+                //Инициализация команд
+                Save = new ViewModelCommand(ExecutedSaveCommand);
+                Back = new ViewModelCommand(ExecutedBackCommand);
 
-            if (itEdit)
-                SetTaskTimer();
+                if (itEdit)
+                    SetTaskTimer();
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка инициализации окна");
+            }
         }
 
         public TaskTimerObjViewModel(MainViewModel main)
@@ -77,11 +84,11 @@ namespace ChronosBeta.ViewModels
                 try
                 {
                     FunctionsTaskMark.AddTaskTimer(FunctionsUsers.GetUserId(SelectedUser), FunctionsTask.GetIdTask(SelectedTask), SpentTime, Description);
-                    MessageBox.Show("Отметка добавлена");
+                    FunctionsWindow.OpenGoodWindow("Отметка добавлена");
                 }
                 catch
                 {
-                    MessageBox.Show("Отметка не добавлена");
+                    FunctionsWindow.OpenErrorWindow("Отметка не добавлена");
                 }
             }
             else
@@ -89,11 +96,11 @@ namespace ChronosBeta.ViewModels
                 try
                 {
                     FunctionsTaskMark.EditTaskTimer(FunctionsUsers.GetUserId(SelectedUser), FunctionsTask.GetIdTask(SelectedTask), SpentTime, Description, SelectedTaskTimer.TaskTimer);
-                    MessageBox.Show("Отметка отредактирована");
+                    FunctionsWindow.OpenGoodWindow("Отметка отредактирована");
                 }
                 catch
                 {
-                    MessageBox.Show("Отметка не отредактирована");
+                    FunctionsWindow.OpenErrorWindow("Отметка не отредактирована");
                 }
             }
         }

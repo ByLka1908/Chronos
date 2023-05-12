@@ -14,7 +14,7 @@ namespace ChronosBeta.BL
         {
             try
             {
-                DB.CronosEntities entities = new DB.CronosEntities();
+                CronosEntities entities = new CronosEntities();
                 var project = entities.Project.ToList();
                 List<ViewProject> view = new List<ViewProject>();
                 foreach (var item in project)

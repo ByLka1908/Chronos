@@ -39,16 +39,24 @@ namespace ChronosBeta.ViewModels
 
         public TaskObjViewModel()
         {
-            UserCreateTask = FunctionsUsers.GetViewUser();
-            UserDoTask = FunctionsUsers.GetViewUser();
-            Project = FunctionsProject.GetViewProject();
+            try
+            {
+                UserCreateTask = FunctionsUsers.GetViewUser();
+                UserDoTask = FunctionsUsers.GetViewUser();
+                Project = FunctionsProject.GetViewProject();
 
-            //Инициализация команд
-            Save = new ViewModelCommand(ExecutedSaveCommand);
-            Back = new ViewModelCommand(ExecutedBackCommand);
+                //Инициализация команд
+                Save = new ViewModelCommand(ExecutedSaveCommand);
+                Back = new ViewModelCommand(ExecutedBackCommand);
 
-            if (itEdit)
-                SetTask();
+                if (itEdit)
+                    SetTask();
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка инициализации окна");
+                return;
+            }
         }
 
         public TaskObjViewModel(MainViewModel main)
