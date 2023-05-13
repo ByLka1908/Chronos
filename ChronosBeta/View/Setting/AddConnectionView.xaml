@@ -217,7 +217,8 @@
                              FontFamily="Montserrat"
                              FontSize="12"
                              VerticalContentAlignment="Center"
-                             Style="{StaticResource TextBox}"/>
+                             Style="{StaticResource TextBox}"
+                             IsReadOnly="{Binding isReadOnlyName}"/>
 
                     <TextBlock Text="Адрес сервера:"
                                Grid.Column="0"

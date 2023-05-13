@@ -13,5 +13,6 @@
         public string App { get; set; }
         public string UserId { get; set; }//Имя пользователя
         public string Password { get; set; }//Пароль
+
     }
 }

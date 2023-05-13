@@ -7,16 +7,17 @@ namespace ChronosBeta.BL
     public class FunctionsCurrentUser
     {
         private static Users _user;
-        public static Users User
-        {
-            get { return _user; }
-        } 
 
         private static string Name { get; set; }
         private static string Surname { get; set; }
         private static string MiddleName { get; set; }
         private static string JobTitle { get; set; }
         private static BitmapImage ImageUser { get; set; }
+
+        public static Users User
+        {
+            get { return _user; }
+        }
 
         public static void SetUser(Users user)
         {

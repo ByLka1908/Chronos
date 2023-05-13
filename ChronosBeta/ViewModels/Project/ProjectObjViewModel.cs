@@ -78,6 +78,26 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
+
+            try
+            {
+                Convert.ToInt32(Budget);
+            }
+            catch
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите бюджет в правильном формате");
+                return;
+            }
+            try
+            {
+                DateTime.Parse(Deadline);
+            }
+            catch
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите дату в правильном формате");
+                return;
+            }
+
             if (!itEdit)
             {
                 try

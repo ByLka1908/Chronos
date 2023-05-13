@@ -98,25 +98,32 @@ namespace ChronosBeta.ViewModels
 
         private void ExecuteLoginCommand(object obj)
         {
-            var isValidUser = FunctionsAuntificator.Auntification(new NetworkCredential(Username, Password));
-            if (isValidUser)
+            try
             {
-                if (isRememberUser)
+                var isValidUser = FunctionsAuntificator.Auntification(new NetworkCredential(Username, Password));
+                if (isValidUser)
                 {
-                    NetworkCredential credential = new NetworkCredential(Username, Password);
-                    FunctionsSettingStart.setting.RememberUser = true;
-                    FunctionsSettingStart.setting.NameUser = credential.UserName;
-                    FunctionsSettingStart.setting.PasswordUser = credential.Password;
-                    FunctionsSettingStart.Update();
-                }
+                    if (isRememberUser)
+                    {
+                        NetworkCredential credential = new NetworkCredential(Username, Password);
+                        FunctionsSettingStart.setting.RememberUser = true;
+                        FunctionsSettingStart.setting.NameUser = credential.UserName;
+                        FunctionsSettingStart.setting.PasswordUser = credential.Password;
+                        FunctionsSettingStart.Update();
+                    }
 
-                Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username), null);
-                IsViewVisible = false;
+                    Thread.CurrentPrincipal = new GenericPrincipal(
+                        new GenericIdentity(Username), null);
+                    IsViewVisible = false;
+                }
+                else
+                {
+                    ErrorMessage = "* Неверный Логин или Пароль";
+                }
             }
-            else
+            catch
             {
-                ErrorMessage = "* Неверный Логин или Пароль";
+                FunctionsWindow.OpenErrorWindow("Ошибка аунтификации");
             }
         }
 

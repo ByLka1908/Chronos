@@ -232,7 +232,6 @@
                         <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
 
-
                     <TextBlock Text="Имя:"
                                Grid.Row="0"
                                Foreground="{StaticResource color2}"

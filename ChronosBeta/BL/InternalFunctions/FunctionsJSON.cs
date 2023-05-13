@@ -10,10 +10,10 @@ namespace ChronosBeta.BL
 {
     public class FunctionsJSON
     {
-        public static int UpdateListAppTimer { get; set; }
-
         private static List<ViewListApplication> JsonAppList { get; set; }
         private static Timer myTimer;
+
+        public static int UpdateListAppTimer { get; set; }
 
         public static void CreateJson()
         {
@@ -40,6 +40,7 @@ namespace ChronosBeta.BL
             List<ConnectionView> connect = JsonConvert.DeserializeObject<List<ConnectionView>>(ConnectSetting);
             return connect;
         }
+
         public static SettingView GetDeserializeJsonToStartSetting(string ConnectSetting)
         {
             SettingView setting = JsonConvert.DeserializeObject<SettingView>(ConnectSetting);

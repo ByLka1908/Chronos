@@ -6,7 +6,6 @@ namespace ChronosBeta.BL
 {
      class FunctionsWindow
      {
-
         public static void OpenErrorWindow(string text)
         {
             InfoView errorView = new InfoView(text, "Текст ошибки:", "Ошибка", IconChar.Xmark, Brushes.Red);
@@ -18,6 +17,7 @@ namespace ChronosBeta.BL
             InfoView errorView = new InfoView(text, "Выполнено действие:", "Успешно", IconChar.Check, Brushes.Green);
             errorView.Show();
         }
+
         public static void OpenConfrumWindow(string text)
         {
             InfoView errorView = new InfoView(text, "Текст предупреждения:", "Предупреждение", IconChar.Exclamation, Brushes.Yellow);

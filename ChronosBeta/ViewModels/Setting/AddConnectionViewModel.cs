@@ -1,4 +1,5 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -6,18 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Xml.Linq;
 
 namespace ChronosBeta.ViewModels
 {
     public class AddConnectionViewModel: ViewModelBase
     {
         private static MainViewModel _currentMain;
+        private static ConnectionView SelectedConnect;
+        private static bool itEdit;
 
         public string NameConnection { get; set; }
         public string AddresServer { get; set; }
         public string NameDB { get; set; }
         public string NameUser { get; set; }
         public string PasswordUser { get; set; }
+        public bool isReadOnlyName { get; set; }
 
         public bool CheckedFalse { get; set; }
         public bool CheckedTrue { get; set; }
@@ -33,11 +39,35 @@ namespace ChronosBeta.ViewModels
             TryConnection = new ViewModelCommand(ExecutedTryConnectionCommand);
 
             CheckedFalse = true;
+            if (itEdit)
+            {
+                SetConnect();
+                isReadOnlyName = true;
+            }
+            isReadOnlyName = false;
+                
         }
 
         public AddConnectionViewModel(MainViewModel main)
         {
             _currentMain = main;
+            itEdit = false;
+        }
+
+        public AddConnectionViewModel(MainViewModel main, ConnectionView selectedConnect)
+        {
+            _currentMain = main;
+            SelectedConnect = selectedConnect;
+            itEdit = true;
+        }
+
+        private void SetConnect()
+        {
+            NameConnection = SelectedConnect.ConnectName;
+            AddresServer = SelectedConnect.dataSource;
+            NameDB = SelectedConnect.initialCatalog;
+            NameUser = SelectedConnect.UserId;
+            PasswordUser = SelectedConnect.Password;
         }
 
         private void ExecutedBackCommand(object obj)
@@ -65,15 +95,31 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
-            try
+            if (!itEdit)
             {
-                FunctionsConnection.AddConnection(NameConnection, AddresServer, NameDB, PasswordUser, NameUser, CheckedTrue);
+                try
+                {
+                    FunctionsConnection.AddConnection(NameConnection, AddresServer, NameDB, PasswordUser, NameUser, CheckedTrue);
 
-                FunctionsWindow.OpenGoodWindow("Подключение добавленно");
+                    FunctionsWindow.OpenGoodWindow("Подключение добавленно");
+                }
+                catch
+                {
+                    FunctionsWindow.OpenErrorWindow("Подключение не добавленно");
+                }
             }
-            catch
+            else
             {
-                FunctionsWindow.OpenErrorWindow("Подключение не добавленно");
+                try
+                {
+                    FunctionsConnection.EditConnection(SelectedConnect);
+
+                    FunctionsWindow.OpenGoodWindow("Подключение добавленно");
+                }
+                catch
+                {
+                    FunctionsWindow.OpenErrorWindow("Подключение не добавленно");
+                }
             }
         }
     }

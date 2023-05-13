@@ -18,11 +18,12 @@ namespace ChronosBeta.BL
 {
     public static class FunctionsImage
     {
-        public static int ScreenShotTiming { get; set; }
-
         private static List<ViewScreenshot> Screenshots { get; set; }
         private static System.Timers.Timer myTimer;
+
         public static int CurrentDateTimer;
+
+        public static int ScreenShotTiming { get; set; }
 
         public static List<ViewScreenshot> GetScreenshot(int dateTimer)
         {
@@ -40,31 +41,6 @@ namespace ChronosBeta.BL
             myTimer.Elapsed += Screenshot;
             myTimer.Enabled = true;
             Screenshots = new List<ViewScreenshot>();
-        }
-
-        private async static void Screenshot(Object source, ElapsedEventArgs e)
-        {
-            Size monitorSize = GetMonitorSize();
-            Bitmap bmp = new Bitmap(monitorSize.Width, monitorSize.Height);
-            Graphics graphics = Graphics.FromImage(bmp);
-            graphics.CopyFromScreen(Point.Empty, Point.Empty, bmp.Size);
-
-            ViewScreenshot currentscren = new ViewScreenshot();
-            currentscren.Screenshot = new DB.Screenshot();
-            currentscren.ImageScreenshot = BitmapToBitmapImage(bmp);
-            currentscren.Time = DateTime.Now.ToLongTimeString();
-
-            Screenshots.Add(currentscren);
-
-            await System.Threading.Tasks.Task.Delay(1000);
-        }
-
-        private static Size GetMonitorSize()
-        {
-            IntPtr hwnd = Process.GetCurrentProcess().MainWindowHandle;
-            Graphics g = Graphics.FromHwnd(hwnd);
-
-            return new Size((int)g.VisibleClipBounds.Width, (int)g.VisibleClipBounds.Height);
         }
 
         public static void AddScreenshot()
@@ -85,16 +61,6 @@ namespace ChronosBeta.BL
                 entities.SaveChanges();
                 return;
             }
-        }
-
-        private static TimeSpan StringToTimeSpan(string str)
-        {
-            string[] time = str.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-            string hours = time[0];
-            string min = time[1];
-            string sec = time[2];
-
-            return new TimeSpan(Convert.ToInt32(hours), Convert.ToInt32(min), Convert.ToInt32(sec));
         }
 
         public static BitmapImage GetImage(string path = null)
@@ -146,6 +112,41 @@ namespace ChronosBeta.BL
             bitmapImage.Freeze();
 
             return bitmapImage;
+        }
+
+        private async static void Screenshot(Object source, ElapsedEventArgs e)
+        {
+            Size monitorSize = GetMonitorSize();
+            Bitmap bmp = new Bitmap(monitorSize.Width, monitorSize.Height);
+            Graphics graphics = Graphics.FromImage(bmp);
+            graphics.CopyFromScreen(Point.Empty, Point.Empty, bmp.Size);
+
+            ViewScreenshot currentscren = new ViewScreenshot();
+            currentscren.Screenshot = new DB.Screenshot();
+            currentscren.ImageScreenshot = BitmapToBitmapImage(bmp);
+            currentscren.Time = DateTime.Now.ToLongTimeString();
+
+            Screenshots.Add(currentscren);
+
+            await System.Threading.Tasks.Task.Delay(1000);
+        }
+
+        private static Size GetMonitorSize()
+        {
+            IntPtr hwnd = Process.GetCurrentProcess().MainWindowHandle;
+            Graphics g = Graphics.FromHwnd(hwnd);
+
+            return new Size((int)g.VisibleClipBounds.Width, (int)g.VisibleClipBounds.Height);
+        }
+
+        private static TimeSpan StringToTimeSpan(string str)
+        {
+            string[] time = str.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+            string hours = time[0];
+            string min = time[1];
+            string sec = time[2];
+
+            return new TimeSpan(Convert.ToInt32(hours), Convert.ToInt32(min), Convert.ToInt32(sec));
         }
 
         private static BitmapImage BitmapToBitmapImage(this Bitmap bitmap)

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace ChronosBeta.ViewModels
 {
@@ -98,6 +99,7 @@ namespace ChronosBeta.ViewModels
         public ICommand ListApplication { get; }
         public ICommand TryConnection { get; }
         public ICommand ExitApp { get; }
+        public ICommand OpenListConnection { get; }
 
         public SettingViewModel() 
         {
@@ -112,6 +114,7 @@ namespace ChronosBeta.ViewModels
             ListApplication = new ViewModelCommand(ExecutedListApplicationCommand);
             TryConnection = new ViewModelCommand(ExecutedTryConnectionCommand);
             ExitApp = new ViewModelCommand(ExecutedExitAppCommand);
+            OpenListConnection = new ViewModelCommand(ExecutedOpenListConnectionCommand);
 
             SetConnection(FunctionsConnection.CurrentConnect);
 
@@ -226,6 +229,13 @@ namespace ChronosBeta.ViewModels
             _currentMain.Icon = IconChar.AddressBook;
         }
 
+        private void ExecutedOpenListConnectionCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new ConnectionsViewModel(_currentMain);
+            _currentMain.Caption = "Список подключений";
+            _currentMain.Icon = IconChar.Database;
+        }
+
         private void ExecutedListApplicationCommand(object obj)
         {
             _currentMain.CurrentChildView = new ListApplicationViewModel(_currentMain);
@@ -235,6 +245,25 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
+            try
+            {
+                Convert.ToInt32(TimeScreenshot);
+            }
+            catch
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите время скриншота в правильном формате");
+                return;
+            }
+            try
+            {
+                Convert.ToInt32(TimeUpdateListApp);
+            }
+            catch
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите время обновления списка приложений в правильном формате");
+                return;
+            }
+
             try
             {
                 FunctionsConnection.SaveConnection(SelectedNameConnected, AddresServer, NameDB, PasswordUser, NameUser, _checkedTrue);

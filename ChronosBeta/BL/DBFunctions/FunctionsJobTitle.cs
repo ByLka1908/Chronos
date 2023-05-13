@@ -21,5 +21,6 @@ namespace ChronosBeta.BL
             CronosEntities entities = new CronosEntities();
             return entities.JobTitles.Where(x => x.NameJobTitle == jobTitle).First().ID_JobTitles;
         }
+
     }
 }

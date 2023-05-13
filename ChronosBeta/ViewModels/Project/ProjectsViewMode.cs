@@ -51,40 +51,71 @@ namespace ChronosBeta.ViewModels
 
         private void UpdateView()
         {
-            List<ViewProject> currentProject = FunctionsProject.GetProject();
-            CurrentProject = CollectionViewSource.GetDefaultView(currentProject);
+            try
+            {
+                List<ViewProject> currentProject = FunctionsProject.GetProject();
+                CurrentProject = CollectionViewSource.GetDefaultView(currentProject);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка обновления таблицы проектов");
+            }
         }
 
         private void ExecutedSearchCommand(object obj)
         {
-            if (CurrentText == null)
+            try
             {
-                return;
-            }
+                if (CurrentText == null)
+                {
+                    return;
+                }
 
-            if (CurrentText == string.Empty)
+                if (CurrentText == string.Empty)
+                {
+                    UpdateView();
+                    return;
+                }
+
+                List<ViewProject> currentProjects = FunctionsProject.GetProject();
+                List<ViewProject> findProjects = currentProjects.Where(x => x.NameProject.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
+
+                if (findProjects.Count < 1)
+                {
+                    MessageBox.Show("Обьект не найден");
+                    CurrentText = string.Empty;
+                    UpdateView();
+                    return;
+                }
+                CurrentProject = CollectionViewSource.GetDefaultView(findProjects);
+            }
+            catch
             {
-                UpdateView();
-                return;
+                FunctionsWindow.OpenErrorWindow("Ошибка поиска");
             }
-
-            List<ViewProject> currentProjects = FunctionsProject.GetProject();
-            List<ViewProject> findProjects = currentProjects.Where(x => x.NameProject.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
-
-            if (findProjects.Count < 1)
-            {
-                MessageBox.Show("Обьект не найден");
-                CurrentText = string.Empty;
-                UpdateView();
-                return;
-            }
-            CurrentProject = CollectionViewSource.GetDefaultView(findProjects);
         }
 
         private void ExecutedRemoveProjectCommand(object obj)
         {
-            FunctionsProject.DeleteProject(SelectedProject.Project);
-            UpdateView();
+            if (!FunctionsWindow.OpenDialogWindow("Вы дествительно хотите удалить проект?"))
+                return;
+
+            if (SelectedProject.Project == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Проект не выбрана");
+                return;
+            }
+
+            try
+            {
+                FunctionsProject.DeleteProject(SelectedProject.Project);
+                UpdateView();
+                FunctionsWindow.OpenGoodWindow("Проект удален!");
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка удаления проекта");
+            }
         }
 
         private void ExecutedAddProjectCommand(object obj)

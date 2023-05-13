@@ -11,12 +11,12 @@ namespace ChronosBeta.BL
 {
     public class FunctionsConnection
     {
+        private static string CurrentConnectString;
+        private static string path;
+
+        public static List<ConnectionView> ConnectionViews { get; set; }
         public static string UserConnectName { get; set; }
         public static ConnectionView CurrentConnect { get; set; }
-
-        private static string CurrentConnectString;
-        private static List<ConnectionView> ConnectionViews;
-        private static string path;
 
         public static string GetConnectionString()
         {
@@ -62,23 +62,6 @@ namespace ChronosBeta.BL
             return CurrentConnectString;
         }
 
-        private static string GetConnectionString(ConnectionView conect)
-        {
-            string connectString;
-
-            if (conect.integratedSecurity)
-            {
-                connectString = $@"metadata = {conect.metadata};provider={conect.provider};provider connection string=" +
-                                 $@"""data source={conect.dataSource};initial catalog={conect.initialCatalog};integrated security={conect.integratedSecurity};MultipleActiveResultSets={conect.MultipleActiveResultSets};App={conect.App}""";
-            }
-            else
-            {
-                connectString = $@"metadata = {conect.metadata};provider={conect.provider};provider connection string=" +
-                                 $@"""data source={conect.dataSource};initial catalog={conect.initialCatalog};integrated security={conect.integratedSecurity};User ID={conect.UserId};Password={conect.Password};MultipleActiveResultSets={conect.MultipleActiveResultSets};App={conect.App}""";
-            }
-            return connectString;
-        }
-
         public static ConnectionView GetConnect(string NameConnect)
         {
             return ConnectionViews.Where(x => x.ConnectName == NameConnect).First();
@@ -90,7 +73,7 @@ namespace ChronosBeta.BL
         }
 
         public static void SaveConnection(string NameConnect, string AdressServer, string NameDB,
-                                          string PasswordUser,string NameUser , bool IsAuntifucationWindows)
+                                          string PasswordUser,string NameUser ,    bool IsAuntifucationWindows)
         {
             ConnectionView editConnect = GetConnect(NameConnect);
             ConnectionViews.Remove(editConnect);
@@ -106,8 +89,17 @@ namespace ChronosBeta.BL
             SaveJsonConnect();
         }
 
-        public static void AddConnection(string NameConnect, string AdressServer, string NameDB,
-                                         string PasswordUser, string NameUser, bool IsAuntifucationWindows)
+        public static void EditConnection(ConnectionView connect)
+        {
+            ConnectionView editConnect = GetConnect(connect.ConnectName);
+            ConnectionViews.Remove(editConnect);
+
+            ConnectionViews.Add(connect);
+            SaveJsonConnect();
+        }
+
+        public static void AddConnection(string NameConnect,  string AdressServer, string NameDB,
+                                         string PasswordUser, string NameUser,     bool IsAuntifucationWindows)
         {
             ConnectionView addConnect = new ConnectionView();
 
@@ -128,7 +120,7 @@ namespace ChronosBeta.BL
         }
 
         public static bool TryConnection(string AdressServer, string NameDB, bool IsAuntifucationWindows,
-                                         string NameUser, string PasswordUser)
+                                         string NameUser,     string PasswordUser)
         {
             string connectionString;
 
@@ -151,6 +143,29 @@ namespace ChronosBeta.BL
             {
                 return false;
             }
+        }
+
+        public static void DeleteConnection(ConnectionView Connect)
+        {
+            ConnectionViews.Remove(Connect);
+            SaveJsonConnect();
+        }
+
+        private static string GetConnectionString(ConnectionView conect)
+        {
+            string connectString;
+
+            if (conect.integratedSecurity)
+            {
+                connectString = $@"metadata = {conect.metadata};provider={conect.provider};provider connection string=" +
+                                 $@"""data source={conect.dataSource};initial catalog={conect.initialCatalog};integrated security={conect.integratedSecurity};MultipleActiveResultSets={conect.MultipleActiveResultSets};App={conect.App}""";
+            }
+            else
+            {
+                connectString = $@"metadata = {conect.metadata};provider={conect.provider};provider connection string=" +
+                                 $@"""data source={conect.dataSource};initial catalog={conect.initialCatalog};integrated security={conect.integratedSecurity};User ID={conect.UserId};Password={conect.Password};MultipleActiveResultSets={conect.MultipleActiveResultSets};App={conect.App}""";
+            }
+            return connectString;
         }
 
         private static void SaveJsonConnect()

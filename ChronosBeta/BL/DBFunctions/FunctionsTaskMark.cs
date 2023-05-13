@@ -41,9 +41,9 @@ namespace ChronosBeta.BL
 
         public static void EditTaskTimer(int User, int Task, string SpentTime, string Description, TaskTimer taskTimer)
         {
-            taskTimer.Users = User; 
-            taskTimer.Task = Task;
-            taskTimer.SpentTime = Convert.ToDouble(SpentTime);
+            taskTimer.Users       = User; 
+            taskTimer.Task        = Task;
+            taskTimer.SpentTime   = Convert.ToDouble(SpentTime);
             taskTimer.Description = Description;
 
             if (taskTimer == null)

@@ -124,7 +124,7 @@ namespace ChronosBeta.ViewModels
 
             if (SelectedCustomer.Customer == null)
             {
-                FunctionsWindow.OpenConfrumWindow("Отметка не выбрана");
+                FunctionsWindow.OpenConfrumWindow("Заказчик не выбрана");
                 return;
             }
 

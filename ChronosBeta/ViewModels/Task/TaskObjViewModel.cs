@@ -5,6 +5,7 @@ using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -91,6 +92,34 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
+            try
+            {
+                Convert.ToDouble(EstimatedTime);
+            }
+            catch
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите правильный формат для\nожидаемого времени выполнения");
+                return;
+            }
+            try
+            {
+                Convert.ToDouble(AllSpentTime);
+            }
+            catch
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите правильный формат для\nобщего времени выполнения");
+                return;
+            }
+            try
+            {
+                DateTime.Parse(DeadLine);
+            }
+            catch
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите правильный формат для\nдаты окончания задачи");
+                return;
+            }
+
             if (!itEdit)
             {
                 try

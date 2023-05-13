@@ -10,25 +10,17 @@ namespace ChronosBeta.BL
     {
         public static bool Auntification(NetworkCredential credential)
         {
-            try
-            {
-                CronosEntities entities = new CronosEntities();
-                Users user = new Users();
-                user = entities.Users.Single(x => x.Login == credential.UserName && x.Password == credential.Password);
+            CronosEntities entities = new CronosEntities();
+            Users user = new Users();
+            user = entities.Users.Single(x => x.Login == credential.UserName && x.Password == credential.Password);
 
-                if (user != null)
-                {
-                    FunctionsCurrentUser.SetUser(user);
-                    return true;
-                }
-                else
-                    return false; 
-            }
-            catch
+            if (user != null)
             {
-                FunctionsWindow.OpenErrorWindow("Ошибка аунтефикации.\nНе найден пользователь");
-                return false;
+                FunctionsCurrentUser.SetUser(user);
+                return true;
             }
+            else
+                return false;
         }
     }
 }

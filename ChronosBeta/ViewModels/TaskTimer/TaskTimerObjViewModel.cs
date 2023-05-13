@@ -79,6 +79,16 @@ namespace ChronosBeta.ViewModels
         }
         private void ExecutedSaveCommand(object obj)
         {
+            try
+            {
+                Convert.ToDouble(SpentTime);
+            }
+            catch
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите правильный формат для\nзатраченного времени выполнения");
+                return;
+            }
+
             if (!itEdit)
             {
                 try

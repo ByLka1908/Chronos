@@ -122,14 +122,14 @@ namespace ChronosBeta.ViewModels
 
             if (SelectedTask.Task == null)
             {
-                FunctionsWindow.OpenConfrumWindow("Отметка не выбрана");
+                FunctionsWindow.OpenConfrumWindow("Задача не выбрана");
                 return;
             }
             try
             {
                 FunctionsTask.DeleteTask(SelectedTask.Task);
                 UpdateView();
-                FunctionsWindow.OpenGoodWindow("Отметка удалена!");
+                FunctionsWindow.OpenGoodWindow("Задача удалена!");
             }
             catch
             {

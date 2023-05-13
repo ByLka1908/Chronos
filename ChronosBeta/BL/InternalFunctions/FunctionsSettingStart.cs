@@ -1,12 +1,6 @@
-﻿using ChronosBeta.Model;
-using ChronosBeta.View;
+﻿using ChronosBeta.View;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SettingView = ChronosBeta.Model.SettingView;
 
 namespace ChronosBeta.BL.InternalFunctions
@@ -50,6 +44,5 @@ namespace ChronosBeta.BL.InternalFunctions
             File.WriteAllText(path, settingToJson);
         }
 
-        
     }
 }

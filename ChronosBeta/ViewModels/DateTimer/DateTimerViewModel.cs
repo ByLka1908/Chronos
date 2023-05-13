@@ -99,7 +99,7 @@ namespace ChronosBeta.ViewModels
 
                 if (findDate.Count < 1)
                 {
-                    MessageBox.Show("Обьект не найден");
+                    FunctionsWindow.OpenErrorWindow("Обьект не найден");
                     CurrentText = string.Empty;
                     UpdateView();
                     return;
@@ -117,12 +117,13 @@ namespace ChronosBeta.ViewModels
         {
             if (SelectedDate == null)
             {
-                MessageBox.Show("Пользователь не выбран");
+                FunctionsWindow.OpenConfrumWindow("Пользователь не выбран");
                 return;
             }
             _currentMain.CurrentChildView = new DateTimerObjViewModel(_currentMain, SelectedDate);
             _currentMain.Caption = "Список запущеный программ";
             _currentMain.Icon = IconChar.UserClock;
         }
+
     }
 }
