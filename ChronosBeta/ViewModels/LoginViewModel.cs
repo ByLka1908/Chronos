@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ChronosBeta.BL;
+using ChronosBeta.BL.InternalFunctions;
 
 namespace ChronosBeta.ViewModels
 {
@@ -69,6 +70,7 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged(nameof(IsViewVisible));
             }
         }
+        public bool isRememberUser { get; set; }
 
         //-> Команды
         public ICommand LoginCommand { get; }
@@ -99,6 +101,15 @@ namespace ChronosBeta.ViewModels
             var isValidUser = FunctionsAuntificator.Auntification(new NetworkCredential(Username, Password));
             if (isValidUser)
             {
+                if (isRememberUser)
+                {
+                    NetworkCredential credential = new NetworkCredential(Username, Password);
+                    FunctionsSettingStart.setting.RememberUser = true;
+                    FunctionsSettingStart.setting.NameUser = credential.UserName;
+                    FunctionsSettingStart.setting.PasswordUser = credential.Password;
+                    FunctionsSettingStart.Update();
+                }
+
                 Thread.CurrentPrincipal = new GenericPrincipal(
                     new GenericIdentity(Username), null);
                 IsViewVisible = false;

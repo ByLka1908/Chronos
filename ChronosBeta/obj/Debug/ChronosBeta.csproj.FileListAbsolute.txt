@@ -191,5 +191,5 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimer\TaskTimerObjView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimer\TaskTimerView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\User\UserObjView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\User\UsersView.baml
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\AddConnectionView.g.cs
-F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\AddConnectionView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\AddConnectionView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\AddConnectionView.baml

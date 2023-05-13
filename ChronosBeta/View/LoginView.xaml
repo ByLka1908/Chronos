@@ -221,6 +221,13 @@
                                Margin="0,10,0,0"
                                TextWrapping="Wrap"/>
 
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Запомнить пользователя:"
+                                   Foreground="{StaticResource color2}"/>
+                        <RadioButton Margin="60,0,0,0"
+                                     IsChecked="{Binding isRememberUser}"/>
+                    </StackPanel>
+                    
                     <Button x:Name="btnLogin" 
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"

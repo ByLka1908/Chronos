@@ -18,6 +18,8 @@ namespace ChronosBeta.BL
 {
     public static class FunctionsImage
     {
+        public static int ScreenShotTiming { get; set; }
+
         private static List<ViewScreenshot> Screenshots { get; set; }
         private static System.Timers.Timer myTimer;
         public static int CurrentDateTimer;
@@ -34,7 +36,7 @@ namespace ChronosBeta.BL
 
         public static void StartScreenshot()
         {
-            myTimer = new System.Timers.Timer(5000); //5 сек
+            myTimer = new System.Timers.Timer(ScreenShotTiming); //5000 это 5 сек
             myTimer.Elapsed += Screenshot;
             myTimer.Enabled = true;
             Screenshots = new List<ViewScreenshot>();

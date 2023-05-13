@@ -1,6 +1,8 @@
 {
-  "NameUser": null,
-  "PasswordUser": null,
+  "NameUser": "",
+  "PasswordUser": "",
   "RememberUser": false,
-  "CurrentConectName": "ChronosEntites"
+  "CurrentConectName": "ChronosEntites",
+  "ScreenShotTimer": 10000,
+  "UpdateListAppTimer": 7000
 }

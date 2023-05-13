@@ -10,13 +10,15 @@ namespace ChronosBeta.BL
 {
     public class FunctionsJSON
     {
+        public static int UpdateListAppTimer { get; set; }
+
         private static List<ViewListApplication> JsonAppList { get; set; }
         private static Timer myTimer;
 
         public static void CreateJson()
         {
             JsonAppList = FunctionsListApplication.GetListProcesses();
-            myTimer = new Timer(5000); //5 сек
+            myTimer = new Timer(UpdateListAppTimer); //5000 = 5 сек
             myTimer.Elapsed += UpdateJson;
             myTimer.Enabled = true;
         }

@@ -1,4 +1,7 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.BL.InternalFunctions;
+using ChronosBeta.View;
+using ChronosBeta.Views;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -66,6 +69,9 @@ namespace ChronosBeta.ViewModels
             }
         }
 
+        public string TimeScreenshot { get; set; }
+        public string TimeUpdateListApp { get; set; }
+
         public bool CheckedFalse
         {
             get { return _checkedFalse; }
@@ -91,16 +97,21 @@ namespace ChronosBeta.ViewModels
         public ICommand ViewCustomers { get; }
         public ICommand ListApplication { get; }
         public ICommand TryConnection { get; }
+        public ICommand ExitApp { get; }
 
         public SettingViewModel() 
         {
             NameConnected = FunctionsConnection.GetConnectList();
+            TimeScreenshot = ConvertToStringSec(FunctionsImage.ScreenShotTiming);
+            TimeUpdateListApp = ConvertToStringSec(FunctionsJSON.UpdateListAppTimer);
+
 
             Save = new ViewModelCommand(ExecutedSaveCommand);
             AddConnect = new ViewModelCommand(ExecutedAddConnectCommand);
             ViewCustomers = new ViewModelCommand(ExecutedViewCustomersCommand);
             ListApplication = new ViewModelCommand(ExecutedListApplicationCommand);
             TryConnection = new ViewModelCommand(ExecutedTryConnectionCommand);
+            ExitApp = new ViewModelCommand(ExecutedExitAppCommand);
 
             SetConnection(FunctionsConnection.CurrentConnect);
 
@@ -139,6 +150,19 @@ namespace ChronosBeta.ViewModels
             }
         }
 
+        private string ConvertToStringSec(int time)
+        {
+            int timers = time / 1000;
+            return timers.ToString();
+        }
+
+        private int ConvertToIntSec(string time)
+        {
+            int timers = Convert.ToInt32(time);
+            timers = timers * 1000;
+            return timers;
+        }
+
         private async void UpdateConnection(Object source, ElapsedEventArgs e)
         {
             
@@ -163,6 +187,29 @@ namespace ChronosBeta.ViewModels
             {
                 FunctionsWindow.OpenErrorWindow("Ошибка подключения");
             }
+        }
+
+        private void ExecutedExitAppCommand(object obj)
+        {
+            FunctionsSettingStart.setting.RememberUser = false;
+            FunctionsSettingStart.setting.NameUser = "";
+            FunctionsSettingStart.setting.PasswordUser = "";
+            FunctionsSettingStart.Update();
+
+            var loginView = new LoginView();
+            loginView.Show();
+            MainView main = FunctionsSettingStart.MainView;
+            main.Close();
+            loginView.IsVisibleChanged += (s, ev) =>
+            {
+                if (loginView.IsVisible == false && loginView.IsLoaded)
+                {
+                    var mainView = new MainView();
+                    FunctionsSettingStart.MainView = mainView;
+                    mainView.Show();
+                    loginView.Close();
+                }
+            };
         }
 
         private void ExecutedAddConnectCommand(object obj)
@@ -192,6 +239,13 @@ namespace ChronosBeta.ViewModels
             {
                 FunctionsConnection.SaveConnection(SelectedNameConnected, AddresServer, NameDB, PasswordUser, NameUser, _checkedTrue);
 
+                FunctionsImage.ScreenShotTiming = ConvertToIntSec(TimeScreenshot);
+                FunctionsJSON.UpdateListAppTimer = ConvertToIntSec(TimeUpdateListApp);
+
+                FunctionsSettingStart.setting.ScreenShotTimer = ConvertToIntSec(TimeScreenshot);
+                FunctionsSettingStart.setting.UpdateListAppTimer = ConvertToIntSec(TimeUpdateListApp);
+                FunctionsSettingStart.Update();
+
                 FunctionsWindow.OpenGoodWindow("Насторйки сохранены");
             }
             catch
@@ -199,5 +253,6 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenErrorWindow("Насторйки не сохранены");
             }
         }
+
     }
 }
