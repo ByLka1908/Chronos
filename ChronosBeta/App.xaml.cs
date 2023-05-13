@@ -1,4 +1,5 @@
-﻿using ChronosBeta.View;
+﻿using ChronosBeta.BL.InternalFunctions;
+using ChronosBeta.View;
 using ChronosBeta.Views;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace ChronosBeta
     {
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
+            FunctionsSettingStart.StartApp();
+
             var loginView = new LoginView();
             loginView.Show();
             loginView.IsVisibleChanged += (s, ev) =>

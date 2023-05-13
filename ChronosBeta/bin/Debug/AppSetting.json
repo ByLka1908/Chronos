@@ -1,13 +1,6 @@
-[
-  {
-    "ConnectName": "ChronosEntites",
-    "connectionString": "metadata = res://*/DB.ModelDB.csdl|res://*/DB.ModelDB.ssdl|res://*/DB.ModelDB.msl;provider=System.Data.SqlClient;provider connection string=\"data source=KOMPUTER\\\\SQLEXPRESS;initial catalog=Cronos;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework\"",
-    "metadata": "res://*/DB.ModelDB.csdl|res://*/DB.ModelDB.ssdl|res://*/DB.ModelDB.msl",
-    "provider": "System.Data.SqlClient",
-    "dataSource": "KOMPUTER\\SQLEXPRESS",
-    "initialCatalog": "Cronos",
-    "integratedSecurity": "True",
-    "MultipleActiveResultSets": "True",
-    "App": "EntityFramework"
-  }
-]
+{
+  "NameUser": null,
+  "PasswordUser": null,
+  "RememberUser": false,
+  "CurrentConectName": "ChronosEntites"
+}

@@ -19,7 +19,7 @@ namespace ChronosBeta.DB
     public partial class CronosEntities : DbContext
     {
         public CronosEntities()
-            : base(FunctionsConnection.test())
+            : base(FunctionsConnection.GetConnectionString())
         {
         }
     
