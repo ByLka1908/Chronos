@@ -37,6 +37,12 @@ namespace ChronosBeta.BL
         public static void DeleteJobTitle(JobTitles job)
         {
             CronosEntities entities = new CronosEntities();
+            var users = entities.Users.Where(x => x.JobTitle == job.ID_JobTitles).ToList();
+            foreach (var user in users)
+            {
+                entities.Users.Remove(user);
+            }
+
             entities.JobTitles.Remove(entities.JobTitles.Find(job.ID_JobTitles));
             entities.SaveChanges();
         }

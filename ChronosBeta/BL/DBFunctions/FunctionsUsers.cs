@@ -6,6 +6,7 @@ using ChronosBeta.DB;
 using System.Data.Entity.Migrations;
 using System.Windows;
 using System.Windows.Media;
+using System.Threading.Tasks;
 
 namespace ChronosBeta.BL
 {
@@ -92,6 +93,36 @@ namespace ChronosBeta.BL
         public static void DeleteUser(Users currentUser)
         {
             CronosEntities entities = new CronosEntities();
+
+            var projects = entities.Project.Where(x => x.ResponsibleОfficer == currentUser.ID_Users).ToList();
+            foreach (var project in projects)
+            {
+                entities.Project.Remove(project);
+            }
+
+            var tasks = entities.Task.Where(x => x.UserDoTask == currentUser.ID_Users || x.UserCreateTask == currentUser.ID_Users).ToList();
+            foreach (var task in tasks)
+            {
+                var tasksTimer1 = entities.TaskTimer.Where(x => x.Task == task.ID_Task).ToList();
+                foreach(var taskTimer in tasksTimer1)
+                {
+                    entities.TaskTimer.Remove(taskTimer);
+                }
+                entities.Task.Remove(task);
+            }
+
+            var tasksTimer = entities.TaskTimer.Where(x => x.Users == currentUser.ID_Users).ToList();
+            foreach (var taskTimer in tasksTimer)
+            {
+                entities.TaskTimer.Remove(taskTimer);
+            }
+
+            var dateTimers = entities.DateTimer.Where(x => x.Users == currentUser.ID_Users).ToList();
+            foreach (var date in dateTimers)
+            {
+                entities.DateTimer.Remove(date);
+            }
+
             entities.Users.Remove(entities.Users.Find(currentUser.ID_Users));
             entities.SaveChanges();
         }

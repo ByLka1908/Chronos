@@ -83,6 +83,12 @@ namespace ChronosBeta.BL
         public static void DeleteCustomer(Customers currentCustomer)
         {
             CronosEntities entities = new CronosEntities();
+            var projects = entities.Project.Where(x => x.ResponsibleСustomer == currentCustomer.Id_Customers).ToList();
+            foreach (var project in projects)
+            {
+                entities.Project.Remove(project);
+            }
+
             entities.Customers.Remove(entities.Customers.Find(currentCustomer.Id_Customers));
             entities.SaveChanges();
         }

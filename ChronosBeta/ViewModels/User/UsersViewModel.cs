@@ -146,7 +146,8 @@ namespace ChronosBeta.ViewModels
                 return;
             }
 
-            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить пользователя?"))
+            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить пользователя?\n" +
+                                                  "Будут удалены связаные ПРОЕКТЫ, ЗАДАЧИ, ОТМЕТКИ ПО ЗАДАЧАМ, ОТМЕТКИ ПО РАБОЧЕМУ ВРЕМЕНИ!!!"))
                 return;
 
             try

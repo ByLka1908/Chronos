@@ -142,7 +142,8 @@ namespace ChronosBeta.ViewModels
                 return;
             }
 
-            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить должность?"))
+            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить должность?\n" +
+                                                  "Будут удалены все связанные пользователи!!!"))
                 return;
 
             try

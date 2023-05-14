@@ -123,7 +123,8 @@ namespace ChronosBeta.ViewModels
                 return;
             }
 
-            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить задачу?"))
+            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить задачу?\n" +
+                                                  "Будут удалены связанные отметки по задаче!!!"))
                 return;
 
             try

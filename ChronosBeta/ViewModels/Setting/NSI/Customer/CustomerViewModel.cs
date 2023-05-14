@@ -119,14 +119,16 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedRemoveCustomerCommand(object obj)
         {
-            if (!FunctionsWindow.OpenDialogWindow("Вы дествительно хотите удалить заказчика?"))
-                return;
-
+            
             if (SelectedCustomer.Customer == null)
             {
                 FunctionsWindow.OpenConfrumWindow("Заказчик не выбрана");
                 return;
             }
+
+            if (!FunctionsWindow.OpenDialogWindow("Вы дествительно хотите удалить заказчика?\n" +
+                                                  "Будут удалены все связанные проекты!!!"))
+                            return;
 
             try
             {

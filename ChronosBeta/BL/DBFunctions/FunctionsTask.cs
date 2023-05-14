@@ -102,6 +102,12 @@ namespace ChronosBeta.BL
         public static void DeleteTask(DB.Task currentTask)
         {
             CronosEntities entities = new CronosEntities();
+            var tasksTimer = entities.TaskTimer.Where(x => x.Task == currentTask.ID_Task).ToList();
+            foreach (var taskTimer in tasksTimer)
+            {
+                entities.TaskTimer.Remove(taskTimer);
+            }
+
             entities.Task.Remove(entities.Task.Find(currentTask.ID_Task));
             entities.SaveChanges();
         }
