@@ -29,7 +29,7 @@ namespace ChronosBeta.BL
 
         public static void AddProject(string NameProject,     int ResponsibleCustomer,
                                       int ResponsibleOfficer, string Budget,
-                                      string DeadLine,        string Description)
+                                      DateTime DeadLine,        string Description)
         {
             Project project = new Project();
 
@@ -37,7 +37,7 @@ namespace ChronosBeta.BL
             project.ResponsibleСustomer = ResponsibleCustomer;
             project.ResponsibleОfficer = ResponsibleOfficer;
             project.Budget = Convert.ToInt32(Budget);
-            project.Deadline = DateTime.Parse(DeadLine);
+            project.Deadline = DeadLine;
             project.Description = Description;
 
             if (project == null)
@@ -52,14 +52,14 @@ namespace ChronosBeta.BL
 
         public static void EditProject(string NameProject,     int ResponsibleCustomer,
                                        int ResponsibleOfficer, string Budget,
-                                       string DeadLine,        string Description, 
+                                       DateTime DeadLine,        string Description, 
                                        Project currentProject)
         {
             currentProject.NameProject = NameProject;
             currentProject.ResponsibleСustomer = ResponsibleCustomer;
             currentProject.ResponsibleОfficer = ResponsibleOfficer;
             currentProject.Budget = Convert.ToInt32(Budget);
-            currentProject.Deadline = DateTime.Parse(DeadLine);
+            currentProject.Deadline = DeadLine;
             currentProject.Description = Description;
 
             if (currentProject == null)

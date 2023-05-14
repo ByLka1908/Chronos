@@ -308,8 +308,8 @@
                 </DataGrid.RowHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Task}" Foreground="{StaticResource color2}" Header="Задача" MinWidth="550"/>
-                    <DataGridTextColumn Binding="{Binding SpentTime}" Foreground="{StaticResource color2}" Header="Отмеченное время" MinWidth="80"/>
+                    <DataGridTextColumn Binding="{Binding Task}"      Foreground="{StaticResource color2}" Header="Задача"           MinWidth="550"/>
+                    <DataGridTextColumn Binding="{Binding SpentTime}" Foreground="{StaticResource color2}" Header="Отмеченное время" MinWidth="150"/>
                 </DataGrid.Columns>
 
             </DataGrid>

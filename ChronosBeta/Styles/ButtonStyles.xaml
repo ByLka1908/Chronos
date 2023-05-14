@@ -132,8 +132,8 @@
                 <ControlTemplate>
                     <Grid x:Name="Grid" Background="Transparent">
                         <Border CornerRadius="8"
-                                                Margin="2"
-                                                Background="{StaticResource color6}"/>
+                                Margin="2"
+                                Background="{StaticResource color6}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

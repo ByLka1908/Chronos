@@ -119,7 +119,7 @@ namespace ChronosBeta.ViewModels
         {
             if (SelectedDate == null)
             {
-                FunctionsWindow.OpenConfrumWindow("Пользователь не выбран");
+                FunctionsWindow.OpenConfrumWindow("Рабочее время не выбрано");
                 return;
             }
             _currentMain.CurrentChildView = new DateTimerObjViewModel(_currentMain, SelectedDate);
@@ -129,7 +129,7 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedRemoveDateTimerCommand(object obj)
         {
-            if (SelectedDate.DateTimer == null)
+            if (SelectedDate == null)
             {
                 FunctionsWindow.OpenConfrumWindow("Рабочее время не выбрана");
                 return;

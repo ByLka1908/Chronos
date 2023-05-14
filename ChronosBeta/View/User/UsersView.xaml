@@ -283,19 +283,20 @@
 
                 <DataGrid.Columns>
 
-                    <DataGridTemplateColumn Header="Фото" MaxWidth="80">
+                    <DataGridTemplateColumn Header="Фото" MaxWidth="80" MinWidth="75">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding ImageUser}" Margin="5" Width="75" Height="75"/>
+                                <Image Source="{Binding ImageUser}" Margin="5" Width="75" Height="75" MinWidth="75" MinHeight="75"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     
-                    <DataGridTextColumn Binding="{Binding Name}"     Foreground="{StaticResource color2}" Header="Имя"       MinWidth="125"/>
-                    <DataGridTextColumn Binding="{Binding Surname}"  Foreground="{StaticResource color2}" Header="Фамилия"   MinWidth="125"/>
-                    <DataGridTextColumn Binding="{Binding Phone}"    Foreground="{StaticResource color2}" Header="Телефон"   MinWidth="100"/>
-                    <DataGridTextColumn Binding="{Binding Skype}"    Foreground="{StaticResource color2}" Header="Skype"     MinWidth="150"/>
-                    <DataGridTextColumn Binding="{Binding JobTitle}" Foreground="{StaticResource color2}" Header="Должность" MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding Name}"       Foreground="{StaticResource color2}" Header="Имя"       MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding Surname}"    Foreground="{StaticResource color2}" Header="Фамилия"   MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding MiddleName}" Foreground="{StaticResource color2}" Header="Отчество"  MinWidth="125"/>
+                    <DataGridTextColumn Binding="{Binding Phone}"      Foreground="{StaticResource color2}" Header="Телефон"   MinWidth="100"/>
+                    <DataGridTextColumn Binding="{Binding Skype}"      Foreground="{StaticResource color2}" Header="Skype"     MinWidth="150"/>
+                    <DataGridTextColumn Binding="{Binding JobTitle}"   Foreground="{StaticResource color2}" Header="Должность" MinWidth="125"/>
                 </DataGrid.Columns>
 
             </DataGrid>

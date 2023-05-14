@@ -1,5 +1,6 @@
 ﻿using ChronosBeta.View;
 using Newtonsoft.Json;
+using System.Globalization;
 using System.IO;
 using SettingView = ChronosBeta.Model.SettingView;
 
@@ -9,11 +10,18 @@ namespace ChronosBeta.BL.InternalFunctions
     {
         public static MainView MainView { get; set; }
         public static SettingView setting { get; set; }
+        public static string[] Validformats { get; set; }
+        public static CultureInfo Provider { get; set; }
+
 
         private static string path;
 
         public static void StartApp()
         {
+            Validformats = new[] { "MM/dd/yyyy", "yyyy/MM/dd", "MM/dd/yyyy HH:mm:ss",
+                                   "M/d/yyyy hh:mm:ss tt", "yyyy-MM-dd HH:mm:ss, fff" };
+            Provider = new CultureInfo("en-US");
+
             setting = new SettingView();
             setting.RememberUser = false;
             setting.CurrentConectName = "ChronosEntites";

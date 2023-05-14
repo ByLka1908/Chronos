@@ -16,7 +16,7 @@
             Id             = task.ID_Task;
             Name           = task.NameTask;
             EstimatedTime  = task.EstimatedTime.ToString();
-            Deadline       = task.Deadline.ToString();
+            Deadline       = task.Deadline.ToString("M/d/yyyy hh:mm:ss tt");
             UserCreateTask = task.Users.Name + " " + task.Users.Surname + " " + task.Users.MiddleName;
             UserDoTask     = task.Users1.Name + " " + task.Users1.Surname + " " + task.Users1.MiddleName;
         }

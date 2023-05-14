@@ -24,11 +24,11 @@ namespace ChronosBeta.BL
             return view;
         }
 
-        public static void AddTask( int UserDoTask,         int UserCreateTask ,
-                                    string NameTask,        int Project, 
-                                    string DeadLine,        string Description, 
-                                    string SelectedItsOver, string EstimatedTime, 
-                                    string AllSpentTime)
+        public static void AddTask( int      UserDoTask,      int UserCreateTask ,
+                                    string   NameTask,        int Project, 
+                                    DateTime DeadLine,        string Description, 
+                                    string   SelectedItsOver, string EstimatedTime, 
+                                    string   AllSpentTime)
         {
             DB.Task task = new DB.Task();
 
@@ -36,10 +36,13 @@ namespace ChronosBeta.BL
             task.UserDoTask     = UserDoTask;
             task.UserCreateTask = UserCreateTask;
             task.Project        = Project;
-            task.Deadline       = DateTime.Parse(DeadLine);
+            task.Deadline       = DeadLine;
             task.Description    = Description;
             task.EstimatedTime  = Convert.ToDouble(EstimatedTime);
-            task.AllSpentTime   = Convert.ToDouble(AllSpentTime);
+            if (AllSpentTime == "")
+                task.AllSpentTime = 0;
+            else
+                task.AllSpentTime = Convert.ToDouble(AllSpentTime);
 
             if (SelectedItsOver == "Да")
                 task.ItsOver = true;
@@ -56,20 +59,23 @@ namespace ChronosBeta.BL
             entities.SaveChanges();
         }
 
-        public static void SaveEditTask(int UserDoTask,         int UserCreateTask,
-                                        string NameTask,        int Project,
-                                        string DeadLine,        string Description,
-                                        string SelectedItsOver, DB.Task currentTask,
-                                        string EstimatedTime,   string AllSpentTime)
+        public static void SaveEditTask(int      UserDoTask,      int UserCreateTask,
+                                        string   NameTask,        int Project,
+                                        DateTime DeadLine,        string Description,
+                                        string   SelectedItsOver, DB.Task currentTask,
+                                        string   EstimatedTime,   string AllSpentTime)
         {
             currentTask.NameTask       = NameTask;
             currentTask.UserDoTask     = UserDoTask;
             currentTask.UserCreateTask = UserCreateTask;
             currentTask.Project        = Project;
-            currentTask.Deadline       = DateTime.Parse(DeadLine);
+            currentTask.Deadline       = DeadLine;
             currentTask.Description    = Description;
             currentTask.EstimatedTime  = Convert.ToDouble(EstimatedTime);
-            currentTask.AllSpentTime   = Convert.ToDouble(AllSpentTime);
+            if (AllSpentTime == "")
+                currentTask.AllSpentTime = 0;
+            else
+                currentTask.AllSpentTime   = Convert.ToDouble(AllSpentTime);
 
             if (SelectedItsOver == "Да")
                 currentTask.ItsOver = true;

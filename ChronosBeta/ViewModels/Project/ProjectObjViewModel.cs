@@ -1,9 +1,11 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.BL.InternalFunctions;
 using ChronosBeta.DB;
 using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,13 +74,13 @@ namespace ChronosBeta.ViewModels
 
             NameProject = SelectedProject.NameProject;
             Budget = SelectedProject.Project.Budget.ToString();
-            Deadline = SelectedProject.Project.Deadline.ToString();
+            Deadline = SelectedProject.Project.Deadline.ToString("M/d/yyyy hh:mm:ss tt");
             Description = SelectedProject.Project.Description;
         }
 
         private void ExecutedSaveCommand(object obj)
         {
-
+            DateTime time;
             try
             {
                 Convert.ToInt32(Budget);
@@ -90,7 +92,7 @@ namespace ChronosBeta.ViewModels
             }
             try
             {
-                DateTime.Parse(Deadline);
+                time = DateTime.ParseExact(Deadline, FunctionsSettingStart.Validformats, FunctionsSettingStart.Provider, DateTimeStyles.None);
             }
             catch
             {
@@ -104,12 +106,12 @@ namespace ChronosBeta.ViewModels
                 {
                     FunctionsProject.AddProject(NameProject, FunctionsCustomer.GetCustomerId(SelectedResponsibleCustomer),
                                                 FunctionsUsers.GetUserId(SelectedResponsibleOfficer), 
-                                                Budget, Deadline, Description);
-                    MessageBox.Show("Проект добавлена");
+                                                Budget, time, Description);
+                    FunctionsWindow.OpenGoodWindow("Проект добавлена");
                 }
                 catch
                 {
-                    MessageBox.Show("Проект не добавлена");
+                    FunctionsWindow.OpenErrorWindow("Проект не добавлена");
                 }
             }
             else
@@ -118,12 +120,12 @@ namespace ChronosBeta.ViewModels
                 {
                     FunctionsProject.EditProject(NameProject, FunctionsCustomer.GetCustomerId(SelectedResponsibleCustomer),
                                                  FunctionsUsers.GetUserId(SelectedResponsibleOfficer),
-                                                 Budget, Deadline, Description, SelectedProject.Project);
-                    MessageBox.Show("Проект отредактирована");
+                                                 Budget, time, Description, SelectedProject.Project);
+                    FunctionsWindow.OpenGoodWindow("Проект отредактирована");
                 }
                 catch
                 {
-                    MessageBox.Show("Проект не отредактирована");
+                    FunctionsWindow.OpenErrorWindow("Проект не отредактирована");
                 }
             }
 

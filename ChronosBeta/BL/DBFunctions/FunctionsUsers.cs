@@ -29,20 +29,21 @@ namespace ChronosBeta.BL
             return users;
         }
 
-        public static void AddUser(string name,     string surname, string login,
-                                   string password, string phone,   string skype, 
-                                   string jobTitle, ImageSource imageUser)
+        public static void AddUser(string name,     string surname, string middleName,
+                                   string login,    string password, string phone,
+                                   string skype, string jobTitle, ImageSource imageUser)
         {
             Users user = new Users();
 
-            user.Name      = name;
-            user.Surname   = surname;
-            user.Login     = login;
-            user.Password  = password;
-            user.Phone     = phone;
-            user.Skype     = skype;
-            user.ImageUser = FunctionsImage.PushImage(imageUser);
-            user.JobTitle  = FunctionsJobTitle.GetId(jobTitle);
+            user.Name       = name;
+            user.Surname    = surname;
+            user.MiddleName = middleName;
+            user.Login      = login;
+            user.Password   = password;
+            user.Phone      = phone;
+            user.Skype      = skype;
+            user.ImageUser  = FunctionsImage.PushImage(imageUser);
+            user.JobTitle   = FunctionsJobTitle.GetId(jobTitle);
 
             if (user == null)
             {
@@ -54,20 +55,22 @@ namespace ChronosBeta.BL
             entities.SaveChanges();
         }
 
-        public static void SaveEditUser(string name,     string surname,         string login, 
-                                        string password, string phone,           string skype, 
-                                        string jobTitle, ViewUsers SelectedUser, ImageSource imageUser)
+        public static void SaveEditUser(string name, string surname, string middleName,
+                                        string login, string password, string phone,
+                                        string skype, string jobTitle, ViewUsers SelectedUser,
+                                        ImageSource imageUser)
         {
             Users user = SelectedUser.User;
 
-            user.Name      = name;
-            user.Surname   = surname;
-            user.Login     = login;
-            user.Password  = password;
-            user.Phone     = phone;
-            user.Skype     = skype;
-            user.ImageUser = FunctionsImage.PushImage(imageUser);
-            user.JobTitle  = FunctionsJobTitle.GetId(jobTitle);
+            user.Name       = name;
+            user.Surname    = surname;
+            user.MiddleName = middleName;
+            user.Login      = login;
+            user.Password   = password;
+            user.Phone      = phone;
+            user.Skype      = skype;
+            user.ImageUser  = FunctionsImage.PushImage(imageUser);
+            user.JobTitle   = FunctionsJobTitle.GetId(jobTitle);
 
             if (user == null)
             {

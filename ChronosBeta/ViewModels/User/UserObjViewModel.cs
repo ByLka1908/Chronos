@@ -38,6 +38,7 @@ namespace ChronosBeta.ViewModels
 
         public string Name     { get; set; } 
         public string Surname  { get; set; }
+        public string MiddleName { get; set; }
         public string Login    { get; set; }
         public string Password { get; set; }
         public string Phone    { get; set; }
@@ -87,6 +88,7 @@ namespace ChronosBeta.ViewModels
         {
             Name = SelectedUser.Name;
             Surname = SelectedUser.Surname;
+            MiddleName = SelectedUser.MiddleName;
             Login = SelectedUser.User.Login;
             Password = SelectedUser.User.Password;
             Phone = SelectedUser.Phone;
@@ -111,7 +113,7 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsUsers.AddUser(Name, Surname, Login, Password, Phone, Skype,
+                    FunctionsUsers.AddUser(Name, Surname, MiddleName, Login, Password, Phone, Skype,
                                            SelectedJobTitle, ImageUser);
                     FunctionsWindow.OpenGoodWindow("Пользователь добавлен");
                 }
@@ -124,7 +126,7 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsUsers.SaveEditUser(Name, Surname, Login, Password, Phone, Skype,
+                    FunctionsUsers.SaveEditUser(Name, Surname, MiddleName, Login, Password, Phone, Skype,
                                                 SelectedJobTitle, SelectedUser, ImageUser);
                     FunctionsWindow.OpenGoodWindow("Пользователь отредактирован");
                 }
@@ -137,11 +139,19 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSelectedUserImageCommand(object obj)
         {
-            var result = FunctionsImage.SetImage();
-            if (result == null)
-                return;
+            try
+            {
+                var result = FunctionsImage.SetImage();
+                if (result == null)
+                    return;
 
-            ImageUser = result;
+                ImageUser = result;
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка установки окна\n" +
+                                                "Не удалось загрузить картинку!");
+            }
         }
 
         private void ExecutedBackCommand(object obj)

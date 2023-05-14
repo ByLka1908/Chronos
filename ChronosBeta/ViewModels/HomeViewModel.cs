@@ -1,9 +1,11 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.BL.InternalFunctions;
 using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -61,10 +63,13 @@ namespace ChronosBeta.ViewModels
 
 
                 List<ViewTask> currentTasks = FunctionsTask.GetTasks();
-                List<ViewTask> _overdueTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) < currentTime).ToList();
-                List<ViewTask> _currentTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) >= currentTime
-                                                                 && DateTime.Parse(x.Deadline) < currentTime.AddDays(3)).ToList();
-                List<ViewTask> _futureTask = currentTasks.Where(x => DateTime.Parse(x.Deadline) > currentTime.AddDays(4)).ToList();
+                List<ViewTask> _overdueTask = currentTasks.Where(x => (x.Task.Users.ID_Users == FunctionsCurrentUser.User.ID_Users || x.Task.Users1.ID_Users == FunctionsCurrentUser.User.ID_Users)
+                                                                      && x.Task.Deadline < currentTime).ToList();
+                List<ViewTask> _currentTask = currentTasks.Where(x => (x.Task.Users.ID_Users == FunctionsCurrentUser.User.ID_Users || x.Task.Users1.ID_Users == FunctionsCurrentUser.User.ID_Users)
+                                                                      && x.Task.Deadline >= currentTime
+                                                                      && x.Task.Deadline <= currentTime.AddDays(3)).ToList();
+                List<ViewTask> _futureTask = currentTasks.Where(x => (x.Task.Users.ID_Users == FunctionsCurrentUser.User.ID_Users || x.Task.Users1.ID_Users == FunctionsCurrentUser.User.ID_Users)
+                                                                      && x.Task.Deadline >= currentTime.AddDays(4)).ToList();
 
 
                 OverdueTask = CollectionViewSource.GetDefaultView(_overdueTask);

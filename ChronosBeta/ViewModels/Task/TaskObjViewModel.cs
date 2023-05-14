@@ -1,9 +1,11 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.BL.InternalFunctions;
 using ChronosBeta.DB;
 using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -92,6 +94,7 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
+            DateTime time;
             try
             {
                 Convert.ToDouble(EstimatedTime);
@@ -103,16 +106,7 @@ namespace ChronosBeta.ViewModels
             }
             try
             {
-                Convert.ToDouble(AllSpentTime);
-            }
-            catch
-            {
-                FunctionsWindow.OpenConfrumWindow("Укажите правильный формат для\nобщего времени выполнения");
-                return;
-            }
-            try
-            {
-                DateTime.Parse(DeadLine);
+                time = DateTime.ParseExact(DeadLine, FunctionsSettingStart.Validformats, FunctionsSettingStart.Provider, DateTimeStyles.None);
             }
             catch
             {
@@ -128,13 +122,13 @@ namespace ChronosBeta.ViewModels
                                           FunctionsUsers.GetUserId(SelectedUserCreateTask),
                                           NameTask,
                                           FunctionsProject.GetIdProject(SelectedProject),
-                                          DeadLine, Description, SelectedItsOver,
+                                          time, Description, SelectedItsOver,
                                           EstimatedTime, AllSpentTime);
-                    MessageBox.Show("Задача добавлена");
+                    FunctionsWindow.OpenGoodWindow("Задача добавлена");
                 }
                 catch
                 {
-                    MessageBox.Show("Задача не добавлена");
+                    FunctionsWindow.OpenErrorWindow("Задача не добавлена");
                 }
             }
             else
@@ -144,15 +138,15 @@ namespace ChronosBeta.ViewModels
                     FunctionsTask.SaveEditTask(FunctionsUsers.GetUserId(SelectedUserDoTask),
                                                FunctionsUsers.GetUserId(SelectedUserCreateTask),
                                                NameTask, 
-                                               FunctionsProject.GetIdProject(SelectedProject), 
-                                               DeadLine, Description,
+                                               FunctionsProject.GetIdProject(SelectedProject),
+                                               time, Description,
                                                SelectedItsOver, SelectedTask.Task,
                                                EstimatedTime, AllSpentTime);
-                    MessageBox.Show("Задача отредактирована");
+                    FunctionsWindow.OpenGoodWindow("Задача отредактирована");
                 }
                 catch
                 {
-                    MessageBox.Show("Задача не отредактирована");
+                    FunctionsWindow.OpenErrorWindow("Задача не отредактирована");
                 }
             }
         }
