@@ -117,14 +117,15 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedRemoveTaskCommand(object obj)
         {
-            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить задачу?"))
-                return;
-
             if (SelectedTask.Task == null)
             {
                 FunctionsWindow.OpenConfrumWindow("Задача не выбрана");
                 return;
             }
+
+            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить задачу?"))
+                return;
+
             try
             {
                 FunctionsTask.DeleteTask(SelectedTask.Task);

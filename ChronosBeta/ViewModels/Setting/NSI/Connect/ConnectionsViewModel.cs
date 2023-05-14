@@ -116,12 +116,19 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedRemoveConnectCommand(object obj)
         {
-            if (!FunctionsWindow.OpenDialogWindow("Вы дествительно хотите удалить подключение?"))
-                return;
 
             if (SelectedConnection.ConnectName == null)
             {
                 FunctionsWindow.OpenConfrumWindow("Подключение не выбрана");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("Вы дествительно хотите удалить подключение?"))
+                return;
+
+            if (FunctionsConnection.ConnectionViews.Count == 1)
+            {
+                FunctionsWindow.OpenConfrumWindow("Вы не можете удалить последнее поключение!");
                 return;
             }
 

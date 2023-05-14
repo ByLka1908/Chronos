@@ -265,8 +265,8 @@
     <Compile Include="Styles\UIColors.xaml.cs">
       <DependentUpon>UIColors.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ConnectionsViewModel.cs" />
-    <Compile Include="ViewModels\Setting\AddConnectionViewModel.cs" />
+    <Compile Include="ViewModels\Setting\NSI\Connect\ConnectionsViewModel.cs" />
+    <Compile Include="ViewModels\Setting\NSI\Connect\ConnectionObjViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\Customer\CustomerObjViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\Customer\CustomerViewModel.cs" />
     <Compile Include="ViewModels\DateTimer\DateTimerObjViewModel.cs" />
@@ -287,11 +287,11 @@
     <Compile Include="ViewModels\User\UsersViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\Base\ViewModelCommand.cs" />
-    <Compile Include="View\ConnectionsView.xaml.cs">
+    <Compile Include="View\Setting\NSI\Connect\ConnectionsView.xaml.cs">
       <DependentUpon>ConnectionsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Setting\AddConnectionView.xaml.cs">
-      <DependentUpon>AddConnectionView.xaml</DependentUpon>
+    <Compile Include="View\Setting\NSI\Connect\ConnectionObjView.xaml.cs">
+      <DependentUpon>ConnectionObjView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Setting\NSI\Customer\CustomerObjView.xaml.cs">
       <DependentUpon>CustomerObjView.xaml</DependentUpon>
@@ -370,11 +370,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ConnectionsView.xaml">
+    <Page Include="View\Setting\NSI\Connect\ConnectionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Setting\AddConnectionView.xaml">
+    <Page Include="View\Setting\NSI\Connect\ConnectionObjView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -29,6 +29,7 @@ namespace ChronosBeta.ViewModels
         }
         public ICommand OpenListDate { get; }
         public ICommand Search { get; }
+        public ICommand RemoveDateTimer { get; }
         public ViewDateTimer SelectedDate { get; set; }
         public string DatePicker { get; set; }
         public string CurrentText { get; set; }
@@ -37,6 +38,7 @@ namespace ChronosBeta.ViewModels
         {
             OpenListDate = new ViewModelCommand(ExecutedOpenListDateCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
+            RemoveDateTimer = new ViewModelCommand(ExecutedRemoveDateTimerCommand);
 
             UpdateView();
         }
@@ -123,6 +125,29 @@ namespace ChronosBeta.ViewModels
             _currentMain.CurrentChildView = new DateTimerObjViewModel(_currentMain, SelectedDate);
             _currentMain.Caption = "Список запущеный программ";
             _currentMain.Icon = IconChar.UserClock;
+        }
+
+        private void ExecutedRemoveDateTimerCommand(object obj)
+        {
+            if (SelectedDate.DateTimer == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Рабочее время не выбрана");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("Вы действиельно хотите удалить отмеченное рабочее время?"))
+                return;
+
+            try
+            {
+                FunctionsDateTimer.DeleteDateTimer(SelectedDate.DateTimer);
+                UpdateView();
+                FunctionsWindow.OpenGoodWindow("Рабочее время удалена!");
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка удаления отметки о рабочем времени!");
+            }
         }
 
     }

@@ -94,7 +94,6 @@ namespace ChronosBeta.ViewModels
 
 
         public ICommand Save { get; }
-        public ICommand AddConnect { get; }
         public ICommand ViewCustomers { get; }
         public ICommand ListApplication { get; }
         public ICommand TryConnection { get; }
@@ -109,7 +108,6 @@ namespace ChronosBeta.ViewModels
 
 
             Save = new ViewModelCommand(ExecutedSaveCommand);
-            AddConnect = new ViewModelCommand(ExecutedAddConnectCommand);
             ViewCustomers = new ViewModelCommand(ExecutedViewCustomersCommand);
             ListApplication = new ViewModelCommand(ExecutedListApplicationCommand);
             TryConnection = new ViewModelCommand(ExecutedTryConnectionCommand);
@@ -213,13 +211,6 @@ namespace ChronosBeta.ViewModels
                     loginView.Close();
                 }
             };
-        }
-
-        private void ExecutedAddConnectCommand(object obj)
-        {
-            _currentMain.CurrentChildView = new AddConnectionViewModel(_currentMain);
-            _currentMain.Caption = "Добавить подключение к серверу";
-            _currentMain.Icon = IconChar.Database;
         }
 
         private void ExecutedViewCustomersCommand(object obj)

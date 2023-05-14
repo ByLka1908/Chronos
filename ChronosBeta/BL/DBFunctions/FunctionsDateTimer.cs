@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Media;
+using ChronosBeta.DB;
 using ChronosBeta.Model;
 
 namespace ChronosBeta.BL
@@ -92,6 +94,19 @@ namespace ChronosBeta.BL
             {
                 throw new Exception(ex.ToString());
             }
+        }
+
+        public static void DeleteDateTimer(DateTimer currentDate)
+        {
+            CronosEntities entities = new CronosEntities();
+            var screenshot = entities.Screenshot.Where(x => x.DateTimer == currentDate.ID_DateTimer).ToList();
+            foreach(var screen in screenshot)
+            {
+                entities.Screenshot.Remove(screen);
+            }
+
+            entities.DateTimer.Remove(entities.DateTimer.Find(currentDate.ID_DateTimer));
+            entities.SaveChanges();
         }
     }
 }

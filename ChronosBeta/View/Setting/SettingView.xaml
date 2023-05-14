@@ -186,7 +186,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="135"/>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="40"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -221,50 +220,6 @@
                               VerticalContentAlignment="Center"
                               Style="{StaticResource ComboBoxStyle}"/>
 
-                    <Button Grid.Column="2"
-                            Grid.Row="1"
-                            Command="{Binding AddConnect}"                                                     
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Foreground="{StaticResource color1}"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Right"
-                            Width="25"
-                            Margin="5,0,5,0"
-                            ToolTip="Добавить подключение">
-
-                        <fa:IconImage Icon="Plus" Style="{StaticResource controlButtonIcon}"/>
-
-                        <Button.Style>
-
-                            <Style TargetType="Button">
-
-                                <Setter Property="Background" Value="{StaticResource color5}"/>
-
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Height="25" CornerRadius="15" Background="{TemplateBinding Background}">
-                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource color4}"/>
-                                    </Trigger>
-                                </Style.Triggers>
-
-                            </Style>
-
-                        </Button.Style>
-
-                    </Button>
-
                     <TextBlock Text="Адрес сервера:"
                                Grid.Column="0"
                                Grid.Row="3"
@@ -274,7 +229,6 @@
                                VerticalAlignment="Center" Height="15"/>
 
                     <TextBox Grid.Column="1"
-                             Grid.ColumnSpan="2"
                              Grid.Row="3"
                              Text="{Binding AddresServer}"
                              Background="{StaticResource color5}"
@@ -294,7 +248,6 @@
                                VerticalAlignment="Center" Height="15"/>
 
                     <TextBox Grid.Column="1"
-                             Grid.ColumnSpan="2"
                              Grid.Row="5"
                              Text="{Binding NameDB}"
                              Background="{StaticResource color5}"

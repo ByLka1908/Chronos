@@ -72,9 +72,9 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedBackCommand(object obj)
         {
-            _currentMain.CurrentChildView = new SettingViewModel();
-            _currentMain.Caption = "Настройки";
-            _currentMain.Icon = IconChar.Gears;
+            _currentMain.CurrentChildView = new ConnectionsViewModel();
+            _currentMain.Caption = "Список подключений";
+            _currentMain.Icon = IconChar.Database;
         }
 
         private void ExecutedTryConnectionCommand(object obj)
