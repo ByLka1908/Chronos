@@ -39,19 +39,6 @@ namespace ChronosBeta.ViewModels
         public ViewUsers SelectedUser { get; set; }
         public string CurrentText { get; set; }
 
-        public void UpdateView()
-        {
-            try
-            {
-                List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
-                CurrentUserList = CollectionViewSource.GetDefaultView(currentUsers);
-            }
-            catch
-            {
-                FunctionsWindow.OpenErrorWindow("Ошибка обновления таблицы");
-            }
-        }
-
         public UsersViewModel()
         {
             AddUser = new ViewModelCommand(ExecutedAddUserCommand);
@@ -65,6 +52,19 @@ namespace ChronosBeta.ViewModels
         public UsersViewModel(MainViewModel main)
         {
             _currentMain = main;
+        }
+
+        private void UpdateView()
+        {
+            try
+            {
+                List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
+                CurrentUserList = CollectionViewSource.GetDefaultView(currentUsers);
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка обновления таблицы");
+            }
         }
 
         private void ExecutedSearchCommand(object obj)
@@ -89,7 +89,7 @@ namespace ChronosBeta.ViewModels
 
                 if (findUsers.Count < 1)
                 {
-                    MessageBox.Show("Обьект не найден");
+                    FunctionsWindow.OpenConfrumWindow("Обьект не найден");
                     CurrentText = string.Empty;
                     UpdateView();
                     return;
@@ -121,11 +121,28 @@ namespace ChronosBeta.ViewModels
             _currentMain.Caption = "Редактирование пользователя";
             _currentMain.Icon = IconChar.UserEdit;
         }
+
         private void ExecutedRemoveUserCommand(object obj)
         {
+
             if (SelectedUser.User == null)
             {
                 FunctionsWindow.OpenConfrumWindow("Пользователь не выбран(а)");
+                return;
+            }
+
+            try
+            {
+                List<ViewUsers> currentUsers = FunctionsUsers.GetUsers();
+                if (currentUsers.Count == 1)
+                {
+                    FunctionsWindow.OpenConfrumWindow("Вы не можете удалить послденего пользователя!");
+                    return;
+                }
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка получения текущий пользователей!");
                 return;
             }
 

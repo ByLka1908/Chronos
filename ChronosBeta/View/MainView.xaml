@@ -19,6 +19,14 @@
 
     <Window.Resources>
 
+        <DataTemplate DataType="{x:Type viewModel:JobTitleObjViewModel}">
+            <local:JobTitleObjView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:JobTitleViewModel}">
+            <local:JobTitleView/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:ConnectionsViewModel}">
             <local:ConnectionsView/>
         </DataTemplate>

@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -41,7 +41,7 @@
                     ToolTip="Выход из учетной записи">
 
                 <fa:IconImage Icon="DoorOpen" Style="{StaticResource controlButtonIcon}"/>
-                
+
                 <Button.Style>
 
                     <Style TargetType="Button">
@@ -151,7 +151,7 @@
                     </Style>
 
                 </Button.Style>
-                
+
             </Button>
 
         </Grid>
@@ -303,7 +303,6 @@
                         </Grid.RowDefinitions>
 
                         <Button Grid.Column="0"
-                                Grid.Row="0"
                                 Command="{Binding ViewCustomers}"                            
                                 Content="Заказчики"                            
                                 FontSize="12"
@@ -312,9 +311,7 @@
                                 BorderThickness="0"
                                 Foreground="{StaticResource color1}"
                                 VerticalAlignment="Center"
-                                HorizontalAlignment="Right"
-                                Width="150"
-                                Margin="0,0,10,0">
+                                Margin="20,0,10,0">
 
                             <Button.Style>
 
@@ -354,9 +351,7 @@
                                 BorderThickness="0"
                                 Foreground="{StaticResource color1}"
                                 VerticalAlignment="Center"
-                                HorizontalAlignment="Right"
-                                Width="150"
-                                Margin="0,0,10,0">
+                                Margin="20,0,10,0">
 
                             <Button.Style>
 
@@ -385,7 +380,7 @@
                             </Button.Style>
 
                         </Button>
-                        
+
                         <Button Grid.Column="1"
                                 Grid.Row="0"
                                 Command="{Binding OpenListConnection}"                            
@@ -428,6 +423,48 @@
 
                         </Button>
 
+                        <Button Grid.Column="2"
+                                Grid.Row="0"
+                                Command="{Binding OpenListJobTitle}"                            
+                                Content="Должности"                            
+                                FontSize="12"
+                                FontFamily="Montserrat"
+                                Cursor="Hand"
+                                BorderThickness="0"
+                                Foreground="{StaticResource color1}"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Width="150"
+                                Margin="0,0,10,0">
+
+                            <Button.Style>
+
+                                <Style TargetType="Button">
+
+                                    <Setter Property="Background" Value="{StaticResource color5}"/>
+
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Height="30" CornerRadius="15" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource color4}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+
+                                </Style>
+
+                            </Button.Style>
+
+                        </Button>
+                        
                     </Grid>
 
                 </Grid>
@@ -467,7 +504,7 @@
                                  Width="50" 
                                  HorizontalAlignment="Right"
                                  IsChecked="{Binding CheckedFalse}"/>
-                    
+
                     <RadioButton Grid.Row="1" 
                                  Content="Да"
                                  IsChecked="{Binding CheckedTrue}"
@@ -571,7 +608,7 @@
                 </Grid>
 
             </Border>
-            
+
         </Grid>
 
     </Grid>

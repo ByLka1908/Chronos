@@ -184,9 +184,9 @@
                     </DataGrid.RowHeaderStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name}"          Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="430"/>
+                        <DataGridTextColumn Binding="{Binding Name}"          Foreground="{StaticResource color2}" Header="Название задачи"  MinWidth="475"/>
                         <DataGridTextColumn Binding="{Binding EstimatedTime}" Foreground="{StaticResource color2}" Header="Время выполнения" MinWidth="175" />
-                        <DataGridTextColumn Binding="{Binding Deadline}"      Foreground="{StaticResource color2}" Header="Срок сдачи" MinWidth="145" />
+                        <DataGridTextColumn Binding="{Binding Deadline}"      Foreground="{StaticResource color2}" Header="Срок сдачи"       MinWidth="130" />
                     </DataGrid.Columns>
 
                 </DataGrid>
@@ -280,9 +280,9 @@
                     </DataGrid.RowHeaderStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name}"          Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="430"/>
+                        <DataGridTextColumn Binding="{Binding Name}"          Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="475"/>
                         <DataGridTextColumn Binding="{Binding EstimatedTime}" Foreground="{StaticResource color2}" Header="Время выполнения" MinWidth="175"/>
-                        <DataGridTextColumn Binding="{Binding Deadline}"      Foreground="{StaticResource color2}" Header="Срок сдачи" MinWidth="145"/>
+                        <DataGridTextColumn Binding="{Binding Deadline}"      Foreground="{StaticResource color2}" Header="Срок сдачи" MinWidth="130"/>
                     </DataGrid.Columns>
 
                 </DataGrid>
@@ -374,9 +374,9 @@
                     </DataGrid.RowHeaderStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name}"          Foreground="{StaticResource color2}" Header="Название задачи" MinWidth="430"/>
+                        <DataGridTextColumn Binding="{Binding Name}"          Foreground="{StaticResource color2}" Header="Название задачи"  MinWidth="475"/>
                         <DataGridTextColumn Binding="{Binding EstimatedTime}" Foreground="{StaticResource color2}" Header="Время выполнения" MinWidth="175"/>
-                        <DataGridTextColumn Binding="{Binding Deadline}"      Foreground="{StaticResource color2}" Header="Срок сдачи" MinWidth="145"/>
+                        <DataGridTextColumn Binding="{Binding Deadline}"      Foreground="{StaticResource color2}" Header="Срок сдачи"       MinWidth="130"/>
                     </DataGrid.Columns>
 
                 </DataGrid>

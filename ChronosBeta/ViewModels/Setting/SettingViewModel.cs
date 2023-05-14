@@ -99,6 +99,7 @@ namespace ChronosBeta.ViewModels
         public ICommand TryConnection { get; }
         public ICommand ExitApp { get; }
         public ICommand OpenListConnection { get; }
+        public ICommand OpenListJobTitle { get; }
 
         public SettingViewModel() 
         {
@@ -110,6 +111,7 @@ namespace ChronosBeta.ViewModels
             Save = new ViewModelCommand(ExecutedSaveCommand);
             ViewCustomers = new ViewModelCommand(ExecutedViewCustomersCommand);
             ListApplication = new ViewModelCommand(ExecutedListApplicationCommand);
+            OpenListJobTitle = new ViewModelCommand(ExecutedOpenListJobTitleCommand);
             TryConnection = new ViewModelCommand(ExecutedTryConnectionCommand);
             ExitApp = new ViewModelCommand(ExecutedExitAppCommand);
             OpenListConnection = new ViewModelCommand(ExecutedOpenListConnectionCommand);
@@ -192,6 +194,10 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedExitAppCommand(object obj)
         {
+            if (!FunctionsWindow.OpenDialogWindow("Вы действительно хотите выйти из пользователя?\n" +
+                                                  "Для того чтобы войти в приложение потребуеться ввести логин и пароль!"))
+                return;
+
             FunctionsSettingStart.setting.RememberUser = false;
             FunctionsSettingStart.setting.NameUser = "";
             FunctionsSettingStart.setting.PasswordUser = "";
@@ -225,6 +231,13 @@ namespace ChronosBeta.ViewModels
             _currentMain.CurrentChildView = new ConnectionsViewModel(_currentMain);
             _currentMain.Caption = "Список подключений";
             _currentMain.Icon = IconChar.Database;
+        }
+
+        private void ExecutedOpenListJobTitleCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new JobTitleViewModel(_currentMain);
+            _currentMain.Caption = "Список должностей";
+            _currentMain.Icon = IconChar.UserTag;
         }
 
         private void ExecutedListApplicationCommand(object obj)

@@ -195,3 +195,7 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\Connect\Connections
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\Connect\ConnectionObjView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\Connect\ConnectionsView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\Connect\ConnectionObjView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\JobTitle\JobTitleObjView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\JobTitle\JobTitleView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\JobTitle\JobTitleObjView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\JobTitle\JobTitleView.baml

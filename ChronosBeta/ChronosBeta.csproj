@@ -250,6 +250,7 @@
     <Compile Include="Model\ViewCurrentUser.cs" />
     <Compile Include="Model\ViewCustomer.cs" />
     <Compile Include="Model\ViewDateTimer.cs" />
+    <Compile Include="Model\ViewJobTitle.cs" />
     <Compile Include="Model\ViewListApplication.cs" />
     <Compile Include="Model\ViewProject.cs" />
     <Compile Include="Model\ViewScreenshot.cs" />
@@ -265,6 +266,8 @@
     <Compile Include="Styles\UIColors.xaml.cs">
       <DependentUpon>UIColors.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Setting\NSI\JobTitle\JobTitleObjViewModel.cs" />
+    <Compile Include="ViewModels\Setting\NSI\JobTitle\JobTitleViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\Connect\ConnectionsViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\Connect\ConnectionObjViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\Customer\CustomerObjViewModel.cs" />
@@ -287,6 +290,12 @@
     <Compile Include="ViewModels\User\UsersViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\Base\ViewModelCommand.cs" />
+    <Compile Include="View\Setting\NSI\JobTitle\JobTitleObjView.xaml.cs">
+      <DependentUpon>JobTitleObjView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Setting\NSI\JobTitle\JobTitleView.xaml.cs">
+      <DependentUpon>JobTitleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Setting\NSI\Connect\ConnectionsView.xaml.cs">
       <DependentUpon>ConnectionsView.xaml</DependentUpon>
     </Compile>
@@ -367,6 +376,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\UIColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Setting\NSI\JobTitle\JobTitleObjView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Setting\NSI\JobTitle\JobTitleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

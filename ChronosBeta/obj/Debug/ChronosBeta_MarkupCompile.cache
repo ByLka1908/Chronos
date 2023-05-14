@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\GitProject\Chronos\ChronosBeta\App.xaml
-251377771922
+27-2016005769
 21227157113
-91251986639
+96-563781652
 1571166670415
-Styles\BindablePasswordBox.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\Setting\NSI\Connect\ConnectionsView.xaml;View\Setting\NSI\Connect\ConnectionObjView.xaml;View\Setting\NSI\Customer\CustomerObjView.xaml;View\Setting\NSI\Customer\CustomerView.xaml;View\DateTimer\DateTimerObjView.xaml;View\DateTimer\DateTimerView.xaml;View\Information\DialogView.xaml;View\Information\InfoView.xaml;View\HomeView.xaml;View\Setting\NSI\ListApplicationView.xaml;View\LoginView.xaml;View\MainView.xaml;View\Project\ProjectObjView.xaml;View\Project\ProjectsView.xaml;View\ScreenshotView.xaml;View\Setting\SettingView.xaml;View\Task\TaksView.xaml;View\Task\TaskObjView.xaml;View\TaskTimer\TaskTimerObjView.xaml;View\TaskTimer\TaskTimerView.xaml;View\User\UserObjView.xaml;View\User\UsersView.xaml;
+Styles\BindablePasswordBox.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\Setting\NSI\JobTitle\JobTitleObjView.xaml;View\Setting\NSI\JobTitle\JobTitleView.xaml;View\Setting\NSI\Connect\ConnectionsView.xaml;View\Setting\NSI\Connect\ConnectionObjView.xaml;View\Setting\NSI\Customer\CustomerObjView.xaml;View\Setting\NSI\Customer\CustomerView.xaml;View\DateTimer\DateTimerObjView.xaml;View\DateTimer\DateTimerView.xaml;View\Information\DialogView.xaml;View\Information\InfoView.xaml;View\HomeView.xaml;View\Setting\NSI\ListApplicationView.xaml;View\LoginView.xaml;View\MainView.xaml;View\Project\ProjectObjView.xaml;View\Project\ProjectsView.xaml;View\ScreenshotView.xaml;View\Setting\SettingView.xaml;View\Task\TaksView.xaml;View\Task\TaskObjView.xaml;View\TaskTimer\TaskTimerObjView.xaml;View\TaskTimer\TaskTimerView.xaml;View\User\UserObjView.xaml;View\User\UsersView.xaml;
 
 False
 
