@@ -81,17 +81,17 @@ namespace ChronosBeta.ViewModels
         private void ExecutedSaveCommand(object obj)
         {
             DateTime time;
-            if (NameProject == null)
+            if (NameProject == null || NameProject == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите название проекта!");
                 return;
             }
-            if (SelectedResponsibleOfficer == null)
+            if (SelectedResponsibleOfficer == null || SelectedResponsibleOfficer == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите ответственного пользователя!");
                 return;
             }
-            if (SelectedResponsibleCustomer == null)
+            if (SelectedResponsibleCustomer == null || SelectedResponsibleCustomer == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите ответственного заказчика!");
                 return;

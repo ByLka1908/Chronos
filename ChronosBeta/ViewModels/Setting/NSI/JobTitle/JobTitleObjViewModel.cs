@@ -61,6 +61,12 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
+            if (NameJobTitle == null || NameJobTitle == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите навазние должности!");
+                return;
+            }
+
             if (!itEdit)
             {
                 try

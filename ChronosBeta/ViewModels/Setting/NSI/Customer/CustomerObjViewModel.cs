@@ -60,6 +60,22 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
+            if (Name == null || Name == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите имя заказчика!");
+                return;
+            }
+            if (Surname == null || Surname == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите фамилию заказчика!");
+                return;
+            }
+            if (MiddleName == null || MiddleName == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите отчество заказчика!");
+                return;
+            }
+
             if (!itEdit)
             {
                 try

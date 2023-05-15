@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.EntitySql;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -249,6 +250,29 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
+            if (AddresServer == null || AddresServer == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите адрес подключения!");
+                return;
+            }
+            if (NameDB == null || NameDB == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите имя базы данных!");
+                return;
+            }
+            if (CheckedTrue)
+            {
+                if (NameUser == null || NameUser == "")
+                {
+                    FunctionsWindow.OpenConfrumWindow("Укажите имя пользователя базы даных!");
+                    return;
+                }
+                if (PasswordUser == null || PasswordUser == "")
+                {
+                    FunctionsWindow.OpenConfrumWindow("Укажите пароль пользователя базы даных!");
+                    return;
+                }
+            }
             try
             {
                 Convert.ToInt32(TimeScreenshot);

@@ -79,12 +79,12 @@ namespace ChronosBeta.ViewModels
         }
         private void ExecutedSaveCommand(object obj)
         {
-            if (SelectedUser == null)
+            if (SelectedUser == null || SelectedUser == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Выберите пользователя!");
                 return;
             }
-            if (SelectedTask == null)
+            if (SelectedTask == null || SelectedTask == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите задачу!");
                 return;

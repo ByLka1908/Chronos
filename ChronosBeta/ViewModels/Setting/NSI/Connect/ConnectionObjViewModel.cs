@@ -95,6 +95,36 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
+            if (NameConnection == null || NameConnection == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите навазние подключения!");
+                return;
+            }
+            if (AddresServer == null || AddresServer == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите адрес сервера!");
+                return;
+            }
+            if (NameDB == null || NameDB == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите название базы данных!");
+                return;
+            }
+
+            if (CheckedTrue)
+            {
+                if (NameUser == null || NameUser == "")
+                {
+                    FunctionsWindow.OpenConfrumWindow("Укажите имя пользователя!");
+                    return;
+                }
+                if (PasswordUser == null || PasswordUser == "")
+                {
+                    FunctionsWindow.OpenConfrumWindow("Укажите пароль пользователя!");
+                    return;
+                }
+            }
+
             if (!itEdit)
             {
                 try

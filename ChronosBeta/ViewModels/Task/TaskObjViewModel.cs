@@ -95,27 +95,27 @@ namespace ChronosBeta.ViewModels
         private void ExecutedSaveCommand(object obj)
         {
             DateTime time;
-            if (SelectedItsOver == null)
+            if (SelectedItsOver == null || SelectedItsOver == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите выполнена ли задача!");
                 return;
             }
-            if (NameTask == null)
+            if (NameTask == null || NameTask == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите название задачи!");
                 return;
             }
-            if (SelectedUserDoTask == null)
+            if (SelectedUserDoTask == null || SelectedUserDoTask == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите пользователя для выполнения задачи!");
                 return;
             }
-            if (SelectedUserCreateTask == null)
+            if (SelectedUserCreateTask == null || SelectedUserCreateTask == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите пользователя который создал задачу!");
                 return;
             }
-            if (SelectedProject == null)
+            if (SelectedProject == null || SelectedProject == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Выберите проект!");
                 return;

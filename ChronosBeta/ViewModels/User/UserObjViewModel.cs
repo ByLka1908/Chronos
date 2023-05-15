@@ -103,22 +103,22 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
-            if (Name == null)
+            if (Name == null || Name == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите имя пользователя!");
                 return;
             }
-            if (Surname == null)
+            if (Surname == null || Surname == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите фамилию пользователя!");
                 return;
             }
-            if (MiddleName == null)
+            if (MiddleName == null || MiddleName == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите отчество пользователя!");
                 return;
             }
-            if (SelectedJobTitle == null)
+            if (SelectedJobTitle == null || SelectedJobTitle == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Укажите должность пользователя!");
                 return;
