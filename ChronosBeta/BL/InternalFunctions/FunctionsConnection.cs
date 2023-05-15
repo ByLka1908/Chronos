@@ -20,7 +20,6 @@ namespace ChronosBeta.BL
 
         public static string GetConnectionString()
         {
-
             ConnectionView connect = new ConnectionView();
             List<ConnectionView> connections = new List<ConnectionView>();
 
@@ -131,6 +130,31 @@ namespace ChronosBeta.BL
             else
             {
                 connectionString = $@"Data Source={AdressServer};Initial Catalog={NameDB};User ID={NameUser};Password={PasswordUser}";
+            }
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                connection.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool TryDefaultConnection()
+        {
+            string connectionString;
+
+            if (CurrentConnect.integratedSecurity)
+            {
+                connectionString = $@"Data Source={CurrentConnect.dataSource};Initial Catalog={CurrentConnect.initialCatalog};Integrated Security={CurrentConnect.integratedSecurity}";
+            }
+            else
+            {
+                connectionString = $@"Data Source={CurrentConnect.dataSource};Initial Catalog={CurrentConnect.initialCatalog};User ID={CurrentConnect.UserId};Password={CurrentConnect.Password}";
             }
             SqlConnection connection = new SqlConnection(connectionString);
             try

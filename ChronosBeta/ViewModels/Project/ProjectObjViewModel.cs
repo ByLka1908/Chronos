@@ -81,13 +81,28 @@ namespace ChronosBeta.ViewModels
         private void ExecutedSaveCommand(object obj)
         {
             DateTime time;
+            if (NameProject == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите название проекта!");
+                return;
+            }
+            if (SelectedResponsibleOfficer == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите ответственного пользователя!");
+                return;
+            }
+            if (SelectedResponsibleCustomer == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите ответственного заказчика!");
+                return;
+            }
             try
             {
                 Convert.ToInt32(Budget);
             }
             catch
             {
-                FunctionsWindow.OpenConfrumWindow("Укажите бюджет в правильном формате");
+                FunctionsWindow.OpenConfrumWindow("Укажите бюджет в правильном формате!");
                 return;
             }
             try
@@ -96,7 +111,7 @@ namespace ChronosBeta.ViewModels
             }
             catch
             {
-                FunctionsWindow.OpenConfrumWindow("Укажите дату в правильном формате");
+                FunctionsWindow.OpenConfrumWindow("Укажите дату в правильном формате!");
                 return;
             }
 
@@ -107,11 +122,11 @@ namespace ChronosBeta.ViewModels
                     FunctionsProject.AddProject(NameProject, FunctionsCustomer.GetCustomerId(SelectedResponsibleCustomer),
                                                 FunctionsUsers.GetUserId(SelectedResponsibleOfficer), 
                                                 Budget, time, Description);
-                    FunctionsWindow.OpenGoodWindow("Проект добавлена");
+                    FunctionsWindow.OpenGoodWindow("Проект добавлен!");
                 }
                 catch
                 {
-                    FunctionsWindow.OpenErrorWindow("Проект не добавлена");
+                    FunctionsWindow.OpenErrorWindow("Проект не добавлен!!!");
                 }
             }
             else
@@ -121,11 +136,11 @@ namespace ChronosBeta.ViewModels
                     FunctionsProject.EditProject(NameProject, FunctionsCustomer.GetCustomerId(SelectedResponsibleCustomer),
                                                  FunctionsUsers.GetUserId(SelectedResponsibleOfficer),
                                                  Budget, time, Description, SelectedProject.Project);
-                    FunctionsWindow.OpenGoodWindow("Проект отредактирована");
+                    FunctionsWindow.OpenGoodWindow("Проект отредактирован!");
                 }
                 catch
                 {
-                    FunctionsWindow.OpenErrorWindow("Проект не отредактирована");
+                    FunctionsWindow.OpenErrorWindow("Проект не отредактирован!!!");
                 }
             }
 

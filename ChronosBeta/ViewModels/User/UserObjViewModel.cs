@@ -103,7 +103,27 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedSaveCommand(object obj)
         {
-            if(Login.Length < 4 || Password.Length < 4)
+            if (Name == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите имя пользователя!");
+                return;
+            }
+            if (Surname == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите фамилию пользователя!");
+                return;
+            }
+            if (MiddleName == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите отчество пользователя!");
+                return;
+            }
+            if (SelectedJobTitle == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите должность пользователя!");
+                return;
+            }
+            if (Login.Length < 4 || Password.Length < 4)
             {
                 FunctionsWindow.OpenConfrumWindow("Длина логина или пароля не достаточна");
                 return;

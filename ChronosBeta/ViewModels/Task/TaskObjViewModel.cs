@@ -28,14 +28,14 @@ namespace ChronosBeta.ViewModels
         public string SelectedUserCreateTask { get; set; }
         public List<string> Project { get; set; }
         public string SelectedProject { get; set; }
+        public List<string> ItsOver { get; set; }
+        public string SelectedItsOver { get; set; }
 
         public string NameTask { get; set; }
         public string EstimatedTime { get; set; }
         public string AllSpentTime { get; set; }
         public string DeadLine { get; set; }
-        public string Description { get; set; }
-        public string SelectedItsOver { get; set; }
-        public List<string> ItsOver { get; set; }
+        public string Description { get; set; } 
 
         public ICommand Save { get; }
         public ICommand Back { get; }
@@ -95,6 +95,31 @@ namespace ChronosBeta.ViewModels
         private void ExecutedSaveCommand(object obj)
         {
             DateTime time;
+            if (SelectedItsOver == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите выполнена ли задача!");
+                return;
+            }
+            if (NameTask == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите название задачи!");
+                return;
+            }
+            if (SelectedUserDoTask == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите пользователя для выполнения задачи!");
+                return;
+            }
+            if (SelectedUserCreateTask == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите пользователя который создал задачу!");
+                return;
+            }
+            if (SelectedProject == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Выберите проект!");
+                return;
+            }
             try
             {
                 Convert.ToDouble(EstimatedTime);

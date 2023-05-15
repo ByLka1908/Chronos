@@ -25,29 +25,57 @@ namespace ChronosBeta
 
             if (FunctionsSettingStart.setting.RememberUser)
             {
-                CronosEntities entities = new CronosEntities();
-                Users user = entities.Users.Single(x => x.Login == FunctionsSettingStart.setting.NameUser && x.Password == FunctionsSettingStart.setting.PasswordUser);
-                FunctionsCurrentUser.SetUser(user);
-
-                var mainView = new MainView();
-                FunctionsSettingStart.MainView = mainView;
-                mainView.Show();
+                try
+                {
+                    FunctionsConnection.GetConnectionString();
+                    bool resul = FunctionsConnection.TryDefaultConnection();
+                    if (resul)
+                    {
+                        InitializateMainView();
+                    }
+                    else
+                    {
+                        InitializateLoginView();
+                        FunctionsWindow.OpenErrorWindow("Ошибка подключения к базе данных!!!");
+                    }
+                }
+                catch 
+                {
+                    InitializateLoginView();
+                    FunctionsWindow.OpenErrorWindow("Ошибка подключения к базе данных!!!");
+                }
             }
             else
             {
-                var loginView = new LoginView();
-                loginView.Show();
-                loginView.IsVisibleChanged += (s, ev) =>
-                {
-                    if (loginView.IsVisible == false && loginView.IsLoaded)
-                    {
-                        var mainView = new MainView();
-                        FunctionsSettingStart.MainView = mainView;
-                        mainView.Show();
-                        loginView.Close();
-                    }
-                };
+                InitializateLoginView();
             }
+        }
+
+        private void InitializateLoginView()
+        {
+            var loginView = new LoginView();
+            loginView.Show();
+            loginView.IsVisibleChanged += (s, ev) =>
+            {
+                if (loginView.IsVisible == false && loginView.IsLoaded)
+                {
+                    var mainView = new MainView();
+                    FunctionsSettingStart.MainView = mainView;
+                    mainView.Show();
+                    loginView.Close();
+                }
+            };
+        }
+
+        private void InitializateMainView()
+        {
+            CronosEntities entities = new CronosEntities();
+            Users user = entities.Users.Single(x => x.Login == FunctionsSettingStart.setting.NameUser && x.Password == FunctionsSettingStart.setting.PasswordUser);
+            FunctionsCurrentUser.SetUser(user);
+
+            var mainView = new MainView();
+            FunctionsSettingStart.MainView = mainView;
+            mainView.Show();
         }
     }
 }
