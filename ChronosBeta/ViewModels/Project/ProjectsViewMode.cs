@@ -29,6 +29,7 @@ namespace ChronosBeta.ViewModels
         }
         public ICommand AddProject { get; }
         public ICommand EditProject { get; }
+        public ICommand GoProjectEdit { get; }
         public ICommand RemoveProject { get; }
         public ICommand Search { get; }
         public ViewProject SelectedProject { get; set; }
@@ -38,6 +39,7 @@ namespace ChronosBeta.ViewModels
         {
             AddProject = new ViewModelCommand(ExecutedAddProjectCommand);
             EditProject = new ViewModelCommand(ExecutedEditProjectCommand);
+            GoProjectEdit = new ViewModelCommand(ExecutedGoProjectEditCommand);
             RemoveProject = new ViewModelCommand(ExecutedRemoveProjectCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
 
@@ -133,6 +135,13 @@ namespace ChronosBeta.ViewModels
                 return;
             }
             _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain, SelectedProject, new ProjectsViewMode(), "Проекты", IconChar.Book);
+            _currentMain.Caption = "Редактирование проекта";
+            _currentMain.Icon = IconChar.Book;
+        }
+
+        private void ExecutedGoProjectEditCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain, (ViewProject)obj, new ProjectsViewMode(), "Проекты", IconChar.Book);
             _currentMain.Caption = "Редактирование проекта";
             _currentMain.Icon = IconChar.Book;
         }

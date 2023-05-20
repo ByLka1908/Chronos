@@ -34,6 +34,7 @@ namespace ChronosBeta.ViewModels
 
         public ICommand AddUser { get; }
         public ICommand EditUser { get; }
+        public ICommand GoUserEdit { get; }
         public ICommand RemoveUser { get; }
         public ICommand Search { get; }
         public ViewUsers SelectedUser { get; set; }
@@ -43,6 +44,7 @@ namespace ChronosBeta.ViewModels
         {
             AddUser = new ViewModelCommand(ExecutedAddUserCommand);
             EditUser = new ViewModelCommand(ExecutedEditUserCommand);
+            GoUserEdit = new ViewModelCommand(ExecutedGoUserEditCommand);
             RemoveUser = new ViewModelCommand(ExecutedRemoveUserCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
 
@@ -110,6 +112,13 @@ namespace ChronosBeta.ViewModels
             _currentMain.Icon = IconChar.UserPlus;
         }
 
+        private void ExecutedGoUserEditCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, (ViewUsers)obj, new UsersViewModel(), "Пользователи", IconChar.Users);
+            _currentMain.Caption = "Редактирование пользователя";
+            _currentMain.Icon = IconChar.UserEdit;
+        }
+
         private void ExecutedEditUserCommand(object obj)
         {
             if (SelectedUser == null)
@@ -117,7 +126,7 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenConfrumWindow("Пользователь не выбран");
                 return;
             }
-            _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, SelectedUser, new UsersViewModel(), "d", IconChar.Users);
+            _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, SelectedUser, new UsersViewModel(), "Пользователи", IconChar.Users);
             _currentMain.Caption = "Редактирование пользователя";
             _currentMain.Icon = IconChar.UserEdit;
         }

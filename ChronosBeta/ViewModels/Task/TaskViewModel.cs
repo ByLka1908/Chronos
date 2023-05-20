@@ -29,6 +29,7 @@ namespace ChronosBeta.ViewModels
         }
         public ICommand AddTask { get; }
         public ICommand EditTask { get; }
+        public ICommand GoTaskEdit { get; }
         public ICommand Search { get; }
         public ICommand RemoveTask { get; }
         public ViewTask SelectedTask { get; set; }
@@ -38,6 +39,7 @@ namespace ChronosBeta.ViewModels
         {
             AddTask = new ViewModelCommand(ExecutedAddTaskCommand);
             EditTask = new ViewModelCommand(ExecutedEditTaskCommand);
+            GoTaskEdit = new ViewModelCommand(ExecutedGoTaskEditCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
             RemoveTask = new ViewModelCommand(ExecutedRemoveTaskCommand);
 
@@ -111,6 +113,13 @@ namespace ChronosBeta.ViewModels
                 return;
             }
             _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, SelectedTask, new TaskViewModel(), "Задачи" , IconChar.ListCheck);
+            _currentMain.Caption = "Редактирование задачи";
+            _currentMain.Icon = IconChar.ListCheck;
+        }
+
+        private void ExecutedGoTaskEditCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, (ViewTask)obj, new TaskViewModel(), "Задачи", IconChar.ListCheck);
             _currentMain.Caption = "Редактирование задачи";
             _currentMain.Icon = IconChar.ListCheck;
         }

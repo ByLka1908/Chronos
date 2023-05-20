@@ -29,6 +29,7 @@ namespace ChronosBeta.ViewModels
 
         public ICommand AddJobTitle { get; }
         public ICommand EditJobTitle { get; }
+        public ICommand GoJobTitleEdit { get; }
         public ICommand RemoveJobTitle { get; }
         public ICommand Search { get; }
         public ICommand Back { get; }
@@ -39,6 +40,7 @@ namespace ChronosBeta.ViewModels
         {
             AddJobTitle = new ViewModelCommand(ExecutedAddJobTitleCommand);
             EditJobTitle = new ViewModelCommand(ExecutedEditJobTitleCommand);
+            GoJobTitleEdit = new ViewModelCommand(ExecutedGoJobTitleEditCommand);
             RemoveJobTitle = new ViewModelCommand(ExecutedRemoveJobTitleCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
             Back = new ViewModelCommand(ExecutedBackCommand);
@@ -114,6 +116,13 @@ namespace ChronosBeta.ViewModels
                 return;
             }
             _currentMain.CurrentChildView = new JobTitleObjViewModel(_currentMain, SelectedJobTitle);
+            _currentMain.Caption = "Редактирование должности";
+            _currentMain.Icon = IconChar.UserTag;
+        }
+
+        private void ExecutedGoJobTitleEditCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new JobTitleObjViewModel(_currentMain, (ViewJobTitle)obj);
             _currentMain.Caption = "Редактирование должности";
             _currentMain.Icon = IconChar.UserTag;
         }

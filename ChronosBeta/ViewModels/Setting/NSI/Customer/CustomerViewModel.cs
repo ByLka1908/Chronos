@@ -20,6 +20,7 @@ namespace ChronosBeta.ViewModels
 
         public ICommand AddCustomer { get; }
         public ICommand EditCustomer { get; }
+        public ICommand GoCustomerEdit { get; }
         public ICommand Search { get; }
         public ICommand RemoveCustomer { get; }
         public ICommand Back { get; }
@@ -40,6 +41,7 @@ namespace ChronosBeta.ViewModels
         {
             AddCustomer = new ViewModelCommand(ExecutedAddCustomerCommand);
             EditCustomer = new ViewModelCommand(ExecutedEditCustomerCommand);
+            GoCustomerEdit = new ViewModelCommand(ExecutedGoCustomerEditCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
             RemoveCustomer = new ViewModelCommand(ExecutedRemoveCustomerCommand);
             Back = new ViewModelCommand(ExecutedBackCommand);
@@ -113,6 +115,13 @@ namespace ChronosBeta.ViewModels
                 return;
             }
             _currentMain.CurrentChildView = new CustomerObjViewModel(_currentMain, SelectedCustomer, new CustomerViewModel(), "Заказчики", IconChar.AddressBook);
+            _currentMain.Caption = "Редактирование заказчика";
+            _currentMain.Icon = IconChar.AddressBook;
+        }
+
+        private void ExecutedGoCustomerEditCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new CustomerObjViewModel(_currentMain, (ViewCustomer)obj, new CustomerViewModel(), "Заказчики", IconChar.AddressBook);
             _currentMain.Caption = "Редактирование заказчика";
             _currentMain.Icon = IconChar.AddressBook;
         }

@@ -30,6 +30,7 @@ namespace ChronosBeta.ViewModels
         public ICommand OpenListDate { get; }
         public ICommand Search { get; }
         public ICommand RemoveDateTimer { get; }
+        public ICommand GoDateTimer { get; }
         public ViewDateTimer SelectedDate { get; set; }
         public string DatePicker { get; set; }
         public string CurrentText { get; set; }
@@ -39,6 +40,7 @@ namespace ChronosBeta.ViewModels
             OpenListDate = new ViewModelCommand(ExecutedOpenListDateCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
             RemoveDateTimer = new ViewModelCommand(ExecutedRemoveDateTimerCommand);
+            GoDateTimer = new ViewModelCommand(ExecutedGoDateTimerCommand);
 
             UpdateView();
         }
@@ -123,6 +125,13 @@ namespace ChronosBeta.ViewModels
                 return;
             }
             _currentMain.CurrentChildView = new DateTimerObjViewModel(_currentMain, SelectedDate);
+            _currentMain.Caption = "Список запущеный программ";
+            _currentMain.Icon = IconChar.UserClock;
+        }
+
+        private void ExecutedGoDateTimerCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new DateTimerObjViewModel(_currentMain, (ViewDateTimer)obj);
             _currentMain.Caption = "Список запущеный программ";
             _currentMain.Icon = IconChar.UserClock;
         }

@@ -19,6 +19,7 @@ namespace ChronosBeta.ViewModels
 
         public ICommand AddConnect { get; }
         public ICommand EditConnect { get; }
+        public ICommand GoConnectEdit { get; }
         public ICommand Search { get; }
         public ICommand RemoveConnect { get; }
         public ICommand Back { get; }
@@ -39,6 +40,7 @@ namespace ChronosBeta.ViewModels
         {
             AddConnect = new ViewModelCommand(ExecutedAddConnectCommand);
             EditConnect = new ViewModelCommand(ExecutedEditConnectCommand);
+            GoConnectEdit = new ViewModelCommand(ExecutedGoConnectEditCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
             RemoveConnect = new ViewModelCommand(ExecutedRemoveConnectCommand);
             Back = new ViewModelCommand(ExecutedBackCommand);
@@ -110,6 +112,13 @@ namespace ChronosBeta.ViewModels
                 return;
             }
             _currentMain.CurrentChildView = new AddConnectionViewModel(_currentMain, SelectedConnection);
+            _currentMain.Caption = "Редактирование подключение к серверу";
+            _currentMain.Icon = IconChar.Database;
+        }
+
+        private void ExecutedGoConnectEditCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new AddConnectionViewModel(_currentMain, (ConnectionView)obj);
             _currentMain.Caption = "Редактирование подключение к серверу";
             _currentMain.Icon = IconChar.Database;
         }

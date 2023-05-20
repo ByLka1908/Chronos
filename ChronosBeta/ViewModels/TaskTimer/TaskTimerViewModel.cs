@@ -28,6 +28,7 @@ namespace ChronosBeta.ViewModels
         }
         public ICommand AddTaskTimer { get; }
         public ICommand EditTaskTimer { get; }
+        public ICommand GoTaskTimerEdit { get; }
         public ICommand RemoveTaskTimer { get; }
         public ICommand Search { get; }
         public ViewTaskTimer SelectedTaskTimer { get; set; }
@@ -50,6 +51,7 @@ namespace ChronosBeta.ViewModels
         {
             AddTaskTimer = new ViewModelCommand(ExecutedAddTaskTimerCommand);
             EditTaskTimer = new ViewModelCommand(ExecutedEditTaskTimerCommand);
+            GoTaskTimerEdit = new ViewModelCommand(ExecutedGoTaskTimerEditCommand);
             RemoveTaskTimer = new ViewModelCommand(ExecutedRemoveTaskTimerCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
 
@@ -134,6 +136,13 @@ namespace ChronosBeta.ViewModels
                 return;
             }
             _currentMain.CurrentChildView = new TaskTimerObjViewModel(_currentMain, SelectedTaskTimer, new TaskTimerViewModel(), "Отметка по задачам", IconChar.ThumbTack);
+            _currentMain.Caption = "Редактирование отметки";
+            _currentMain.Icon = IconChar.ThumbTack;
+        }
+
+        private void ExecutedGoTaskTimerEditCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new TaskTimerObjViewModel(_currentMain, (ViewTaskTimer)obj, new TaskTimerViewModel(), "Отметка по задачам", IconChar.ThumbTack);
             _currentMain.Caption = "Редактирование отметки";
             _currentMain.Icon = IconChar.ThumbTack;
         }

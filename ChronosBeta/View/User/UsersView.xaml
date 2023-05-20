@@ -232,7 +232,13 @@
                       IsReadOnly="True"
                       HorizontalContentAlignment="Stretch"
                       ColumnWidth="*">
-                
+
+                <DataGrid.InputBindings>
+                    <MouseBinding MouseAction="LeftDoubleClick"
+                                      Command="{Binding GoUserEdit}"
+                                      CommandParameter="{Binding ElementName=DataGridEmployees, Path=SelectedItem}"/>
+                </DataGrid.InputBindings>
+
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>
