@@ -100,7 +100,7 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedAddCustomerCommand(object obj)
         {
-            _currentMain.CurrentChildView = new CustomerObjViewModel(_currentMain);
+            _currentMain.CurrentChildView = new CustomerObjViewModel(_currentMain, new CustomerViewModel(), "Заказчики", IconChar.AddressBook);
             _currentMain.Caption = "Добавление заказчика";
             _currentMain.Icon = IconChar.AddressBook;
         }
@@ -112,7 +112,7 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenConfrumWindow("Заказчик не выбрана");
                 return;
             }
-            _currentMain.CurrentChildView = new CustomerObjViewModel(_currentMain, SelectedCustomer);
+            _currentMain.CurrentChildView = new CustomerObjViewModel(_currentMain, SelectedCustomer, new CustomerViewModel(), "Заказчики", IconChar.AddressBook);
             _currentMain.Caption = "Редактирование заказчика";
             _currentMain.Icon = IconChar.AddressBook;
         }

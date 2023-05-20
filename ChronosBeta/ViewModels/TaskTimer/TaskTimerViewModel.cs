@@ -121,7 +121,7 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedAddTaskTimerCommand(object obj)
         {
-            _currentMain.CurrentChildView = new TaskTimerObjViewModel(_currentMain);
+            _currentMain.CurrentChildView = new TaskTimerObjViewModel(_currentMain, new TaskTimerViewModel(), "Отметка по задачам", IconChar.ThumbTack);
             _currentMain.Caption = "Добавление отметки";
             _currentMain.Icon = IconChar.ThumbTack;
         }
@@ -133,7 +133,7 @@ namespace ChronosBeta.ViewModels
                 MessageBox.Show("Задача не выбрана");
                 return;
             }
-            _currentMain.CurrentChildView = new TaskTimerObjViewModel(_currentMain, SelectedTaskTimer);
+            _currentMain.CurrentChildView = new TaskTimerObjViewModel(_currentMain, SelectedTaskTimer, new TaskTimerViewModel(), "Отметка по задачам", IconChar.ThumbTack);
             _currentMain.Caption = "Редактирование отметки";
             _currentMain.Icon = IconChar.ThumbTack;
         }

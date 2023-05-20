@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace ChronosBeta.BL
 {
@@ -78,6 +79,18 @@ namespace ChronosBeta.BL
             CronosEntities entities = new CronosEntities();
             entities.Customers.AddOrUpdate(customer);
             entities.SaveChanges();
+        }
+
+        public static ViewCustomer GetCustomerView(string customer)
+        {
+            string[] FIO = customer.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string Name = FIO[0];
+            string Surname = FIO[1];
+            string MiddleName = FIO[2];
+
+            CronosEntities entities = new CronosEntities();
+            Customers currentCustomer= entities.Customers.Where(x => x.Name == Name && x.Surname == Surname && x.MiddleName == MiddleName).First();
+            return new ViewCustomer(currentCustomer);
         }
 
         public static void DeleteCustomer(Customers currentCustomer)

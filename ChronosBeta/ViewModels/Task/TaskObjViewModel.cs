@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,10 @@ namespace ChronosBeta.ViewModels
     public class TaskObjViewModel: ViewModelBase
     {   
         private static MainViewModel _currentMain;
+        private static ViewModelBase _parentsView;
         private static ViewTask SelectedTask;
+        private static string _nameParentsView;
+        private static IconChar _iconParentsView;
         private static bool itEdit;
 
         public List<string> UserDoTask { get; set; }
@@ -39,6 +43,9 @@ namespace ChronosBeta.ViewModels
 
         public ICommand Save { get; }
         public ICommand Back { get; }
+        public ICommand GoUserDoTask { get; }
+        public ICommand GoUserCreateTask { get; }
+        public ICommand GoProject { get; }
 
         public TaskObjViewModel()
         {
@@ -51,6 +58,9 @@ namespace ChronosBeta.ViewModels
                 //Инициализация команд
                 Save = new ViewModelCommand(ExecutedSaveCommand);
                 Back = new ViewModelCommand(ExecutedBackCommand);
+                GoUserDoTask = new ViewModelCommand(ExecutedGoUserDoTaskCommand);
+                GoUserCreateTask = new ViewModelCommand(ExecutedGoUserCreateTaskCommand);
+                GoProject = new ViewModelCommand(ExecutedGoProjectCommand);
 
                 if (itEdit)
                     SetTask();
@@ -62,14 +72,20 @@ namespace ChronosBeta.ViewModels
             }
         }
 
-        public TaskObjViewModel(MainViewModel main)
+        public TaskObjViewModel(MainViewModel main, ViewModelBase parentsView, string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             itEdit = false;
         }
 
-        public TaskObjViewModel(MainViewModel main, ViewTask selectedTask)
+        public TaskObjViewModel(MainViewModel main, ViewTask selectedTask, ViewModelBase parentsView, string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             SelectedTask = selectedTask;
             itEdit = true;
@@ -176,11 +192,130 @@ namespace ChronosBeta.ViewModels
             }
         }
 
+        private void ExecutedGoUserDoTaskCommand(object obj)
+        {
+            if (SelectedUserDoTask == null || SelectedUserDoTask == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите исполнителя!");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("При переходе к исполнителю все не сохраненые изменения будут утеряны\n" +
+                                                  "Вы уверены что хотите перейти к исполнителю?"))
+            {
+                return;
+            }
+
+            try
+            {
+                TaskObjViewModel currentTask;
+                string currentCaptionTask;
+                if (itEdit)
+                {
+                    currentTask = new TaskObjViewModel(_currentMain, SelectedTask, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTask = "Редактирование задачи";
+                }
+                else
+                {
+                    currentTask = new TaskObjViewModel(_currentMain, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTask = "Добавление задачи";
+                }
+                _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, FunctionsUsers.GetUserView(SelectedUserDoTask), 
+                                                                     currentTask, currentCaptionTask, IconChar.ListCheck);
+                _currentMain.Caption = "Редактирование пользователя";
+                _currentMain.Icon = IconChar.UserEdit;
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось перейти к пользователю!");
+            }
+        }
+
+        private void ExecutedGoUserCreateTaskCommand(object obj)
+        {
+            if (SelectedUserCreateTask == null || SelectedUserCreateTask == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите поручителя!");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("При переходе к поручителю все не сохраненые изменения будут утеряны\n" +
+                                                  "Вы уверены что хотите перейти к поручителю?"))
+            {
+                return;
+            }
+
+            try
+            {
+                TaskObjViewModel currentTask;
+                string currentCaptionTask;
+                if (itEdit)
+                {
+                    currentTask = new TaskObjViewModel(_currentMain, SelectedTask, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTask = "Редактирование задачи";
+                }
+                else
+                {
+                    currentTask = new TaskObjViewModel(_currentMain, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTask = "Добавление задачи";
+                }
+                _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, FunctionsUsers.GetUserView(SelectedUserCreateTask),
+                                                                     currentTask, currentCaptionTask, IconChar.ListCheck);
+                _currentMain.Caption = "Редактирование пользователя";
+                _currentMain.Icon = IconChar.UserEdit;
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось перейти к поручителю!");
+            }
+        }
+
+        private void ExecutedGoProjectCommand(object obj)
+        {
+            if (SelectedProject == null || SelectedProject == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите проект!");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("При переходе к проекту все не сохраненые изменения будут утеряны\n" +
+                                                  "Вы уверены что хотите перейти к проекту?"))
+            {
+                return;
+            }
+
+            try
+            {
+                TaskObjViewModel currentTask;
+                string currentCaptionTask;
+
+                if (itEdit)
+                {
+                    currentTask = new TaskObjViewModel(_currentMain, SelectedTask, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTask = "Редактирование задачи";
+                }
+                else
+                {
+                    currentTask = new TaskObjViewModel(_currentMain, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTask = "Добавление задачи";
+                }
+
+                _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain, FunctionsProject.GetProjectView(SelectedProject),
+                                                                     currentTask, currentCaptionTask, IconChar.ListCheck);
+                _currentMain.Caption = "Редактирование проекта";
+                _currentMain.Icon = IconChar.Book;
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось перейти к проекту!");
+            }
+        }
+
         private void ExecutedBackCommand(object obj)
         {
-            _currentMain.CurrentChildView = new TaskViewModel();
-            _currentMain.Caption = "Задачи";
-            _currentMain.Icon = IconChar.ListCheck;
+            _currentMain.CurrentChildView = _parentsView;
+            _currentMain.Caption = _nameParentsView;
+            _currentMain.Icon = _iconParentsView;
         }
     }
 }

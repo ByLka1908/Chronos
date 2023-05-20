@@ -15,6 +15,9 @@ namespace ChronosBeta.ViewModels
     {
         private static MainViewModel _currentMain;
         private static ViewCustomer SelectedCustomer;
+        private static ViewModelBase _parentsView;
+        private static string _nameParentsView;
+        private static IconChar _iconParentsView;
         private static bool itEdit;
 
         public string Name { get; set; }
@@ -36,14 +39,20 @@ namespace ChronosBeta.ViewModels
                 SetTask();
         }
 
-        public CustomerObjViewModel(MainViewModel main)
+        public CustomerObjViewModel(MainViewModel main, ViewModelBase parentsView, string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             itEdit = false;
         }
 
-        public CustomerObjViewModel(MainViewModel main, ViewCustomer selectedCustomer)
+        public CustomerObjViewModel(MainViewModel main, ViewCustomer selectedCustomer, ViewModelBase parentsView, string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             SelectedCustomer = selectedCustomer;
             itEdit = true;
@@ -104,9 +113,9 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedBackCommand(object obj)
         {
-            _currentMain.CurrentChildView = new CustomerViewModel();
-            _currentMain.Caption = "Заказчики";
-            _currentMain.Icon = IconChar.AddressBook;
+            _currentMain.CurrentChildView = _parentsView;
+            _currentMain.Caption = _nameParentsView;
+            _currentMain.Icon = _iconParentsView;
         }
     }
 }

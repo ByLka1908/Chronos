@@ -10,9 +10,10 @@ namespace ChronosBeta.BL
 {
     public class FunctionsDateTimer
     {
-        private static bool     joobTime  = false;
-        private static TimeSpan timeStart = new TimeSpan();
-        private static TimeSpan timeEnd   = new TimeSpan();
+        private static bool     joobTime         = false;
+        private static TimeSpan timeStart        = new TimeSpan();
+        private static TimeSpan timeEnd          = new TimeSpan();
+        private static string ContentButtonTrack = "Здраствуйте, включите таймер рабочего времени!";
 
         private static void AddDateTimer(TimeSpan timeStart, TimeSpan timeEnd)
         {
@@ -48,12 +49,11 @@ namespace ChronosBeta.BL
             }
         }
 
-        public static string OffOnDateTimer()
+        public static void OffOnDateTimer()
         {
-            string contentLabel;
             if (joobTime)
             {
-                contentLabel = "Здраствуйте, включите таймер рабочего времени!";
+                ContentButtonTrack = "Здраствуйте, включите таймер рабочего времени!";
                 joobTime = false;
 
                 timeEnd = DateTime.Now.TimeOfDay;
@@ -61,14 +61,18 @@ namespace ChronosBeta.BL
             }
             else
             {
-                contentLabel = "Приятной работы!";
+                ContentButtonTrack = "Приятной работы!";
                 joobTime = true;
 
                 timeStart = DateTime.Now.TimeOfDay;
                 FunctionsJSON.CreateJson();
                 FunctionsImage.StartScreenshot();
             }
-            return contentLabel;
+        }
+
+        public static string GetContentButtonTrack()
+        {
+            return ContentButtonTrack;
         }
 
         public static SolidColorBrush GetColorBrushes()

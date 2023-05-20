@@ -105,7 +105,7 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedAddUserCommand(object obj)
         {
-            _currentMain.CurrentChildView = new UserObjViewModel(_currentMain);
+            _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, new UsersViewModel(), "Пользователи", IconChar.Users);
             _currentMain.Caption = "Добавление пользователя";
             _currentMain.Icon = IconChar.UserPlus;
         }
@@ -117,7 +117,7 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenConfrumWindow("Пользователь не выбран");
                 return;
             }
-            _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, SelectedUser);
+            _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, SelectedUser, new UsersViewModel(), "d", IconChar.Users);
             _currentMain.Caption = "Редактирование пользователя";
             _currentMain.Icon = IconChar.UserEdit;
         }

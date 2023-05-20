@@ -98,7 +98,7 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedAddTaskCommand(object obj)
         {
-            _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain);
+            _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, new TaskViewModel(), "Задачи", IconChar.ListCheck);
             _currentMain.Caption = "Добавление задачи";
             _currentMain.Icon = IconChar.ListCheck;
         }
@@ -110,7 +110,7 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenConfrumWindow("Задача не выбрана");
                 return;
             }
-            _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, SelectedTask);
+            _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, SelectedTask, new TaskViewModel(), "Задачи" , IconChar.ListCheck);
             _currentMain.Caption = "Редактирование задачи";
             _currentMain.Icon = IconChar.ListCheck;
         }

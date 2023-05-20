@@ -17,6 +17,9 @@ namespace ChronosBeta.ViewModels
         private static Users _currentUser;
         private static MainViewModel _currentMain;
         private static ViewTaskTimer SelectedTaskTimer;
+        private static ViewModelBase _parentsView;
+        private static string _nameParentsView;
+        private static IconChar _iconParentsView;
         private static bool itEdit;
 
         public List<string> Users { get; set; }
@@ -31,6 +34,8 @@ namespace ChronosBeta.ViewModels
 
         public ICommand Save { get; }
         public ICommand Back { get; }
+        public ICommand GoUser { get; }
+        public ICommand GoTask { get; }
 
         public TaskTimerObjViewModel()
         {
@@ -45,6 +50,8 @@ namespace ChronosBeta.ViewModels
                 //Инициализация команд
                 Save = new ViewModelCommand(ExecutedSaveCommand);
                 Back = new ViewModelCommand(ExecutedBackCommand);
+                GoUser = new ViewModelCommand(ExecutedGoUserCommand);
+                GoTask = new ViewModelCommand(ExecutedGoTaskCommand);
 
                 if (itEdit)
                     SetTaskTimer();
@@ -55,14 +62,20 @@ namespace ChronosBeta.ViewModels
             }
         }
 
-        public TaskTimerObjViewModel(MainViewModel main)
+        public TaskTimerObjViewModel(MainViewModel main, ViewModelBase parentsView, string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             itEdit = false;
         }
 
-        public TaskTimerObjViewModel(MainViewModel main, ViewTaskTimer selectedTaskTimer)
+        public TaskTimerObjViewModel(MainViewModel main, ViewTaskTimer selectedTaskTimer, ViewModelBase parentsView, string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             SelectedTaskTimer = selectedTaskTimer;
             itEdit = true;
@@ -77,6 +90,7 @@ namespace ChronosBeta.ViewModels
             SpentTime    = SelectedTaskTimer.SpentTime;
             Description  = SelectedTaskTimer.TaskTimer.Description;
         }
+
         private void ExecutedSaveCommand(object obj)
         {
             if (SelectedUser == null || SelectedUser == "")
@@ -125,11 +139,92 @@ namespace ChronosBeta.ViewModels
             }
         }
 
+        private void ExecutedGoUserCommand(object obj)
+        {
+            if (SelectedUser == null || SelectedUser == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите пользователя!");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("При переходе к поручителю все не сохраненые изменения будут утеряны\n" +
+                                                  "Вы уверены что хотите перейти к пользователю?"))
+            {
+                return;
+            }
+
+            try
+            {
+                TaskTimerObjViewModel currentTaskTimer;
+                string currentCaptionTaskTimer;
+                if (itEdit)
+                {
+                    currentTaskTimer = new TaskTimerObjViewModel(_currentMain, SelectedTaskTimer, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTaskTimer = "Редактирование отметки";
+                }
+                else
+                {
+                    currentTaskTimer = new TaskTimerObjViewModel(_currentMain, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTaskTimer = "Добавление отметки";
+                }
+
+                _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, FunctionsUsers.GetUserView(SelectedUser),
+                                                                     currentTaskTimer, currentCaptionTaskTimer, IconChar.ThumbTack);
+                _currentMain.Caption = "Редактирование пользователя";
+                _currentMain.Icon = IconChar.UserEdit;
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось перейти к пользователю!");
+            }
+
+        }
+
+        private void ExecutedGoTaskCommand(object obj)
+        {
+            if (SelectedTask == null || SelectedTask == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите задачу!");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("При переходе к поручителю все не сохраненые изменения будут утеряны\n" +
+                                                  "Вы уверены что хотите перейти к задаче?"))
+            {
+                return;
+            }
+
+            try
+            {
+                TaskTimerObjViewModel currentTaskTimer;
+                string currentCaptionTaskTimer;
+                if (itEdit)
+                {
+                    currentTaskTimer = new TaskTimerObjViewModel(_currentMain, SelectedTaskTimer, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTaskTimer = "Редактирование отметки";
+                }
+                else
+                {
+                    currentTaskTimer = new TaskTimerObjViewModel(_currentMain, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionTaskTimer = "Добавление отметки";
+                }
+                _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, FunctionsTask.GetTaskView(SelectedTask),
+                                                                     currentTaskTimer, currentCaptionTaskTimer, IconChar.ThumbTack);
+                _currentMain.Caption = "Редактирование задачи";
+                _currentMain.Icon = IconChar.ListCheck;
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось перейти к задаче!");
+            }
+        }
+
         private void ExecutedBackCommand(object obj)
         {
-            _currentMain.CurrentChildView = new TaskTimerViewModel();
-            _currentMain.Caption = "Отметка по задачам";
-            _currentMain.Icon = IconChar.ThumbTack;
+            _currentMain.CurrentChildView = _parentsView;
+            _currentMain.Caption = _nameParentsView;
+            _currentMain.Icon = _iconParentsView;
         }
+
     }
 }

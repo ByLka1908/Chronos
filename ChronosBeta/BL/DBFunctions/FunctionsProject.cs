@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace ChronosBeta.BL
 {
@@ -76,6 +77,13 @@ namespace ChronosBeta.BL
         {
             CronosEntities entities = new CronosEntities();
             return entities.Project.Where(x => x.NameProject == project).First().id_Project;
+        }
+
+        public static ViewProject GetProjectView(string project)
+        {
+            CronosEntities entities = new CronosEntities();
+            Project currentProject = entities.Project.Where(x => x.NameProject == project).First();
+            return new ViewProject(currentProject);
         }
 
         public static void DeleteProject(Project currentProject)

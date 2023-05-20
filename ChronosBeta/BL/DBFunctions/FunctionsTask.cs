@@ -105,6 +105,13 @@ namespace ChronosBeta.BL
             return task;
         }
 
+        public static ViewTask GetTaskView(string task)
+        {
+            CronosEntities entities = new CronosEntities();
+            DB.Task currentTask = entities.Task.Where(x => x.NameTask == task).First();
+            return new ViewTask(currentTask);
+        }
+
         public static void DeleteTask(DB.Task currentTask)
         {
             CronosEntities entities = new CronosEntities();

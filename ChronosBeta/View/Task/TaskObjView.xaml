@@ -148,6 +148,99 @@
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1"
+                            Grid.Row="1"
+                            Command="{Binding GoUserDoTask}"                           
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            BorderThickness="0"
+                            Foreground="{StaticResource color1}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            VerticalContentAlignment="Bottom"
+                            Width="20"
+                            ToolTip="Перейти к исполнителю">
+
+                        <fa:IconImage Icon="AnglesRight" Style="{StaticResource controlButtonIcon}"/>
+
+                        <Button.Style>
+
+                            <Style TargetType="Button">
+
+                                <Setter Property="Background" Value="{StaticResource color3}"/>
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Height="20" CornerRadius="15" Background="{TemplateBinding Background}">
+                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource color5}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </Button.Style>
+
+                    </Button>
+
+                    <Button Grid.Column="1"
+                            Grid.Row="3"
+                            Command="{Binding GoUserCreateTask}"                           
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            BorderThickness="0"
+                            Foreground="{StaticResource color1}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            VerticalContentAlignment="Bottom"
+                            Width="20"
+                            ToolTip="Перейти к поручителю">
+
+                        <fa:IconImage Icon="AnglesRight" Style="{StaticResource controlButtonIcon}"/>
+
+                        <Button.Style>
+
+                            <Style TargetType="Button">
+
+                                <Setter Property="Background" Value="{StaticResource color3}"/>
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Height="20" CornerRadius="15" Background="{TemplateBinding Background}">
+                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource color5}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </Button.Style>
+
+                    </Button>
+
                     <TextBlock Text="Исполнитель:"
                                Grid.Column="0"
                                Grid.Row="0"
@@ -157,8 +250,9 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"/>
 
-                    <ComboBox Grid.Column="1"
+                    <ComboBox Grid.Column="0"
                               Grid.Row="1"
+                              x:Name="UserDoTask"
                               ItemsSource="{Binding UserDoTask}"
                               SelectedItem="{Binding SelectedUserDoTask}"
                               Background="{StaticResource color5}"
@@ -168,7 +262,15 @@
                               FontSize="12"
                               Height="25"
                               VerticalContentAlignment="Center"
-                              Style="{StaticResource ComboBoxStyle}"/>
+                              Style="{StaticResource ComboBoxStyle}">
+                        
+                        <ComboBox.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick"
+                                          Command="{Binding GoUserDoTask}"
+                                          CommandParameter="{Binding ElementName=UserDoTask, Path=SelectedItem}"/>
+                        </ComboBox.InputBindings>
+
+                    </ComboBox>
 
                     <TextBlock Text="Поручитель:"
                                Grid.Column="0"
@@ -209,6 +311,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="105"/>
                         <ColumnDefinition/>
+                        <ColumnDefinition Width="20"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -220,8 +323,51 @@
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="25"/>
-
                     </Grid.RowDefinitions>
+
+                    <Button Grid.Column="2"
+                            Grid.Row="2"
+                            Command="{Binding GoProject}"                           
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            BorderThickness="0"
+                            Foreground="{StaticResource color1}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            VerticalContentAlignment="Bottom"
+                            Width="20"
+                            ToolTip="Перейти к проекту">
+
+                        <fa:IconImage Icon="AnglesRight" Style="{StaticResource controlButtonIcon}"/>
+
+                        <Button.Style>
+
+                            <Style TargetType="Button">
+
+                                <Setter Property="Background" Value="{StaticResource color3}"/>
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Height="20" CornerRadius="15" Background="{TemplateBinding Background}">
+                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource color5}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </Button.Style>
+
+                    </Button>
 
                     <TextBlock Text="Имя задачи"
                                Grid.Column="0"
@@ -232,6 +378,7 @@
                                VerticalAlignment="Center"/>
 
                     <TextBox Grid.Column="1"
+                             Grid.ColumnSpan="2"
                              Grid.Row="0"
                              Text="{Binding NameTask}"
                              Background="{StaticResource color5}"
@@ -266,6 +413,7 @@
 
                     <TextBlock Text="Задача закончена:"
                                Grid.Column="0"
+                               Grid.ColumnSpan="2"
                                Grid.Row="4"
                                Foreground="{StaticResource color2}"
                                FontFamily="Montserrat"
@@ -273,6 +421,7 @@
                                VerticalAlignment="Center"/>
 
                     <ComboBox Grid.Column="1"
+                              Grid.ColumnSpan="2"
                               Grid.Row="4"
                               ItemsSource="{Binding ItsOver}"
                               SelectedItem="{Binding SelectedItsOver}"
@@ -294,6 +443,7 @@
                                VerticalAlignment="Center"/>
 
                     <DatePicker Grid.Column="1"
+                                Grid.ColumnSpan="2"
                                 Grid.Row="6"
                                 FirstDayOfWeek="Monday"
                                 SelectedDate="{Binding DeadLine}"

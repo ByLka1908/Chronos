@@ -23,6 +23,9 @@ namespace ChronosBeta.ViewModels
         private static MainViewModel _currentMain;
         private static ViewUsers SelectedUser;
         private static ImageSource _imageUser;
+        private static ViewModelBase _parentsView;
+        private static string _nameParentsView;
+        private static IconChar _iconParentsView;
         private static bool itEdit;
 
         //Параметры
@@ -71,14 +74,23 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenErrorWindow("Ошибка инициализация окна");
             }
         }
-        public UserObjViewModel(MainViewModel main)
+
+        public UserObjViewModel(MainViewModel main, ViewModelBase parentsView,
+                                string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             itEdit = false;
         }
 
-        public UserObjViewModel(MainViewModel main, ViewUsers selectedUser)
+        public UserObjViewModel(MainViewModel main, ViewUsers selectedUser, ViewModelBase parentsView,
+                                string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             SelectedUser = selectedUser;
             itEdit = true;
@@ -176,9 +188,9 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedBackCommand(object obj)
         {
-            _currentMain.CurrentChildView = new UsersViewModel();
-            _currentMain.Caption = "Пользователи";
-            _currentMain.Icon = IconChar.Users;
+            _currentMain.CurrentChildView = _parentsView;
+            _currentMain.Caption = _nameParentsView;
+            _currentMain.Icon = _iconParentsView;
         }
     }
 }

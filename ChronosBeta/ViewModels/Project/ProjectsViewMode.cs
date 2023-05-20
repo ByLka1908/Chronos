@@ -120,7 +120,7 @@ namespace ChronosBeta.ViewModels
 
         private void ExecutedAddProjectCommand(object obj)
         {
-            _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain);
+            _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain, new ProjectsViewMode(), "Проекты", IconChar.Book);
             _currentMain.Caption = "Добавление проекта";
             _currentMain.Icon = IconChar.Book;
         }
@@ -132,7 +132,7 @@ namespace ChronosBeta.ViewModels
                 MessageBox.Show("Проект не выбран");
                 return;
             }
-            _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain, SelectedProject);
+            _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain, SelectedProject, new ProjectsViewMode(), "Проекты", IconChar.Book);
             _currentMain.Caption = "Редактирование проекта";
             _currentMain.Icon = IconChar.Book;
         }

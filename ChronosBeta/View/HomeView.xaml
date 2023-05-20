@@ -8,6 +8,7 @@
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
              xmlns:viewModel="clr-namespace:ChronosBeta.ViewModels"
              mc:Ignorable="d" 
+             x:Name="HomeViewWindow"
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.DataContext>
@@ -134,6 +135,12 @@
                           HorizontalContentAlignment="Stretch"
                           ColumnWidth="*">
 
+                    <DataGrid.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick"
+                                      Command="{Binding GoTask}"
+                                      CommandParameter="{Binding ElementName=OverdueTask, Path=SelectedItem}"/>
+                    </DataGrid.InputBindings>
+
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="Transparent"/>
@@ -229,6 +236,12 @@
                           HorizontalContentAlignment="Stretch"
                           ColumnWidth="*">
 
+                    <DataGrid.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick"
+                                      Command="{Binding GoTask}"
+                                      CommandParameter="{Binding ElementName=CurrentTask, Path=SelectedItem}"/>
+                    </DataGrid.InputBindings>
+
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="Transparent"/>
@@ -323,6 +336,12 @@
                           IsReadOnly="True"
                           HorizontalContentAlignment="Stretch"
                           ColumnWidth="*">
+
+                    <DataGrid.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick"
+                                      Command="{Binding GoTask}"
+                                      CommandParameter="{Binding ElementName=FutureTask, Path=SelectedItem}"/>
+                    </DataGrid.InputBindings>
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">

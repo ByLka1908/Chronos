@@ -18,6 +18,9 @@ namespace ChronosBeta.ViewModels
     {
         private static MainViewModel _currentMain;
         private static ViewProject SelectedProject;
+        private static ViewModelBase _parentsView;
+        private static string _nameParentsView;
+        private static IconChar _iconParentsView;
         private static bool itEdit;
 
         public List<string> ResponsibleCustomer { get; set; }
@@ -33,6 +36,8 @@ namespace ChronosBeta.ViewModels
 
         public ICommand Save { get; }
         public ICommand Back { get; }
+        public ICommand GoResponsibleCustomer { get; }
+        public ICommand GoResponsibleOfficer { get; }
 
         public ProjectObjViewModel()
         {
@@ -44,6 +49,8 @@ namespace ChronosBeta.ViewModels
                 //Инициализация команд
                 Save = new ViewModelCommand(ExecutedSaveCommand);
                 Back = new ViewModelCommand(ExecutedBackCommand);
+                GoResponsibleCustomer = new ViewModelCommand(ExecutedGoResponsibleCustomerCommand);
+                GoResponsibleOfficer = new ViewModelCommand(ExecutedGoResponsibleOfficerCommand);
 
                 if (itEdit)
                     SetProject();
@@ -54,14 +61,20 @@ namespace ChronosBeta.ViewModels
             }
         }
 
-        public ProjectObjViewModel(MainViewModel main)
+        public ProjectObjViewModel(MainViewModel main, ViewModelBase parentsView, string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             itEdit = false;
         }
 
-        public ProjectObjViewModel(MainViewModel main, ViewProject selectedProject)
+        public ProjectObjViewModel(MainViewModel main, ViewProject selectedProject, ViewModelBase parentsView, string nameParentsView, IconChar iconParentsView)
         {
+            _iconParentsView = iconParentsView;
+            _nameParentsView = nameParentsView;
+            _parentsView = parentsView;
             _currentMain = main;
             SelectedProject = selectedProject;
             itEdit = true;
@@ -146,11 +159,89 @@ namespace ChronosBeta.ViewModels
 
         }
 
+        private void ExecutedGoResponsibleCustomerCommand(object obj)
+        {
+            if (SelectedResponsibleCustomer == null || SelectedResponsibleCustomer == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите заказчика!");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("При переходе к поручителю все не сохраненые изменения будут утеряны\n" +
+                                                  "Вы уверены что хотите перейти к заказчику?"))
+            {
+                return;
+            }
+
+            try
+            {
+                ProjectObjViewModel currentProject;
+                string currentCaptionProject;
+                if (itEdit)
+                {
+                    currentProject = new ProjectObjViewModel(_currentMain, SelectedProject, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionProject = "Редактирование проекта";
+                }
+                else
+                {
+                    currentProject = new ProjectObjViewModel(_currentMain, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionProject = "Добавление проекта";
+                }
+                _currentMain.CurrentChildView = new CustomerObjViewModel(_currentMain, FunctionsCustomer.GetCustomerView(SelectedResponsibleCustomer),
+                                                                         currentProject, currentCaptionProject, IconChar.Book);
+                _currentMain.Caption = "Редактирование заказчика";
+                _currentMain.Icon = IconChar.AddressBook;
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось перейти к заказчику!");
+            }
+        }
+
+        private void ExecutedGoResponsibleOfficerCommand(object obj)
+        {
+            if (SelectedResponsibleOfficer == null || SelectedResponsibleOfficer == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите ответственного!");
+                return;
+            }
+
+            if (!FunctionsWindow.OpenDialogWindow("При переходе к поручителю все не сохраненые изменения будут утеряны\n" +
+                                                  "Вы уверены что хотите перейти к ответственному?"))
+            {
+                return;
+            }
+
+            try
+            {
+                ProjectObjViewModel currentProject;
+                string currentCaptionProject;
+                if (itEdit)
+                {
+                    currentProject = new ProjectObjViewModel(_currentMain, SelectedProject, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionProject = "Редактирование проекта";
+                }
+                else
+                {
+                    currentProject = new ProjectObjViewModel(_currentMain, _parentsView, _nameParentsView, _iconParentsView);
+                    currentCaptionProject = "Добавление проекта";
+                }
+                _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, FunctionsUsers.GetUserView(SelectedResponsibleOfficer),
+                                                                     currentProject, currentCaptionProject, IconChar.Book);
+                _currentMain.Caption = "Редактирование пользователя";
+                _currentMain.Icon = IconChar.UserEdit;
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось перейти к ответственному!");
+            }
+        }
+
         private void ExecutedBackCommand(object obj)
         {
-            _currentMain.CurrentChildView = new ProjectsViewMode();
-            _currentMain.Caption = "Проекты";
-            _currentMain.Icon = IconChar.Book;
+            _currentMain.CurrentChildView = _parentsView;
+            _currentMain.Caption = _nameParentsView;
+            _currentMain.Icon = _iconParentsView;
         }
     }
 }

@@ -93,6 +93,18 @@ namespace ChronosBeta.BL
             return entities.Users.Where(x => x.Name == Name && x.Surname == Surname && x.MiddleName == MiddleName).First().ID_Users;
         }
 
+        public static ViewUsers GetUserView(string user)
+        {
+            string[] FIO = user.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string Name = FIO[0];
+            string Surname = FIO[1];
+            string MiddleName = FIO[2];
+
+            CronosEntities entities = new CronosEntities();
+            Users currentUser  = entities.Users.Where(x => x.Name == Name && x.Surname == Surname && x.MiddleName == MiddleName).First();
+            return new ViewUsers(currentUser);
+        }
+
         public static void DeleteUser(Users currentUser)
         {
             CronosEntities entities = new CronosEntities();

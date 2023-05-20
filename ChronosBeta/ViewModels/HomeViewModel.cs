@@ -30,6 +30,7 @@ namespace ChronosBeta.ViewModels
         public ICollectionView CurrentTask { get; private set; }
         public ICollectionView FutureTask { get; private set; }
         public ICommand OnOffTimer { get; }
+        public ICommand GoTask { get; }
 
         public string DatePicker { get; set; }
         public string ContentLabel 
@@ -55,9 +56,11 @@ namespace ChronosBeta.ViewModels
         {
             try
             {
-                ContentLabel = "Здраствуйте, включите таймер рабочего времени!";
-                ForegroundButton = Brushes.Red;
+                UpdateButton();
+
                 OnOffTimer = new ViewModelCommand(ExecutedOnOffTimerCommand);
+                GoTask = new ViewModelCommand(ExecutedGoTaskCommand);
+
 
                 DateTime currentTime = DateTime.Today;
 
@@ -91,13 +94,27 @@ namespace ChronosBeta.ViewModels
         {
             try
             {
-                ContentLabel = FunctionsDateTimer.OffOnDateTimer();
-                ForegroundButton = FunctionsDateTimer.GetColorBrushes();
+                FunctionsDateTimer.OffOnDateTimer();
+                UpdateButton();
             }
             catch
             {
                 FunctionsWindow.OpenErrorWindow("Ошибка таймер не запущен");
             }
         }
+
+        private void ExecutedGoTaskCommand(object obj)
+        {
+            _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, (ViewTask)obj, new HomeViewModel(), "Рабочий стол", IconChar.House);
+            _currentMain.Caption = "Редактирование задачи";
+            _currentMain.Icon = IconChar.ListCheck;
+        }
+
+        private void UpdateButton()
+        {
+            ContentLabel = FunctionsDateTimer.GetContentButtonTrack();
+            ForegroundButton = FunctionsDateTimer.GetColorBrushes();
+        }
+
     }
 }
