@@ -8,6 +8,7 @@ namespace ChronosBeta.Model
         public int Id { get; set; }
         public string Task { get; set; }
         public string SpentTime { get; set; }
+        public string Day { get; set; }
 
         public ViewTaskTimer(TaskTimer task)
         {
@@ -15,6 +16,7 @@ namespace ChronosBeta.Model
             Id        = task.ID_TaskTimer;
             Task      = task.Task1.NameTask;
             SpentTime = task.SpentTime.ToString();
+            Day       = task.Day?.ToString("M/d/yyyy hh:mm:ss tt");
         }
     }
 }

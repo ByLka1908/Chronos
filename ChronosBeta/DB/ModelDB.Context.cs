@@ -13,9 +13,9 @@ namespace ChronosBeta.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
-    using System.Linq;
     using ChronosBeta.BL;
-
+    using System.Linq;
+    
     public partial class CronosEntities : DbContext
     {
         public CronosEntities()

@@ -98,6 +98,7 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Task1" Relationship="Self.FK_TaskTimer_Task" FromRole="TaskTimer" ToRole="Task" />
     <NavigationProperty Name="Users1" Relationship="Self.FK_TaskTimer_Users" FromRole="TaskTimer" ToRole="Users" />
+    <Property Name="Day" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="Users">
     <Key>

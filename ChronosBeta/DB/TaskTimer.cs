@@ -19,6 +19,7 @@ namespace ChronosBeta.DB
         public int Task { get; set; }
         public double SpentTime { get; set; }
         public string Description { get; set; }
+        public Nullable<System.DateTime> Day { get; set; }
     
         public virtual Task Task1 { get; set; }
         public virtual Users Users1 { get; set; }

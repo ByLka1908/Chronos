@@ -86,6 +86,7 @@
     <EntitySetMapping Name="TaskTimer">
       <EntityTypeMapping TypeName="CronosModel.TaskTimer">
         <MappingFragment StoreEntitySet="TaskTimer">
+          <ScalarProperty Name="Day" ColumnName="Day" />
           <ScalarProperty Name="ID_TaskTimer" ColumnName="ID_TaskTimer" />
           <ScalarProperty Name="Users" ColumnName="Users" />
           <ScalarProperty Name="Task" ColumnName="Task" />

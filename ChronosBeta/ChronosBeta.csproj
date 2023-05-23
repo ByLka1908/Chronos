@@ -185,6 +185,7 @@
     <Compile Include="ViewModels\Project\ProjectsViewMode.cs" />
     <Compile Include="ViewModels\ScreenshotViewModel.cs" />
     <Compile Include="ViewModels\Setting\SettingViewModel.cs" />
+    <Compile Include="ViewModels\TaskTimer\TaskTimerFilterViewModel.cs" />
     <Compile Include="ViewModels\Task\TaskFilterViewModel.cs" />
     <Compile Include="ViewModels\Task\TaskObjViewModel.cs" />
     <Compile Include="ViewModels\TaskTimer\TaskTimerObjViewModel.cs" />
@@ -247,6 +248,9 @@
     </Compile>
     <Compile Include="View\Setting\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskTimer\TaskTimerFilterView.xaml.cs">
+      <DependentUpon>TaskTimerFilterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Task\TaskFilterView.xaml.cs">
       <DependentUpon>TaskFilterView.xaml</DependentUpon>
@@ -355,6 +359,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Setting\SettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskTimer\TaskTimerFilterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

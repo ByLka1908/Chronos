@@ -1,9 +1,12 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.BL.InternalFunctions;
 using ChronosBeta.Model;
+using ChronosBeta.View;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +18,16 @@ namespace ChronosBeta.ViewModels
 {
     public class TaskTimerViewModel: ViewModelBase
     {
+        private static string nameUserFilter;
+        private static string dayPickerFilter;
+        private static bool isTaskOverFilter;
+        private static bool FilterOn = false;
+
         private ICollectionView _markedTime;
         private static MainViewModel _currentMain;
+
+        public ViewTaskTimer SelectedTaskTimer { get; set; }
+        public string CurrentText { get; set; }
         public ICollectionView MarkedTime
         {
             get { return _markedTime; }
@@ -26,20 +37,42 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged(nameof(MarkedTime));
             }
         }
+
         public ICommand AddTaskTimer { get; }
         public ICommand EditTaskTimer { get; }
         public ICommand GoTaskTimerEdit { get; }
         public ICommand RemoveTaskTimer { get; }
         public ICommand Search { get; }
-        public ViewTaskTimer SelectedTaskTimer { get; set; }
-        public string CurrentText { get; set; }
+        public ICommand Filter { get; }
 
         private void UpdateView()
         {
             try
             {
-                List<ViewTaskTimer> TaskTimer = FunctionsTaskMark.GetTasksTimer();
-                MarkedTime = CollectionViewSource.GetDefaultView(TaskTimer);
+                if (!FilterOn)
+                {
+                    List<ViewTaskTimer> TaskTimer = FunctionsTaskMark.GetTasksTimer();
+                    MarkedTime = CollectionViewSource.GetDefaultView(TaskTimer);
+                }
+                else
+                {
+                    List<ViewTaskTimer> TaskTimer = FunctionsTaskMark.GetTasksTimer();
+                    TaskTimer = TaskTimer.Where(x => x.TaskTimer.Task1.ItsOver == isTaskOverFilter).ToList();
+
+                    if(nameUserFilter != "Все")
+                    {
+                        int idUser = FunctionsUsers.GetUserId(nameUserFilter);
+                        TaskTimer = TaskTimer.Where(x => x.TaskTimer.Users == idUser).ToList();
+                    }
+
+                    if(dayPickerFilter != string.Empty && dayPickerFilter != "" && dayPickerFilter != null)
+                    {
+                        DateTime day = DateTime.ParseExact(dayPickerFilter, FunctionsSettingStart.Validformats, FunctionsSettingStart.Provider, DateTimeStyles.None);
+                        TaskTimer = TaskTimer.Where(x => x.TaskTimer.Day == day).ToList();
+                    }
+
+                    MarkedTime = CollectionViewSource.GetDefaultView(TaskTimer);
+                }
             }
             catch
             {
@@ -54,6 +87,7 @@ namespace ChronosBeta.ViewModels
             GoTaskTimerEdit = new ViewModelCommand(ExecutedGoTaskTimerEditCommand);
             RemoveTaskTimer = new ViewModelCommand(ExecutedRemoveTaskTimerCommand);
             Search          = new ViewModelCommand(ExecutedSearchCommand);
+            Filter          = new ViewModelCommand(ExecutedFilterCommand);
 
             UpdateView();
         }
@@ -138,6 +172,25 @@ namespace ChronosBeta.ViewModels
             _currentMain.CurrentChildView = new TaskTimerObjViewModel(_currentMain, SelectedTaskTimer, new TaskTimerViewModel(), "Отметка по задачам", IconChar.ThumbTack);
             _currentMain.Caption = "Редактирование отметки";
             _currentMain.Icon = IconChar.ThumbTack;
+        }
+
+        private void ExecutedFilterCommand(object obj)
+        {
+            try
+            {
+                if (FunctionsWindow.OpenFilterWindow(new TaskTimerFilterView()))
+                {
+                    nameUserFilter   = TaskTimerFilterViewModel.UserSelected;
+                    isTaskOverFilter = TaskTimerFilterViewModel.isTaskOver;
+                    dayPickerFilter  = TaskTimerFilterViewModel.DatePicker;
+                    FilterOn = true;
+                    UpdateView();
+                }
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось открыть фильтер!");
+            }
         }
 
         private void ExecutedGoTaskTimerEditCommand(object obj)

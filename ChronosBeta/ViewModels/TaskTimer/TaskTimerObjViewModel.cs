@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ChronosBeta.BL.InternalFunctions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Globalization;
 
 namespace ChronosBeta.ViewModels
 {
@@ -31,6 +34,7 @@ namespace ChronosBeta.ViewModels
 
         public string SpentTime { get; set; }
         public string Description { get; set; }
+        public string DayMark { get; set; }
 
         public ICommand Save { get; }
         public ICommand Back { get; }
@@ -55,6 +59,8 @@ namespace ChronosBeta.ViewModels
 
                 if (itEdit)
                     SetTaskTimer();
+
+                DayMark = DateTime.Today.ToString("M/d/yyyy hh:mm:ss tt");
             }
             catch
             {
@@ -89,10 +95,12 @@ namespace ChronosBeta.ViewModels
             SelectedTask = SelectedTaskTimer.Task;
             SpentTime    = SelectedTaskTimer.SpentTime;
             Description  = SelectedTaskTimer.TaskTimer.Description;
+            DayMark      = SelectedTaskTimer.Day;
         }
 
         private void ExecutedSaveCommand(object obj)
         {
+            DateTime day;
             if (SelectedUser == null || SelectedUser == "")
             {
                 FunctionsWindow.OpenConfrumWindow("Выберите пользователя!");
@@ -112,12 +120,21 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenConfrumWindow("Укажите правильный формат для\nзатраченного времени выполнения");
                 return;
             }
+            try
+            {
+                day = DateTime.ParseExact(DayMark, FunctionsSettingStart.Validformats, FunctionsSettingStart.Provider, DateTimeStyles.None);
+            }
+            catch
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите правильный формат для\nдаты окончания задачи");
+                return;
+            }
 
             if (!itEdit)
             {
                 try
                 {
-                    FunctionsTaskMark.AddTaskTimer(FunctionsUsers.GetUserId(SelectedUser), FunctionsTask.GetIdTask(SelectedTask), SpentTime, Description);
+                    FunctionsTaskMark.AddTaskTimer(FunctionsUsers.GetUserId(SelectedUser), FunctionsTask.GetIdTask(SelectedTask), SpentTime, Description, day);
                     FunctionsWindow.OpenGoodWindow("Отметка добавлена");
                 }
                 catch
@@ -129,7 +146,7 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsTaskMark.EditTaskTimer(FunctionsUsers.GetUserId(SelectedUser), FunctionsTask.GetIdTask(SelectedTask), SpentTime, Description, SelectedTaskTimer.TaskTimer);
+                    FunctionsTaskMark.EditTaskTimer(FunctionsUsers.GetUserId(SelectedUser), FunctionsTask.GetIdTask(SelectedTask), SpentTime, Description, day, SelectedTaskTimer.TaskTimer);
                     FunctionsWindow.OpenGoodWindow("Отметка отредактирована");
                 }
                 catch

@@ -259,3 +259,5 @@ D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.CoreCompileInputs.cache
 D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.CopyComplete
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Task\TaskFilterView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Task\TaskFilterView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimer\TaskTimerFilterView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimer\TaskTimerFilterView.baml

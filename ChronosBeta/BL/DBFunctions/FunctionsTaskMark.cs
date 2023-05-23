@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace ChronosBeta.BL
 {
@@ -20,7 +21,7 @@ namespace ChronosBeta.BL
             return view;
         }
 
-        public static void AddTaskTimer(int User, int Task, string SpentTime, string Description)
+        public static void AddTaskTimer(int User, int Task, string SpentTime, string Description, DateTime Day)
         {
             TaskTimer taskTimer = new TaskTimer();
 
@@ -28,6 +29,7 @@ namespace ChronosBeta.BL
             taskTimer.Task        = Task;
             taskTimer.SpentTime   = Convert.ToDouble(SpentTime);
             taskTimer.Description = Description;
+            taskTimer.Day         = Day;
 
             if (taskTimer == null)
             {
@@ -39,12 +41,13 @@ namespace ChronosBeta.BL
             entities.SaveChanges();
         }
 
-        public static void EditTaskTimer(int User, int Task, string SpentTime, string Description, TaskTimer taskTimer)
+        public static void EditTaskTimer(int User, int Task, string SpentTime, string Description, DateTime Day, TaskTimer taskTimer)
         {
             taskTimer.Users       = User; 
             taskTimer.Task        = Task;
             taskTimer.SpentTime   = Convert.ToDouble(SpentTime);
             taskTimer.Description = Description;
+            taskTimer.Day = Day;
 
             if (taskTimer == null)
             {

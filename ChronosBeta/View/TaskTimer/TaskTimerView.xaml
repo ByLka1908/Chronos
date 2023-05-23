@@ -12,7 +12,7 @@
     <UserControl.DataContext>
         <viewModel:TaskTimerViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -24,8 +24,8 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="240"/>
-                <ColumnDefinition Width="165"/>
                 <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="40"/>
@@ -53,33 +53,9 @@
                 </TextBox>
 
             </StackPanel>
-            <DatePicker Grid.Column="1"
-                        FirstDayOfWeek="Monday"
-                        SelectedDate="{Binding DatePicker}"
-                        x:Name="datePicker"
-                        BorderThickness="0" 
-                        Margin="0,0,10,11"
-                        VerticalContentAlignment="Center" 
-                        Height="39" 
-                        HorizontalAlignment="Left"
-                        Width="155">
 
-                <DatePicker.CalendarStyle>
 
-                    <Style TargetType="{x:Type Calendar}">
-
-                        <Setter Property="Background" Value="{StaticResource color3}"/>
-                        <Setter Property="Foreground" Value="{StaticResource color1}"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-
-                    </Style>
-
-                </DatePicker.CalendarStyle>
-
-            </DatePicker>
-
-            <Button Grid.Column="2"
+            <Button Grid.Column="1"
                     Command="{Binding Search}"                            
                     Content="Поиск"                            
                     FontSize="12"
@@ -116,6 +92,47 @@
                 </Button.Style>
             </Button>
 
+            <Button Grid.Column="2" 
+                    Margin="10,0,0,0"
+                    Command="{Binding Filter}"                                                       
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="{StaticResource color1}"
+                    VerticalAlignment="Top"
+                    ToolTip="Фильтр">
+
+                <fa:IconImage Icon="Filter" Style="{StaticResource controlButtonIcon}"/>
+
+                <Button.Style>
+
+                    <Style TargetType="Button">
+
+                        <Setter Property="Background" Value="{StaticResource color3}"/>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Height="30" CornerRadius="15" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource color4}"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+
+                </Button.Style>
+
+            </Button>
+
             <Button Grid.Column="4"
                     Margin="10,0,0,0"
                     Command="{Binding AddTaskTimer}"                                                      
@@ -128,7 +145,7 @@
                     ToolTip="Добавить">
 
                 <fa:IconImage Icon="Plus" Style="{StaticResource controlButtonIcon}"/>
-                
+
                 <Button.Style>
 
                     <Style TargetType="Button">
@@ -316,10 +333,13 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Task}"      Foreground="{StaticResource color2}" Header="Задача"           MinWidth="550"/>
                     <DataGridTextColumn Binding="{Binding SpentTime}" Foreground="{StaticResource color2}" Header="Отмеченное время" MinWidth="150"/>
+                    <DataGridTextColumn Binding="{Binding Day}"       Foreground="{StaticResource color2}" Header="Дата"             MinWidth="100"/>
                 </DataGrid.Columns>
 
             </DataGrid>
+
         </Border>
 
     </Grid>
+
 </UserControl>

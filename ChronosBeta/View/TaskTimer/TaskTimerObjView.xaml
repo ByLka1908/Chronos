@@ -305,7 +305,41 @@
                               FontSize="12"
                               VerticalContentAlignment="Center"
                               Style="{StaticResource TextBox}" />
-                    
+
+                    <TextBlock Text="Дата отметки:"
+                               Grid.Column="0"
+                               Grid.Row="6"
+                               Foreground="{StaticResource color2}"
+                               FontFamily="Montserrat"
+                               FontSize="12"
+                               VerticalAlignment="Center" Height="15"/>
+
+                    <DatePicker Grid.Column="1"
+                                Grid.Row="6"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                FirstDayOfWeek="Monday"
+                                SelectedDate="{Binding DayMark}"
+                                x:Name="datePicker"
+                                BorderThickness="0"
+                                VerticalContentAlignment="Center" 
+                                Height="25">
+
+                        <DatePicker.CalendarStyle>
+
+                            <Style TargetType="{x:Type Calendar}">
+
+                                <Setter Property="Background"  Value="{StaticResource color3}"/>
+                                <Setter Property="Foreground"  Value="{StaticResource color1}"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+
+                            </Style>
+
+                        </DatePicker.CalendarStyle>
+
+                    </DatePicker>
+
                 </Grid>
 
 

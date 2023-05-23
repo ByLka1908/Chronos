@@ -84,6 +84,7 @@
     <Property Name="Task" Type="int" Nullable="false" />
     <Property Name="SpentTime" Type="float" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Day" Type="date" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
