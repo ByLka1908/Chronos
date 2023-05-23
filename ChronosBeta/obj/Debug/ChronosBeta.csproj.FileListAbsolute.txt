@@ -257,3 +257,5 @@ D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta.Properties.Resources.resources
 D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.GenerateResource.cache
 D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.CoreCompileInputs.cache
 D:\Test\Chronos\ChronosBeta\obj\Debug\ChronosBeta.csproj.CopyComplete
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Task\TaskFilterView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Task\TaskFilterView.baml

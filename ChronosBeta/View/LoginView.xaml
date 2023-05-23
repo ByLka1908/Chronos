@@ -224,10 +224,14 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Запомнить пользователя:"
                                    Foreground="{StaticResource color2}"/>
-                        <RadioButton Margin="60,0,0,0"
-                                     IsChecked="{Binding isRememberUser}"/>
+
+                        <ToggleButton  Margin="60,0,0,0"
+                                       Style="{StaticResource RadioLookToggleButton}"
+                                       IsChecked="{Binding isRememberUser}">
+                        </ToggleButton>
+
                     </StackPanel>
-                    
+
                     <Button x:Name="btnLogin" 
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"
@@ -236,18 +240,8 @@
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"                           
-                            Margin="0,30,0,0">
-
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="{StaticResource color3}"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource color4}"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
+                            Margin="0,30,0,0"
+                            Style="{StaticResource ButtonTriger}">
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">

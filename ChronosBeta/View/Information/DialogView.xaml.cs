@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace ChronosBeta.View
 {
-    /// <summary>
-    /// Логика взаимодействия для DialogView.xaml
-    /// </summary>
     public partial class DialogView : Window
     {
         public DialogView(string currText)

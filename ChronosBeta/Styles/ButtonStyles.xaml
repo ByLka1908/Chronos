@@ -56,6 +56,16 @@
         <Setter Property="FontSize" Value="13.5"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+    
+    <!--button triger-->
+    <Style TargetType="Button" x:Key="ButtonTriger">
+        <Setter Property="Background" Value="{StaticResource color3}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource color4}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <!--Control bar button-->
     <Style x:Key="controlButton" TargetType="Button">
@@ -247,6 +257,22 @@
             </Setter.Value>
         </Setter>
         
+    </Style>
+
+    <!--ToggleButton-->
+    <Style TargetType="ToggleButton" x:Key="RadioLookToggleButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <RadioButton IsChecked="{TemplateBinding IsChecked}"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"/>
+                        <Border Background="Transparent"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

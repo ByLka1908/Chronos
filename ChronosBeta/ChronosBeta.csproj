@@ -168,6 +168,7 @@
     <Compile Include="Styles\UIColors.xaml.cs">
       <DependentUpon>UIColors.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Base\DialogCloser.cs" />
     <Compile Include="ViewModels\Setting\NSI\JobTitle\JobTitleObjViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\JobTitle\JobTitleViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\Connect\ConnectionsViewModel.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="ViewModels\Project\ProjectsViewMode.cs" />
     <Compile Include="ViewModels\ScreenshotViewModel.cs" />
     <Compile Include="ViewModels\Setting\SettingViewModel.cs" />
+    <Compile Include="ViewModels\Task\TaskFilterViewModel.cs" />
     <Compile Include="ViewModels\Task\TaskObjViewModel.cs" />
     <Compile Include="ViewModels\TaskTimer\TaskTimerObjViewModel.cs" />
     <Compile Include="ViewModels\TaskTimer\TaskTimerViewModel.cs" />
@@ -245,6 +247,9 @@
     </Compile>
     <Compile Include="View\Setting\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Task\TaskFilterView.xaml.cs">
+      <DependentUpon>TaskFilterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Task\TaksView.xaml.cs">
       <DependentUpon>TaksView.xaml</DependentUpon>
@@ -350,6 +355,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Setting\SettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Task\TaskFilterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

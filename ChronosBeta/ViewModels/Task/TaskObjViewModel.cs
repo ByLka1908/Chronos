@@ -51,6 +51,11 @@ namespace ChronosBeta.ViewModels
         {
             try
             {
+                List<string> itsOver = new List<string>();
+                itsOver.Add("Да");
+                itsOver.Add("Нет");
+
+                ItsOver = itsOver;
                 UserCreateTask = FunctionsUsers.GetViewUser();
                 UserDoTask = FunctionsUsers.GetViewUser();
                 Project = FunctionsProject.GetViewProject();
@@ -93,10 +98,6 @@ namespace ChronosBeta.ViewModels
 
         private void SetTask()
         {
-            List<string> itsOver = new List<string>();
-            itsOver.Add("Да");
-            itsOver.Add("Нет");
-
             NameTask = SelectedTask.Name;
             EstimatedTime = SelectedTask.EstimatedTime;
             AllSpentTime = SelectedTask.Task.AllSpentTime.ToString();
@@ -105,7 +106,11 @@ namespace ChronosBeta.ViewModels
             SelectedProject = SelectedTask.Task.Project1.NameProject;
             DeadLine = SelectedTask.Deadline;
             Description = SelectedTask.Task.Description;
-            ItsOver = itsOver;   
+
+            if (SelectedTask.Task.ItsOver)
+                SelectedItsOver = "Да";
+            else
+                SelectedItsOver = "Нет";
         }
 
         private void ExecutedSaveCommand(object obj)

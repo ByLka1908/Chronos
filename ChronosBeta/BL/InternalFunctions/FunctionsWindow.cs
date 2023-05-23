@@ -1,5 +1,7 @@
 ﻿using ChronosBeta.View;
 using FontAwesome.Sharp;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Media;
 
 namespace ChronosBeta.BL
@@ -28,6 +30,11 @@ namespace ChronosBeta.BL
         {
             DialogView errorView = new DialogView(text);
             return (bool)errorView.ShowDialog();
+        }
+
+        public static bool OpenFilterWindow(Window newDialogWindow)
+        {
+            return (bool)newDialogWindow.ShowDialog();
         }
      }
 }

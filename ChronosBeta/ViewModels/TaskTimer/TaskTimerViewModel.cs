@@ -49,11 +49,11 @@ namespace ChronosBeta.ViewModels
 
         public TaskTimerViewModel()
         {
-            AddTaskTimer = new ViewModelCommand(ExecutedAddTaskTimerCommand);
-            EditTaskTimer = new ViewModelCommand(ExecutedEditTaskTimerCommand);
+            AddTaskTimer    = new ViewModelCommand(ExecutedAddTaskTimerCommand);
+            EditTaskTimer   = new ViewModelCommand(ExecutedEditTaskTimerCommand);
             GoTaskTimerEdit = new ViewModelCommand(ExecutedGoTaskTimerEditCommand);
             RemoveTaskTimer = new ViewModelCommand(ExecutedRemoveTaskTimerCommand);
-            Search = new ViewModelCommand(ExecutedSearchCommand);
+            Search          = new ViewModelCommand(ExecutedSearchCommand);
 
             UpdateView();
         }

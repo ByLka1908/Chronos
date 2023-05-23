@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ChronosBeta.BL;
 using ChronosBeta.BL.InternalFunctions;
+using ChronosBeta.DB;
 
 namespace ChronosBeta.ViewModels
 {
@@ -74,6 +75,7 @@ namespace ChronosBeta.ViewModels
 
         //-> Команды
         public ICommand LoginCommand { get; }
+        public ICommand ClickIsRememberUser { get; }
         public ICommand RecoverPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
         public ICommand RememberPasswordCommand { get; }

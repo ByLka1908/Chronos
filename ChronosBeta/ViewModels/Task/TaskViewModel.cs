@@ -1,5 +1,7 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.DB;
 using ChronosBeta.Model;
+using ChronosBeta.View;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,11 @@ using System.Windows.Input;
 namespace ChronosBeta.ViewModels
 {
     public class TaskViewModel: ViewModelBase
-    {        
+    {
+        private static string nameUserFilter;
+        private static bool isTaskOverFilter;
+        private static bool FilterOn = false;
+
         private static MainViewModel _currentMain;
         private ICollectionView _currentTask;
 
@@ -31,6 +37,7 @@ namespace ChronosBeta.ViewModels
         public ICommand EditTask { get; }
         public ICommand GoTaskEdit { get; }
         public ICommand Search { get; }
+        public ICommand Filter { get; }
         public ICommand RemoveTask { get; }
         public ViewTask SelectedTask { get; set; }
         public string CurrentText { get; set; }
@@ -41,6 +48,7 @@ namespace ChronosBeta.ViewModels
             EditTask = new ViewModelCommand(ExecutedEditTaskCommand);
             GoTaskEdit = new ViewModelCommand(ExecutedGoTaskEditCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
+            Filter = new ViewModelCommand(ExecutedFilterCommand);
             RemoveTask = new ViewModelCommand(ExecutedRemoveTaskCommand);
 
             UpdateView();
@@ -55,8 +63,24 @@ namespace ChronosBeta.ViewModels
         {
             try
             {
-                List<ViewTask> currentTask = FunctionsTask.GetTasks();
-                CurrentTask = CollectionViewSource.GetDefaultView(currentTask);
+                if (!FilterOn)
+                {
+                    List<ViewTask> currentTask = FunctionsTask.GetTasks();
+                    currentTask = currentTask.Where(x => x.Task.ItsOver == false).ToList();
+                    CurrentTask = CollectionViewSource.GetDefaultView(currentTask);
+                }
+                else
+                {
+                    List<ViewTask> currentTask = FunctionsTask.GetTasks();
+                    currentTask = currentTask.Where(x => x.Task.ItsOver == isTaskOverFilter).ToList();
+
+                    if(nameUserFilter != "Все")
+                    {
+                        int idUser = FunctionsUsers.GetUserId(nameUserFilter);
+                        currentTask = currentTask.Where(x => x.Task.UserCreateTask == idUser || x.Task.UserDoTask == idUser).ToList();
+                    }
+                    CurrentTask = CollectionViewSource.GetDefaultView(currentTask);
+                }
             }
             catch
             {
@@ -95,6 +119,24 @@ namespace ChronosBeta.ViewModels
             catch
             {
                 FunctionsWindow.OpenErrorWindow("Ошибка поиска");
+            }
+        }
+
+        private void ExecutedFilterCommand(object obj)
+        {
+            try
+            {
+                if (FunctionsWindow.OpenFilterWindow(new TaskFilterView()))
+                {
+                    nameUserFilter = TaskFilterViewModel.UserSelected;
+                    isTaskOverFilter = TaskFilterViewModel.isTaskOver;
+                    FilterOn = true;
+                    UpdateView();
+                }
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось открыть фильтер!");
             }
         }
 
