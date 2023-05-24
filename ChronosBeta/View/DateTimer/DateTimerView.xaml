@@ -23,9 +23,9 @@
         <Grid Grid.Row="0">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="240"/>
                 <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="180"/>
                 <ColumnDefinition Width="40"/>
@@ -34,7 +34,7 @@
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
                         Grid.Column="0">
-                
+
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource color2}"/>
 
                 <TextBox FontSize="13"
@@ -51,32 +51,10 @@
                          VerticalContentAlignment="Center"  
                          Margin="5,5,0,0">
                 </TextBox>
-                
+
             </StackPanel>
 
-            <DatePicker Grid.Column="1"
-                        FirstDayOfWeek="Monday"
-                        SelectedDate="{Binding DatePicker}"
-                        x:Name="datePicker"
-                        BorderThickness="0" 
-                        Margin="0,0,10,11"
-                        VerticalContentAlignment="Center" 
-                        Height="39" 
-                        HorizontalAlignment="Left"
-                        Width="155">
-
-                <DatePicker.CalendarStyle>
-                    <Style TargetType="{x:Type Calendar}">
-                        <Setter Property="Background"  Value="{StaticResource color3}"/>
-                        <Setter Property="Foreground"  Value="{StaticResource color1}"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                    </Style>
-                </DatePicker.CalendarStyle>
-                
-            </DatePicker>
-
-            <Button Grid.Column="2"
+            <Button Grid.Column="1"
                     Command="{Binding Search}"                            
                     Content="Поиск"                            
                     FontSize="12"
@@ -114,6 +92,47 @@
                     
                 </Button.Style>
                 
+            </Button>
+
+            <Button Grid.Column="2" 
+                    Margin="10,0,0,0"
+                    Command="{Binding Filter}"                                                       
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="{StaticResource color1}"
+                    VerticalAlignment="Top"
+                    ToolTip="Фильтр">
+
+                <fa:IconImage Icon="Filter" Style="{StaticResource controlButtonIcon}"/>
+
+                <Button.Style>
+
+                    <Style TargetType="Button">
+
+                        <Setter Property="Background" Value="{StaticResource color3}"/>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Height="30" CornerRadius="15" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource color4}"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+
+                </Button.Style>
+
             </Button>
 
             <Button Grid.Column="4" 

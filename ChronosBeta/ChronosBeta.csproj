@@ -169,6 +169,7 @@
       <DependentUpon>UIColors.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Base\DialogCloser.cs" />
+    <Compile Include="ViewModels\DateTimer\DateTimerFilterViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\JobTitle\JobTitleObjViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\JobTitle\JobTitleViewModel.cs" />
     <Compile Include="ViewModels\Setting\NSI\Connect\ConnectionsViewModel.cs" />
@@ -195,6 +196,9 @@
     <Compile Include="ViewModels\User\UsersViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\Base\ViewModelCommand.cs" />
+    <Compile Include="View\DateTimer\DateTimerFilterView.xaml.cs">
+      <DependentUpon>DateTimerFilterView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Setting\NSI\JobTitle\JobTitleObjView.xaml.cs">
       <DependentUpon>JobTitleObjView.xaml</DependentUpon>
     </Compile>
@@ -287,6 +291,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\UIColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DateTimer\DateTimerFilterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

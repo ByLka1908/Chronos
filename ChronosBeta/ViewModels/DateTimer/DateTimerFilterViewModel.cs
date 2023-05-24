@@ -8,10 +8,9 @@ using System.Windows.Input;
 
 namespace ChronosBeta.ViewModels
 {
-    public  class TaskTimerFilterViewModel: ViewModelBase
+    public class DateTimerFilterViewModel: ViewModelBase
     {
         private bool? _dialogResult;
-        private static bool isNewFiler = true;
 
         public bool? DialogResult
         {
@@ -22,37 +21,23 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged("DialogResult");
             }
         }
-        public static List<string> UsersSource { get; set; }
-        public static string UserSelected { get; set; }
         public static string DatePicker { get; set; }
-        public static bool isTaskOver { get; set; }
 
         public ICommand OK { get; }
         public ICommand Cansel { get; }
         public ICommand Close { get; }
         public ICommand DeleteDate { get; }
 
-        public TaskTimerFilterViewModel() 
+        public DateTimerFilterViewModel() 
         {
             OK = new ViewModelCommand(ExecutedOKCommand);
             Cansel = new ViewModelCommand(ExecutedCanselCommand);
             Close = new ViewModelCommand(ExecutedCloseCommand);
             DeleteDate = new ViewModelCommand(ExecutedDeleteDateCommand);
-
-
-            List<string> Users = FunctionsUsers.GetViewUser();
-            Users.Add("Все");
-
-            if (isNewFiler)
-            {
-                UsersSource = Users;
-                UserSelected = "Все";
-            }
         }
 
         private void ExecutedOKCommand(object obj)
         {
-            isNewFiler = false;
             DialogResult = true;
         }
 

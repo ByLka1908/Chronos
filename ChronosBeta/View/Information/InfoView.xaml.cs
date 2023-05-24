@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace ChronosBeta.View
 {
-    /// <summary>
-    /// Логика взаимодействия для ErrorView.xaml
-    /// </summary>
     public partial class InfoView : Window
     {
         public InfoView(string currText, string TextLabel, string TextTitle, IconChar icon, Brush colorIcon)

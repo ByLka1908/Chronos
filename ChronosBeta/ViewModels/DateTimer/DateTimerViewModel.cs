@@ -1,9 +1,12 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.BL.InternalFunctions;
 using ChronosBeta.Model;
+using ChronosBeta.View;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +18,9 @@ namespace ChronosBeta.ViewModels
 {
     public class DateTimerViewModel : ViewModelBase
     {
+        private static string dayPickerFilter;
+        private static bool FilterOn = false;
+
         private ICollectionView _currentDateList;
         private static MainViewModel _currentMain;
 
@@ -31,6 +37,7 @@ namespace ChronosBeta.ViewModels
         public ICommand Search { get; }
         public ICommand RemoveDateTimer { get; }
         public ICommand GoDateTimer { get; }
+        public ICommand Filter { get; }
         public ViewDateTimer SelectedDate { get; set; }
         public string DatePicker { get; set; }
         public string CurrentText { get; set; }
@@ -41,6 +48,7 @@ namespace ChronosBeta.ViewModels
             Search = new ViewModelCommand(ExecutedSearchCommand);
             RemoveDateTimer = new ViewModelCommand(ExecutedRemoveDateTimerCommand);
             GoDateTimer = new ViewModelCommand(ExecutedGoDateTimerCommand);
+            Filter = new ViewModelCommand(ExecutedFilterCommand);
 
             UpdateView();
         }
@@ -54,8 +62,21 @@ namespace ChronosBeta.ViewModels
         {
             try
             {
-                List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
-                CurrentDateList = CollectionViewSource.GetDefaultView(currentDate);
+                if (!FilterOn)
+                {
+                    List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
+                    CurrentDateList = CollectionViewSource.GetDefaultView(currentDate);
+                }
+                else
+                {
+                    List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
+                    if(dayPickerFilter != string.Empty && dayPickerFilter != "" && dayPickerFilter != null)
+                    {
+                        DateTime day = DateTime.ParseExact(dayPickerFilter, FunctionsSettingStart.Validformats, FunctionsSettingStart.Provider, DateTimeStyles.None);
+                        currentDate = currentDate.Where(x => x.DateTimer.Day == day).ToList();
+                    }
+                    CurrentDateList = CollectionViewSource.GetDefaultView(currentDate);
+                }
             }
             catch
             {
@@ -63,43 +84,42 @@ namespace ChronosBeta.ViewModels
             }
         }
 
-        private void ExecutedSearchCommand(object obj)
+        private void ExecutedFilterCommand(object obj)
         {
             try
             {
-                DateTime date;
-                if (CurrentText == null & DatePicker == null)
+                if (FunctionsWindow.OpenFilterWindow(new DateTimerFilterView()))
                 {
-                    return;
-                }
-
-                if (CurrentText == string.Empty & DatePicker == string.Empty)
-                {
+                    dayPickerFilter = DateTimerFilterViewModel.DatePicker;
+                    FilterOn = true;
                     UpdateView();
-                    return;
                 }
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось открыть фильтер!");
+            }
+        }
 
+        private void ExecutedSearchCommand(object obj)
+        {
+            if (CurrentText == null)
+            {
+                FunctionsWindow.OpenConfrumWindow("Поле поиска пустое");
+                return;
+            }
+
+            if (CurrentText == string.Empty)
+            {
+                UpdateView();
+                return;
+            }
+
+            try
+            {
                 List<ViewDateTimer> currentDate = FunctionsDateTimer.GetDateTimer();
-                List<ViewDateTimer> findDate;
-                if (CurrentText != null & DatePicker != null)
-                {
-                    string[] words = DatePicker.Split(new char[] { '/' });
-                    string[] year = words[2].Split(new char[] { ' ' });
-                    date = new DateTime(Convert.ToInt32(year[0]), Convert.ToInt32(words[0]), Convert.ToInt32(words[1]));
-                    findDate = currentDate.Where(x => x.UserSurname.ToUpper().StartsWith(CurrentText.ToUpper())
-                                                 & x.Day.ToUpper().StartsWith(date.ToShortDateString().ToUpper())).ToList();
-                }
-                else if (CurrentText != null)
-                {
-                    findDate = currentDate.Where(x => x.UserSurname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
-                }
-                else
-                {
-                    string[] words = DatePicker.Split(new char[] { '/' });
-                    string[] year = words[2].Split(new char[] { ' ' });
-                    date = new DateTime(Convert.ToInt32(year[0]), Convert.ToInt32(words[0]), Convert.ToInt32(words[1]));
-                    findDate = currentDate.Where(x => x.Day.ToUpper().StartsWith(date.ToShortDateString().ToUpper())).ToList();
-                }
+                List<ViewDateTimer> findDate = currentDate.Where(x => x.UserName.ToUpper().StartsWith(CurrentText.ToUpper()) ||
+                                                                      x.UserSurname.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
 
                 if (findDate.Count < 1)
                 {
