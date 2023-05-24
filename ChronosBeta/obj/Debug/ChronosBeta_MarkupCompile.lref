@@ -1,6 +1,8 @@
 ﻿
 FF:\GitProject\Chronos\ChronosBeta\App.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\Styles\BindablePasswordBox.xaml;;
+FF:\GitProject\Chronos\ChronosBeta\View\DateTimer\DateTimerFilterView.xaml;;
+FF:\GitProject\Chronos\ChronosBeta\View\Project\ProjectFilterView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\Setting\NSI\JobTitle\JobTitleObjView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\Setting\NSI\JobTitle\JobTitleView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\Setting\NSI\Connect\ConnectionsView.xaml;;
@@ -27,5 +29,4 @@ FF:\GitProject\Chronos\ChronosBeta\View\TaskTimer\TaskTimerObjView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\TaskTimer\TaskTimerView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\User\UserObjView.xaml;;
 FF:\GitProject\Chronos\ChronosBeta\View\User\UsersView.xaml;;
-FF:\GitProject\Chronos\ChronosBeta\View\DateTimer\DateTimerFilterView.xaml;;
 

@@ -36,6 +36,7 @@
     <EntitySetMapping Name="Project">
       <EntityTypeMapping TypeName="CronosModel.Project">
         <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="ItsOver" ColumnName="ItsOver" />
           <ScalarProperty Name="id_Project" ColumnName="id_Project" />
           <ScalarProperty Name="NameProject" ColumnName="NameProject" />
           <ScalarProperty Name="ResponsibleСustomer" ColumnName="ResponsibleСustomer" />

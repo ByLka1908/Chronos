@@ -263,3 +263,5 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimer\TaskTimerFilterView.g
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\TaskTimer\TaskTimerFilterView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DateTimer\DateTimerFilterView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DateTimer\DateTimerFilterView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Project\ProjectFilterView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Project\ProjectFilterView.baml

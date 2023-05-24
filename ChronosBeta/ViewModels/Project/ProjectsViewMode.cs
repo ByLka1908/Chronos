@@ -1,9 +1,13 @@
 ﻿using ChronosBeta.BL;
+using ChronosBeta.BL.InternalFunctions;
+using ChronosBeta.DB;
 using ChronosBeta.Model;
+using ChronosBeta.View;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +19,17 @@ namespace ChronosBeta.ViewModels
 {
     public class ProjectsViewMode: ViewModelBase
     {
+        private static string nameUserFilter;
+        private static string nameCustomerFilter;
+        private static string dayPickerFilter;
+        private static bool isProjectOverFilter;
+        private static bool FilterOn = false;
+
         private static MainViewModel _currentMain;
         private ICollectionView _currentProject;
 
         public ICollectionView CurrentProject
-    {
+        {
             get { return _currentProject; }
             set
             {
@@ -32,6 +42,8 @@ namespace ChronosBeta.ViewModels
         public ICommand GoProjectEdit { get; }
         public ICommand RemoveProject { get; }
         public ICommand Search { get; }
+        public ICommand Filter { get; }
+
         public ViewProject SelectedProject { get; set; }
         public string CurrentText { get; set; }
 
@@ -42,6 +54,7 @@ namespace ChronosBeta.ViewModels
             GoProjectEdit = new ViewModelCommand(ExecutedGoProjectEditCommand);
             RemoveProject = new ViewModelCommand(ExecutedRemoveProjectCommand);
             Search = new ViewModelCommand(ExecutedSearchCommand);
+            Filter = new ViewModelCommand(ExecutedFilterCommand);
 
             UpdateView();
         }
@@ -55,8 +68,37 @@ namespace ChronosBeta.ViewModels
         {
             try
             {
-                List<ViewProject> currentProject = FunctionsProject.GetProject();
-                CurrentProject = CollectionViewSource.GetDefaultView(currentProject);
+                if (!FilterOn)
+                {
+                    List<ViewProject> currentProject = FunctionsProject.GetProject();
+                    CurrentProject = CollectionViewSource.GetDefaultView(currentProject);
+                }
+                else
+                {
+                    List<ViewProject> currentProject = FunctionsProject.GetProject();
+                    currentProject = currentProject.Where(x => x.Project.ItsOver == isProjectOverFilter).ToList();
+
+                    if(nameUserFilter != "Все")
+                    {
+                        int idUser = FunctionsUsers.GetUserId(nameUserFilter);
+                        currentProject = currentProject.Where(x => x.Project.ResponsibleОfficer == idUser).ToList();
+                    }
+
+
+                    if (nameCustomerFilter != "Все")
+                    {
+                        int idCustomer = FunctionsCustomer.GetCustomerId(nameCustomerFilter);
+                        currentProject = currentProject.Where(x => x.Project.ResponsibleСustomer == idCustomer).ToList();
+                    }
+
+                    if (dayPickerFilter != string.Empty && dayPickerFilter != "" && dayPickerFilter != null)
+                    {
+                        DateTime day = DateTime.ParseExact(dayPickerFilter, FunctionsSettingStart.Validformats, FunctionsSettingStart.Provider, DateTimeStyles.None);
+                        currentProject = currentProject.Where(x => x.Project.Deadline <= day).ToList();
+                    }
+
+                    CurrentProject = CollectionViewSource.GetDefaultView(currentProject);
+                }
             }
             catch
             {
@@ -137,6 +179,26 @@ namespace ChronosBeta.ViewModels
             _currentMain.CurrentChildView = new ProjectObjViewModel(_currentMain, SelectedProject, new ProjectsViewMode(), "Проекты", IconChar.Book);
             _currentMain.Caption = "Редактирование проекта";
             _currentMain.Icon = IconChar.Book;
+        }
+
+        private void ExecutedFilterCommand(object obj)
+        {
+            try
+            {
+                if (FunctionsWindow.OpenFilterWindow(new ProjectFilterView()))
+                {
+                    nameUserFilter = ProjectFilterViewModel.UserSelected;
+                    isProjectOverFilter = ProjectFilterViewModel.isProjectOver;
+                    dayPickerFilter = ProjectFilterViewModel.DatePicker;
+                    nameCustomerFilter = ProjectFilterViewModel.CustomerSelected;
+                    FilterOn = true;
+                    UpdateView();
+                }
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Не удалось открыть фильтер!");
+            }
         }
 
         private void ExecutedGoProjectEditCommand(object obj)

@@ -45,6 +45,7 @@
           <Property Name="Budget" Type="int" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Deadline" Type="date" Nullable="false" />
+          <Property Name="ItsOver" Type="bit" />
         </EntityType>
         <EntityType Name="Screenshot">
           <Key>
@@ -367,6 +368,7 @@
           <NavigationProperty Name="Customers" Relationship="Self.FK_Project_Customers" FromRole="Project" ToRole="Customers" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Project_Users" FromRole="Project" ToRole="Users" />
           <NavigationProperty Name="Task" Relationship="Self.FK_Task_Project" FromRole="Project" ToRole="Task" />
+          <Property Name="ItsOver" Type="Boolean" />
         </EntityType>
         <EntityType Name="Screenshot">
           <Key>
@@ -702,6 +704,7 @@
           <EntitySetMapping Name="Project">
             <EntityTypeMapping TypeName="CronosModel.Project">
               <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="ItsOver" ColumnName="ItsOver" />
                 <ScalarProperty Name="id_Project" ColumnName="id_Project" />
                 <ScalarProperty Name="NameProject" ColumnName="NameProject" />
                 <ScalarProperty Name="ResponsibleСustomer" ColumnName="ResponsibleСustomer" />

@@ -47,6 +47,7 @@
     <NavigationProperty Name="Customers" Relationship="Self.FK_Project_Customers" FromRole="Project" ToRole="Customers" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Project_Users" FromRole="Project" ToRole="Users" />
     <NavigationProperty Name="Task" Relationship="Self.FK_Task_Project" FromRole="Project" ToRole="Task" />
+    <Property Name="ItsOver" Type="Boolean" />
   </EntityType>
   <EntityType Name="Screenshot">
     <Key>

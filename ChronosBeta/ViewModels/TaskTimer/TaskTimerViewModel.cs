@@ -43,42 +43,7 @@ namespace ChronosBeta.ViewModels
         public ICommand GoTaskTimerEdit { get; }
         public ICommand RemoveTaskTimer { get; }
         public ICommand Search { get; }
-        public ICommand Filter { get; }
-
-        private void UpdateView()
-        {
-            try
-            {
-                if (!FilterOn)
-                {
-                    List<ViewTaskTimer> TaskTimer = FunctionsTaskMark.GetTasksTimer();
-                    MarkedTime = CollectionViewSource.GetDefaultView(TaskTimer);
-                }
-                else
-                {
-                    List<ViewTaskTimer> TaskTimer = FunctionsTaskMark.GetTasksTimer();
-                    TaskTimer = TaskTimer.Where(x => x.TaskTimer.Task1.ItsOver == isTaskOverFilter).ToList();
-
-                    if(nameUserFilter != "Все")
-                    {
-                        int idUser = FunctionsUsers.GetUserId(nameUserFilter);
-                        TaskTimer = TaskTimer.Where(x => x.TaskTimer.Users == idUser).ToList();
-                    }
-
-                    if(dayPickerFilter != string.Empty && dayPickerFilter != "" && dayPickerFilter != null)
-                    {
-                        DateTime day = DateTime.ParseExact(dayPickerFilter, FunctionsSettingStart.Validformats, FunctionsSettingStart.Provider, DateTimeStyles.None);
-                        TaskTimer = TaskTimer.Where(x => x.TaskTimer.Day == day).ToList();
-                    }
-
-                    MarkedTime = CollectionViewSource.GetDefaultView(TaskTimer);
-                }
-            }
-            catch
-            {
-                FunctionsWindow.OpenErrorWindow("Ошибка обновления таблицы");
-            }
-        }
+        public ICommand Filter { get; }  
 
         public TaskTimerViewModel()
         {
@@ -95,6 +60,41 @@ namespace ChronosBeta.ViewModels
         public TaskTimerViewModel(MainViewModel main)
         {
             _currentMain = main;
+        }
+
+        private void UpdateView()
+        {
+            try
+            {
+                if (!FilterOn)
+                {
+                    List<ViewTaskTimer> TaskTimer = FunctionsTaskMark.GetTasksTimer();
+                    MarkedTime = CollectionViewSource.GetDefaultView(TaskTimer);
+                }
+                else
+                {
+                    List<ViewTaskTimer> TaskTimer = FunctionsTaskMark.GetTasksTimer();
+                    TaskTimer = TaskTimer.Where(x => x.TaskTimer.Task1.ItsOver == isTaskOverFilter).ToList();
+
+                    if (nameUserFilter != "Все")
+                    {
+                        int idUser = FunctionsUsers.GetUserId(nameUserFilter);
+                        TaskTimer = TaskTimer.Where(x => x.TaskTimer.Users == idUser).ToList();
+                    }
+
+                    if (dayPickerFilter != string.Empty && dayPickerFilter != "" && dayPickerFilter != null)
+                    {
+                        DateTime day = DateTime.ParseExact(dayPickerFilter, FunctionsSettingStart.Validformats, FunctionsSettingStart.Provider, DateTimeStyles.None);
+                        TaskTimer = TaskTimer.Where(x => x.TaskTimer.Day <= day).ToList();
+                    }
+
+                    MarkedTime = CollectionViewSource.GetDefaultView(TaskTimer);
+                }
+            }
+            catch
+            {
+                FunctionsWindow.OpenErrorWindow("Ошибка обновления таблицы");
+            }
         }
 
         private void ExecutedSearchCommand(object obj)

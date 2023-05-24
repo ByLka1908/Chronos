@@ -40,6 +40,7 @@
     <Property Name="Budget" Type="int" />
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Deadline" Type="date" Nullable="false" />
+    <Property Name="ItsOver" Type="bit" />
   </EntityType>
   <EntityType Name="Screenshot">
     <Key>

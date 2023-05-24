@@ -29,6 +29,9 @@ namespace ChronosBeta.ViewModels
         public List<string> ResponsibleOfficer { get; set; }
         public string SelectedResponsibleOfficer { get; set; }
 
+        public List<string> ItsOver { get; set; }
+        public string SelectedItsOver { get; set; }
+
         public string NameProject { get; set; }
         public string Budget { get; set; }
         public string Deadline { get; set; }
@@ -43,6 +46,11 @@ namespace ChronosBeta.ViewModels
         {
             try
             {
+                List<string> itsOver = new List<string>();
+                itsOver.Add("Да");
+                itsOver.Add("Нет");
+
+                ItsOver = itsOver;
                 ResponsibleCustomer = FunctionsCustomer.GetViewCustomer();
                 ResponsibleOfficer = FunctionsUsers.GetViewUser();
 
@@ -89,6 +97,11 @@ namespace ChronosBeta.ViewModels
             Budget = SelectedProject.Project.Budget.ToString();
             Deadline = SelectedProject.Project.Deadline.ToString("M/d/yyyy hh:mm:ss tt");
             Description = SelectedProject.Project.Description;
+
+            if ((bool)SelectedProject.Project.ItsOver)
+                SelectedItsOver = "Да";
+            else
+                SelectedItsOver = "Нет";
         }
 
         private void ExecutedSaveCommand(object obj)
@@ -127,6 +140,11 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenConfrumWindow("Укажите дату в правильном формате!");
                 return;
             }
+            if (SelectedItsOver == null || SelectedItsOver == "")
+            {
+                FunctionsWindow.OpenConfrumWindow("Укажите выполнен ли проект!");
+                return;
+            }
 
             if (!itEdit)
             {
@@ -134,7 +152,7 @@ namespace ChronosBeta.ViewModels
                 {
                     FunctionsProject.AddProject(NameProject, FunctionsCustomer.GetCustomerId(SelectedResponsibleCustomer),
                                                 FunctionsUsers.GetUserId(SelectedResponsibleOfficer), 
-                                                Budget, time, Description);
+                                                Budget, time, Description, SelectedItsOver);
                     FunctionsWindow.OpenGoodWindow("Проект добавлен!");
                 }
                 catch
@@ -148,7 +166,7 @@ namespace ChronosBeta.ViewModels
                 {
                     FunctionsProject.EditProject(NameProject, FunctionsCustomer.GetCustomerId(SelectedResponsibleCustomer),
                                                  FunctionsUsers.GetUserId(SelectedResponsibleOfficer),
-                                                 Budget, time, Description, SelectedProject.Project);
+                                                 Budget, time, Description, SelectedItsOver, SelectedProject.Project);
                     FunctionsWindow.OpenGoodWindow("Проект отредактирован!");
                 }
                 catch

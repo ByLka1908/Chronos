@@ -307,6 +307,28 @@
                               VerticalContentAlignment="Center"
                               Style="{StaticResource ComboBoxStyle}"/>
 
+                    <TextBlock Text="Проект закончен:"
+                               Grid.Column="0"
+                               Grid.Row="6"
+                               Foreground="{StaticResource color2}"
+                               FontFamily="Montserrat"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+
+                    <ComboBox Grid.Column="1"
+                              Grid.ColumnSpan="2"
+                              Grid.Row="6"
+                              ItemsSource="{Binding ItsOver}"
+                              SelectedItem="{Binding SelectedItsOver}"
+                              Background="{StaticResource color5}"
+                              Foreground="{StaticResource color2}"
+                              BorderThickness="0"
+                              FontFamily="Montserrat"
+                              FontSize="12"
+                              Height="25"
+                              VerticalContentAlignment="Center"
+                              Style="{StaticResource ComboBoxStyle}" />
+
                 </Grid>
 
             </Border>

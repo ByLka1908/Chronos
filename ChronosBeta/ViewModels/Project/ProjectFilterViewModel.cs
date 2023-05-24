@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace ChronosBeta.ViewModels
 {
-    public  class TaskTimerFilterViewModel: ViewModelBase
+    public class ProjectFilterViewModel : ViewModelBase
     {
         private bool? _dialogResult;
         private static bool isNewFiler = true;
@@ -24,15 +24,19 @@ namespace ChronosBeta.ViewModels
         }
         public static List<string> UsersSource { get; set; }
         public static string UserSelected { get; set; }
+
+        public static List<string> CustomerSource { get; set; }
+        public static string CustomerSelected { get; set; }
+
         public static string DatePicker { get; set; }
-        public static bool isTaskOver { get; set; }
+        public static bool isProjectOver { get; set; }
 
         public ICommand OK { get; }
         public ICommand Cansel { get; }
         public ICommand Close { get; }
         public ICommand DeleteDate { get; }
 
-        public TaskTimerFilterViewModel() 
+        public ProjectFilterViewModel() 
         {
             OK = new ViewModelCommand(ExecutedOKCommand);
             Cansel = new ViewModelCommand(ExecutedCanselCommand);
@@ -43,10 +47,16 @@ namespace ChronosBeta.ViewModels
             List<string> Users = FunctionsUsers.GetViewUser();
             Users.Add("Все");
 
+            List<string> Customers = FunctionsCustomer.GetViewCustomer();
+            Customers.Add("Все");
+
             if (isNewFiler)
             {
                 UsersSource = Users;
                 UserSelected = "Все";
+
+                CustomerSource = Customers;
+                CustomerSelected = "Все";
             }
         }
 
@@ -71,5 +81,6 @@ namespace ChronosBeta.ViewModels
         {
             DialogResult = false;
         }
+
     }
 }

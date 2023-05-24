@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
 
@@ -30,7 +31,8 @@ namespace ChronosBeta.BL
 
         public static void AddProject(string NameProject,     int ResponsibleCustomer,
                                       int ResponsibleOfficer, string Budget,
-                                      DateTime DeadLine,        string Description)
+                                      DateTime DeadLine,        string Description,
+                                      string SelectedItsOver)
         {
             Project project = new Project();
 
@@ -40,6 +42,11 @@ namespace ChronosBeta.BL
             project.Budget = Convert.ToInt32(Budget);
             project.Deadline = DeadLine;
             project.Description = Description;
+
+            if (SelectedItsOver == "Да")
+                project.ItsOver = true;
+            else
+                project.ItsOver = false;
 
             if (project == null)
             {
@@ -53,8 +60,8 @@ namespace ChronosBeta.BL
 
         public static void EditProject(string NameProject,     int ResponsibleCustomer,
                                        int ResponsibleOfficer, string Budget,
-                                       DateTime DeadLine,        string Description, 
-                                       Project currentProject)
+                                       DateTime DeadLine,        string Description,
+                                       string SelectedItsOver, Project currentProject)
         {
             currentProject.NameProject = NameProject;
             currentProject.ResponsibleСustomer = ResponsibleCustomer;
@@ -62,6 +69,11 @@ namespace ChronosBeta.BL
             currentProject.Budget = Convert.ToInt32(Budget);
             currentProject.Deadline = DeadLine;
             currentProject.Description = Description;
+
+            if (SelectedItsOver == "Да")
+                currentProject.ItsOver = true;
+            else
+                currentProject.ItsOver = false;
 
             if (currentProject == null)
             {

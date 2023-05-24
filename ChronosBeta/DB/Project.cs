@@ -27,6 +27,7 @@ namespace ChronosBeta.DB
         public Nullable<int> Budget { get; set; }
         public string Description { get; set; }
         public System.DateTime Deadline { get; set; }
+        public Nullable<bool> ItsOver { get; set; }
     
         public virtual Customers Customers { get; set; }
         public virtual Users Users { get; set; }
