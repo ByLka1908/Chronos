@@ -2,9 +2,9 @@
 {
     public class ViewListApplication
     {
-        public string NameProcess { get; set; }
-        public string MainWindowTitle { get; set; }
-        public string StartProcessTime { get; set; }
-        public string EndProcessTime { get; set; }
+        public string NameProcess { get; set; } //Название запущенного приложения
+        public string MainWindowTitle { get; set; } //Название основного окна приложения
+        public string StartProcessTime { get; set; } //Время запуска приложения
+        public string EndProcessTime { get; set; } //Время закрытия приложения
     }
 }

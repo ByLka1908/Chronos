@@ -4,25 +4,29 @@ namespace ChronosBeta.Model
 {
     public class ViewDateTimer
     {
-        public DateTimer DateTimer { get; set; }
+        public DateTimer DateTimer { get; set; } //Отметка рабочего дня
         public int Id { get; set; }
-        public string UserName { get; set; }
-        public string UserSurname { get; set; }
-        public string UserMiddleName { get; set; }
-        public string Day { get; set; }
-        public string TimeStart { get; set; }
-        public string TimeEnd { get; set; }
+        public string UserName { get; set; } //Имя пользователя
+        public string UserSurname { get; set; } //Фамилия пользователя
+        public string UserMiddleName { get; set; } //Отчетсво пользователя
+        public string Day { get; set; } 
+        public string TimeStart { get; set; } //Время старта рабочего дня
+        public string TimeEnd { get; set; } //Время окончания рабочего дня
 
-        public ViewDateTimer(DateTimer date)
+        /// <summary>
+        /// Инициализация представления рабочего дня
+        /// </summary>
+        /// <param name="dateTimer">Отметка рабочего дня</param>
+        public ViewDateTimer(DateTimer dateTimer)
         {
-            DateTimer      = date;
-            Id             = date.ID_DateTimer;
-            Day            = date.Day.ToShortDateString();
-            TimeEnd        = date.TimeEnd.ToString();
-            TimeStart      = date.TimeStart.ToString();
-            UserName       = date.Users1.Name;
-            UserSurname    = date.Users1.Surname;
-            UserMiddleName = date.Users1.MiddleName;
+            DateTimer      = dateTimer;
+            Id             = dateTimer.ID_DateTimer;
+            Day            = dateTimer.Day.ToShortDateString();
+            TimeEnd        = dateTimer.TimeEnd.ToString();
+            TimeStart      = dateTimer.TimeStart.ToString();
+            UserName       = dateTimer.Users1.Name;
+            UserSurname    = dateTimer.Users1.Surname;
+            UserMiddleName = dateTimer.Users1.MiddleName;
         }
     }
 }

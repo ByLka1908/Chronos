@@ -6,26 +6,28 @@ namespace ChronosBeta.Model
 {
     public class ViewScreenshot
     {
-        public Screenshot Screenshot { get; set; }
-        public BitmapImage ImageScreenshot { get; set; }
-        public int DateTimer { get; set; }
+        public Screenshot Screenshot { get; set; } //Снимок экрана
+        public BitmapImage ImageScreenshot { get; set; } //Изображения снимка экрана
+        public int DateTimer { get; set; } 
         public string Time { get; set; }
 
-        public ViewScreenshot()
+        /// <summary>
+        /// Инициализация представления снимка экрана
+        /// </summary>
+        /// <param name="screenshot">Снимок экрана</param>
+        public ViewScreenshot(Screenshot screenshot = null) 
         {
+            if (screenshot != null)
+            {
+                Screenshot = screenshot;
+                DateTimer  = screenshot.DateTimer;
+                Time       = screenshot.Time.ToString();
 
-        }
+                if (screenshot.ImageScreenshot == null || screenshot.ImageScreenshot.Length == 0)
+                    return;
 
-        public ViewScreenshot(Screenshot screenshot) 
-        {
-            Screenshot = screenshot;
-            DateTimer  = screenshot.DateTimer;
-            Time       = screenshot.Time.ToString();
-
-            if (screenshot.ImageScreenshot == null || screenshot.ImageScreenshot.Length == 0)
-                return;
-
-            ImageScreenshot = FunctionsImage.ByteToBitmapImage(screenshot.ImageScreenshot);
+                ImageScreenshot = FunctionsImage.ByteToBitmapImage(screenshot.ImageScreenshot);
+            }
         }
     }
 }

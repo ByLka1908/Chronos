@@ -4,12 +4,16 @@ namespace ChronosBeta.Model
 {
     public class ViewProject
     {
-        public Project Project { get; set; }
+        public Project Project { get; set; } //Проект
         public int Id { get; set; }
-        public string NameProject { get; set; }
-        public string ResponsibleCustomer { get; set; }
-        public string ResponsibleOfficer { get; set; }
+        public string NameProject { get; set; } //Название проекта
+        public string ResponsibleCustomer { get; set; } //ФИО заказчика
+        public string ResponsibleOfficer { get; set; } //ФИО ответственного
 
+        /// <summary>
+        /// Инициализация представления проекта
+        /// </summary>
+        /// <param name="project">Проект</param>
         public ViewProject(Project project)
         {
             Users officer      = project.Users;

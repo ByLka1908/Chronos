@@ -1,21 +1,20 @@
 ﻿using ChronosBeta.DB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChronosBeta.Model
 {
     public class ViewJobTitle
     {
-        public JobTitles Job { get; set; }
-        public string NameJobTitle { get; set; }
+        public JobTitles Job { get; set; } //Должность
+        public string NameJobTitle { get; set; } //Название должности
 
-        public ViewJobTitle(JobTitles job)
+        /// <summary>
+        /// Инициализация должности
+        /// </summary>
+        /// <param name="jobTitle">Должность</param>
+        public ViewJobTitle(JobTitles jobTitle)
         {
-            Job = job;
-            NameJobTitle = job.NameJobTitle;
+            Job = jobTitle;
+            NameJobTitle = jobTitle.NameJobTitle;
         }
     }
 }

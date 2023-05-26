@@ -2,14 +2,18 @@
 {
     public class ViewTask
     {
-        public DB.Task Task { get; set; }
+        public DB.Task Task { get; set; } //Задача
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string EstimatedTime { get; set; }
-        public string Deadline { get; set; }
-        public string UserCreateTask { get; set; }
-        public string UserDoTask { get; set; }
+        public string Name { get; set; } //Название задачи
+        public string EstimatedTime { get; set; } //Ожидаемое время выполнения задачи
+        public string Deadline { get; set; } //Дата сдачи задачи
+        public string UserCreateTask { get; set; } //ФИО пользователя создавшего задачу
+        public string UserDoTask { get; set; } //ФИО пользователя выполняющего задачу
 
+        /// <summary>
+        /// Инициализация представления задачи
+        /// </summary>
+        /// <param name="task">Задача</param>
         public ViewTask(DB.Task task) 
         {
             Task           = task;
