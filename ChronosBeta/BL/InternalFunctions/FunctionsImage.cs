@@ -18,23 +18,31 @@ namespace ChronosBeta.BL
 {
     public static class FunctionsImage
     {
-        private static List<ViewScreenshot> Screenshots { get; set; }
-        private static System.Timers.Timer myTimer;
+        private static List<ViewScreenshot> Screenshots { get; set; } //Список снимков рабочего стола
+        private static System.Timers.Timer myTimer; //Таймер снятия снимков
 
         public static int CurrentDateTimer;
 
-        public static int ScreenShotTiming { get; set; }
+        public static int ScreenShotTiming { get; set; } // Интервал снятия снимков
 
-        public static List<ViewScreenshot> GetScreenshot(int dateTimer)
+        /// <summary>
+        /// Получить список снимков экрана
+        /// </summary>
+        /// <param name="dateTimer"></param>
+        /// <returns></returns>
+        public static List<ViewScreenshot> GetScreenshots(int dateTimer)
         {
             CronosEntities entities = new CronosEntities();
-            var screnshot = entities.Screenshot.Where(x => x.DateTimer == dateTimer).ToList();
-            List<ViewScreenshot> listScreenshot = new List<ViewScreenshot>();
-            foreach (var scren in screnshot)
-                listScreenshot.Add(new ViewScreenshot(scren));
-            return listScreenshot;
+            var screnshots = entities.Screenshot.Where(x => x.DateTimer == dateTimer).ToList();
+            List<ViewScreenshot> viewScreenshots = new List<ViewScreenshot>();
+            foreach (var screnshot in screnshots)
+                viewScreenshots.Add(new ViewScreenshot(screnshot));
+            return viewScreenshots;
         }
 
+        /// <summary>
+        /// Начать снятие снимков экрана
+        /// </summary>
         public static void StartScreenshot()
         {
             myTimer = new System.Timers.Timer(ScreenShotTiming); //5000 это 5 сек
@@ -43,7 +51,10 @@ namespace ChronosBeta.BL
             Screenshots = new List<ViewScreenshot>();
         }
 
-        public static void AddScreenshot()
+        /// <summary>
+        /// Добавить снимки экранов
+        /// </summary>
+        public static void AddScreenshots()
         {
             foreach (var screenshot in Screenshots)
             {
@@ -63,6 +74,11 @@ namespace ChronosBeta.BL
             }
         }
 
+        /// <summary>
+        /// Получить изображение из указанного пути
+        /// </summary>
+        /// <param name="path">Путь к изображению</param>
+        /// <returns></returns>
         public static BitmapImage GetImage(string path = null)
         {
             if (path == null)
@@ -71,6 +87,10 @@ namespace ChronosBeta.BL
             return new BitmapImage(new Uri(path));
         }
 
+        /// <summary>
+        /// Выбрать изображение из папки
+        /// </summary>
+        /// <returns></returns>
         public static BitmapImage SetImage()
         {
             using (var openFileDialog = new OpenFileDialog())
@@ -86,6 +106,11 @@ namespace ChronosBeta.BL
             }
         }
 
+        /// <summary>
+        /// Подготовить изображение к загрузке в БД
+        /// </summary>
+        /// <param name="ImageUser">Изображение</param>
+        /// <returns></returns>
         public static byte[] PushImage(ImageSource ImageUser)
         {
             var image = (BitmapImage)ImageUser;
@@ -101,6 +126,11 @@ namespace ChronosBeta.BL
             return data;
         }
 
+        /// <summary>
+        /// Преобразовать изображение из БД
+        /// </summary>
+        /// <param name="ImageUser">Байтовое предстволение изображения</param>
+        /// <returns></returns>
         public static BitmapImage ByteToBitmapImage(byte[] ImageUser)
         {
             var memoryStream = new MemoryStream(ImageUser);
@@ -114,6 +144,12 @@ namespace ChronosBeta.BL
             return bitmapImage;
         }
 
+        #region Приватные методы
+        /// <summary>
+        /// Снятие снимка экрана
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         private async static void Screenshot(Object source, ElapsedEventArgs e)
         {
             Size monitorSize = GetMonitorSize();
@@ -131,6 +167,10 @@ namespace ChronosBeta.BL
             await System.Threading.Tasks.Task.Delay(1000);
         }
 
+        /// <summary>
+        /// Получить размер монитора пользователя
+        /// </summary>
+        /// <returns></returns>
         private static Size GetMonitorSize()
         {
             IntPtr hwnd = Process.GetCurrentProcess().MainWindowHandle;
@@ -139,9 +179,14 @@ namespace ChronosBeta.BL
             return new Size((int)g.VisibleClipBounds.Width, (int)g.VisibleClipBounds.Height);
         }
 
-        private static TimeSpan StringToTimeSpan(string str)
+        /// <summary>
+        /// Время снятия снимка рабочего стола
+        /// </summary>
+        /// <param name="textTime">Строчное представление времени</param>
+        /// <returns></returns>
+        private static TimeSpan StringToTimeSpan(string textTime)
         {
-            string[] time = str.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] time = textTime.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
             string hours = time[0];
             string min = time[1];
             string sec = time[2];
@@ -149,6 +194,11 @@ namespace ChronosBeta.BL
             return new TimeSpan(Convert.ToInt32(hours), Convert.ToInt32(min), Convert.ToInt32(sec));
         }
 
+        /// <summary>
+        /// Конвертация изображения из Bitmap в BitmapImage
+        /// </summary>
+        /// <param name="bitmap">Изображение</param>
+        /// <returns></returns>
         private static BitmapImage BitmapToBitmapImage(this Bitmap bitmap)
         {
             using (var memory = new MemoryStream())
@@ -166,5 +216,6 @@ namespace ChronosBeta.BL
                 return bitmapImage;
             }
         }
+        #endregion
     }
 }

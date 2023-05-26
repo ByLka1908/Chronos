@@ -310,6 +310,5 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenErrorWindow("Насторйки не сохранены");
             }
         }
-
     }
 }

@@ -7,6 +7,10 @@ namespace ChronosBeta.BL
 {
     public class FunctionsListApplication
     {
+        /// <summary>
+        /// Получить список запущенных приложений
+        /// </summary>
+        /// <returns></returns>
         public static List<ViewListApplication> GetListProcesses()
         {
             List<ViewListApplication> listApplications = new List<ViewListApplication>();
@@ -28,6 +32,10 @@ namespace ChronosBeta.BL
             return listApplications;
         }
 
+        /// <summary>
+        /// Получить запущенные процессы
+        /// </summary>
+        /// <returns></returns>
         private static string[] GetRunningProcesses()
         {
             var processes = Process.GetProcesses().Where(p => !string.IsNullOrEmpty(p.MainWindowTitle)).Select(

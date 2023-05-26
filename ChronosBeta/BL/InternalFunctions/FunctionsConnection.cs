@@ -1,23 +1,24 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ChronosBeta.BL
 {
     public class FunctionsConnection
     {
-        private static string CurrentConnectString;
-        private static string path;
+        private static string CurrentConnectString; //Текущего подключения
+        private static string path; //Путь к файлу с настройками подключений к БД
 
-        public static List<ConnectionView> ConnectionViews { get; set; }
-        public static string UserConnectName { get; set; }
-        public static ConnectionView CurrentConnect { get; set; }
+        public static List<ConnectionView> ConnectionViews { get; set; } // Список достпуных подключений
+        public static string UserConnectName { get; set; } // Название текущего подключения 
+        public static ConnectionView CurrentConnect { get; set; } // Представление текущего подключения
 
+        /// <summary>
+        /// Получаем список подключений и текущию строку подключения
+        /// </summary>
+        /// <returns></returns>
         public static string GetConnectionString()
         {
             ConnectionView connect = new ConnectionView();
@@ -61,16 +62,26 @@ namespace ChronosBeta.BL
             return CurrentConnectString;
         }
 
+        /// <summary>
+        /// Получаем представление подключения
+        /// </summary>
+        /// <param name="NameConnect">Название подключения</param>
+        /// <returns></returns>
         public static ConnectionView GetConnect(string NameConnect)
         {
             return ConnectionViews.Where(x => x.ConnectName == NameConnect).First();
         }
 
+        /// <summary>
+        /// Получаем список подключений
+        /// </summary>
+        /// <returns></returns>
         public static List<string> GetConnectList()
         {
             return ConnectionViews.Select(x => x.ConnectName).ToList();
         }
 
+        //Переработать
         public static void SaveConnection(string NameConnect, string AdressServer, string NameDB,
                                           string PasswordUser,string NameUser ,    bool IsAuntifucationWindows)
         {

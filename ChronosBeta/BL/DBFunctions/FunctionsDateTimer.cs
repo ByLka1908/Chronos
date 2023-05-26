@@ -91,7 +91,7 @@ namespace ChronosBeta.BL
             DateTimer dateTimer = new DateTimer();
             try
             {
-                dateTimer.Users = FunctionsCurrentUser.GetIDUser();
+                dateTimer.Users = FunctionsCurrentUser.User.ID_Users;
                 dateTimer.Day = DateTime.Now;
                 dateTimer.TimeStart = timeStart;
                 dateTimer.TimeEnd = timeEnd;
@@ -111,7 +111,7 @@ namespace ChronosBeta.BL
                 entities.DateTimer.Add(dateTimer);
                 entities.SaveChanges();
                 FunctionsImage.CurrentDateTimer = dateTimer.ID_DateTimer;
-                FunctionsImage.AddScreenshot();
+                FunctionsImage.AddScreenshots();
                 return;
             }
             catch

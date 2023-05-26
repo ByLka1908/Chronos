@@ -6,42 +6,36 @@ namespace ChronosBeta.BL
 {
     public class FunctionsCurrentUser
     {
-        private static Users _user;
-
-        private static string Name { get; set; }
-        private static string Surname { get; set; }
-        private static string MiddleName { get; set; }
-        private static string JobTitle { get; set; }
-        private static BitmapImage ImageUser { get; set; }
+        private static Users _user; //Текущий пользователь
+        private static BitmapImage ImageUser { get; set; } //Фото текущего пользователя
 
         public static Users User
         {
             get { return _user; }
         }
 
+        /// <summary>
+        /// Установить текущего пользователя
+        /// </summary>
+        /// <param name="user">Пользователь</param>
         public static void SetUser(Users user)
         {
             _user = user;
-            Name = user.Name;
-            Surname = user.Surname;
-            MiddleName = user.MiddleName;
-            JobTitle = $"Должность: {user.JobTitles.NameJobTitle}";
 
             if (user.ImageUser == null || user.ImageUser.Length == 0)
                 return;
             ImageUser = FunctionsImage.ByteToBitmapImage(user.ImageUser);
         }
 
-        public static int GetIDUser()
-        {
-            return User.ID_Users;
-        }
-
+        /// <summary>
+        /// Получить представление текущего пользователя
+        /// </summary>
+        /// <returns></returns>
         public static ViewCurrentUser GetViewUser()
         {
             ViewCurrentUser user = new ViewCurrentUser();
-            user.Username        = Name;
-            user.DisplayName     = $"{Name} {MiddleName} {Surname}";
+            user.Username        = _user.Name;
+            user.DisplayName     = $"{_user.Name} {_user.MiddleName} {_user.Surname}";
             user.ImageUser       = ImageUser;
             return user;
         }

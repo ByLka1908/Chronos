@@ -36,7 +36,7 @@ namespace ChronosBeta.ViewModels
             {
                 Back = new ViewModelCommand(ExecutedBackCommand);
 
-                List<ViewScreenshot> currentScren = FunctionsImage.GetScreenshot(_currentDateTimer.Id);
+                List<ViewScreenshot> currentScren = FunctionsImage.GetScreenshots(_currentDateTimer.Id);
                 CurrentScreenshot = CollectionViewSource.GetDefaultView(currentScren);
             }
             catch

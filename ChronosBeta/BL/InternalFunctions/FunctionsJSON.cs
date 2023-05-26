@@ -10,11 +10,14 @@ namespace ChronosBeta.BL
 {
     public class FunctionsJSON
     {
-        private static List<ViewListApplication> JsonAppList { get; set; }
+        private static List<ViewListApplication> JsonAppList { get; set; } //Список запущенныех приложений
         private static Timer myTimer;
 
-        public static int UpdateListAppTimer { get; set; }
+        public static int UpdateListAppTimer { get; set; } //Интервал обновления списка запущенных приложений
 
+        /// <summary>
+        /// Создание временного json файла
+        /// </summary>
         public static void CreateJson()
         {
             JsonAppList = FunctionsListApplication.GetListProcesses();
@@ -23,30 +26,54 @@ namespace ChronosBeta.BL
             myTimer.Enabled = true;
         }
 
+        /// <summary>
+        /// Получить список запущенных приложений в формате json
+        /// </summary>
+        /// <returns></returns>
         public static string GetJson()
         {
             myTimer.Enabled = false;
             return JsonConvert.SerializeObject(JsonAppList, Formatting.Indented);
         }
 
+        /// <summary>
+        /// Конвертируем список запущенных приложений строки из json формата
+        /// </summary>
+        /// <param name="JsonlistApp">Список запущенных приложений</param>
+        /// <returns></returns>
         public static List<ViewListApplication> GetDeserializeJson(string JsonlistApp)
         {
             List<ViewListApplication> list = JsonConvert.DeserializeObject<List<ViewListApplication>>(JsonlistApp);
             return list;
         }
 
+        /// <summary>
+        /// Конвертируем список подключений к БД из строки json формата
+        /// </summary>
+        /// <param name="ConnectSetting">Список подключений к БД</param>
+        /// <returns></returns>
         public static List<ConnectionView> GetDeserializeJsonToConnect(string ConnectSetting)
         {
             List<ConnectionView> connect = JsonConvert.DeserializeObject<List<ConnectionView>>(ConnectSetting);
             return connect;
         }
 
+        /// <summary>
+        /// Получаем представление подключения к БД из строки json формата
+        /// </summary>
+        /// <param name="ConnectSetting">Строка подключения</param>
+        /// <returns></returns>
         public static SettingView GetDeserializeJsonToStartSetting(string ConnectSetting)
         {
             SettingView setting = JsonConvert.DeserializeObject<SettingView>(ConnectSetting);
             return setting;
         }
 
+        /// <summary>
+        /// Обновление списка запущенных приложений
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         public async static void UpdateJson(Object source, ElapsedEventArgs e)
         {
             List<ViewListApplication> newList = FunctionsListApplication.GetListProcesses();

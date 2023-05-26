@@ -8,14 +8,15 @@ namespace ChronosBeta.BL.InternalFunctions
 {
     public class FunctionsSettingStart
     {
-        public static MainView MainView { get; set; }
-        public static SettingView setting { get; set; }
-        public static string[] Validformats { get; set; }
-        public static CultureInfo Provider { get; set; }
+        public static MainView MainView { get; set; } //Основное рабоче окно
+        public static SettingView setting { get; set; } //Представление параметров приложения
+        public static string[] Validformats { get; set; } //Формат даты
+        public static CultureInfo Provider { get; set; } //Язык
 
 
-        private static string path;
+        private static string path; //Путь к файлу с настройками приложения
 
+        //Запуск приложения, установка настроек
         public static void StartApp()
         {
             Validformats = new[] { "MM/dd/yyyy", "yyyy/MM/dd", "MM/dd/yyyy HH:mm:ss",
@@ -46,11 +47,11 @@ namespace ChronosBeta.BL.InternalFunctions
             FunctionsJSON.UpdateListAppTimer = setting.UpdateListAppTimer;
         }
 
+        //Обновление настроек приложения
         public static void Update()
         {
             string settingToJson = JsonConvert.SerializeObject(setting, Formatting.Indented);
             File.WriteAllText(path, settingToJson);
         }
-
     }
 }
