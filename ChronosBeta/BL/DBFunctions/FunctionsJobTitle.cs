@@ -1,79 +1,100 @@
 ﻿using ChronosBeta.DB;
 using ChronosBeta.Model;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChronosBeta.BL
 {
     public class FunctionsJobTitle
     {
+        /// <summary>
+        /// Получить список должностей
+        /// </summary>
+        /// <returns></returns>
         public static List<ViewJobTitle> GetJobTitles()
         {
             CronosEntities entities = new CronosEntities();
             var jobTitles = entities.JobTitles.ToList();
-            List<ViewJobTitle> listJobTitle = new List<ViewJobTitle>();
-            foreach (var job in jobTitles)
-                listJobTitle.Add(new ViewJobTitle(job));
-            return listJobTitle;
+            List<ViewJobTitle> viewJobTitles = new List<ViewJobTitle>();
+            foreach (var jobTitle in jobTitles)
+                viewJobTitles.Add(new ViewJobTitle(jobTitle));
+            return viewJobTitles;
         }
 
-        public static List<string> GetJobTitle()
+        /// <summary>
+        /// Получить Список должностей
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetListJobTitles()
         {
             CronosEntities entities = new CronosEntities();
-            var jobtitle = entities.JobTitles.Select(x => x.NameJobTitle).ToList();
-            return jobtitle;
+            return entities.JobTitles.Select(x => x.NameJobTitle).ToList();
         }
 
-        public static int GetId(string jobTitle)
+        /// <summary>
+        /// Получить id должности
+        /// </summary>
+        /// <param name="jobTitle">Название должности</param>
+        /// <returns></returns>
+        public static int GetJobTitleId(string jobTitle)
         {
             CronosEntities entities = new CronosEntities();
             return entities.JobTitles.Where(x => x.NameJobTitle == jobTitle).First().ID_JobTitles;
         }
 
-        public static void DeleteJobTitle(JobTitles job)
+        /// <summary>
+        /// Добавить должность
+        /// </summary>
+        /// <param name="NameJobTitle">Название должности</param>
+        public static void AddJobTitle(string NameJobTitle)
+        {
+            JobTitles jobTitle = new JobTitles();
+
+            jobTitle.NameJobTitle = NameJobTitle;
+
+            if (jobTitle == null)
+                return;
+
+            CronosEntities entities = new CronosEntities();
+            entities.JobTitles.Add(jobTitle);
+            entities.SaveChanges();
+        }
+
+        /// <summary>
+        /// Изменить должность
+        /// </summary>
+        /// <param name="NameJobTitle">Название должности</param>
+        /// <param name="selectedJob">Должность</param>
+        public static void EditJobTitle(string NameJobTitle, JobTitles jobTitle)
+        {
+            jobTitle.NameJobTitle = NameJobTitle;
+
+            if (jobTitle == null)
+                return;
+
+            CronosEntities entities = new CronosEntities();
+            entities.JobTitles.AddOrUpdate(jobTitle);
+            entities.SaveChanges();
+        }
+
+        /// <summary>
+        /// Удалить должность
+        /// </summary>
+        /// <param name="job">Должность</param>
+        public static void DeleteJobTitle(JobTitles jobTitle)
         {
             CronosEntities entities = new CronosEntities();
-            var users = entities.Users.Where(x => x.JobTitle == job.ID_JobTitles).ToList();
+
+            //Проверка на связи с пользователями
+            var users = entities.Users.Where(x => x.JobTitle == jobTitle.ID_JobTitles).ToList();
             foreach (var user in users)
             {
                 entities.Users.Remove(user);
             }
 
-            entities.JobTitles.Remove(entities.JobTitles.Find(job.ID_JobTitles));
+            entities.JobTitles.Remove(entities.JobTitles.Find(jobTitle.ID_JobTitles));
             entities.SaveChanges();
         }
-
-        public static void AddJobTitle(string NameJobTitle)
-        {
-            JobTitles jobtitle = new JobTitles();
-            
-            jobtitle.NameJobTitle = NameJobTitle;
-
-            if (jobtitle == null)
-                return;
-
-            CronosEntities entities = new CronosEntities();
-            entities.JobTitles.Add(jobtitle);
-            entities.SaveChanges();
-        }
-
-        public static void EditJobTitle(string NameJobTitle, JobTitles selectedJob)
-        {
-            JobTitles jobtitle = selectedJob;
-
-            jobtitle.NameJobTitle = NameJobTitle;
-
-            if (jobtitle == null)
-                return;
-
-            CronosEntities entities = new CronosEntities();
-            entities.JobTitles.AddOrUpdate(jobtitle);
-            entities.SaveChanges();
-        }
-
     }
 }

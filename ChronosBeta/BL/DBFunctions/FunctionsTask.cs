@@ -2,28 +2,72 @@
 using System.Collections.Generic;
 using System.Linq;
 using ChronosBeta.Model;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Policy;
 using ChronosBeta.DB;
-using System.Xml.Linq;
 using System.Data.Entity.Migrations;
-using System.Windows;
 
 namespace ChronosBeta.BL
 {
     class FunctionsTask
     {
+        /// <summary>
+        /// Получить представление задачи
+        /// </summary>
+        /// <param name="task">Название задачи</param>
+        /// <returns></returns>
+        public static ViewTask GetTaskView(string task)
+        {
+            CronosEntities entities = new CronosEntities();
+            DB.Task currentTask = entities.Task.Where(x => x.NameTask == task).First();
+            return new ViewTask(currentTask);
+        }
+
+        /// <summary>
+        /// Получить список задач
+        /// </summary>
+        /// <returns></returns>
         public static List<ViewTask> GetTasks()
         {
             CronosEntities entities = new CronosEntities();
-            var project = entities.Task.ToList();
-            List<ViewTask> view = new List<ViewTask>();
-            foreach (var item in project)
-                view.Add(new ViewTask(item));
-            return view;
+            var tasks = entities.Task.ToList();
+            List<ViewTask> viewTasks = new List<ViewTask>();
+            foreach (var task in tasks)
+                viewTasks.Add(new ViewTask(task));
+            return viewTasks;
         }
 
+        /// <summary>
+        /// Получить список задач
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetListTasks()
+        {
+            CronosEntities entities = new CronosEntities();
+            return entities.Task.Select(x => x.NameTask).ToList();
+        }
+
+        /// <summary>
+        /// Получить id задачи
+        /// </summary>
+        /// <param name="task">Название задачи</param>
+        /// <returns></returns>
+        public static int GetIdTask(string task)
+        {
+            CronosEntities entities = new CronosEntities();
+            return entities.Task.Where(x => x.NameTask == task).First().ID_Task;
+        }
+
+        /// <summary>
+        /// Добавить задачу
+        /// </summary>
+        /// <param name="UserDoTask">Пользователь выполняющий задачу</param>
+        /// <param name="UserCreateTask">Пользователь создавший задачу</param>
+        /// <param name="NameTask">Название задачи</param>
+        /// <param name="Project">Проект по задаче</param>
+        /// <param name="DeadLine">Срок выполения</param>
+        /// <param name="Description">Описание</param>
+        /// <param name="SelectedItsOver">Закончена ли задача</param>
+        /// <param name="EstimatedTime">Ожидаемое время выполения (в часах)</param>
+        /// <param name="AllSpentTime">Общее время выполнения (в часах)</param>
         public static void AddTask( int      UserDoTask,      int UserCreateTask ,
                                     string   NameTask,        int Project, 
                                     DateTime DeadLine,        string Description, 
@@ -39,6 +83,7 @@ namespace ChronosBeta.BL
             task.Deadline       = DeadLine;
             task.Description    = Description;
             task.EstimatedTime  = Convert.ToDouble(EstimatedTime);
+
             if (AllSpentTime == "")
                 task.AllSpentTime = 0;
             else
@@ -59,69 +104,68 @@ namespace ChronosBeta.BL
             entities.SaveChanges();
         }
 
-        public static void SaveEditTask(int      UserDoTask,      int UserCreateTask,
-                                        string   NameTask,        int Project,
-                                        DateTime DeadLine,        string Description,
-                                        string   SelectedItsOver, DB.Task currentTask,
-                                        string   EstimatedTime,   string AllSpentTime)
+        /// <summary>
+        /// Изменить задачу
+        /// </summary>
+        /// <param name="UserDoTask">Пользователь выполняющий задачу</param>
+        /// <param name="UserCreateTask">Пользователь создавший задачу</param>
+        /// <param name="NameTask">Название задачи</param>
+        /// <param name="Project">Проект по задаче</param>
+        /// <param name="DeadLine">Срок выполения</param>
+        /// <param name="Description">Описание</param>
+        /// <param name="SelectedItsOver">Закончена ли задача</param>
+        /// <param name="EstimatedTime">Ожидаемое время выполения (в часах)</param>
+        /// <param name="AllSpentTime">Общее время выполнения (в часах)</param>
+        /// <param name="task">Задача</param>
+        public static void EditTask(int UserDoTask,           int UserCreateTask,
+                                    string   NameTask,        int Project,
+                                    DateTime DeadLine,        string Description,
+                                    string   SelectedItsOver, string   EstimatedTime,
+                                    string AllSpentTime,      DB.Task task)
         {
-            currentTask.NameTask       = NameTask;
-            currentTask.UserDoTask     = UserDoTask;
-            currentTask.UserCreateTask = UserCreateTask;
-            currentTask.Project        = Project;
-            currentTask.Deadline       = DeadLine;
-            currentTask.Description    = Description;
-            currentTask.EstimatedTime  = Convert.ToDouble(EstimatedTime);
+            task.NameTask       = NameTask;
+            task.UserDoTask     = UserDoTask;
+            task.UserCreateTask = UserCreateTask;
+            task.Project        = Project;
+            task.Deadline       = DeadLine;
+            task.Description    = Description;
+            task.EstimatedTime  = Convert.ToDouble(EstimatedTime);
             if (AllSpentTime == "")
-                currentTask.AllSpentTime = 0;
+                task.AllSpentTime = 0;
             else
-                currentTask.AllSpentTime   = Convert.ToDouble(AllSpentTime);
+                task.AllSpentTime   = Convert.ToDouble(AllSpentTime);
 
             if (SelectedItsOver == "Да")
-                currentTask.ItsOver = true;
+                task.ItsOver = true;
             else
-                currentTask.ItsOver = false;
+                task.ItsOver = false;
 
-            if (currentTask == null)
+            if (task == null)
             {
                 return;
             }
 
             CronosEntities entities = new CronosEntities();
-            entities.Task.AddOrUpdate(currentTask);
+            entities.Task.AddOrUpdate(task);
             entities.SaveChanges();
         }
 
-        public static int GetIdTask(string task)
+        /// <summary>
+        /// Удалить задачу
+        /// </summary>
+        /// <param name="currentTask">Задача</param>
+        public static void DeleteTask(DB.Task task)
         {
             CronosEntities entities = new CronosEntities();
-            return entities.Task.Where(x => x.NameTask == task).First().ID_Task;
-        }
-
-        public static List<string> GetViewTask()
-        {
-            CronosEntities entities = new CronosEntities();
-            var task = entities.Task.Select(x => x.NameTask).ToList();
-            return task;
-        }
-
-        public static ViewTask GetTaskView(string task)
-        {
-            CronosEntities entities = new CronosEntities();
-            DB.Task currentTask = entities.Task.Where(x => x.NameTask == task).First();
-            return new ViewTask(currentTask);
-        }
-
-        public static void DeleteTask(DB.Task currentTask)
-        {
-            CronosEntities entities = new CronosEntities();
-            var tasksTimer = entities.TaskTimer.Where(x => x.Task == currentTask.ID_Task).ToList();
+            
+            //Проверяем отметки по задаче
+            var tasksTimer = entities.TaskTimer.Where(x => x.Task == task.ID_Task).ToList();
             foreach (var taskTimer in tasksTimer)
             {
                 entities.TaskTimer.Remove(taskTimer);
             }
 
-            entities.Task.Remove(entities.Task.Find(currentTask.ID_Task));
+            entities.Task.Remove(entities.Task.Find(task.ID_Task));
             entities.SaveChanges();
         }
     }

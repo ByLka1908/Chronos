@@ -47,7 +47,7 @@ namespace ChronosBeta.ViewModels
             List<string> Users = FunctionsUsers.GetViewUser();
             Users.Add("Все");
 
-            List<string> Customers = FunctionsCustomer.GetViewCustomer();
+            List<string> Customers = FunctionsCustomer.GetListCustomers();
             Customers.Add("Все");
 
             if (isNewFiler)

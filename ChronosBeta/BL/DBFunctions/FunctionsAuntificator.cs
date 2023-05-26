@@ -8,6 +8,11 @@ namespace ChronosBeta.BL
 {
     class FunctionsAuntificator
     {
+        /// <summary>
+        /// Аунтификация пользователя
+        /// </summary>
+        /// <param name="credential">Пароль и логин</param>
+        /// <returns></returns>
         public static bool Auntification(NetworkCredential credential)
         {
             CronosEntities entities = new CronosEntities();

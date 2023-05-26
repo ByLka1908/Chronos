@@ -101,7 +101,7 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsCustomer.SaveEditCustomer(Name, Surname, MiddleName, Phone, Email, SelectedCustomer.Customer);
+                    FunctionsCustomer.EditCustomer(Name, Surname, MiddleName, Phone, Email, SelectedCustomer.Customer);
                     FunctionsWindow.OpenGoodWindow("Заказчик отредактирован(а)");
                 }
                 catch

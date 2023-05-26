@@ -4,24 +4,36 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Windows;
-using System.Windows.Forms;
 
 namespace ChronosBeta.BL
 {
     public class FunctionsTaskMark
     {
+        /// <summary>
+        /// Получить список отметок по задачам
+        /// </summary>
+        /// <returns></returns>
         public static List<ViewTaskTimer> GetTasksTimer()
         {
             CronosEntities entities = new CronosEntities();
-            var task = entities.TaskTimer.ToList();
-            List<ViewTaskTimer> view = new List<ViewTaskTimer>();
-            foreach (var item in task)
-                view.Add(new ViewTaskTimer(item));
-            return view;
+            var taskTimers = entities.TaskTimer.ToList();
+            List<ViewTaskTimer> viewTaskTimers = new List<ViewTaskTimer>();
+            foreach (var taskTimer in taskTimers)
+                viewTaskTimers.Add(new ViewTaskTimer(taskTimer));
+            return viewTaskTimers;
         }
 
-        public static void AddTaskTimer(int User, int Task, string SpentTime, string Description, DateTime Day)
+        /// <summary>
+        /// Добавить отметку по задаче
+        /// </summary>
+        /// <param name="User">Пользователь</param>
+        /// <param name="Task">Задача</param>
+        /// <param name="SpentTime">Потраченное время</param>
+        /// <param name="Description">Описание</param>
+        /// <param name="Day">День отметки</param>
+        /// <exception cref="Exception"></exception>
+        public static void AddTaskTimer(int User, int Task, string SpentTime, 
+                                        string Description, DateTime Day)
         {
             TaskTimer taskTimer = new TaskTimer();
 
@@ -41,13 +53,24 @@ namespace ChronosBeta.BL
             entities.SaveChanges();
         }
 
-        public static void EditTaskTimer(int User, int Task, string SpentTime, string Description, DateTime Day, TaskTimer taskTimer)
+        /// <summary>
+        /// Изменить отметку по задаче
+        /// </summary>
+        /// <param name="User">Пользователь</param>
+        /// <param name="Task">Задача</param>
+        /// <param name="SpentTime">Потраченное время</param>
+        /// <param name="Description">Описание</param>
+        /// <param name="Day">День отметки</param>
+        /// <param name="taskTimer">Отметка по задаче</param>
+        /// <exception cref="Exception"></exception>
+        public static void EditTaskTimer(int User, int Task, string SpentTime, 
+                                         string Description, DateTime Day, TaskTimer taskTimer)
         {
             taskTimer.Users       = User; 
             taskTimer.Task        = Task;
             taskTimer.SpentTime   = Convert.ToDouble(SpentTime);
             taskTimer.Description = Description;
-            taskTimer.Day = Day;
+            taskTimer.Day         = Day;
 
             if (taskTimer == null)
             {
@@ -59,10 +82,14 @@ namespace ChronosBeta.BL
             entities.SaveChanges();
         }
 
-        public static void DeleteTaskTimer(TaskTimer currentTask)
+        /// <summary>
+        /// Удалить отметку по задаче
+        /// </summary>
+        /// <param name="taskTimer">Отметка по задаче</param>
+        public static void DeleteTaskTimer(TaskTimer taskTimer)
         {
             CronosEntities entities = new CronosEntities();
-            entities.TaskTimer.Remove(entities.TaskTimer.Find(currentTask.ID_TaskTimer));
+            entities.TaskTimer.Remove(entities.TaskTimer.Find(taskTimer.ID_TaskTimer));
             entities.SaveChanges();
         }
     }

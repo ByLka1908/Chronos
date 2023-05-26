@@ -58,7 +58,7 @@ namespace ChronosBeta.ViewModels
                 ItsOver = itsOver;
                 UserCreateTask = FunctionsUsers.GetViewUser();
                 UserDoTask = FunctionsUsers.GetViewUser();
-                Project = FunctionsProject.GetViewProject();
+                Project = FunctionsProject.GetListProjects();
 
                 //Инициализация команд
                 Save = new ViewModelCommand(ExecutedSaveCommand);
@@ -167,7 +167,7 @@ namespace ChronosBeta.ViewModels
                     FunctionsTask.AddTask(FunctionsUsers.GetUserId(SelectedUserDoTask), 
                                           FunctionsUsers.GetUserId(SelectedUserCreateTask),
                                           NameTask,
-                                          FunctionsProject.GetIdProject(SelectedProject),
+                                          FunctionsProject.GetProjectId(SelectedProject),
                                           time, Description, SelectedItsOver,
                                           EstimatedTime, AllSpentTime);
                     FunctionsWindow.OpenGoodWindow("Задача добавлена");
@@ -181,13 +181,13 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsTask.SaveEditTask(FunctionsUsers.GetUserId(SelectedUserDoTask),
+                    FunctionsTask.EditTask(FunctionsUsers.GetUserId(SelectedUserDoTask),
                                                FunctionsUsers.GetUserId(SelectedUserCreateTask),
                                                NameTask, 
-                                               FunctionsProject.GetIdProject(SelectedProject),
+                                               FunctionsProject.GetProjectId(SelectedProject),
                                                time, Description,
-                                               SelectedItsOver, SelectedTask.Task,
-                                               EstimatedTime, AllSpentTime);
+                                               SelectedItsOver, EstimatedTime,
+                                               AllSpentTime, SelectedTask.Task);
                     FunctionsWindow.OpenGoodWindow("Задача отредактирована");
                 }
                 catch

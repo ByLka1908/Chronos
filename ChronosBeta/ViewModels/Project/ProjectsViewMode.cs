@@ -70,12 +70,12 @@ namespace ChronosBeta.ViewModels
             {
                 if (!FilterOn)
                 {
-                    List<ViewProject> currentProject = FunctionsProject.GetProject();
+                    List<ViewProject> currentProject = FunctionsProject.GetProjects();
                     CurrentProject = CollectionViewSource.GetDefaultView(currentProject);
                 }
                 else
                 {
-                    List<ViewProject> currentProject = FunctionsProject.GetProject();
+                    List<ViewProject> currentProject = FunctionsProject.GetProjects();
                     currentProject = currentProject.Where(x => x.Project.ItsOver == isProjectOverFilter).ToList();
 
                     if(nameUserFilter != "Все")
@@ -121,7 +121,7 @@ namespace ChronosBeta.ViewModels
                     return;
                 }
 
-                List<ViewProject> currentProjects = FunctionsProject.GetProject();
+                List<ViewProject> currentProjects = FunctionsProject.GetProjects();
                 List<ViewProject> findProjects = currentProjects.Where(x => x.NameProject.ToUpper().StartsWith(CurrentText.ToUpper())).ToList();
 
                 if (findProjects.Count < 1)

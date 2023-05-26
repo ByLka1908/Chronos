@@ -46,7 +46,7 @@ namespace ChronosBeta.ViewModels
             try
             {
                 Users = FunctionsUsers.GetViewUser();
-                Task = FunctionsTask.GetViewTask();
+                Task = FunctionsTask.GetListTasks();
 
                 _currentUser = FunctionsCurrentUser.User;
                 SelectedUser = _currentUser.Name + " " + _currentUser.Surname + " " + _currentUser.MiddleName;

@@ -59,7 +59,7 @@ namespace ChronosBeta.ViewModels
         {
             try
             {
-                JobTitle = FunctionsJobTitle.GetJobTitle();
+                JobTitle = FunctionsJobTitle.GetListJobTitles();
 
                 //Инициализация команд
                 Save = new ViewModelCommand(ExecutedSaveCommand);
@@ -146,7 +146,7 @@ namespace ChronosBeta.ViewModels
                 try
                 {
                     FunctionsUsers.AddUser(Name, Surname, MiddleName, Login, Password, Phone, Skype,
-                                           SelectedJobTitle, ImageUser);
+                                           FunctionsJobTitle.GetJobTitleId(SelectedJobTitle), ImageUser);
                     FunctionsWindow.OpenGoodWindow("Пользователь добавлен");
                 }
                 catch
@@ -158,8 +158,8 @@ namespace ChronosBeta.ViewModels
             {
                 try
                 {
-                    FunctionsUsers.SaveEditUser(Name, Surname, MiddleName, Login, Password, Phone, Skype,
-                                                SelectedJobTitle, SelectedUser, ImageUser);
+                    FunctionsUsers.EditUser(Name, Surname, MiddleName, Login, Password, Phone, Skype,
+                                            FunctionsJobTitle.GetJobTitleId(SelectedJobTitle), ImageUser, SelectedUser.User);
                     FunctionsWindow.OpenGoodWindow("Пользователь отредактирован");
                 }
                 catch

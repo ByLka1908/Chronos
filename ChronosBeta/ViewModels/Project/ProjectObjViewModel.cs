@@ -51,7 +51,7 @@ namespace ChronosBeta.ViewModels
                 itsOver.Add("Нет");
 
                 ItsOver = itsOver;
-                ResponsibleCustomer = FunctionsCustomer.GetViewCustomer();
+                ResponsibleCustomer = FunctionsCustomer.GetListCustomers();
                 ResponsibleOfficer = FunctionsUsers.GetViewUser();
 
                 //Инициализация команд
