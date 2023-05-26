@@ -1,28 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Security.Principal;
 using System.Security;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ChronosBeta.BL;
 using ChronosBeta.BL.InternalFunctions;
-using ChronosBeta.DB;
 
 namespace ChronosBeta.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        //-> Параметры
-        private string _username;
-        private SecureString _password;
-        private string _errorMessage;
+        #region Параметры
+        private string _username; //Логин
+        private SecureString _password; //Пароль
+        private string _errorMessage; //Сообщение об ошибке
         private bool _isViewVisible = true;
+        #endregion
 
-        //-> Свойства
+        #region Свойства
         public string Username
         {
             get
@@ -71,22 +67,28 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged(nameof(IsViewVisible));
             }
         }
-        public bool isRememberUser { get; set; }
+        public bool isRememberUser { get; set; } // Запомнить пользователя
+        #endregion
 
-        //-> Команды
-        public ICommand LoginCommand { get; }
-        public ICommand ClickIsRememberUser { get; }
+        #region Команды
+        public ICommand LoginCommand { get; } 
         public ICommand RecoverPasswordCommand { get; }
-        public ICommand ShowPasswordCommand { get; }
-        public ICommand RememberPasswordCommand { get; }
+        #endregion
 
-        //-> Конструктор
+        #region Конструктор
         public LoginViewModel()
         {
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
         }
+        #endregion
 
+        #region Методы
+        /// <summary>
+        /// Определить минимальную длину логину и пароля
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
@@ -98,6 +100,10 @@ namespace ChronosBeta.ViewModels
             return validData;
         }
 
+        /// <summary>
+        /// Аунтфикация в программу
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecuteLoginCommand(object obj)
         {
             try
@@ -129,9 +135,16 @@ namespace ChronosBeta.ViewModels
             }
         }
 
+        /// <summary>
+        /// Ошибка
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="email"></param>
+        /// <exception cref="NotImplementedException"></exception>
         private void ExecuteRecoverPassCommand(string username, string email)
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

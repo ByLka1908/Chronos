@@ -1,43 +1,33 @@
 ﻿using ChronosBeta.BL;
-using ChronosBeta.BL.InternalFunctions;
 using ChronosBeta.Model;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace ChronosBeta.ViewModels
 {
     public class HomeViewModel: ViewModelBase
     {
-        private string _contentLabel;
-        private SolidColorBrush _foregroundButton;
-        private static MainViewModel _currentMain;
+        #region Параметры
+        private string _contentLabel; //Текст рабочего времени
+        private SolidColorBrush _foregroundButton; //Цвет кнопки Вкл/Выкл трекера рабочего времени
+        private static MainViewModel _currentMain; //Основное окно
+        #endregion
 
-        public ICollectionView OverdueTask { get; private set; }
-        public ICollectionView CurrentTask { get; private set; }
-        public ICollectionView FutureTask { get; private set; }
-        public ICommand OnOffTimer { get; }
-        public ICommand GoTask { get; }
-
-        public string DatePicker { get; set; }
-        public string ContentLabel 
+        #region Свойства
+        public ICollectionView OverdueTask { get; private set; } //Таблица прошедших задач
+        public ICollectionView CurrentTask { get; private set; } //Таблица текущих задач
+        public ICollectionView FutureTask { get; private set; } //Таблица будущих задач
+        public string ContentLabel
         {
             get { return _contentLabel; }
-            set 
-            { 
+            set
+            {
                 _contentLabel = value;
                 OnPropertyChanged(nameof(ContentLabel));
             }
@@ -51,7 +41,14 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged(nameof(ForegroundButton));
             }
         }
+        #endregion
 
+        #region Команды
+        public ICommand OnOffTimer { get; } //Вкл/Выкл рабочего времени
+        public ICommand GoTask { get; } //Перейти к задаче
+        #endregion
+
+        #region Конструкторы
         public HomeViewModel() 
         {
             try
@@ -85,11 +82,21 @@ namespace ChronosBeta.ViewModels
             }
         }
 
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="main">Основное окно</param>
         public HomeViewModel(MainViewModel main)
         {
             _currentMain = main;
         }
+        #endregion
 
+        #region Методы
+        /// <summary>
+        /// Вкл/Выкл рабочего времени
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecutedOnOffTimerCommand(object obj)
         {
             try
@@ -103,6 +110,10 @@ namespace ChronosBeta.ViewModels
             }
         }
 
+        /// <summary>
+        /// Быстро перейти к задаче
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecutedGoTaskCommand(object obj)
         {
             _currentMain.CurrentChildView = new TaskObjViewModel(_currentMain, (ViewTask)obj, new HomeViewModel(), "Рабочий стол", IconChar.House);
@@ -110,11 +121,14 @@ namespace ChronosBeta.ViewModels
             _currentMain.Icon = IconChar.ListCheck;
         }
 
+        /// <summary>
+        /// Обновить кнопку
+        /// </summary>
         private void UpdateButton()
         {
             ContentLabel = FunctionsDateTimer.GetContentButtonTrack();
             ForegroundButton = FunctionsDateTimer.GetColorBrushes();
         }
-
+        #endregion
     }
 }
