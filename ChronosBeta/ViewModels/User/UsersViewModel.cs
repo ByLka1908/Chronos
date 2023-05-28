@@ -1,27 +1,22 @@
 ﻿using ChronosBeta.BL;
 using ChronosBeta.Model;
 using FontAwesome.Sharp;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Forms;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace ChronosBeta.ViewModels
 {
     public class UsersViewModel : ViewModelBase
     {
+        #region Параметры
         private ICollectionView _currentUserList;
         private static MainViewModel _currentMain;
+        #endregion
 
+        #region Свойства
         public ICollectionView CurrentUserList
         {
             get { return _currentUserList; }
@@ -31,15 +26,19 @@ namespace ChronosBeta.ViewModels
                 OnPropertyChanged(nameof(CurrentUserList));
             }
         }
+        public ViewUsers SelectedUser { get; set; }
+        public string CurrentText { get; set; }
+        #endregion
 
+        #region Команды
         public ICommand AddUser { get; }
         public ICommand EditUser { get; }
         public ICommand GoUserEdit { get; }
         public ICommand RemoveUser { get; }
         public ICommand Search { get; }
-        public ViewUsers SelectedUser { get; set; }
-        public string CurrentText { get; set; }
+        #endregion
 
+        #region Конструктор
         public UsersViewModel()
         {
             AddUser = new ViewModelCommand(ExecutedAddUserCommand);
@@ -55,7 +54,12 @@ namespace ChronosBeta.ViewModels
         {
             _currentMain = main;
         }
+        #endregion
 
+        #region Методы
+        /// <summary>
+        /// Обновить таблицу
+        /// </summary>
         private void UpdateView()
         {
             try
@@ -69,6 +73,10 @@ namespace ChronosBeta.ViewModels
             }
         }
 
+        /// <summary>
+        /// Поиск
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecutedSearchCommand(object obj)
         {    
             if(CurrentText == null)
@@ -105,6 +113,10 @@ namespace ChronosBeta.ViewModels
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecutedAddUserCommand(object obj)
         {
             _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, new UsersViewModel(), "Пользователи", IconChar.Users);
@@ -112,6 +124,10 @@ namespace ChronosBeta.ViewModels
             _currentMain.Icon = IconChar.UserPlus;
         }
 
+        /// <summary>
+        /// Быстро перейти к редактированию пользователю
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecutedGoUserEditCommand(object obj)
         {
             _currentMain.CurrentChildView = new UserObjViewModel(_currentMain, (ViewUsers)obj, new UsersViewModel(), "Пользователи", IconChar.Users);
@@ -119,6 +135,10 @@ namespace ChronosBeta.ViewModels
             _currentMain.Icon = IconChar.UserEdit;
         }
 
+        /// <summary>
+        /// Редактирование пользователя
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecutedEditUserCommand(object obj)
         {
             if (SelectedUser == null)
@@ -131,6 +151,10 @@ namespace ChronosBeta.ViewModels
             _currentMain.Icon = IconChar.UserEdit;
         }
 
+        /// <summary>
+        /// Удалить пользователя
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecutedRemoveUserCommand(object obj)
         {
 
@@ -170,5 +194,6 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenErrorWindow("Ошибка удаления пользователя!");
             }
         }
+        #endregion
     }
 }
