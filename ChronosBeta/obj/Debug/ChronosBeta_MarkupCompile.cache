@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\text\Chronos\ChronosBeta\obj\Debug\
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\
 ChronosBeta
 none
 false
 DEBUG;TRACE
-D:\text\Chronos\ChronosBeta\App.xaml
-312092121441
+F:\GitProject\Chronos\ChronosBeta\App.xaml
+321056445891
 21227157113
-106-898304665
-31829816192
-Styles\BindablePasswordBox.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\DateTimer\DateTimerFilterView.xaml;View\Project\ProjectFilterView.xaml;View\Setting\NSI\JobTitle\JobTitleObjView.xaml;View\Setting\NSI\JobTitle\JobTitleView.xaml;View\Setting\NSI\Connect\ConnectionsView.xaml;View\Setting\NSI\Connect\ConnectionObjView.xaml;View\Setting\NSI\Customer\CustomerObjView.xaml;View\Setting\NSI\Customer\CustomerView.xaml;View\DateTimer\DateTimerObjView.xaml;View\DateTimer\DateTimerView.xaml;View\Information\DialogView.xaml;View\Information\InfoView.xaml;View\HomeView.xaml;View\Setting\NSI\ListApplicationView.xaml;View\LoginView.xaml;View\MainView.xaml;View\Project\ProjectObjView.xaml;View\Project\ProjectsView.xaml;View\ScreenshotView.xaml;View\Setting\SettingView.xaml;View\TaskTimer\TaskTimerFilterView.xaml;View\Task\TaskFilterView.xaml;View\Task\TaksView.xaml;View\Task\TaskObjView.xaml;View\TaskTimer\TaskTimerObjView.xaml;View\TaskTimer\TaskTimerView.xaml;View\User\UserObjView.xaml;View\User\UsersView.xaml;
+107-645739875
+31130610952
+Styles\BindablePasswordBox.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\Setting\NSI\Connect\ConnectionFastChangeView.xaml;View\DateTimer\DateTimerFilterView.xaml;View\Project\ProjectFilterView.xaml;View\Setting\NSI\JobTitle\JobTitleObjView.xaml;View\Setting\NSI\JobTitle\JobTitleView.xaml;View\Setting\NSI\Connect\ConnectionsView.xaml;View\Setting\NSI\Connect\ConnectionObjView.xaml;View\Setting\NSI\Customer\CustomerObjView.xaml;View\Setting\NSI\Customer\CustomerView.xaml;View\DateTimer\DateTimerObjView.xaml;View\DateTimer\DateTimerView.xaml;View\Information\DialogView.xaml;View\Information\InfoView.xaml;View\HomeView.xaml;View\Setting\NSI\ListApplicationView.xaml;View\LoginView.xaml;View\MainView.xaml;View\Project\ProjectObjView.xaml;View\Project\ProjectsView.xaml;View\ScreenshotView.xaml;View\Setting\SettingView.xaml;View\TaskTimer\TaskTimerFilterView.xaml;View\Task\TaskFilterView.xaml;View\Task\TaksView.xaml;View\Task\TaskObjView.xaml;View\TaskTimer\TaskTimerObjView.xaml;View\TaskTimer\TaskTimerView.xaml;View\User\UserObjView.xaml;View\User\UsersView.xaml;
 
-True
+False
 

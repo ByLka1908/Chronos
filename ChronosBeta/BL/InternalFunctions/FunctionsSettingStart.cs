@@ -47,6 +47,16 @@ namespace ChronosBeta.BL.InternalFunctions
             FunctionsJSON.UpdateListAppTimer = setting.UpdateListAppTimer;
         }
 
+        /// <summary>
+        /// Изменить подключение к БД
+        /// </summary>
+        /// <param name="connectName">Название подключения</param>
+        public static void ChangeConnect(string connectName)
+        {
+            setting.CurrentConectName = connectName;
+            Update();
+        }
+
         //Обновление настроек приложения
         public static void Update()
         {

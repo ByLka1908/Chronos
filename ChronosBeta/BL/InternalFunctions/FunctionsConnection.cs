@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ChronosBeta.BL.InternalFunctions;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
@@ -95,7 +96,11 @@ namespace ChronosBeta.BL
             editConnect.UserId = NameUser;
             editConnect.integratedSecurity = IsAuntifucationWindows;
 
+            UserConnectName = NameConnect;
+            CurrentConnect = editConnect;
             ConnectionViews.Add(editConnect);
+
+            FunctionsSettingStart.ChangeConnect(NameConnect);
             SaveJsonConnect();
         }
 

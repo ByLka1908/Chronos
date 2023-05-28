@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Input;
 using ChronosBeta.BL;
 using ChronosBeta.BL.InternalFunctions;
+using ChronosBeta.View;
 
 namespace ChronosBeta.ViewModels
 {
@@ -131,7 +132,21 @@ namespace ChronosBeta.ViewModels
             }
             catch
             {
-                FunctionsWindow.OpenErrorWindow("Ошибка аунтификации");
+                if(FunctionsWindow.OpenDialogWindow("Ошибка подключения к БД!\n" +
+                                                    "Хотите изменить настройки подключения"))
+                {
+                    try
+                    {
+                        if (FunctionsWindow.OpenFilterWindow(new ConnectionFastChangeView()))
+                        {
+                           FunctionsWindow.OpenGoodWindow("Настройки сохранены!");
+                        }
+                    }
+                    catch
+                    {
+                        FunctionsWindow.OpenErrorWindow("Не удалось открыть настройки подключения!");
+                    }
+                }
             }
         }
 

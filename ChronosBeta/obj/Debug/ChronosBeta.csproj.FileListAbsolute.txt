@@ -265,3 +265,5 @@ F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DateTimer\DateTimerFilterView.g
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\DateTimer\DateTimerFilterView.baml
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Project\ProjectFilterView.g.cs
 F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Project\ProjectFilterView.baml
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\Connect\ConnectionFastChangeView.g.cs
+F:\GitProject\Chronos\ChronosBeta\obj\Debug\View\Setting\NSI\Connect\ConnectionFastChangeView.baml

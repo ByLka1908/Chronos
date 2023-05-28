@@ -5,14 +5,9 @@ using ChronosBeta.Views;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.EntitySql;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace ChronosBeta.ViewModels
 {
@@ -260,7 +255,7 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenConfrumWindow("Укажите имя базы данных!");
                 return;
             }
-            if (CheckedTrue)
+            if (CheckedFalse)
             {
                 if (NameUser == null || NameUser == "")
                 {
@@ -291,6 +286,10 @@ namespace ChronosBeta.ViewModels
                 FunctionsWindow.OpenConfrumWindow("Укажите время обновления списка приложений в правильном формате");
                 return;
             }
+            if (!FunctionsWindow.OpenDialogWindow("Вы уверенны в сохранении?"))
+            {
+                return;
+            }
 
             try
             {
@@ -303,11 +302,11 @@ namespace ChronosBeta.ViewModels
                 FunctionsSettingStart.setting.UpdateListAppTimer = ConvertToIntSec(TimeUpdateListApp);
                 FunctionsSettingStart.Update();
 
-                FunctionsWindow.OpenGoodWindow("Насторйки сохранены");
+                FunctionsWindow.OpenGoodWindow("Настройки сохранены");
             }
             catch
             {
-                FunctionsWindow.OpenErrorWindow("Насторйки не сохранены");
+                FunctionsWindow.OpenErrorWindow("Настройки не сохранены");
             }
         }
     }

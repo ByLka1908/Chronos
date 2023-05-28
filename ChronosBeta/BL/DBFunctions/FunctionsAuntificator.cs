@@ -17,7 +17,7 @@ namespace ChronosBeta.BL
         {
             CronosEntities entities = new CronosEntities();
             Users user = new Users();
-            user = entities.Users.Single(x => x.Login == credential.UserName && x.Password == credential.Password);
+            user = entities.Users.Where(x => x.Login == credential.UserName && x.Password == credential.Password).FirstOrDefault();
 
             if (user != null)
             {
